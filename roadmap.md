@@ -1,4 +1,5 @@
 # ExaCiv
+- [ ] Restore approved public homepage/logo/header/hero; add only Accueil to navigation, compare desktop/mobile and provide screenshots.
 - [ ] Payments and associated admin tracking deferred by user; waits for explicit reactivation and provider configuration.
 - [ ] Replace revision sources with verified official programme references and align learning paths without presenting invented questions as official.
 - [ ] Implement reference-faithful Leçons, Progression and Mon compte with separate demo data and saved real account settings.
