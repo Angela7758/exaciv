@@ -1,4 +1,5 @@
 # ExaCiv
+- [ ] Correct homepage scale against the latest original reference; audit all page text/rendering and repair concrete UX/display defects without redesigning approved screens.
 - [x] Match approved Connexion/Inscription, practice entry and mock-exam introduction references; verify controls, persistent starts/resume and desktop/tablet/mobile screenshots. Remaining visual differences: reused CIVI pose/background and spacing; Google/email delivery not tested end-to-end.
 - [ ] Restore approved public homepage/logo/header/hero; add only Accueil to navigation, compare desktop/mobile and provide screenshots.
 - [ ] Payments and associated admin tracking deferred by user; waits for explicit reactivation and provider configuration.
