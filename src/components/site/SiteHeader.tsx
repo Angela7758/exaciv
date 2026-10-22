@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 
 const NAV = [
+  { to: "/", label: "Accueil" },
   { to: "/examen", label: "L’examen" },
   { to: "/parcours", label: "Parcours" },
   { to: "/methode", label: "Méthode" },
@@ -18,14 +19,15 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const locationKey = useRouterState({ select: (state) => state.location.href });
+  const home = useRouterState({select:state=>state.location.pathname==='/' });
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); }, [locationKey]);
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3">
+    <header className={`sticky top-0 z-40 px-3 pt-3 ${home?'approved-home-header':''}`}>
       <div className="container-page flex h-16 items-center justify-between rounded-2xl border bg-card/95 shadow-soft backdrop-blur">
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>
+            <Link key={n.to} to={n.to} activeOptions={{exact:true}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>
               {n.label}
             </Link>
           ))}
