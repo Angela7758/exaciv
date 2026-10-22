@@ -10,33 +10,256 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CgvRouteImport } from './routes/cgv'
+import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
+import { Route as ConnexionRouteImport } from './routes/connexion'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ExamenRouteImport } from './routes/examen'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as InscriptionRouteImport } from './routes/inscription'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as MethodeRouteImport } from './routes/methode'
+import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
+import { Route as ParcoursRouteImport } from './routes/parcours'
+import { Route as RessourcesRouteImport } from './routes/ressources'
+import { Route as TarifsRouteImport } from './routes/tarifs'
+import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
+import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
+import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CgvRoute = CgvRouteImport.update({
+  id: '/cgv',
+  path: '/cgv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnexionRoute = ConnexionRouteImport.update({
+  id: '/connexion',
+  path: '/connexion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamenRoute = ExamenRouteImport.update({
+  id: '/examen',
+  path: '/examen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InscriptionRoute = InscriptionRouteImport.update({
+  id: '/inscription',
+  path: '/inscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodeRoute = MethodeRouteImport.update({
+  id: '/methode',
+  path: '/methode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotDePasseOublieRoute = MotDePasseOublieRouteImport.update({
+  id: '/mot-de-passe-oublie',
+  path: '/mot-de-passe-oublie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParcoursRoute = ParcoursRouteImport.update({
+  id: '/parcours',
+  path: '/parcours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RessourcesRoute = RessourcesRouteImport.update({
+  id: '/ressources',
+  path: '/ressources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TarifsRoute = TarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestGratuitRoute = TestGratuitRouteImport.update({
+  id: '/test-gratuit',
+  path: '/test-gratuit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RessourcesSlugRoute = RessourcesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => RessourcesRoute,
+} as any)
+const TarifsPlanRoute = TarifsPlanRouteImport.update({
+  id: '/$plan',
+  path: '/$plan',
+  getParentRoute: () => TarifsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cgv': typeof CgvRoute
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/connexion': typeof ConnexionRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/examen': typeof ExamenRoute
+  '/faq': typeof FaqRoute
+  '/inscription': typeof InscriptionRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/methode': typeof MethodeRoute
+  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/parcours': typeof ParcoursRoute
+  '/ressources': typeof RessourcesRouteWithChildren
+  '/tarifs': typeof TarifsRouteWithChildren
+  '/test-gratuit': typeof TestGratuitRoute
+  '/ressources/$slug': typeof RessourcesSlugRoute
+  '/tarifs/$plan': typeof TarifsPlanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cgv': typeof CgvRoute
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/connexion': typeof ConnexionRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/examen': typeof ExamenRoute
+  '/faq': typeof FaqRoute
+  '/inscription': typeof InscriptionRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/methode': typeof MethodeRoute
+  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/parcours': typeof ParcoursRoute
+  '/ressources': typeof RessourcesRouteWithChildren
+  '/tarifs': typeof TarifsRouteWithChildren
+  '/test-gratuit': typeof TestGratuitRoute
+  '/ressources/$slug': typeof RessourcesSlugRoute
+  '/tarifs/$plan': typeof TarifsPlanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cgv': typeof CgvRoute
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/connexion': typeof ConnexionRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/examen': typeof ExamenRoute
+  '/faq': typeof FaqRoute
+  '/inscription': typeof InscriptionRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/methode': typeof MethodeRoute
+  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/parcours': typeof ParcoursRoute
+  '/ressources': typeof RessourcesRouteWithChildren
+  '/tarifs': typeof TarifsRouteWithChildren
+  '/test-gratuit': typeof TestGratuitRoute
+  '/ressources/$slug': typeof RessourcesSlugRoute
+  '/tarifs/$plan': typeof TarifsPlanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cgv'
+    | '/confidentialite'
+    | '/connexion'
+    | '/contact'
+    | '/cookies'
+    | '/examen'
+    | '/faq'
+    | '/inscription'
+    | '/mentions-legales'
+    | '/methode'
+    | '/mot-de-passe-oublie'
+    | '/parcours'
+    | '/ressources'
+    | '/tarifs'
+    | '/test-gratuit'
+    | '/ressources/$slug'
+    | '/tarifs/$plan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cgv'
+    | '/confidentialite'
+    | '/connexion'
+    | '/contact'
+    | '/cookies'
+    | '/examen'
+    | '/faq'
+    | '/inscription'
+    | '/mentions-legales'
+    | '/methode'
+    | '/mot-de-passe-oublie'
+    | '/parcours'
+    | '/ressources'
+    | '/tarifs'
+    | '/test-gratuit'
+    | '/ressources/$slug'
+    | '/tarifs/$plan'
+  id:
+    | '__root__'
+    | '/'
+    | '/cgv'
+    | '/confidentialite'
+    | '/connexion'
+    | '/contact'
+    | '/cookies'
+    | '/examen'
+    | '/faq'
+    | '/inscription'
+    | '/mentions-legales'
+    | '/methode'
+    | '/mot-de-passe-oublie'
+    | '/parcours'
+    | '/ressources'
+    | '/tarifs'
+    | '/test-gratuit'
+    | '/ressources/$slug'
+    | '/tarifs/$plan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CgvRoute: typeof CgvRoute
+  ConfidentialiteRoute: typeof ConfidentialiteRoute
+  ConnexionRoute: typeof ConnexionRoute
+  ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
+  ExamenRoute: typeof ExamenRoute
+  FaqRoute: typeof FaqRoute
+  InscriptionRoute: typeof InscriptionRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  MethodeRoute: typeof MethodeRoute
+  MotDePasseOublieRoute: typeof MotDePasseOublieRoute
+  ParcoursRoute: typeof ParcoursRoute
+  RessourcesRoute: typeof RessourcesRouteWithChildren
+  TarifsRoute: typeof TarifsRouteWithChildren
+  TestGratuitRoute: typeof TestGratuitRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +271,168 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cgv': {
+      id: '/cgv'
+      path: '/cgv'
+      fullPath: '/cgv'
+      preLoaderRoute: typeof CgvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentialite': {
+      id: '/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/confidentialite'
+      preLoaderRoute: typeof ConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connexion': {
+      id: '/connexion'
+      path: '/connexion'
+      fullPath: '/connexion'
+      preLoaderRoute: typeof ConnexionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examen': {
+      id: '/examen'
+      path: '/examen'
+      fullPath: '/examen'
+      preLoaderRoute: typeof ExamenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inscription': {
+      id: '/inscription'
+      path: '/inscription'
+      fullPath: '/inscription'
+      preLoaderRoute: typeof InscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methode': {
+      id: '/methode'
+      path: '/methode'
+      fullPath: '/methode'
+      preLoaderRoute: typeof MethodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mot-de-passe-oublie': {
+      id: '/mot-de-passe-oublie'
+      path: '/mot-de-passe-oublie'
+      fullPath: '/mot-de-passe-oublie'
+      preLoaderRoute: typeof MotDePasseOublieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parcours': {
+      id: '/parcours'
+      path: '/parcours'
+      fullPath: '/parcours'
+      preLoaderRoute: typeof ParcoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ressources': {
+      id: '/ressources'
+      path: '/ressources'
+      fullPath: '/ressources'
+      preLoaderRoute: typeof RessourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tarifs': {
+      id: '/tarifs'
+      path: '/tarifs'
+      fullPath: '/tarifs'
+      preLoaderRoute: typeof TarifsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test-gratuit': {
+      id: '/test-gratuit'
+      path: '/test-gratuit'
+      fullPath: '/test-gratuit'
+      preLoaderRoute: typeof TestGratuitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ressources/$slug': {
+      id: '/ressources/$slug'
+      path: '/$slug'
+      fullPath: '/ressources/$slug'
+      preLoaderRoute: typeof RessourcesSlugRouteImport
+      parentRoute: typeof RessourcesRoute
+    }
+    '/tarifs/$plan': {
+      id: '/tarifs/$plan'
+      path: '/$plan'
+      fullPath: '/tarifs/$plan'
+      preLoaderRoute: typeof TarifsPlanRouteImport
+      parentRoute: typeof TarifsRoute
+    }
   }
 }
 
+interface RessourcesRouteChildren {
+  RessourcesSlugRoute: typeof RessourcesSlugRoute
+}
+
+const RessourcesRouteChildren: RessourcesRouteChildren = {
+  RessourcesSlugRoute: RessourcesSlugRoute,
+}
+
+const RessourcesRouteWithChildren = RessourcesRoute._addFileChildren(
+  RessourcesRouteChildren,
+)
+
+interface TarifsRouteChildren {
+  TarifsPlanRoute: typeof TarifsPlanRoute
+}
+
+const TarifsRouteChildren: TarifsRouteChildren = {
+  TarifsPlanRoute: TarifsPlanRoute,
+}
+
+const TarifsRouteWithChildren =
+  TarifsRoute._addFileChildren(TarifsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CgvRoute: CgvRoute,
+  ConfidentialiteRoute: ConfidentialiteRoute,
+  ConnexionRoute: ConnexionRoute,
+  ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
+  ExamenRoute: ExamenRoute,
+  FaqRoute: FaqRoute,
+  InscriptionRoute: InscriptionRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  MethodeRoute: MethodeRoute,
+  MotDePasseOublieRoute: MotDePasseOublieRoute,
+  ParcoursRoute: ParcoursRoute,
+  RessourcesRoute: RessourcesRouteWithChildren,
+  TarifsRoute: TarifsRouteWithChildren,
+  TestGratuitRoute: TestGratuitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
