@@ -51,6 +51,7 @@ export const es: Partial<Record<MessageKey, string>> = {
   'home.hero.chip1': '1. Instituciones francesas',
   'home.hero.chip2': '2. Libertades y derechos',
   'home.hero.chip3': '3. Vida democrática y ciudadanía',
+  'home.hero.civiAsk': '¿Empezamos?',
   'home.hero.civiAlt': 'CIVI, tu compañero de preparación',
 
   'home.stats.q': '40 preguntas',

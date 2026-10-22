@@ -49,6 +49,7 @@ export const fr = {
   'home.hero.chip1': '1. Institutions françaises',
   'home.hero.chip2': '2. Libertés et droits',
   'home.hero.chip3': '3. Vie démocratique et citoyenneté',
+  'home.hero.civiAsk': 'On commence ?',
   'home.hero.civiAlt': 'CIVI, votre compagnon de préparation',
 
   'home.stats.q': '40 questions',
