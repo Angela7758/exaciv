@@ -27,3 +27,9 @@
 - [ ] Original high-resolution CIVI thinking pose for exact quiz artwork fidelity.
 - [ ] Non-French translations (French UI is active; locale preferences and RTL metadata are prepared).
 - [ ] Live payment configuration and final legal/contact details.
+
+## Correctifs six captures (2026-10-22)
+- [x] Catalogue /app/lecons : styles catalogue-*/approved-theme-* absents → page non stylée ; bloc CSS ajouté (bannière, filtres, grille thèmes 3/2/1, leçons recommandées)
+- [x] Progression /app/progression : metric-ring/analytics-* sans CSS, cercles SVG sans fill:none → disques noirs géants ; styles ajoutés (anneaux 82px, fill:none, graphe d'activité contenu)
+- [x] Accueil : cartes parcours/avantages/tarifs égales, badge « Le plus choisi », 6 langues réelles (plus de « … »), focus FAQ clavier uniquement, CTA final ordre mobile texte→bouton→CIVI, logo pied de page sans bloc blanc
+- [ ] Vérification connectée des pages /app/lecons et /app/progression (nécessite la connexion de l'utilisatrice dans l'aperçu)

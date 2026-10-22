@@ -122,7 +122,7 @@ export function FinalCta() {
           <h2 className="text-4xl font-bold md:text-5xl">Prêt à commencer ?</h2>
           <p className="mt-2 text-lg opacity-95">Faites un premier test et découvrez vos points à renforcer.</p>
         </div>
-        <Button asChild variant="cta" size="xl" className="order-2">
+        <Button asChild variant="cta" size="xl" className="order-2 shrink-0">
           <Link to="/test-gratuit"><Play className="fill-current" /> Faire un test gratuit</Link>
         </Button>
         <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 md:order-none md:ml-auto md:w-40" />
