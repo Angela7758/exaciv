@@ -13,7 +13,7 @@ import {recordedProgress} from '@/lib/registration';
 import civi from '@/assets/civi.png';
 import paris from '@/assets/hero-paris.jpg';
 export function PracticeSession({id,demo=false}:{id:string;demo?:boolean}){return demo?<PracticeView id={id} demo/>:<ActualPractice id={id}/>;}
-function ActualPractice({id}:{id:string}){const {data:s}=useSuspenseQuery(sessionOptions(id));return <PracticeView id={id} session={s}/>;}
+function ActualPractice({id}:{id:string}){const {data:s}=useSuspenseQuery(sessionOptions(id));const {data:d}=useSuspenseQuery(learningOptions);return <PracticeView id={id} session={s} profile={d.profile}/>;}
 function PracticeView({id,demo=false,session:s}:{id:string;demo?:boolean;session?:import('@/lib/sessions').LearningSession}){
  const [viewIndex,setViewIndex]=useState<number|null>(null);const index=viewIndex??s?.current_index??4;const [selected,setSelected]=useState<number|null>(demo?0:null);const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [demoDone,setDemoDone]=useState(false);const navigate=useNavigate();const qc=useQueryClient();const submit=useServerFn(submitAnswer);const total=s?.total??10;const answers=s?.answers??{'0':0,'1':0,'2':0,'3':0};const progress=recordedProgress(answers,total);const q=s?.questions[index]??{id:'demo-practice-parliament',theme:'Institutions françaises',question:'Quel est le rôle du Parlement ?',options:['Voter les lois','Diriger le Gouvernement','Rendre la justice','Organiser les élections']};
  useEffect(()=>{if(!demo){try{const v=sessionStorage.getItem(`exaciv-practice-draft-${id}-${index}`);setSelected(s?.answers[String(index)]??(v===null?null:Number(v)));}catch{setSelected(null);}}},[id,index,demo,s?.answers]);
