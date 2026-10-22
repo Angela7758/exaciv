@@ -1,6 +1,6 @@
 # ExaCiv
-- [x] Implement four new reference states: setup step 2, public free-test result, practice session question, and mock submission modal (image 5 overrides image 4); preserve real session data and verify desktop/mobile transitions.
-- [x] Correct homepage scale against the latest original reference; audit all page text/rendering and repair concrete UX/display defects without redesigning approved screens.
+- [x] Implement four new reference states: setup step 2, public free-test result, practice session question, and mock submission modal (image 5 overrides image 4); preserve real session data and verify desktop/mobile transitions. Demo checks passed; personal registration/submission verification awaits an authorized signed-in account.
+- [ ] Correct homepage scale against the latest original reference; audit all page text/rendering and repair concrete UX/display defects without redesigning approved screens.
 - [x] Match approved Connexion/Inscription, practice entry and mock-exam introduction references; verify controls, persistent starts/resume and desktop/tablet/mobile screenshots. Remaining visual differences: reused CIVI pose/background and spacing; Google/email delivery not tested end-to-end.
 - [ ] Restore approved public homepage/logo/header/hero; add only Accueil to navigation, compare desktop/mobile and provide screenshots.
 - [ ] Payments and associated admin tracking deferred by user; waits for explicit reactivation and provider configuration.
@@ -19,6 +19,8 @@
 - [x] Dashboard, learning map, lessons and practice flows.
 - [x] Verify desktop/mobile, calculations, persistence and access controls.
 ## Pending external inputs
+- [ ] Verify registration/profile save and real exam submission with an authorized account; no usable browser session was available.
+- [ ] Exact homepage Paris foreground/platform and screen-specific CIVI poses remain unmatched with available extracted assets.
 - [ ] Editorial approval of the 40-question training catalogue and reference chapter lesson content (Liberté, Égalité, Fraternité).
 - [ ] Original high-resolution CIVI thinking pose for exact quiz artwork fidelity.
 - [ ] Non-French translations (French UI is active; locale preferences and RTL metadata are prepared).
