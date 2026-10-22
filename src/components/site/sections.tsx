@@ -45,9 +45,11 @@ export function PricingCards() {
               ))}
             </ul>
             <Button asChild variant={p.variant} size="lg" className="mt-7 w-full">
-              <Link to={p.id === "decouverte" ? "/test-gratuit" : "/tarifs/$plan"} params={p.id === "decouverte" ? undefined : { plan: p.id }}>
-                {p.cta}
-              </Link>
+              {p.id === "decouverte" ? (
+                <Link to="/test-gratuit">{p.cta}</Link>
+              ) : (
+                <Link to="/tarifs/$plan" params={{ plan: p.id }}>{p.cta}</Link>
+              )}
             </Button>
           </div>
         ))}

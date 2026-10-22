@@ -18,7 +18,7 @@ function FreeTest() {
   const [parcours, setParcours] = useState<ParcoursId | null>(null);
   const [idx, setIdx] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => FREE_TEST.map(() => null));
-  const q = FREE_TEST[idx];
+  const q = FREE_TEST[idx]!;
   const reset = () => { setAnswers(FREE_TEST.map(() => null)); setIdx(0); setStep("choose"); };
 
   return (
