@@ -20,3 +20,7 @@
 - The public homepage hero is isolated in HomeHero with homepage-scoped styles so fidelity corrections do not change approved app screens or other public pages.
 - Official programme taxonomy and verified references live in src/config/official-programme.ts; legacy lessons and stored mistakes are mapped at read time, preserving session snapshots, answer order and earned progress. Official references never imply editorial QCM are the ministry's complete bank.
 - Auth and session-entry reference styles are scoped to approved-auth and entry-shell; SessionStart reuses persistent RPCs with click-only creation/resume and theme-prefixed practice selection, preventing introductory visits from starting exam deadlines.
+
+- Registration credentials remain in an in-memory draft only; non-sensitive objectives and diagnostic snapshots use scoped session storage so returning to step one never writes passwords to persistent storage.
+- Practice question presentation is separate from feedback; recorded answers and server current index remain authoritative while previous-question viewing and tentative selections never alter scoring.
+- Exam confirmation counts only recorded answers, navigation never validates tentative selections, and finalization is a separate authenticated idempotent RPC; all question indexes stay revisitable before submission.
