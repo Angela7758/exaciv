@@ -1,0 +1,4 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AccountSettings,accountEmailOptions} from '@/components/learning/AccountSettings';
+import {seo} from '@/lib/seo';
+export const Route=createFileRoute('/_authenticated/app/mon-compte')({validateSearch:(s:Record<string,unknown>):{demo?:boolean}=>s['demo']===true||s['demo']==='true'?{demo:true}:{},loader:({context})=>context.queryClient.ensureQueryData(accountEmailOptions),head:()=>seo('Mon compte ExaCiv','Réglez votre préparation, votre objectif et vos préférences personnelles ExaCiv.'),component:()=>{const {demo}=Route.useSearch();return <AccountSettings demo={demo??false}/>;}});
