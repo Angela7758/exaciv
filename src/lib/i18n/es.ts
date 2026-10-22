@@ -133,6 +133,7 @@ export const es: Partial<Record<MessageKey, string>> = {
   'auth.passwordPlaceholder': 'Tu contraseña',
   'auth.name': 'Nombre',
   'auth.namePlaceholder': 'Tu nombre',
+  'auth.backToLogin': 'Volver a iniciar sesión',
   'auth.forgot': '¿Olvidaste tu contraseña?',
   'auth.login': 'Iniciar sesión',
   'auth.signup': 'Crear una cuenta',

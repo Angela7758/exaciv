@@ -133,6 +133,7 @@ export const en: Partial<Record<MessageKey, string>> = {
   'auth.passwordPlaceholder': 'Your password',
   'auth.name': 'First name',
   'auth.namePlaceholder': 'Your first name',
+  'auth.backToLogin': 'Back to log in',
   'auth.forgot': 'Forgot your password?',
   'auth.login': 'Log in',
   'auth.signup': 'Create an account',

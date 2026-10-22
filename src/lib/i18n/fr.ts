@@ -131,6 +131,7 @@ export const fr = {
   'auth.passwordPlaceholder': 'Votre mot de passe',
   'auth.name': 'Prénom',
   'auth.namePlaceholder': 'Votre prénom',
+  'auth.backToLogin': 'Retour à la connexion',
   'auth.forgot': 'Mot de passe oublié ?',
   'auth.login': 'Se connecter',
   'auth.signup': 'Créer un compte',

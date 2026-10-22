@@ -133,6 +133,7 @@ export const ar: Partial<Record<MessageKey, string>> = {
   'auth.passwordPlaceholder': 'كلمة المرور الخاصة بك',
   'auth.name': 'الاسم الأول',
   'auth.namePlaceholder': 'اسمك الأول',
+  'auth.backToLogin': 'العودة إلى تسجيل الدخول',
   'auth.forgot': 'نسيت كلمة المرور؟',
   'auth.login': 'تسجيل الدخول',
   'auth.signup': 'إنشاء حساب',

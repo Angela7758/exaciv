@@ -133,6 +133,7 @@ export const zh: Partial<Record<MessageKey, string>> = {
   'auth.passwordPlaceholder': '您的密码',
   'auth.name': '名字',
   'auth.namePlaceholder': '您的名字',
+  'auth.backToLogin': '返回登录',
   'auth.forgot': '忘记密码？',
   'auth.login': '登录',
   'auth.signup': '创建账号',
