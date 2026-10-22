@@ -23,12 +23,14 @@ export async function handleRevisionPlan(request:Request){
  const profile=await client.from('profiles').select('parcours').eq('id',auth.user.id).maybeSingle();
  const gateway=createLovableAiGatewayRunIdFetch();
  let denial:{status:number;message:string}|undefined;
+ let headersReady:()=>void=()=>{};
+ const upstreamReady=new Promise<void>(resolve=>{headersReady=resolve;});
  const provider=createOpenAI({baseURL:'https://ai.gateway.lovable.dev/v1',apiKey:aiKey,headers:{'Lovable-API-Key':aiKey,'X-Lovable-AIG-SDK':'vercel-ai-sdk'},fetch:async(i,init)=>{
   const response=await gateway.fetch(i,init);
   if(!response.ok){const message=safeGatewayError(response.status,await response.clone().text());denial={status:response.status,message};
    if(response.status===402||response.status===403){const saved=await supabaseAdmin.from('ai_revision_service_state').upsert({id:'revision',status:response.status,message});if(saved.error)throw new Error('Service IA indisponible.');}
   }
-  return response;
+  headersReady();return response;
  }});
  const controller=new AbortController();request.signal.addEventListener('abort',()=>controller.abort(),{once:true});
  const result=streamText({model:provider.responses('openai/gpt-6-astra'),maxRetries:0,abortSignal:controller.signal,
@@ -36,11 +38,16 @@ export async function handleRevisionPlan(request:Request){
   messages:[{role:'user',content:JSON.stringify({parcours:profile.data?.parcours??'non précisé',...input.data})}],
   output:Output.object({schema:revisionPlanSchema}),providerOptions:{openai:{forceReasoning:true,reasoningEffort:'low',reasoningSummary:'auto',store:false,include:['reasoning.encrypted_content']}},
  });
+ // Start consuming immediately; settle readiness even if transport fails before headers.
+ const completed=result.output;
+ void Promise.resolve(completed).catch(()=>{}).finally(()=>headersReady());
+ await upstreamReady;
+ if(denial){void Promise.resolve(completed).catch(()=>{});return Response.json({message:denial.message},{status:denial.status});}
  const enc=new TextEncoder();
  const stream=new ReadableStream({async start(out){const emit=(event:unknown)=>out.enqueue(enc.encode(JSON.stringify(event)+'\n'));emit({type:'started'});
   try{for await(const part of result.fullStream){if(part.type==='reasoning-delta')emit({type:'working'});if(part.type==='error')throw part.error;}
    if(await result.finishReason==='content-filter')throw new Error('Cette demande ne peut pas être traitée.');
-   const plan=await result.output;
+   const plan=await completed;
    if(!plan)throw new Error('Aucun plan n’a été généré.');
    const saved=await client.from('revision_plans').insert({user_id:auth.user.id,inputs:input.data as unknown as Json,plan:plan as unknown as Json});
    if(saved.error)throw new Error('Le plan n’a pas pu être enregistré.');
