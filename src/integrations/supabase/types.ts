@@ -127,6 +127,35 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_mistake_reviews: {
+        Row: {
+          mastered: boolean
+          question_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          mastered?: boolean
+          question_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          mastered?: boolean
+          question_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_mistake_reviews_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_questions: {
         Row: {
           answer: number
@@ -291,6 +320,15 @@ export type Database = {
         Returns: undefined
       }
       record_learning_attempt: { Args: { p_answers: Json }; Returns: string }
+      save_exam_navigation: {
+        Args: {
+          p_answer?: number
+          p_index: number
+          p_session: string
+          p_target?: number
+        }
+        Returns: undefined
+      }
       start_learning_session: {
         Args: { p_kind: string; p_lesson?: string }
         Returns: string

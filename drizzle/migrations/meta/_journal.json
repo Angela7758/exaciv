@@ -36,6 +36,13 @@
       "when": 1792675081782,
       "tag": "0004_balanced_mock_exam_catalogue",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792675734068,
+      "tag": "0005_exam_navigation_and_mistake_mastery",
+      "breakpoints": true
     }
   ]
 }
