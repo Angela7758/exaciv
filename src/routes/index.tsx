@@ -173,7 +173,7 @@ function Index() {
                 <li key={s.t} style={{ transitionDelay: `${i * 70}ms` }} className="reveal-child relative text-center">
                   <Link to={s.to} className="group block">
                     <span className="mx-auto grid size-16 place-items-center rounded-full bg-card shadow-soft transition group-hover:-translate-y-0.5"><s.icon className={`size-8 ${s.c}`} /></span>
-                    <p className="mt-2 font-bold">{i + 1}. {s.t}</p>
+                    <p className="mt-2 font-bold">{s.t}</p>
                     <p className="text-sm text-muted-foreground">{s.d}</p>
                   </Link>
                   {i < 3 && <ArrowRight className="absolute -right-5 top-6 hidden size-5 text-subtle rtl-flip lg:block" />}
