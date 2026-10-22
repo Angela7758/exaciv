@@ -56,6 +56,7 @@ import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authen
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
 import { Route as AuthenticatedAppEntrainementSessionIdFeedbackRouteImport } from './routes/_authenticated/app.entrainement.$sessionId.feedback'
 import { Route as AuthenticatedAppEntrainementSessionIdRouteImport } from './routes/_authenticated/app.entrainement.session.$id'
+import { Route as AuthenticatedAppExamenBlancResultatsRouteImport } from './routes/_authenticated/app.examen-blanc.resultats.'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -307,6 +308,12 @@ const AuthenticatedAppEntrainementSessionIdRoute =
     path: '/session/$id',
     getParentRoute: () => AuthenticatedAppEntrainementRoute,
   } as any)
+const AuthenticatedAppExamenBlancResultatsRoute =
+  AuthenticatedAppExamenBlancResultatsRouteImport.update({
+    id: '/resultats/',
+    path: '/resultats/',
+    getParentRoute: () => AuthenticatedAppExamenBlancRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -353,6 +360,7 @@ export interface FileRoutesByFullPath {
   '/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
   '/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
+  '/app/examen-blanc/resultats/': typeof AuthenticatedAppExamenBlancResultatsRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
@@ -397,6 +405,7 @@ export interface FileRoutesByTo {
   '/app/entrainement': typeof AuthenticatedAppEntrainementIndexRoute
   '/app/examen-blanc': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons': typeof AuthenticatedAppLeconsIndexRoute
+  '/app/examen-blanc/resultats': typeof AuthenticatedAppExamenBlancResultatsRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
@@ -447,6 +456,7 @@ export interface FileRoutesById {
   '/_authenticated/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
   '/_authenticated/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/_authenticated/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
+  '/_authenticated/app/examen-blanc/resultats/': typeof AuthenticatedAppExamenBlancResultatsRoute
   '/_authenticated/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/_authenticated/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
@@ -497,6 +507,7 @@ export interface FileRouteTypes {
     | '/app/entrainement/'
     | '/app/examen-blanc/'
     | '/app/lecons/'
+    | '/app/examen-blanc/resultats/'
     | '/app/entrainement/$sessionId/feedback'
     | '/app/entrainement/session/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -541,6 +552,7 @@ export interface FileRouteTypes {
     | '/app/entrainement'
     | '/app/examen-blanc'
     | '/app/lecons'
+    | '/app/examen-blanc/resultats'
     | '/app/entrainement/$sessionId/feedback'
     | '/app/entrainement/session/$id'
   id:
@@ -590,6 +602,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/entrainement/'
     | '/_authenticated/app/examen-blanc/'
     | '/_authenticated/app/lecons/'
+    | '/_authenticated/app/examen-blanc/resultats/'
     | '/_authenticated/app/entrainement/$sessionId/feedback'
     | '/_authenticated/app/entrainement/session/$id'
   fileRoutesById: FileRoutesById
@@ -952,6 +965,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdRouteImport
       parentRoute: typeof AuthenticatedAppEntrainementRoute
     }
+    '/_authenticated/app/examen-blanc/resultats/': {
+      id: '/_authenticated/app/examen-blanc/resultats/'
+      path: '/resultats'
+      fullPath: '/app/examen-blanc/resultats/'
+      preLoaderRoute: typeof AuthenticatedAppExamenBlancResultatsRouteImport
+      parentRoute: typeof AuthenticatedAppExamenBlancRoute
+    }
   }
 }
 
@@ -979,6 +999,7 @@ const AuthenticatedAppEntrainementRouteWithChildren =
 interface AuthenticatedAppExamenBlancRouteChildren {
   AuthenticatedAppExamenBlancSessionRoute: typeof AuthenticatedAppExamenBlancSessionRoute
   AuthenticatedAppExamenBlancIndexRoute: typeof AuthenticatedAppExamenBlancIndexRoute
+  AuthenticatedAppExamenBlancResultatsRoute: typeof AuthenticatedAppExamenBlancResultatsRoute
 }
 
 const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRouteChildren =
@@ -987,6 +1008,8 @@ const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRoute
       AuthenticatedAppExamenBlancSessionRoute,
     AuthenticatedAppExamenBlancIndexRoute:
       AuthenticatedAppExamenBlancIndexRoute,
+    AuthenticatedAppExamenBlancResultatsRoute:
+      AuthenticatedAppExamenBlancResultatsRoute,
   }
 
 const AuthenticatedAppExamenBlancRouteWithChildren =
