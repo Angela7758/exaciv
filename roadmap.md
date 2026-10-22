@@ -35,3 +35,12 @@
 - [x] Progression /app/progression : metric-ring/analytics-* sans CSS, cercles SVG sans fill:none → disques noirs géants ; styles ajoutés (anneaux 82px, fill:none, graphe d'activité contenu)
 - [x] Accueil : cartes parcours/avantages/tarifs égales, badge « Le plus choisi », 6 langues réelles (plus de « … »), focus FAQ clavier uniquement, CTA final ordre mobile texte→bouton→CIVI, logo pied de page sans bloc blanc
 - [ ] Vérification connectée des pages /app/lecons et /app/progression (nécessite la connexion de l'utilisatrice dans l'aperçu)
+
+## Refonte Logo, accueil, interactions et six langues (2026-10-22)
+- [ ] Logo officiel transparent partout (BrandLogo partagé, navigation, pied, auth, barre latérale, favicon)
+- [ ] Navigation publique : sélecteur de langue fonctionnel, états actifs, menu mobile
+- [ ] Accueil : 4 cartes méthode sans numéros, aperçus interactifs, « Un petit pas chaque jour » selon référence, FAQ, CTA final
+- [ ] Layout unifié : barre latérale ~240px, contenu ~1200px, échelle typographique
+- [ ] Hover/animations : cartes +4px, icônes 1.05, flèches boutons, reveal au scroll, CIVI flottant + bulle, prefers-reduced-motion
+- [ ] i18n six langues (fr défaut, zh, en, ar RTL, es, ru) : ressources, sélecteur, persistance invité/compte, fallback français, polices
+- [ ] Vérification 1440/768/390 + tests
