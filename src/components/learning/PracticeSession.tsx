@@ -6,6 +6,8 @@ import {ArrowLeft,ArrowRight,ChartNoAxesColumn,Check,ExternalLink,Landmark} from
 import {Button} from '@/components/ui/button';
 import {ProgressBar} from './primitives';
 import {sessionOptions} from '@/lib/session.queries';
+import {learningOptions} from '@/lib/learning.queries';
+import {QuestionAids} from './QuestionAids';
 import {submitAnswer} from '@/lib/session.functions';
 import {recordedProgress} from '@/lib/registration';
 import civi from '@/assets/civi.png';
