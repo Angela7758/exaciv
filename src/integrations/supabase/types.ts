@@ -189,7 +189,9 @@ export type Database = {
           published: boolean
           question: string
           source: string
+          source_status: string
           source_url: string | null
+          source_verified_at: string | null
           theme: string
         }
         Insert: {
@@ -203,7 +205,9 @@ export type Database = {
           published?: boolean
           question: string
           source: string
+          source_status?: string
           source_url?: string | null
+          source_verified_at?: string | null
           theme: string
         }
         Update: {
@@ -217,7 +221,9 @@ export type Database = {
           published?: boolean
           question?: string
           source?: string
+          source_status?: string
           source_url?: string | null
+          source_verified_at?: string | null
           theme?: string
         }
         Relationships: [
@@ -342,10 +348,12 @@ export type Database = {
           daily_minutes: number
           display_name: string
           goal_date: string | null
+          help_locale: string
           id: string
           locale: string
           parcours: string
           revision_reminder: boolean
+          translation_help: boolean
           weekly_summary: boolean
         }
         Insert: {
@@ -354,10 +362,12 @@ export type Database = {
           daily_minutes?: number
           display_name?: string
           goal_date?: string | null
+          help_locale?: string
           id: string
           locale?: string
           parcours?: string
           revision_reminder?: boolean
+          translation_help?: boolean
           weekly_summary?: boolean
         }
         Update: {
@@ -366,10 +376,12 @@ export type Database = {
           daily_minutes?: number
           display_name?: string
           goal_date?: string | null
+          help_locale?: string
           id?: string
           locale?: string
           parcours?: string
           revision_reminder?: boolean
+          translation_help?: boolean
           weekly_summary?: boolean
         }
         Relationships: []

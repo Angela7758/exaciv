@@ -599,3 +599,27 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
   .score-ring-value{stroke-dashoffset:75.4;}
   .reveal-visible .score-ring-value{animation:none;}
 }
+
+/* Correctifs barre latérale : libellés tronqués proprement, jamais chevauchés */
+.app-sidebar nav a{min-width:0;}
+.app-sidebar nav a span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+@media(max-width:1100px){
+  .reference-shell .app-sidebar nav a{font-size:13px;padding:0 10px;height:45px;gap:8px;}
+  .reference-shell .app-sidebar nav svg{width:22px;height:22px;}
+  .reference-shell .app-logo{font-size:26px;margin-bottom:24px;}
+  .reference-shell .app-logo:after{left:88px;font-size:18px;}
+  .reference-shell .sidebar-bottom>a{font-size:12px;}
+}
+
+/* Aides de question : Écouter / Traduire */
+.question-aids{margin:14px 0 4px;}
+.question-aids-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.question-aids-bar select{height:36px;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;padding:0 10px;font-weight:600;color:var(--foreground);}
+.assisted-pill{font-size:11px;font-weight:700;color:var(--secondary-pressed);background:var(--secondary-soft);border-radius:999px;padding:5px 10px;}
+.question-aids-note{font-size:13px;color:var(--learning-muted);margin-top:8px;}
+.question-translation{margin-top:12px;border:1px dashed var(--border);border-radius:12px;padding:14px 16px;background:var(--learning-surface);}
+.question-translation .translation-stem{font-size:15px;font-weight:650;line-height:1.5;}
+.question-translation ul{margin:10px 0;display:grid;gap:6px;font-size:14px;line-height:1.45;list-style:none;padding:0;}
+.question-translation .translation-explanation{font-size:13px;color:var(--learning-muted);line-height:1.5;border-top:1px solid var(--border);padding-top:10px;margin-top:10px;}
+.question-translation[dir="rtl"]{text-align:right;}
+.question-translation[dir="rtl"] ul{padding:0;}

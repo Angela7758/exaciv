@@ -106,6 +106,20 @@
       "when": 1792703435255,
       "tag": "0014_resolve_expired_exam_before_new_start",
       "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1792708976820,
+      "tag": "0015_profiles_translation_help",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1792709188285,
+      "tag": "0016_questions_source_verification",
+      "breakpoints": true
     }
   ]
 }
