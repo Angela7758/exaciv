@@ -43,7 +43,7 @@ export const OFFICIAL_SOURCE = {
 export const FAQ: { q: string; a: string; link?: { to: string; label: string; external?: boolean } }[] = [
   {
     q: "ExaCiv est-il un site officiel ?",
-    a: "Non. ExaCiv est une plateforme indépendante de préparation. Elle n’est pas affiliée à l’administration française et ne délivre aucun certificat officiel.",
+    a: "Non. ExaCiv est une plateforme indépendante de préparation.",
   },
   {
     q: "L’examen officiel est-il en français ?",
