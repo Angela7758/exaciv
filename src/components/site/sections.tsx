@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PLANS, PRICING_NOTE } from "@/config/pricing";
+import { useT } from "@/lib/i18n";
 import { FAQ } from "@/config/content";
 import civi from "@/assets/civi.png";
 import ctaBg from "@/assets/hero-paris.jpg";
@@ -74,7 +75,8 @@ export function PricingCards() {
   );
 }
 
-function FaqItem({ f, i }: { f: (typeof FAQ)[number]; i: number }) {
+type FaqEntry={q:string;a:string;link?:(typeof FAQ)[number]['link']};
+function FaqItem({ f, i }: { f: FaqEntry; i: number }) {
   return (
     <AccordionItem value={`f${i}`} className="rounded-xl border bg-card px-5 shadow-soft">
       <AccordionTrigger className="text-left text-sm font-semibold [&>svg]:text-primary-interactive">{f.q}</AccordionTrigger>
@@ -93,8 +95,8 @@ function FaqItem({ f, i }: { f: (typeof FAQ)[number]; i: number }) {
   );
 }
 
-export function FaqList({ limit, twoCol, indices, initiallyClosed=false }: { limit?: number; twoCol?: boolean; indices?:number[]; initiallyClosed?:boolean }) {
-  const items = indices ? indices.map(i=>FAQ[i]).filter((f):f is (typeof FAQ)[number]=>Boolean(f)) : limit ? FAQ.slice(0, limit) : FAQ;
+export function FaqList({ limit, twoCol, indices, initiallyClosed=false, items:custom }: { limit?: number; twoCol?: boolean; indices?:number[]; initiallyClosed?:boolean; items?:FaqEntry[] }) {
+  const items: FaqEntry[] = custom ?? (indices ? indices.map(i=>FAQ[i]).filter((f):f is (typeof FAQ)[number]=>Boolean(f)) : limit ? FAQ.slice(0, limit) : FAQ);
   if (twoCol) {
     const left = items.filter((_, i) => i % 2 === 0);
     const right = items.filter((_, i) => i % 2 === 1);
@@ -113,17 +115,18 @@ export function FaqList({ limit, twoCol, indices, initiallyClosed=false }: { lim
 }
 
 export function FinalCta() {
+  const t = useT();
   return (
     <section className="relative overflow-hidden">
       <img src={ctaBg} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-cta-band opacity-80" />
       <div className="container-page relative flex flex-col items-center gap-6 py-12 text-center text-primary-foreground md:flex-row md:items-center md:gap-10 md:text-left">
         <div className="order-1">
-          <h2 className="text-4xl font-bold md:text-5xl">Prêt à commencer ?</h2>
-          <p className="mt-2 text-lg opacity-95">Faites un premier test et découvrez vos points à renforcer.</p>
+          <h2 className="text-4xl font-bold md:text-5xl">{t('home.cta.title')}</h2>
+          <p className="mt-2 text-lg opacity-95">{t('home.cta.text')}</p>
         </div>
         <Button asChild variant="cta" size="xl" className="order-2 shrink-0">
-          <Link to="/test-gratuit"><Play className="fill-current" /> Faire un test gratuit</Link>
+          <Link to="/test-gratuit"><Play className="fill-current" /> {t('home.cta.button')}</Link>
         </Button>
         <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 md:order-none md:ml-auto md:w-40" />
       </div>

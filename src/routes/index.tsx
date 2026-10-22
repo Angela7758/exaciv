@@ -202,10 +202,12 @@ function Index() {
 
 function HomeFaq() {
   const t = useT();
-  const items = ([1, 2, 3, 4] as const).map((i) => ({
-    q: t(`home.faq.q${i}` as const),
-    a: t(`home.faq.a${i}` as const),
-  }));
+  const items = [
+    { q: t('home.faq.q1'), a: t('home.faq.a1') },
+    { q: t('home.faq.q2'), a: t('home.faq.a2') },
+    { q: t('home.faq.q3'), a: t('home.faq.a3') },
+    { q: t('home.faq.q4'), a: t('home.faq.a4') },
+  ];
   return <FaqList items={items} twoCol />;
 }
 
