@@ -3,7 +3,7 @@ import { BarChart3, Lightbulb, Target, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/sections";
 import { seo } from "@/lib/seo";
-import civi from "@/assets/civi.png";
+import civi from "@/assets/civi-lecon.png";
 
 export const Route = createFileRoute("/methode")({
   head: () => seo("La méthode", "Découvrir, s’entraîner, progresser, être prêt : la méthode ExaCiv en quatre étapes."),
@@ -31,7 +31,7 @@ function Page() {
             </li>
           ))}
         </ol>
-        <img src={civi} alt="CIVI" loading="lazy" width={1024} height={1024} className="mx-auto w-56" />
+        <img src={civi} alt="CIVI" loading="lazy" width={430} height={497} className="mx-auto w-56" />
         <Button asChild variant="cta" size="lg" className="w-fit"><Link to="/test-gratuit">Commencer par un test gratuit</Link></Button>
       </section>
     </>

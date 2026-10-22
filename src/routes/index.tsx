@@ -6,6 +6,7 @@ import { PARCOURS } from "@/config/content";
 import { seo } from "@/lib/seo";
 import heroImg from "@/assets/hero-paris.jpg";
 import civi from "@/assets/civi.png";
+import civiProgression from "@/assets/civi-progression.png";
 
 export const Route = createFileRoute("/")({
   head: () => seo("Préparez l’examen civique avec confiance", "Leçons claires, QCM et examens blancs pour préparer l’examen civique : naturalisation, carte de résident, carte de séjour pluriannuelle."),
@@ -54,7 +55,7 @@ function Index() {
               </div>
               <p className="mt-3 rounded-xl bg-muted p-3 text-sm text-muted-foreground">La laïcité permet à chacun de croire ou de ne pas croire, et de pratiquer sa religion dans le respect des lois.</p>
             </div>
-            <img src={civi} alt="CIVI, la mascotte ExaCiv" width={1024} height={1024} className="animate-float absolute -bottom-28 -right-4 w-32 md:w-40" />
+            <img src={civi} alt="CIVI, la mascotte ExaCiv" width={430} height={497} className="animate-float absolute -bottom-28 -right-4 w-32 md:w-40" />
           </div>
         </div>
       </section>
@@ -107,7 +108,7 @@ function Index() {
       {/* Un petit pas chaque jour */}
       <section className="bg-accent/60 py-16">
         <div className="container-page grid items-center gap-10 md:grid-cols-[220px_1fr]">
-          <img src={civi} alt="" aria-hidden loading="lazy" width={1024} height={1024} className="mx-auto w-48" />
+          <img src={civiProgression} alt="" aria-hidden loading="lazy" width={430} height={497} className="mx-auto w-48" />
           <div>
             <h2 className="text-3xl font-bold md:text-4xl">Un petit pas chaque jour</h2>
             <p className="mt-2 text-lg text-muted-foreground">Une méthode progressive pour apprendre sereinement.</p>
