@@ -52,6 +52,7 @@ import { Route as AuthenticatedAppLeconsIndexRouteImport } from './routes/_authe
 import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authenticated/app.lecons.$slug'
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
 import { Route as AuthenticatedAppEntrainementSessionIdFeedbackRouteImport } from './routes/_authenticated/app.entrainement.$sessionId.feedback'
+import { Route as AuthenticatedAppEntrainementSessionIdRouteImport } from './routes/_authenticated/app.entrainement.session.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -281,6 +282,12 @@ const AuthenticatedAppEntrainementSessionIdFeedbackRoute =
     path: '/$sessionId/feedback',
     getParentRoute: () => AuthenticatedAppEntrainementRoute,
   } as any)
+const AuthenticatedAppEntrainementSessionIdRoute =
+  AuthenticatedAppEntrainementSessionIdRouteImport.update({
+    id: '/session/$id',
+    path: '/session/$id',
+    getParentRoute: () => AuthenticatedAppEntrainementRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -325,6 +332,7 @@ export interface FileRoutesByFullPath {
   '/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -365,6 +373,7 @@ export interface FileRoutesByTo {
   '/app/examen-blanc': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -411,6 +420,7 @@ export interface FileRoutesById {
   '/_authenticated/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/_authenticated/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/_authenticated/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  '/_authenticated/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -457,6 +467,7 @@ export interface FileRouteTypes {
     | '/app/examen-blanc/'
     | '/app/lecons/'
     | '/app/entrainement/$sessionId/feedback'
+    | '/app/entrainement/session/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -497,6 +508,7 @@ export interface FileRouteTypes {
     | '/app/examen-blanc'
     | '/app/lecons'
     | '/app/entrainement/$sessionId/feedback'
+    | '/app/entrainement/session/$id'
   id:
     | '__root__'
     | '/'
@@ -542,6 +554,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/examen-blanc/'
     | '/_authenticated/app/lecons/'
     | '/_authenticated/app/entrainement/$sessionId/feedback'
+    | '/_authenticated/app/entrainement/session/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -872,12 +885,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdFeedbackRouteImport
       parentRoute: typeof AuthenticatedAppEntrainementRoute
     }
+    '/_authenticated/app/entrainement/session/$id': {
+      id: '/_authenticated/app/entrainement/session/$id'
+      path: '/session/$id'
+      fullPath: '/app/entrainement/session/$id'
+      preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdRouteImport
+      parentRoute: typeof AuthenticatedAppEntrainementRoute
+    }
   }
 }
 
 interface AuthenticatedAppEntrainementRouteChildren {
   AuthenticatedAppEntrainementIndexRoute: typeof AuthenticatedAppEntrainementIndexRoute
   AuthenticatedAppEntrainementSessionIdFeedbackRoute: typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  AuthenticatedAppEntrainementSessionIdRoute: typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 
 const AuthenticatedAppEntrainementRouteChildren: AuthenticatedAppEntrainementRouteChildren =
@@ -886,6 +907,8 @@ const AuthenticatedAppEntrainementRouteChildren: AuthenticatedAppEntrainementRou
       AuthenticatedAppEntrainementIndexRoute,
     AuthenticatedAppEntrainementSessionIdFeedbackRoute:
       AuthenticatedAppEntrainementSessionIdFeedbackRoute,
+    AuthenticatedAppEntrainementSessionIdRoute:
+      AuthenticatedAppEntrainementSessionIdRoute,
   }
 
 const AuthenticatedAppEntrainementRouteWithChildren =
