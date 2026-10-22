@@ -29,6 +29,7 @@ import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
+import { Route as ApiRevisionPlanRouteImport } from './routes/api/revision-plan'
 import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
 import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
 import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app.index'
@@ -147,6 +148,11 @@ const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
   id: '/app',
   path: '/app',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiRevisionPlanRoute = ApiRevisionPlanRouteImport.update({
+  id: '/api/revision-plan',
+  path: '/api/revision-plan',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const RessourcesSlugRoute = RessourcesSlugRouteImport.update({
   id: '/$slug',
@@ -277,6 +283,7 @@ export interface FileRoutesByFullPath {
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
+  '/api/revision-plan': typeof ApiRevisionPlanRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
@@ -316,6 +323,7 @@ export interface FileRoutesByTo {
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
+  '/api/revision-plan': typeof ApiRevisionPlanRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
@@ -355,6 +363,7 @@ export interface FileRoutesById {
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
+  '/api/revision-plan': typeof ApiRevisionPlanRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/_authenticated/app/abonnement': typeof AuthenticatedAppAbonnementRoute
@@ -397,6 +406,7 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/test-gratuit'
     | '/app'
+    | '/api/revision-plan'
     | '/ressources/$slug'
     | '/tarifs/$plan'
     | '/app/abonnement'
@@ -436,6 +446,7 @@ export interface FileRouteTypes {
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
+    | '/api/revision-plan'
     | '/ressources/$slug'
     | '/tarifs/$plan'
     | '/app/abonnement'
@@ -474,6 +485,7 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/test-gratuit'
     | '/_authenticated/app'
+    | '/api/revision-plan'
     | '/ressources/$slug'
     | '/tarifs/$plan'
     | '/_authenticated/app/abonnement'
@@ -515,6 +527,7 @@ export interface RootRouteChildren {
   RessourcesRoute: typeof RessourcesRouteWithChildren
   TarifsRoute: typeof TarifsRouteWithChildren
   TestGratuitRoute: typeof TestGratuitRoute
+  ApiRevisionPlanRoute: typeof ApiRevisionPlanRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -658,6 +671,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/app'
       preLoaderRoute: typeof AuthenticatedAppRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/revision-plan': {
+      id: '/api/revision-plan'
+      path: '/api/revision-plan'
+      fullPath: '/api/revision-plan'
+      preLoaderRoute: typeof ApiRevisionPlanRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/ressources/$slug': {
       id: '/ressources/$slug'
@@ -935,6 +955,7 @@ const rootRouteChildren: RootRouteChildren = {
   RessourcesRoute: RessourcesRouteWithChildren,
   TarifsRoute: TarifsRouteWithChildren,
   TestGratuitRoute: TestGratuitRoute,
+  ApiRevisionPlanRoute: ApiRevisionPlanRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
