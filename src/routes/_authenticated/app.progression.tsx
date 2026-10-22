@@ -1,4 +1,4 @@
 import {createFileRoute} from '@tanstack/react-router';
-import {LearningOverview} from '@/components/learning/LearningPages';
+import {ProgressAnalytics} from '@/components/learning/ProgressAnalytics';
 import {seo} from '@/lib/seo';
-export const Route=createFileRoute('/_authenticated/app/progression')({head:()=>seo('Progression','Votre espace personnel de préparation ExaCiv.'),component:()=> <LearningOverview view="progression"/>});
+export const Route=createFileRoute('/_authenticated/app/progression')({validateSearch:(s:Record<string,unknown>):{demo?:boolean}=>s['demo']===true||s['demo']==='true'?{demo:true}:{},head:()=>seo('Votre progression ExaCiv','Suivez vos leçons, votre activité et vos objectifs de préparation civique.'),component:()=>{const {demo}=Route.useSearch();return <ProgressAnalytics demo={demo??false}/>;}});
