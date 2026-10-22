@@ -94,7 +94,7 @@ export function FinalCta() {
             <Link to="/test-gratuit"><Play className="fill-current" /> Faire un test gratuit</Link>
           </Button>
         </div>
-        <img src={civi} alt="" aria-hidden loading="lazy" width={1024} height={1024} className="absolute -bottom-6 right-4 hidden w-56 md:block" />
+        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="absolute -bottom-6 right-4 hidden w-56 md:block" />
       </div>
     </section>
   );
