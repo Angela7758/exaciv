@@ -19,7 +19,7 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const locationKey = useRouterState({ select: (state) => state.location.href });
-  const reference=useRouterState({select:s=>['/examen','/methode','/faq','/parcours'].includes(s.location.pathname)});
+  const reference=useRouterState({select:s=>['/examen','/methode','/faq','/parcours','/tarifs'].includes(s.location.pathname)});
   const home = useRouterState({select:state=>state.location.pathname==='/' });
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); }, [locationKey]);
   return (

@@ -24,6 +24,7 @@ import { Route as InscriptionRouteImport } from './routes/inscription'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
+import { Route as NouveauMotDePasseRouteImport } from './routes/nouveau-mot-de-passe'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RessourcesRouteImport } from './routes/ressources'
@@ -128,6 +129,11 @@ const MethodeRoute = MethodeRouteImport.update({
 const MotDePasseOublieRoute = MotDePasseOublieRouteImport.update({
   id: '/mot-de-passe-oublie',
   path: '/mot-de-passe-oublie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NouveauMotDePasseRoute = NouveauMotDePasseRouteImport.update({
+  id: '/nouveau-mot-de-passe',
+  path: '/nouveau-mot-de-passe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParcoursRoute = ParcoursRouteImport.update({
@@ -317,6 +323,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/nouveau-mot-de-passe': typeof NouveauMotDePasseRoute
   '/parcours': typeof ParcoursRoute
   '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
@@ -364,6 +371,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/nouveau-mot-de-passe': typeof NouveauMotDePasseRoute
   '/parcours': typeof ParcoursRoute
   '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
@@ -409,6 +417,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/nouveau-mot-de-passe': typeof NouveauMotDePasseRoute
   '/parcours': typeof ParcoursRoute
   '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
@@ -458,6 +467,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/methode'
     | '/mot-de-passe-oublie'
+    | '/nouveau-mot-de-passe'
     | '/parcours'
     | '/reset-password'
     | '/ressources'
@@ -505,6 +515,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/methode'
     | '/mot-de-passe-oublie'
+    | '/nouveau-mot-de-passe'
     | '/parcours'
     | '/reset-password'
     | '/ressources'
@@ -549,6 +560,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/methode'
     | '/mot-de-passe-oublie'
+    | '/nouveau-mot-de-passe'
     | '/parcours'
     | '/reset-password'
     | '/ressources'
@@ -598,6 +610,7 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   MethodeRoute: typeof MethodeRoute
   MotDePasseOublieRoute: typeof MotDePasseOublieRoute
+  NouveauMotDePasseRoute: typeof NouveauMotDePasseRoute
   ParcoursRoute: typeof ParcoursRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   RessourcesRoute: typeof RessourcesRouteWithChildren
@@ -713,6 +726,13 @@ declare module '@tanstack/react-router' {
       path: '/mot-de-passe-oublie'
       fullPath: '/mot-de-passe-oublie'
       preLoaderRoute: typeof MotDePasseOublieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nouveau-mot-de-passe': {
+      id: '/nouveau-mot-de-passe'
+      path: '/nouveau-mot-de-passe'
+      fullPath: '/nouveau-mot-de-passe'
+      preLoaderRoute: typeof NouveauMotDePasseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parcours': {
@@ -1078,6 +1098,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   MethodeRoute: MethodeRoute,
   MotDePasseOublieRoute: MotDePasseOublieRoute,
+  NouveauMotDePasseRoute: NouveauMotDePasseRoute,
   ParcoursRoute: ParcoursRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   RessourcesRoute: RessourcesRouteWithChildren,
