@@ -1,4 +1,6 @@
 # ExaCiv
+- [ ] Add reference-faithful mock session, mistake library and subscription selection pages.
+- [ ] Verify three pages at 1600×900, 1440px, tablet and mobile; keep demonstrations separate from personal records.
 - [x] Implement lesson details, persistent practice feedback and mock-exam results from new references.
 - [x] Verify linked flows, real scoring, refresh recovery and desktop/mobile layouts; exact reference fidelity remains limited by starter chapter content and CIVI artwork.
 - [x] Preserve confirmed home and pricing.

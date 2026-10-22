@@ -37,10 +37,13 @@ import { Route as AuthenticatedAppEntrainementRouteImport } from './routes/_auth
 import { Route as AuthenticatedAppErreursRouteImport } from './routes/_authenticated/app.erreurs'
 import { Route as AuthenticatedAppExamenBlancRouteImport } from './routes/_authenticated/app.examen-blanc'
 import { Route as AuthenticatedAppLeconsRouteImport } from './routes/_authenticated/app.lecons'
+import { Route as AuthenticatedAppMesErreursRouteImport } from './routes/_authenticated/app.mes-erreurs'
 import { Route as AuthenticatedAppParcoursRouteImport } from './routes/_authenticated/app.parcours'
 import { Route as AuthenticatedAppProfilRouteImport } from './routes/_authenticated/app.profil'
 import { Route as AuthenticatedAppProgressionRouteImport } from './routes/_authenticated/app.progression'
 import { Route as AuthenticatedAppEntrainementIndexRouteImport } from './routes/_authenticated/app.entrainement.index'
+import { Route as AuthenticatedAppExamenBlancIndexRouteImport } from './routes/_authenticated/app.examen-blanc.index'
+import { Route as AuthenticatedAppExamenBlancSessionRouteImport } from './routes/_authenticated/app.examen-blanc.session'
 import { Route as AuthenticatedAppLeconsIndexRouteImport } from './routes/_authenticated/app.lecons.index'
 import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authenticated/app.lecons.$slug'
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
@@ -188,6 +191,12 @@ const AuthenticatedAppLeconsRoute = AuthenticatedAppLeconsRouteImport.update({
   path: '/lecons',
   getParentRoute: () => AuthenticatedAppRoute,
 } as any)
+const AuthenticatedAppMesErreursRoute =
+  AuthenticatedAppMesErreursRouteImport.update({
+    id: '/mes-erreurs',
+    path: '/mes-erreurs',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 const AuthenticatedAppParcoursRoute =
   AuthenticatedAppParcoursRouteImport.update({
     id: '/parcours',
@@ -210,6 +219,18 @@ const AuthenticatedAppEntrainementIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => AuthenticatedAppEntrainementRoute,
+  } as any)
+const AuthenticatedAppExamenBlancIndexRoute =
+  AuthenticatedAppExamenBlancIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedAppExamenBlancRoute,
+  } as any)
+const AuthenticatedAppExamenBlancSessionRoute =
+  AuthenticatedAppExamenBlancSessionRouteImport.update({
+    id: '/session',
+    path: '/session',
+    getParentRoute: () => AuthenticatedAppExamenBlancRoute,
   } as any)
 const AuthenticatedAppLeconsIndexRoute =
   AuthenticatedAppLeconsIndexRouteImport.update({
@@ -261,15 +282,18 @@ export interface FileRoutesByFullPath {
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
-  '/app/examen-blanc': typeof AuthenticatedAppExamenBlancRoute
+  '/app/examen-blanc': typeof AuthenticatedAppExamenBlancRouteWithChildren
   '/app/lecons': typeof AuthenticatedAppLeconsRouteWithChildren
+  '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
   '/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/app/profil': typeof AuthenticatedAppProfilRoute
   '/app/progression': typeof AuthenticatedAppProgressionRoute
   '/app/': typeof AuthenticatedAppIndexRoute
+  '/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
   '/app/resultats/$sessionId': typeof AuthenticatedAppResultatsSessionIdRoute
   '/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
+  '/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
 }
@@ -296,14 +320,16 @@ export interface FileRoutesByTo {
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
-  '/app/examen-blanc': typeof AuthenticatedAppExamenBlancRoute
+  '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
   '/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/app/profil': typeof AuthenticatedAppProfilRoute
   '/app/progression': typeof AuthenticatedAppProgressionRoute
   '/app': typeof AuthenticatedAppIndexRoute
+  '/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
   '/app/resultats/$sessionId': typeof AuthenticatedAppResultatsSessionIdRoute
   '/app/entrainement': typeof AuthenticatedAppEntrainementIndexRoute
+  '/app/examen-blanc': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
 }
@@ -334,15 +360,18 @@ export interface FileRoutesById {
   '/_authenticated/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/_authenticated/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/_authenticated/app/erreurs': typeof AuthenticatedAppErreursRoute
-  '/_authenticated/app/examen-blanc': typeof AuthenticatedAppExamenBlancRoute
+  '/_authenticated/app/examen-blanc': typeof AuthenticatedAppExamenBlancRouteWithChildren
   '/_authenticated/app/lecons': typeof AuthenticatedAppLeconsRouteWithChildren
+  '/_authenticated/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
   '/_authenticated/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/_authenticated/app/profil': typeof AuthenticatedAppProfilRoute
   '/_authenticated/app/progression': typeof AuthenticatedAppProgressionRoute
   '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
+  '/_authenticated/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/_authenticated/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
   '/_authenticated/app/resultats/$sessionId': typeof AuthenticatedAppResultatsSessionIdRoute
   '/_authenticated/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
+  '/_authenticated/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/_authenticated/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/_authenticated/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
 }
@@ -375,13 +404,16 @@ export interface FileRouteTypes {
     | '/app/erreurs'
     | '/app/examen-blanc'
     | '/app/lecons'
+    | '/app/mes-erreurs'
     | '/app/parcours'
     | '/app/profil'
     | '/app/progression'
     | '/app/'
+    | '/app/examen-blanc/session'
     | '/app/lecons/$slug'
     | '/app/resultats/$sessionId'
     | '/app/entrainement/'
+    | '/app/examen-blanc/'
     | '/app/lecons/'
     | '/app/entrainement/$sessionId/feedback'
   fileRoutesByTo: FileRoutesByTo
@@ -408,14 +440,16 @@ export interface FileRouteTypes {
     | '/tarifs/$plan'
     | '/app/abonnement'
     | '/app/erreurs'
-    | '/app/examen-blanc'
+    | '/app/mes-erreurs'
     | '/app/parcours'
     | '/app/profil'
     | '/app/progression'
     | '/app'
+    | '/app/examen-blanc/session'
     | '/app/lecons/$slug'
     | '/app/resultats/$sessionId'
     | '/app/entrainement'
+    | '/app/examen-blanc'
     | '/app/lecons'
     | '/app/entrainement/$sessionId/feedback'
   id:
@@ -447,13 +481,16 @@ export interface FileRouteTypes {
     | '/_authenticated/app/erreurs'
     | '/_authenticated/app/examen-blanc'
     | '/_authenticated/app/lecons'
+    | '/_authenticated/app/mes-erreurs'
     | '/_authenticated/app/parcours'
     | '/_authenticated/app/profil'
     | '/_authenticated/app/progression'
     | '/_authenticated/app/'
+    | '/_authenticated/app/examen-blanc/session'
     | '/_authenticated/app/lecons/$slug'
     | '/_authenticated/app/resultats/$sessionId'
     | '/_authenticated/app/entrainement/'
+    | '/_authenticated/app/examen-blanc/'
     | '/_authenticated/app/lecons/'
     | '/_authenticated/app/entrainement/$sessionId/feedback'
   fileRoutesById: FileRoutesById
@@ -678,6 +715,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppLeconsRouteImport
       parentRoute: typeof AuthenticatedAppRoute
     }
+    '/_authenticated/app/mes-erreurs': {
+      id: '/_authenticated/app/mes-erreurs'
+      path: '/mes-erreurs'
+      fullPath: '/app/mes-erreurs'
+      preLoaderRoute: typeof AuthenticatedAppMesErreursRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
     '/_authenticated/app/parcours': {
       id: '/_authenticated/app/parcours'
       path: '/parcours'
@@ -705,6 +749,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/entrainement/'
       preLoaderRoute: typeof AuthenticatedAppEntrainementIndexRouteImport
       parentRoute: typeof AuthenticatedAppEntrainementRoute
+    }
+    '/_authenticated/app/examen-blanc/': {
+      id: '/_authenticated/app/examen-blanc/'
+      path: '/'
+      fullPath: '/app/examen-blanc/'
+      preLoaderRoute: typeof AuthenticatedAppExamenBlancIndexRouteImport
+      parentRoute: typeof AuthenticatedAppExamenBlancRoute
+    }
+    '/_authenticated/app/examen-blanc/session': {
+      id: '/_authenticated/app/examen-blanc/session'
+      path: '/session'
+      fullPath: '/app/examen-blanc/session'
+      preLoaderRoute: typeof AuthenticatedAppExamenBlancSessionRouteImport
+      parentRoute: typeof AuthenticatedAppExamenBlancRoute
     }
     '/_authenticated/app/lecons/': {
       id: '/_authenticated/app/lecons/'
@@ -755,6 +813,24 @@ const AuthenticatedAppEntrainementRouteWithChildren =
     AuthenticatedAppEntrainementRouteChildren,
   )
 
+interface AuthenticatedAppExamenBlancRouteChildren {
+  AuthenticatedAppExamenBlancSessionRoute: typeof AuthenticatedAppExamenBlancSessionRoute
+  AuthenticatedAppExamenBlancIndexRoute: typeof AuthenticatedAppExamenBlancIndexRoute
+}
+
+const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRouteChildren =
+  {
+    AuthenticatedAppExamenBlancSessionRoute:
+      AuthenticatedAppExamenBlancSessionRoute,
+    AuthenticatedAppExamenBlancIndexRoute:
+      AuthenticatedAppExamenBlancIndexRoute,
+  }
+
+const AuthenticatedAppExamenBlancRouteWithChildren =
+  AuthenticatedAppExamenBlancRoute._addFileChildren(
+    AuthenticatedAppExamenBlancRouteChildren,
+  )
+
 interface AuthenticatedAppLeconsRouteChildren {
   AuthenticatedAppLeconsSlugRoute: typeof AuthenticatedAppLeconsSlugRoute
   AuthenticatedAppLeconsIndexRoute: typeof AuthenticatedAppLeconsIndexRoute
@@ -775,8 +851,9 @@ interface AuthenticatedAppRouteChildren {
   AuthenticatedAppAbonnementRoute: typeof AuthenticatedAppAbonnementRoute
   AuthenticatedAppEntrainementRoute: typeof AuthenticatedAppEntrainementRouteWithChildren
   AuthenticatedAppErreursRoute: typeof AuthenticatedAppErreursRoute
-  AuthenticatedAppExamenBlancRoute: typeof AuthenticatedAppExamenBlancRoute
+  AuthenticatedAppExamenBlancRoute: typeof AuthenticatedAppExamenBlancRouteWithChildren
   AuthenticatedAppLeconsRoute: typeof AuthenticatedAppLeconsRouteWithChildren
+  AuthenticatedAppMesErreursRoute: typeof AuthenticatedAppMesErreursRoute
   AuthenticatedAppParcoursRoute: typeof AuthenticatedAppParcoursRoute
   AuthenticatedAppProfilRoute: typeof AuthenticatedAppProfilRoute
   AuthenticatedAppProgressionRoute: typeof AuthenticatedAppProgressionRoute
@@ -789,8 +866,10 @@ const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
   AuthenticatedAppEntrainementRoute:
     AuthenticatedAppEntrainementRouteWithChildren,
   AuthenticatedAppErreursRoute: AuthenticatedAppErreursRoute,
-  AuthenticatedAppExamenBlancRoute: AuthenticatedAppExamenBlancRoute,
+  AuthenticatedAppExamenBlancRoute:
+    AuthenticatedAppExamenBlancRouteWithChildren,
   AuthenticatedAppLeconsRoute: AuthenticatedAppLeconsRouteWithChildren,
+  AuthenticatedAppMesErreursRoute: AuthenticatedAppMesErreursRoute,
   AuthenticatedAppParcoursRoute: AuthenticatedAppParcoursRoute,
   AuthenticatedAppProfilRoute: AuthenticatedAppProfilRoute,
   AuthenticatedAppProgressionRoute: AuthenticatedAppProgressionRoute,
