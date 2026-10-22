@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BienvenueRouteImport } from './routes/bienvenue'
 import { Route as CgvRouteImport } from './routes/cgv'
 import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
 import { Route as ConnexionRouteImport } from './routes/connexion'
@@ -34,6 +35,7 @@ import { Route as InscriptionObjectifRouteImport } from './routes/inscription_.o
 import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
 import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
 import { Route as TestGratuitResultatRouteImport } from './routes/test-gratuit_.resultat'
+import { Route as AuthenticatedAbonnementConfirmerRouteImport } from './routes/_authenticated/abonnement.confirmer'
 import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app.index'
 import { Route as AuthenticatedAppAbonnementRouteImport } from './routes/_authenticated/app.abonnement'
 import { Route as AuthenticatedAppEntrainementRouteImport } from './routes/_authenticated/app.entrainement'
@@ -66,6 +68,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BienvenueRoute = BienvenueRouteImport.update({
+  id: '/bienvenue',
+  path: '/bienvenue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CgvRoute = CgvRouteImport.update({
@@ -178,6 +185,12 @@ const TestGratuitResultatRoute = TestGratuitResultatRouteImport.update({
   path: '/test-gratuit/resultat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAbonnementConfirmerRoute =
+  AuthenticatedAbonnementConfirmerRouteImport.update({
+    id: '/abonnement/confirmer',
+    path: '/abonnement/confirmer',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAppIndexRoute = AuthenticatedAppIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -292,6 +305,7 @@ const AuthenticatedAppEntrainementSessionIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/bienvenue': typeof BienvenueRoute
   '/cgv': typeof CgvRoute
   '/confidentialite': typeof ConfidentialiteRoute
   '/connexion': typeof ConnexionRoute
@@ -314,6 +328,7 @@ export interface FileRoutesByFullPath {
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/test-gratuit/resultat': typeof TestGratuitResultatRoute
+  '/abonnement/confirmer': typeof AuthenticatedAbonnementConfirmerRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
@@ -337,6 +352,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/bienvenue': typeof BienvenueRoute
   '/cgv': typeof CgvRoute
   '/confidentialite': typeof ConfidentialiteRoute
   '/connexion': typeof ConnexionRoute
@@ -358,6 +374,7 @@ export interface FileRoutesByTo {
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/test-gratuit/resultat': typeof TestGratuitResultatRoute
+  '/abonnement/confirmer': typeof AuthenticatedAbonnementConfirmerRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
   '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
@@ -380,6 +397,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/bienvenue': typeof BienvenueRoute
   '/cgv': typeof CgvRoute
   '/confidentialite': typeof ConfidentialiteRoute
   '/connexion': typeof ConnexionRoute
@@ -402,6 +420,7 @@ export interface FileRoutesById {
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/test-gratuit_/resultat': typeof TestGratuitResultatRoute
+  '/_authenticated/abonnement/confirmer': typeof AuthenticatedAbonnementConfirmerRoute
   '/_authenticated/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/_authenticated/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/_authenticated/app/erreurs': typeof AuthenticatedAppErreursRoute
@@ -427,6 +446,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/bienvenue'
     | '/cgv'
     | '/confidentialite'
     | '/connexion'
@@ -449,6 +469,7 @@ export interface FileRouteTypes {
     | '/ressources/$slug'
     | '/tarifs/$plan'
     | '/test-gratuit/resultat'
+    | '/abonnement/confirmer'
     | '/app/abonnement'
     | '/app/entrainement'
     | '/app/erreurs'
@@ -472,6 +493,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/bienvenue'
     | '/cgv'
     | '/confidentialite'
     | '/connexion'
@@ -493,6 +515,7 @@ export interface FileRouteTypes {
     | '/ressources/$slug'
     | '/tarifs/$plan'
     | '/test-gratuit/resultat'
+    | '/abonnement/confirmer'
     | '/app/abonnement'
     | '/app/erreurs'
     | '/app/mes-erreurs'
@@ -514,6 +537,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/bienvenue'
     | '/cgv'
     | '/confidentialite'
     | '/connexion'
@@ -536,6 +560,7 @@ export interface FileRouteTypes {
     | '/ressources/$slug'
     | '/tarifs/$plan'
     | '/test-gratuit_/resultat'
+    | '/_authenticated/abonnement/confirmer'
     | '/_authenticated/app/abonnement'
     | '/_authenticated/app/entrainement'
     | '/_authenticated/app/erreurs'
@@ -561,6 +586,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  BienvenueRoute: typeof BienvenueRoute
   CgvRoute: typeof CgvRoute
   ConfidentialiteRoute: typeof ConfidentialiteRoute
   ConnexionRoute: typeof ConnexionRoute
@@ -603,6 +629,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bienvenue': {
+      id: '/bienvenue'
+      path: '/bienvenue'
+      fullPath: '/bienvenue'
+      preLoaderRoute: typeof BienvenueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cgv': {
@@ -758,6 +791,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/test-gratuit/resultat'
       preLoaderRoute: typeof TestGratuitResultatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/abonnement/confirmer': {
+      id: '/_authenticated/abonnement/confirmer'
+      path: '/abonnement/confirmer'
+      fullPath: '/abonnement/confirmer'
+      preLoaderRoute: typeof AuthenticatedAbonnementConfirmerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/app/': {
       id: '/_authenticated/app/'
@@ -988,10 +1028,12 @@ const AuthenticatedAppRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
+  AuthenticatedAbonnementConfirmerRoute: typeof AuthenticatedAbonnementConfirmerRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
+  AuthenticatedAbonnementConfirmerRoute: AuthenticatedAbonnementConfirmerRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -1024,6 +1066,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  BienvenueRoute: BienvenueRoute,
   CgvRoute: CgvRoute,
   ConfidentialiteRoute: ConfidentialiteRoute,
   ConnexionRoute: ConnexionRoute,

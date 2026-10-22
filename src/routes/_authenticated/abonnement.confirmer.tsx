@@ -1,5 +1,4 @@
-import {createFileRoute,Outlet} from '@tanstack/react-router';
-import {createRoute} from '@tanstack/react-router';
+import {createFileRoute} from '@tanstack/react-router';
 import {AppShell} from '@/components/learning/AppShell';
 import {SubscriptionConfirmation} from '@/components/learning/SubscriptionConfirmation';
 import {catalogueOptions,learningOptions} from '@/lib/learning.queries';

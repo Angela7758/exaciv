@@ -12,7 +12,7 @@ export const METHOD_STEPS=[
  {title:'Simuler',description:'Des examens blancs pour se préparer.',destination:'/app/examen-blanc',tone:'blue'},
 ] as const;
 export const HELP_RESOURCES=[
- {title:'Règles officielles de l’examen',description:'Les informations du ministère sur l’examen civique.',href:'https://formation-civique.interieur.gouv.fr/examen-civique/',external:true,tone:'orange'},
+ {title:'Règles officielles de l’examen',description:'Les informations du ministère sur l’examen civique.',href:'https://formation-civique.interieur.gouv.fr/examen-civique/informations-g%C3%A9n%C3%A9rales-sur-lexamen-civique/',external:true,tone:'orange'},
  {title:'Guide du candidat',description:'Comprendre l’épreuve et les modalités de votre démarche.',href:'/examen',external:false,tone:'blue'},
  {title:'Conseils pour réviser',description:'Des conseils et recommandations pour votre préparation.',href:'/methode',external:false,tone:'green'},
 ] as const;

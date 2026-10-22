@@ -24,3 +24,7 @@
 - Registration credentials remain in an in-memory draft only; non-sensitive objectives and diagnostic snapshots use scoped session storage so returning to step one never writes passwords to persistent storage.
 - Practice question presentation is separate from feedback; recorded answers and server current index remain authoritative while previous-question viewing and tentative selections never alter scoring.
 - Exam confirmation counts only recorded answers, navigation never validates tentative selections, and finalization is a separate authenticated idempotent RPC; all question indexes stay revisitable before submission.
+
+- New public preparation screens use scoped nine-public/nine-auth styles; homepage overrides stay mobile-only to preserve approved desktop views.
+- Subscription confirmation resolves a selected plan from the pricing configuration and uses the existing AppShell without creating subscription records before real payment is available.
+- Registration welcome reads non-sensitive objective snapshots while credentials stay in memory; preparation destinations are allowlisted local learning paths to prevent external redirects.
