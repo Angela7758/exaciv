@@ -1,4 +1,5 @@
 # ExaCiv
+- [ ] Match approved Connexion/Inscription, practice entry and mock-exam introduction references; verify controls, persistent starts/resume and desktop/tablet/mobile screenshots.
 - [ ] Restore approved public homepage/logo/header/hero; add only Accueil to navigation, compare desktop/mobile and provide screenshots.
 - [ ] Payments and associated admin tracking deferred by user; waits for explicit reactivation and provider configuration.
 - [ ] Replace revision sources with verified official programme references and align learning paths without presenting invented questions as official.

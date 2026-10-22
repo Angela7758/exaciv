@@ -120,7 +120,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const standalone = pathname.startsWith('/app') || pathname === '/test-gratuit';
+  const standalone = pathname.startsWith('/app') || pathname === '/test-gratuit' || ['/connexion','/inscription','/auth','/mot-de-passe-oublie','/reset-password'].includes(pathname);
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event) => {
       if (event !== 'SIGNED_IN' && event !== 'SIGNED_OUT' && event !== 'USER_UPDATED') return;
