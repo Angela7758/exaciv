@@ -15,14 +15,14 @@ const NAV = [
   { to: "/faq", label: "FAQ" },
 ] as const;
 
-export function SiteHeader() {
+export function SiteHeader({auth=false}:{auth?:boolean}) {
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const locationKey = useRouterState({ select: (state) => state.location.href });
   const home = useRouterState({select:state=>state.location.pathname==='/' });
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); }, [locationKey]);
   return (
-    <header className={`sticky top-0 z-40 px-3 pt-3 ${home?'approved-home-header':''}`}>
+    <header className={`sticky top-0 z-40 px-3 pt-3 ${home?'approved-home-header':''} ${auth?'approved-auth-header':''}`}>
       <div className="container-page flex h-16 items-center justify-between rounded-2xl border bg-card/95 shadow-soft backdrop-blur">
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
@@ -36,10 +36,10 @@ export function SiteHeader() {
           <span className="inline-flex items-center gap-1 text-sm font-medium" title="Français">
             <Globe className="size-4" /> FR <ChevronDown className="size-3.5" />
           </span>
-          <Link to={signedIn ? '/app' : '/connexion'} className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary">
+          {!auth&&<Link to={signedIn ? '/app' : '/connexion'} className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary">
             <User className="size-4 fill-current" /> {signedIn ? 'Mon espace' : 'Connexion'}
-          </Link>
-          <Button asChild variant="cta" size="lg" className="text-base">
+          </Link>}
+          <Button asChild variant={auth?'outline':'cta'} size="lg" className={auth?'auth-free-test':'text-base'}>
             <Link to="/test-gratuit">Test gratuit</Link>
           </Button>
         </div>
