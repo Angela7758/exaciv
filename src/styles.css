@@ -336,3 +336,4 @@
 @media(min-width:1101px){.home-hero-inner{padding-top:145px;}.home-learning-scene{height:410px;}.objective-title{padding-top:0;}.objective-stepper{margin-top:14px;}.diagnostic-civi>h2{line-height:.95;}.diagnostic-civi>p{margin-top:10px;}.diagnostic-civi>img{height:345px;}.diagnostic-civi>div{margin-top:9px;}}
 
 .exam-empty{min-width:0;overflow-wrap:anywhere;}.exam-empty button{max-width:100%;height:auto;min-height:44px;white-space:normal;}.home-stone-platform{opacity:0;}.objective-field>div:focus-within{outline:2px solid var(--ring);outline-offset:2px;}
+@media(max-width:640px){.exam-empty{padding:24px 12px;}.exam-empty h1{font-size:28px;line-height:1.2;}.exam-empty button{font-size:13px;}}
