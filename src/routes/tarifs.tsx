@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, useMatches } from "@tanstack/react-router";
-import { PageHero, PricingCards } from "@/components/site/sections";
+import {PublicPricing} from "@/components/site/PublicPricing";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/tarifs")({
@@ -10,10 +10,5 @@ export const Route = createFileRoute("/tarifs")({
 function Page() {
   const child = useMatches().some((m) => m.routeId === "/tarifs/$plan");
   if (child) return <Outlet />;
-  return (
-    <>
-      <PageHero eyebrow="Tarifs" title="Choisissez votre rythme">Commencez gratuitement, puis avancez à votre rythme.</PageHero>
-      <section className="container-page pb-16"><PricingCards /></section>
-    </>
-  );
+  return <PublicPricing/>;
 }

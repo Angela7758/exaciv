@@ -17,6 +17,8 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 
+import {markPasswordRecovery} from '@/lib/password-recovery';
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -120,9 +122,10 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const standalone = pathname.startsWith('/app') || pathname.startsWith('/test-gratuit') || pathname.startsWith('/inscription') || ['/bienvenue','/abonnement/confirmer','/connexion','/inscription','/auth','/mot-de-passe-oublie','/reset-password'].includes(pathname);
+  const standalone = pathname.startsWith('/app') || pathname.startsWith('/test-gratuit') || pathname.startsWith('/inscription') || ['/bienvenue','/abonnement/confirmer','/connexion','/inscription','/auth','/mot-de-passe-oublie','/reset-password','/nouveau-mot-de-passe'].includes(pathname);
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event) => {
+      if(event==='PASSWORD_RECOVERY'){markPasswordRecovery();return;}
       if (event !== 'SIGNED_IN' && event !== 'SIGNED_OUT' && event !== 'USER_UPDATED') return;
       void router.invalidate();
       if (event !== 'SIGNED_OUT') void queryClient.invalidateQueries();

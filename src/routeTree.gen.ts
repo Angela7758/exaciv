@@ -24,6 +24,7 @@ import { Route as InscriptionRouteImport } from './routes/inscription'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
+import { Route as NouveauMotDePasseRouteImport } from './routes/nouveau-mot-de-passe'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RessourcesRouteImport } from './routes/ressources'
@@ -55,6 +56,7 @@ import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authen
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
 import { Route as AuthenticatedAppEntrainementSessionIdFeedbackRouteImport } from './routes/_authenticated/app.entrainement.$sessionId.feedback'
 import { Route as AuthenticatedAppEntrainementSessionIdRouteImport } from './routes/_authenticated/app.entrainement.session.$id'
+import { Route as AuthenticatedAppExamenBlancResultatsIdRouteImport } from './routes/_authenticated/app.examen-blanc.resultats.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -128,6 +130,11 @@ const MethodeRoute = MethodeRouteImport.update({
 const MotDePasseOublieRoute = MotDePasseOublieRouteImport.update({
   id: '/mot-de-passe-oublie',
   path: '/mot-de-passe-oublie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NouveauMotDePasseRoute = NouveauMotDePasseRouteImport.update({
+  id: '/nouveau-mot-de-passe',
+  path: '/nouveau-mot-de-passe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParcoursRoute = ParcoursRouteImport.update({
@@ -301,6 +308,12 @@ const AuthenticatedAppEntrainementSessionIdRoute =
     path: '/session/$id',
     getParentRoute: () => AuthenticatedAppEntrainementRoute,
   } as any)
+const AuthenticatedAppExamenBlancResultatsIdRoute =
+  AuthenticatedAppExamenBlancResultatsIdRouteImport.update({
+    id: '/resultats/$id',
+    path: '/resultats/$id',
+    getParentRoute: () => AuthenticatedAppExamenBlancRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -317,6 +330,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/nouveau-mot-de-passe': typeof NouveauMotDePasseRoute
   '/parcours': typeof ParcoursRoute
   '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
@@ -348,6 +362,7 @@ export interface FileRoutesByFullPath {
   '/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
+  '/app/examen-blanc/resultats/$id': typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -364,6 +379,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/nouveau-mot-de-passe': typeof NouveauMotDePasseRoute
   '/parcours': typeof ParcoursRoute
   '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
@@ -391,6 +407,7 @@ export interface FileRoutesByTo {
   '/app/lecons': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
+  '/app/examen-blanc/resultats/$id': typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -409,6 +426,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/nouveau-mot-de-passe': typeof NouveauMotDePasseRoute
   '/parcours': typeof ParcoursRoute
   '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
@@ -440,6 +458,7 @@ export interface FileRoutesById {
   '/_authenticated/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/_authenticated/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/_authenticated/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
+  '/_authenticated/app/examen-blanc/resultats/$id': typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -458,6 +477,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/methode'
     | '/mot-de-passe-oublie'
+    | '/nouveau-mot-de-passe'
     | '/parcours'
     | '/reset-password'
     | '/ressources'
@@ -489,6 +509,7 @@ export interface FileRouteTypes {
     | '/app/lecons/'
     | '/app/entrainement/$sessionId/feedback'
     | '/app/entrainement/session/$id'
+    | '/app/examen-blanc/resultats/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -505,6 +526,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/methode'
     | '/mot-de-passe-oublie'
+    | '/nouveau-mot-de-passe'
     | '/parcours'
     | '/reset-password'
     | '/ressources'
@@ -532,6 +554,7 @@ export interface FileRouteTypes {
     | '/app/lecons'
     | '/app/entrainement/$sessionId/feedback'
     | '/app/entrainement/session/$id'
+    | '/app/examen-blanc/resultats/$id'
   id:
     | '__root__'
     | '/'
@@ -549,6 +572,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/methode'
     | '/mot-de-passe-oublie'
+    | '/nouveau-mot-de-passe'
     | '/parcours'
     | '/reset-password'
     | '/ressources'
@@ -580,6 +604,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/lecons/'
     | '/_authenticated/app/entrainement/$sessionId/feedback'
     | '/_authenticated/app/entrainement/session/$id'
+    | '/_authenticated/app/examen-blanc/resultats/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -598,6 +623,7 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   MethodeRoute: typeof MethodeRoute
   MotDePasseOublieRoute: typeof MotDePasseOublieRoute
+  NouveauMotDePasseRoute: typeof NouveauMotDePasseRoute
   ParcoursRoute: typeof ParcoursRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   RessourcesRoute: typeof RessourcesRouteWithChildren
@@ -713,6 +739,13 @@ declare module '@tanstack/react-router' {
       path: '/mot-de-passe-oublie'
       fullPath: '/mot-de-passe-oublie'
       preLoaderRoute: typeof MotDePasseOublieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nouveau-mot-de-passe': {
+      id: '/nouveau-mot-de-passe'
+      path: '/nouveau-mot-de-passe'
+      fullPath: '/nouveau-mot-de-passe'
+      preLoaderRoute: typeof NouveauMotDePasseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parcours': {
@@ -932,6 +965,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdRouteImport
       parentRoute: typeof AuthenticatedAppEntrainementRoute
     }
+    '/_authenticated/app/examen-blanc/resultats/$id': {
+      id: '/_authenticated/app/examen-blanc/resultats/$id'
+      path: '/resultats/$id'
+      fullPath: '/app/examen-blanc/resultats/$id'
+      preLoaderRoute: typeof AuthenticatedAppExamenBlancResultatsIdRouteImport
+      parentRoute: typeof AuthenticatedAppExamenBlancRoute
+    }
   }
 }
 
@@ -959,6 +999,7 @@ const AuthenticatedAppEntrainementRouteWithChildren =
 interface AuthenticatedAppExamenBlancRouteChildren {
   AuthenticatedAppExamenBlancSessionRoute: typeof AuthenticatedAppExamenBlancSessionRoute
   AuthenticatedAppExamenBlancIndexRoute: typeof AuthenticatedAppExamenBlancIndexRoute
+  AuthenticatedAppExamenBlancResultatsIdRoute: typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 
 const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRouteChildren =
@@ -967,6 +1008,8 @@ const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRoute
       AuthenticatedAppExamenBlancSessionRoute,
     AuthenticatedAppExamenBlancIndexRoute:
       AuthenticatedAppExamenBlancIndexRoute,
+    AuthenticatedAppExamenBlancResultatsIdRoute:
+      AuthenticatedAppExamenBlancResultatsIdRoute,
   }
 
 const AuthenticatedAppExamenBlancRouteWithChildren =
@@ -1078,6 +1121,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   MethodeRoute: MethodeRoute,
   MotDePasseOublieRoute: MotDePasseOublieRoute,
+  NouveauMotDePasseRoute: NouveauMotDePasseRoute,
   ParcoursRoute: ParcoursRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   RessourcesRoute: RessourcesRouteWithChildren,
