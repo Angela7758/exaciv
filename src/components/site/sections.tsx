@@ -41,7 +41,7 @@ export function PricingCards() {
           return (
             <div key={p.id} className={`flex flex-col rounded-2xl border p-6 shadow-soft ${l.card}`}>
               <div className="flex items-start gap-4">
-                <span className={`grid size-14 shrink-0 place-items-center rounded-full ${l.iconCls}`}><l.icon className="size-7 fill-current" /></span>
+                <span className={`grid size-14 shrink-0 place-items-center rounded-full ${l.iconCls}`}><l.icon className={`size-7 ${p.id === "essentiel" ? "" : "fill-current"}`} strokeWidth={p.id === "essentiel" ? 3 : 2} /></span>
                 <div>
                   <h3 className="text-xl font-bold">{p.name}</h3>
                   <p className="mt-1">
