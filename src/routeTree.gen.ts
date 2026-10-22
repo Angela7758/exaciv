@@ -56,7 +56,7 @@ import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authen
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
 import { Route as AuthenticatedAppEntrainementSessionIdFeedbackRouteImport } from './routes/_authenticated/app.entrainement.$sessionId.feedback'
 import { Route as AuthenticatedAppEntrainementSessionIdRouteImport } from './routes/_authenticated/app.entrainement.session.$id'
-import { Route as AuthenticatedAppExamenBlancResultatsRouteImport } from './routes/_authenticated/app.examen-blanc.resultats.'
+import { Route as AuthenticatedAppExamenBlancResultatsIdRouteImport } from './routes/_authenticated/app.examen-blanc.resultats.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -308,10 +308,10 @@ const AuthenticatedAppEntrainementSessionIdRoute =
     path: '/session/$id',
     getParentRoute: () => AuthenticatedAppEntrainementRoute,
   } as any)
-const AuthenticatedAppExamenBlancResultatsRoute =
-  AuthenticatedAppExamenBlancResultatsRouteImport.update({
-    id: '/resultats/',
-    path: '/resultats/',
+const AuthenticatedAppExamenBlancResultatsIdRoute =
+  AuthenticatedAppExamenBlancResultatsIdRouteImport.update({
+    id: '/resultats/$id',
+    path: '/resultats/$id',
     getParentRoute: () => AuthenticatedAppExamenBlancRoute,
   } as any)
 
@@ -360,9 +360,9 @@ export interface FileRoutesByFullPath {
   '/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
   '/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
-  '/app/examen-blanc/resultats/': typeof AuthenticatedAppExamenBlancResultatsRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
+  '/app/examen-blanc/resultats/$id': typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -405,9 +405,9 @@ export interface FileRoutesByTo {
   '/app/entrainement': typeof AuthenticatedAppEntrainementIndexRoute
   '/app/examen-blanc': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons': typeof AuthenticatedAppLeconsIndexRoute
-  '/app/examen-blanc/resultats': typeof AuthenticatedAppExamenBlancResultatsRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
+  '/app/examen-blanc/resultats/$id': typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -456,9 +456,9 @@ export interface FileRoutesById {
   '/_authenticated/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
   '/_authenticated/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/_authenticated/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
-  '/_authenticated/app/examen-blanc/resultats/': typeof AuthenticatedAppExamenBlancResultatsRoute
   '/_authenticated/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
   '/_authenticated/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
+  '/_authenticated/app/examen-blanc/resultats/$id': typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -507,9 +507,9 @@ export interface FileRouteTypes {
     | '/app/entrainement/'
     | '/app/examen-blanc/'
     | '/app/lecons/'
-    | '/app/examen-blanc/resultats/'
     | '/app/entrainement/$sessionId/feedback'
     | '/app/entrainement/session/$id'
+    | '/app/examen-blanc/resultats/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -552,9 +552,9 @@ export interface FileRouteTypes {
     | '/app/entrainement'
     | '/app/examen-blanc'
     | '/app/lecons'
-    | '/app/examen-blanc/resultats'
     | '/app/entrainement/$sessionId/feedback'
     | '/app/entrainement/session/$id'
+    | '/app/examen-blanc/resultats/$id'
   id:
     | '__root__'
     | '/'
@@ -602,9 +602,9 @@ export interface FileRouteTypes {
     | '/_authenticated/app/entrainement/'
     | '/_authenticated/app/examen-blanc/'
     | '/_authenticated/app/lecons/'
-    | '/_authenticated/app/examen-blanc/resultats/'
     | '/_authenticated/app/entrainement/$sessionId/feedback'
     | '/_authenticated/app/entrainement/session/$id'
+    | '/_authenticated/app/examen-blanc/resultats/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -965,11 +965,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdRouteImport
       parentRoute: typeof AuthenticatedAppEntrainementRoute
     }
-    '/_authenticated/app/examen-blanc/resultats/': {
-      id: '/_authenticated/app/examen-blanc/resultats/'
-      path: '/resultats'
-      fullPath: '/app/examen-blanc/resultats/'
-      preLoaderRoute: typeof AuthenticatedAppExamenBlancResultatsRouteImport
+    '/_authenticated/app/examen-blanc/resultats/$id': {
+      id: '/_authenticated/app/examen-blanc/resultats/$id'
+      path: '/resultats/$id'
+      fullPath: '/app/examen-blanc/resultats/$id'
+      preLoaderRoute: typeof AuthenticatedAppExamenBlancResultatsIdRouteImport
       parentRoute: typeof AuthenticatedAppExamenBlancRoute
     }
   }
@@ -999,7 +999,7 @@ const AuthenticatedAppEntrainementRouteWithChildren =
 interface AuthenticatedAppExamenBlancRouteChildren {
   AuthenticatedAppExamenBlancSessionRoute: typeof AuthenticatedAppExamenBlancSessionRoute
   AuthenticatedAppExamenBlancIndexRoute: typeof AuthenticatedAppExamenBlancIndexRoute
-  AuthenticatedAppExamenBlancResultatsRoute: typeof AuthenticatedAppExamenBlancResultatsRoute
+  AuthenticatedAppExamenBlancResultatsIdRoute: typeof AuthenticatedAppExamenBlancResultatsIdRoute
 }
 
 const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRouteChildren =
@@ -1008,8 +1008,8 @@ const AuthenticatedAppExamenBlancRouteChildren: AuthenticatedAppExamenBlancRoute
       AuthenticatedAppExamenBlancSessionRoute,
     AuthenticatedAppExamenBlancIndexRoute:
       AuthenticatedAppExamenBlancIndexRoute,
-    AuthenticatedAppExamenBlancResultatsRoute:
-      AuthenticatedAppExamenBlancResultatsRoute,
+    AuthenticatedAppExamenBlancResultatsIdRoute:
+      AuthenticatedAppExamenBlancResultatsIdRoute,
   }
 
 const AuthenticatedAppExamenBlancRouteWithChildren =
