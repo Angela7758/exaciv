@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Globe, Menu, User, X } from "lucide-react";
+import { ChevronDown, Globe, Menu, User, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
@@ -9,7 +9,7 @@ const NAV = [
   { to: "/parcours", label: "Parcours" },
   { to: "/methode", label: "Méthode" },
   { to: "/tarifs", label: "Tarifs" },
-  { to: "/ressources", label: "Ressources" },
+  { to: "/faq", label: "FAQ" },
 ] as const;
 
 export function SiteHeader() {
@@ -18,22 +18,22 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 px-3 pt-3">
       <div className="container-page flex h-16 items-center justify-between rounded-2xl border bg-card/95 shadow-soft backdrop-blur">
         <Logo />
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
+        <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="text-sm font-medium text-foreground/80 hover:text-primary" activeProps={{ className: "text-primary" }}>
+            <Link key={n.to} to={n.to} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>
               {n.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 lg:flex">
-          <span className="inline-flex items-center gap-1 text-sm text-muted-foreground" title="Français (autres langues bientôt)">
-            <Globe className="size-4" /> FR
+        <div className="hidden items-center gap-5 lg:flex">
+          <span className="inline-flex items-center gap-1 text-sm font-medium" title="Français">
+            <Globe className="size-4" /> FR <ChevronDown className="size-3.5" />
           </span>
           <Link to="/connexion" className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary">
-            <User className="size-4" /> Se connecter
+            <User className="size-4 fill-current" /> Connexion
           </Link>
-          <Button asChild variant="cta">
-            <Link to="/test-gratuit">Faire un test gratuit</Link>
+          <Button asChild variant="cta" size="lg" className="text-base">
+            <Link to="/test-gratuit">Test gratuit</Link>
           </Button>
         </div>
         <button className="lg:hidden" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
@@ -49,10 +49,10 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link to="/connexion" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 font-medium hover:bg-accent">
-              Se connecter
+              Connexion
             </Link>
             <Button asChild variant="cta" size="lg" className="mt-2">
-              <Link to="/test-gratuit" onClick={() => setOpen(false)}>Faire un test gratuit</Link>
+              <Link to="/test-gratuit" onClick={() => setOpen(false)}>Test gratuit</Link>
             </Button>
           </nav>
         </div>

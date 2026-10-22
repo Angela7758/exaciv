@@ -8,7 +8,7 @@ export interface Plan {
   period?: string;
   features: string[];
   cta: string;
-  variant: "neutral" | "cta" | "default";
+  variant: "neutral" | "cta" | "interactive";
 }
 
 export const PLANS: Plan[] = [
@@ -41,7 +41,7 @@ export const PLANS: Plan[] = [
       "Suivi des progrès avancé",
     ],
     cta: "Choisir le Pass",
-    variant: "default",
+    variant: "interactive",
   },
 ];
 
