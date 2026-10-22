@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { fr, type MessageKey } from './fr';
+export type { MessageKey } from './fr';
 import { en } from './en';
 import { zh } from './zh';
 import { ar } from './ar';
