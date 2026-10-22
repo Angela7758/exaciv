@@ -189,7 +189,9 @@ export type Database = {
           published: boolean
           question: string
           source: string
+          source_status: string
           source_url: string | null
+          source_verified_at: string | null
           theme: string
         }
         Insert: {
@@ -203,7 +205,9 @@ export type Database = {
           published?: boolean
           question: string
           source: string
+          source_status?: string
           source_url?: string | null
+          source_verified_at?: string | null
           theme: string
         }
         Update: {
@@ -217,7 +221,9 @@ export type Database = {
           published?: boolean
           question?: string
           source?: string
+          source_status?: string
           source_url?: string | null
+          source_verified_at?: string | null
           theme?: string
         }
         Relationships: [
