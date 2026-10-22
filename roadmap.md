@@ -1,4 +1,6 @@
 # ExaCiv
+- [ ] Implement reference-faithful Leçons, Progression and Mon compte with separate demo data and saved real account settings.
+- [ ] Compare three final desktop renders to references and verify tablet/mobile and account save flow.
 - [x] Add learner-entered incorrect answers and an authenticated AI Gateway personalised revision plan; real generation and saved-plan recovery verified.
 - [ ] Add reference-faithful mock session, mistake library and subscription selection pages.
 - [x] Verify three pages at 1600×900, 1440px, tablet and mobile; demonstrations remain separate from personal records.
