@@ -44,9 +44,9 @@ function Index() {
       {/* Parcours */}
       <section className="container-page pt-16">
         <SectionHeading title="Des parcours adaptés à votre situation" subtitle="Un contenu ciblé selon votre démarche, avec les mêmes exigences et un accompagnement sur mesure." />
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid items-stretch gap-4 md:grid-cols-3">
           {PARCOURS_CARDS.map((p) => (
-            <Link key={p.id} to="/parcours" hash={p.id} className={`group relative flex min-h-48 overflow-hidden rounded-2xl p-6 ${p.card}`}>
+            <Link key={p.id} to="/parcours" hash={p.id} className={`group relative flex h-full min-h-48 overflow-hidden rounded-2xl p-6 ${p.card}`}>
               <img src={p.art} alt="" aria-hidden loading="lazy" className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto" />
               <div className="relative flex flex-1 flex-col">
                 <div className="flex items-center gap-3">
@@ -101,8 +101,8 @@ function Index() {
       {/* Pensé pour votre parcours */}
       <section className="container-page py-14">
         <SectionHeading title="Pensé pour votre parcours" subtitle="Des outils et un accompagnement adaptés à votre situation, pour avancer sereinement." />
-        <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          <div className="rounded-2xl bg-secondary-soft p-5">
+        <div className="mt-8 grid items-stretch gap-4 lg:grid-cols-3">
+          <div className="flex h-full flex-col rounded-2xl bg-secondary-soft p-5">
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Users className="size-6 fill-secondary text-secondary" /></span>
               <div>
@@ -122,7 +122,7 @@ function Index() {
               ))}
             </div>
           </div>
-          <div className="rounded-2xl bg-accent p-5">
+          <div className="flex h-full flex-col rounded-2xl bg-accent p-5">
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><BookOpen className="size-6 fill-primary-interactive text-primary-interactive" /></span>
               <div>
@@ -130,14 +130,14 @@ function Index() {
                 <p className="text-sm text-muted-foreground">Des leçons claires en français, avec un soutien multilingue pour faciliter votre apprentissage.</p>
               </div>
             </div>
-            <div className="mt-3 flex items-center gap-2">
+            <div className="mt-3 flex flex-1 items-center gap-2">
               <img src={globeImg} alt="" aria-hidden loading="lazy" className="w-36" />
               <div className="flex flex-col items-start gap-1.5 text-sm">
-                {["🇫🇷 Français", "🇬🇧 English", "العربية", "🇪🇸 Español", "…"].map((l) => <span key={l} className="rounded-full bg-card px-3 py-1 shadow-soft">{l}</span>)}
+                {["🇫🇷 Français", "🇬🇧 English", "العربية", "🇪🇸 Español", "🇨🇳 中文", "🇷🇺 Русский"].map((l) => <span key={l} className="rounded-full bg-card px-3 py-1 shadow-soft">{l}</span>)}
               </div>
             </div>
           </div>
-          <div className="rounded-2xl bg-success-surface p-5">
+          <div className="flex h-full flex-col rounded-2xl bg-success-surface p-5">
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Laptop className="size-6 text-success" /></span>
               <div>
@@ -145,7 +145,7 @@ function Index() {
                 <p className="text-sm text-muted-foreground">Retrouvez vos leçons, vos résultats et vos favoris sur tous vos appareils. Avancez à votre rythme, où que vous soyez.</p>
               </div>
             </div>
-            <img src={devicesImg} alt="ExaCiv sur ordinateur, tablette et téléphone" loading="lazy" className="mt-3 w-full" />
+            <img src={devicesImg} alt="ExaCiv sur ordinateur, tablette et téléphone" loading="lazy" className="mt-auto w-full pt-3" />
           </div>
         </div>
       </section>

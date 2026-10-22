@@ -30,16 +30,17 @@ export function PageHero({ eyebrow, title, children }: { eyebrow?: string; title
 export function PricingCards() {
   const look = {
     decouverte: { card: "bg-card", icon: BookOpen, iconCls: "bg-accent text-primary-interactive" },
-    essentiel: { card: "bg-accent/50", icon: BarChart3, iconCls: "bg-accent text-primary-interactive" },
+    essentiel: { card: "bg-accent/50 border-secondary", icon: BarChart3, iconCls: "bg-accent text-primary-interactive" },
     pass: { card: "bg-success-surface", icon: Crown, iconCls: "bg-success-soft text-success" },
   } as const;
   return (
     <div>
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid items-stretch gap-4 pt-3 md:grid-cols-3">
         {PLANS.map((p) => {
           const l = look[p.id];
           return (
-            <div key={p.id} className={`flex flex-col rounded-2xl border p-6 shadow-soft ${l.card}`}>
+            <div key={p.id} className={`relative flex h-full flex-col rounded-2xl border p-6 shadow-soft ${l.card}`}>
+              {p.id === "essentiel" && <span className="pricing-popular-home">Le plus choisi</span>}
               <div className="flex items-start gap-4">
                 <span className={`grid size-14 shrink-0 place-items-center rounded-full ${l.iconCls}`}><l.icon className={`size-7 ${p.id === "essentiel" ? "" : "fill-current"}`} strokeWidth={p.id === "essentiel" ? 3 : 2} /></span>
                 <div>
@@ -116,15 +117,15 @@ export function FinalCta() {
     <section className="relative overflow-hidden">
       <img src={ctaBg} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-cta-band opacity-80" />
-      <div className="container-page relative flex flex-col items-start gap-6 py-12 text-primary-foreground md:flex-row md:items-center md:gap-10">
-        <div>
+      <div className="container-page relative flex flex-col items-center gap-6 py-12 text-center text-primary-foreground md:flex-row md:items-center md:gap-10 md:text-left">
+        <div className="order-1">
           <h2 className="text-4xl font-bold md:text-5xl">Prêt à commencer ?</h2>
           <p className="mt-2 text-lg opacity-95">Faites un premier test et découvrez vos points à renforcer.</p>
         </div>
-        <Button asChild variant="cta" size="xl">
+        <Button asChild variant="cta" size="xl" className="order-2 shrink-0">
           <Link to="/test-gratuit"><Play className="fill-current" /> Faire un test gratuit</Link>
         </Button>
-        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="ml-auto hidden w-40 md:block" />
+        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 md:order-none md:ml-auto md:w-40" />
       </div>
     </section>
   );

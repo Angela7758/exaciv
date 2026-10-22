@@ -13,7 +13,7 @@ export function SiteFooter() {
     <footer className="bg-card">
       <div className="container-page grid gap-10 py-10 md:grid-cols-[1.6fr_repeat(4,1fr)]">
         <div>
-          <Logo />
+          <span className="inline-block [&_img]:mix-blend-multiply"><Logo /></span>
           <p className="mt-2 max-w-48 text-sm text-muted-foreground">Préparez l’examen civique avec confiance.</p>
         </div>
         {COLS.map((c) => (
