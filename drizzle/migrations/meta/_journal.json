@@ -92,6 +92,13 @@
       "when": 1792696446152,
       "tag": "0012_allow_diagnostic_and_review_sessions",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1792696526563,
+      "tag": "0013_validate_lesson_reading_completion",
+      "breakpoints": true
     }
   ]
 }
