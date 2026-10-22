@@ -1,9 +1,9 @@
 import {OFFICIAL_TRACKS} from './official-programme';
 import type {ParcoursId} from './content';
 export const EXAM_FACTS:Record<ParcoursId,{questions:number;minutes:number;minimum:number;condition:string;source:string}>={
- naturalisation:{questions:40,minutes:45,minimum:32,condition:'Pour la naturalisation ou la réintégration par décret, sous réserve des dispenses applicables.',source:OFFICIAL_TRACKS.naturalisation.url},
- resident:{questions:40,minutes:45,minimum:32,condition:'Pour une première carte de résident, lorsque l’examen est requis selon votre situation.',source:OFFICIAL_TRACKS.resident.url},
- sejour:{questions:40,minutes:45,minimum:32,condition:'Pour une première carte de séjour pluriannuelle, lorsque l’examen est requis selon votre situation.',source:OFFICIAL_TRACKS.sejour.url},
+ naturalisation:{questions:40,minutes:45,minimum:32,condition:'Pour la naturalisation ou la réintégration par décret ; pas pour les acquisitions par déclaration. Des dispenses peuvent s’appliquer.',source:OFFICIAL_TRACKS.naturalisation.url},
+ resident:{questions:40,minutes:45,minimum:32,condition:'Pour une première carte de résident depuis le 1er janvier 2026, pas pour un renouvellement. Des dispenses existent, notamment selon la protection internationale ou les accords bilatéraux.',source:OFFICIAL_TRACKS.resident.url},
+ sejour:{questions:40,minutes:45,minimum:32,condition:'Pour une première carte de séjour pluriannuelle depuis le 1er janvier 2026, pas pour un renouvellement. Des dispenses existent, notamment selon la protection internationale ou les accords bilatéraux.',source:OFFICIAL_TRACKS.sejour.url},
 };
 export const METHOD_STEPS=[
  {title:'Découvrir',description:'Des leçons claires et illustrées.',destination:'/app/lecons',tone:'orange'},
