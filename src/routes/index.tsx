@@ -54,7 +54,7 @@ function Index() {
               </div>
               <p className="mt-3 rounded-xl bg-muted p-3 text-sm text-muted-foreground">La laïcité permet à chacun de croire ou de ne pas croire, et de pratiquer sa religion dans le respect des lois.</p>
             </div>
-            <img src={civi} alt="CIVI, la mascotte ExaCiv" width={1024} height={1024} className="animate-float absolute -bottom-16 -right-10 w-40 md:w-52" />
+            <img src={civi} alt="CIVI, la mascotte ExaCiv" width={1024} height={1024} className="animate-float absolute -bottom-28 -right-4 w-32 md:w-40" />
           </div>
         </div>
       </section>
