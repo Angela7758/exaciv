@@ -1,0 +1,7 @@
+import {describe,it,expect} from 'vitest';
+import {OFFICIAL_TOPICS,officialTrack,officialTopic} from '@/config/official-programme';
+describe('verified programme alignment',()=>{
+ it('has the five ministry themes including everyday life',()=>{expect(OFFICIAL_TOPICS.map(t=>t.title)).toEqual(['Principes et valeurs de la République française','Système institutionnel et politique','Droits et devoirs','Histoire, géographie et culture','Vivre dans la société française']);});
+ it('keeps the three published knowledge lists distinct',()=>{expect(officialTrack('resident').url).toContain('connaissance-cr/');expect(officialTrack('sejour').url).toContain('connaissance-csp/');expect(officialTrack('naturalisation').url).toContain('nationalite-francaise');expect(new Set(['naturalisation','resident','sejour'].map(p=>officialTrack(p).url)).size).toBe(3);});
+ it('aligns legacy labels without inventing a classification',()=>{expect(officialTopic('Institutions françaises')).toBe('Système institutionnel et politique');expect(officialTopic('France et Europe')).toBe('Histoire, géographie et culture');expect(officialTopic('Autre')).toBe('Autre');});
+});

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { FaqList, FinalCta, PricingCards, SectionHeading } from "@/components/site/sections";
 import { OFFICIAL_SOURCE } from "@/config/content";
 import { seo } from "@/lib/seo";
-import heroImg from "@/assets/hero-paris.jpg";
+import {HomeHero} from "@/components/site/HomeHero";
 import civi from "@/assets/civi.png";
 import artNat from "@/assets/art-naturalisation.png";
 import artRes from "@/assets/art-resident.png";
@@ -26,63 +26,11 @@ const PARCOURS_CARDS = [
 
 function Index() {
   return (
-    <>
-      {/* Hero */}
-      <section className="relative -mt-20 overflow-hidden pt-20">
-        <img src={heroImg} alt="" aria-hidden width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-hero-fade" />
-        <div className="container-page relative grid items-center gap-10 pb-28 pt-14 lg:grid-cols-[1.05fr_1fr]">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wider text-primary-interactive">Préparation à l’examen civique</p>
-            <h1 className="mt-3 text-4xl font-extrabold leading-[1.1] md:text-[3.4rem]">
-              Préparez l’examen civique avec <span className="text-secondary">confiance</span>
-            </h1>
-            <p className="mt-5 max-w-lg text-xl text-foreground">
-              Des leçons claires, des QCM et des examens blancs adaptés à votre démarche.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button asChild variant="cta" size="xl"><Link to="/test-gratuit"><Play className="fill-current" /> Faire un test gratuit</Link></Button>
-              <Button asChild variant="outline" size="xl"><Link to="/methode">Découvrir la méthode <ArrowRight /></Link></Button>
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">Sans carte bancaire · Résultat immédiat</p>
-            <div className="mt-6 inline-flex flex-wrap gap-5 rounded-xl bg-card/90 px-4 py-2.5 text-sm shadow-soft">
-              {["Clair et accessible", "Conforme au programme", "À votre rythme"].map((t) => (
-                <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="size-4 fill-success text-card" /> {t}</span>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative mx-auto hidden w-full max-w-lg md:block">
-            {/* path chips */}
-            <div className="absolute -left-20 top-6 z-10 space-y-8">
-              <Chip icon={Landmark} label="1. Institutions françaises" done />
-              <Chip icon={Users} label="2. Libertés et droits" className="ml-8" />
-              <Chip icon={Star} label="3. Vie démocratique et citoyenneté" />
-            </div>
-            <div className="ml-16 rounded-3xl border bg-card/95 p-5 shadow-card">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-semibold"><BookOpen className="mr-1 inline size-4 fill-foreground" />Leçon 4 - <span className="text-primary-interactive">Laïcité</span></span>
-                <span className="flex items-center gap-2 font-semibold">3/5
-                  <span className="flex gap-1">{["bg-primary-interactive", "bg-primary-interactive", "bg-primary-interactive", "bg-secondary", "bg-muted"].map((c, i) => <span key={i} className={`h-1.5 w-5 rounded-full ${c}`} />)}</span>
-                </span>
-              </div>
-              <div className="mt-4 rounded-2xl border p-4">
-                <p className="font-semibold">La laïcité garantit la liberté de conscience.</p>
-                <div className="mt-3 grid grid-cols-2 gap-2">
-                  <span className="flex items-center gap-2 rounded-xl border-2 border-success bg-success-soft px-3 py-2.5 font-medium"><CheckCircle2 className="size-5 fill-success text-card" /> Vrai</span>
-                  <span className="flex items-center gap-2 rounded-xl border px-3 py-2.5"><span className="size-5 rounded-full border-2" /> Faux</span>
-                </div>
-                <span className="mt-3 block w-3/4 rounded-xl bg-primary-interactive py-2.5 text-center text-sm font-semibold text-primary-foreground">Valider ma réponse</span>
-                <p className="mt-3 w-3/4 rounded-xl bg-muted p-3 text-xs text-muted-foreground"><FileText className="mr-1 inline size-4" />La laïcité permet à chacun de croire ou de ne pas croire, et de pratiquer sa religion librement dans le respect des lois.</p>
-              </div>
-            </div>
-            <img src={civi} alt="CIVI, la mascotte ExaCiv" width={430} height={497} className="animate-float absolute -bottom-24 -right-6 w-52" />
-          </div>
-        </div>
-      </section>
+    <div className="approved-home">
+      <HomeHero />
 
       {/* Stats bar */}
-      <section className="container-page relative z-10 -mt-14">
+      <section className="container-page home-exam-strip relative z-10 -mt-14">
         <div className="grid items-center gap-4 rounded-2xl border bg-card p-5 shadow-card md:grid-cols-[1fr_1fr_1.2fr_auto]">
           <Stat icon={FileText} cls="bg-secondary-soft text-secondary" title="40 questions" sub="QCM sur la vie en société française" />
           <Stat icon={Clock} cls="bg-accent text-primary-interactive" title="45 minutes maximum" sub="Durée de l’épreuve" />
@@ -243,7 +191,7 @@ function Index() {
       </section>
 
       <FinalCta />
-    </>
+    </div>
   );
 }
 

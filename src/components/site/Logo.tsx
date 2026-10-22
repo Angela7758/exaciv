@@ -1,13 +1,10 @@
 import { Link } from "@tanstack/react-router";
+import logo from '@/assets/exaciv-approved-logo.png.asset.json';
 
 export function Logo() {
   return (
-    <Link to="/" className="relative inline-flex items-baseline text-2xl font-extrabold tracking-tight text-foreground" aria-label="ExaCiv – accueil">
-      Exa<span className="text-primary">C</span>
-      <span className="relative text-secondary">
-        iv
-        <span aria-hidden className="absolute -right-2 -top-2 text-xs text-secondary">✦</span>
-      </span>
+    <Link to="/" className="site-logo" aria-label="ExaCiv – accueil">
+      <img src={logo.url} alt="ExaCiv" width={218} height={88}/>
     </Link>
   );
 }

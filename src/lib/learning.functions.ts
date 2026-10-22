@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
 import type { Database } from '@/integrations/supabase/types';
+import {officialTopic} from '@/config/official-programme';
 export const getCatalogue = createServerFn({method:'GET'}).handler(async()=>{
  const key=process.env['SUPABASE_PUBLISHABLE_KEY']; const url=process.env['SUPABASE_URL'];
  if(!key || !url) throw new Error('Catalogue indisponible');
@@ -10,7 +11,7 @@ export const getCatalogue = createServerFn({method:'GET'}).handler(async()=>{
  const [q,l]=await Promise.all([db.from('learning_questions').select('*').eq('published',true).order('position'),db.from('learning_lessons').select('*').eq('published',true).order('position')]);
  if(q.error || l.error) throw new Error('Impossible de charger les contenus.');
  const counts=new Map<string,number>();q.data.forEach(v=>{if(v.exam_theme)counts.set(v.exam_theme,(counts.get(v.exam_theme)??0)+1);});
- return {questions:q.data.slice(0,10),lessons:l.data,examAvailable:['Institutions','Valeurs de la République','Histoire','Droits et devoirs','France et Europe'].every(t=>(counts.get(t)??0)>=8)};
+ return {questions:q.data.slice(0,10),lessons:l.data.map(lesson=>({...lesson,topic:officialTopic(lesson.topic)})),examAvailable:['Institutions','Valeurs de la République','Histoire','Droits et devoirs','France et Europe'].every(t=>(counts.get(t)??0)>=8)};
 });
 export const getLearning = createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{
  const [p,c,a,s]=await Promise.all([context.supabase.from('profiles').select('*').eq('id',context.userId).single(),context.supabase.from('learning_completions').select('*').eq('user_id',context.userId),context.supabase.from('learning_attempts').select('*').eq('user_id',context.userId).order('created_at',{ascending:false}).limit(30),context.supabase.from('learning_sessions').select('id,correct,total,completed_at,started_at,kind,parcours').eq('user_id',context.userId).not('completed_at','is',null).order('started_at',{ascending:false}).limit(50)]);
