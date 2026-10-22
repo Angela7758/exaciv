@@ -14,13 +14,186 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      learning_attempts: {
+        Row: {
+          answers: Json
+          correct: number
+          created_at: string
+          id: string
+          parcours: string
+          total: number
+          user_id: string
+        }
+        Insert: {
+          answers: Json
+          correct: number
+          created_at?: string
+          id?: string
+          parcours: string
+          total: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          correct?: number
+          created_at?: string
+          id?: string
+          parcours?: string
+          total?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_completions: {
+        Row: {
+          completed_at: string
+          lesson_id: string
+          parcours: string
+          user_id: string
+          xp: number
+        }
+        Insert: {
+          completed_at?: string
+          lesson_id: string
+          parcours: string
+          user_id: string
+          xp?: number
+        }
+        Update: {
+          completed_at?: string
+          lesson_id?: string
+          parcours?: string
+          user_id?: string
+          xp?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_completions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "learning_lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_completions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_lessons: {
+        Row: {
+          body: string[]
+          id: string
+          position: number
+          published: boolean
+          title: string
+          topic: string
+        }
+        Insert: {
+          body: string[]
+          id: string
+          position: number
+          published?: boolean
+          title: string
+          topic: string
+        }
+        Update: {
+          body?: string[]
+          id?: string
+          position?: number
+          published?: boolean
+          title?: string
+          topic?: string
+        }
+        Relationships: []
+      }
+      learning_questions: {
+        Row: {
+          answer: number
+          explanation: string
+          id: string
+          options: string[]
+          position: number
+          published: boolean
+          question: string
+          source: string
+          theme: string
+        }
+        Insert: {
+          answer: number
+          explanation: string
+          id: string
+          options: string[]
+          position: number
+          published?: boolean
+          question: string
+          source: string
+          theme: string
+        }
+        Update: {
+          answer?: number
+          explanation?: string
+          id?: string
+          options?: string[]
+          position?: number
+          published?: boolean
+          question?: string
+          source?: string
+          theme?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string
+          created_at: string
+          display_name: string
+          goal_date: string | null
+          id: string
+          locale: string
+          parcours: string
+        }
+        Insert: {
+          avatar_url?: string
+          created_at?: string
+          display_name?: string
+          goal_date?: string | null
+          id: string
+          locale?: string
+          parcours?: string
+        }
+        Update: {
+          avatar_url?: string
+          created_at?: string
+          display_name?: string
+          goal_date?: string | null
+          id?: string
+          locale?: string
+          parcours?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      complete_learning_lesson: {
+        Args: { p_lesson: string }
+        Returns: undefined
+      }
+      record_learning_attempt: { Args: { p_answers: Json }; Returns: string }
     }
     Enums: {
       [_ in never]: never
