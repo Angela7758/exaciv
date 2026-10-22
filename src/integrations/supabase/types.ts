@@ -342,10 +342,12 @@ export type Database = {
           daily_minutes: number
           display_name: string
           goal_date: string | null
+          help_locale: string
           id: string
           locale: string
           parcours: string
           revision_reminder: boolean
+          translation_help: boolean
           weekly_summary: boolean
         }
         Insert: {
@@ -354,10 +356,12 @@ export type Database = {
           daily_minutes?: number
           display_name?: string
           goal_date?: string | null
+          help_locale?: string
           id: string
           locale?: string
           parcours?: string
           revision_reminder?: boolean
+          translation_help?: boolean
           weekly_summary?: boolean
         }
         Update: {
@@ -366,10 +370,12 @@ export type Database = {
           daily_minutes?: number
           display_name?: string
           goal_date?: string | null
+          help_locale?: string
           id?: string
           locale?: string
           parcours?: string
           revision_reminder?: boolean
+          translation_help?: boolean
           weekly_summary?: boolean
         }
         Relationships: []
