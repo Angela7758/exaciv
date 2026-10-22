@@ -1,4 +1,6 @@
 # ExaCiv
+- [ ] Implement lesson details, persistent practice feedback and mock-exam results from new references.
+- [ ] Verify linked flows, real scoring, refresh recovery and desktop/mobile fidelity.
 - [x] Preserve confirmed home and pricing.
 - [x] Shared app/quiz visual system matching supplied references.
 - [x] Ten-question anonymous test with real scoring and explanations.

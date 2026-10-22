@@ -13,3 +13,6 @@
 - Protected learning routes live under _authenticated/app with shared AppShell; public quiz has its own header so layouts match the supplied reference screens.
 - Learning completion and attempt writes use authenticated database functions; completion uniqueness and sequential unlocks prevent repeated XP and forged progress.
 - User-owned reads use authenticated server functions and query loaders; root maintains one auth-state listener, preserving generated bearer middleware.
+
+- Resumable learning sessions snapshot questions, answers, pathway and server deadline in Cloud; authenticated RPCs serialize answer submission and finalization so refresh never duplicates scoring.
+- Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
