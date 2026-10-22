@@ -15,6 +15,27 @@
       "when": 1792674128446,
       "tag": "0001_restrict_profile_trigger_execution",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792674721874,
+      "tag": "0002_persistent_learning_sessions",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1792674781858,
+      "tag": "0003_keep_free_test_ten_questions",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792675081782,
+      "tag": "0004_balanced_mock_exam_catalogue",
+      "breakpoints": true
     }
   ]
 }

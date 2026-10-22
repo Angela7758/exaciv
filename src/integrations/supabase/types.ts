@@ -95,24 +95,33 @@ export type Database = {
         Row: {
           body: string[]
           id: string
+          minutes: number
           position: number
           published: boolean
+          source_url: string | null
+          takeaway: string[]
           title: string
           topic: string
         }
         Insert: {
           body: string[]
           id: string
+          minutes?: number
           position: number
           published?: boolean
+          source_url?: string | null
+          takeaway?: string[]
           title: string
           topic: string
         }
         Update: {
           body?: string[]
           id?: string
+          minutes?: number
           position?: number
           published?: boolean
+          source_url?: string | null
+          takeaway?: string[]
           title?: string
           topic?: string
         }
@@ -121,38 +130,118 @@ export type Database = {
       learning_questions: {
         Row: {
           answer: number
+          exam_theme: string | null
           explanation: string
           id: string
+          lesson_id: string | null
           options: string[]
           position: number
           published: boolean
           question: string
           source: string
+          source_url: string | null
           theme: string
         }
         Insert: {
           answer: number
+          exam_theme?: string | null
           explanation: string
           id: string
+          lesson_id?: string | null
           options: string[]
           position: number
           published?: boolean
           question: string
           source: string
+          source_url?: string | null
           theme: string
         }
         Update: {
           answer?: number
+          exam_theme?: string | null
           explanation?: string
           id?: string
+          lesson_id?: string | null
           options?: string[]
           position?: number
           published?: boolean
           question?: string
           source?: string
+          source_url?: string | null
           theme?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "learning_questions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "learning_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_sessions: {
+        Row: {
+          answers: Json
+          completed_at: string | null
+          correct: number | null
+          current_index: number
+          deadline: string | null
+          id: string
+          kind: string
+          lesson_id: string | null
+          parcours: string
+          questions: Json
+          started_at: string
+          total: number
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          completed_at?: string | null
+          correct?: number | null
+          current_index?: number
+          deadline?: string | null
+          id?: string
+          kind: string
+          lesson_id?: string | null
+          parcours: string
+          questions: Json
+          started_at?: string
+          total: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          completed_at?: string | null
+          correct?: number | null
+          current_index?: number
+          deadline?: string | null
+          id?: string
+          kind?: string
+          lesson_id?: string | null
+          parcours?: string
+          questions?: Json
+          started_at?: string
+          total?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_sessions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "learning_lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_sessions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -189,11 +278,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      advance_learning_session: {
+        Args: { p_session: string }
+        Returns: undefined
+      }
       complete_learning_lesson: {
         Args: { p_lesson: string }
         Returns: undefined
       }
+      finish_learning_session: {
+        Args: { p_session: string }
+        Returns: undefined
+      }
       record_learning_attempt: { Args: { p_answers: Json }; Returns: string }
+      start_learning_session: {
+        Args: { p_kind: string; p_lesson?: string }
+        Returns: string
+      }
+      submit_learning_answer: {
+        Args: { p_answer: number; p_index: number; p_session: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
