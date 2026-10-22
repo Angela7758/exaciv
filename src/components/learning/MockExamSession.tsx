@@ -10,6 +10,7 @@ import {startSession,finishSession} from '@/lib/session.functions';
 import {saveExamNavigation} from '@/lib/review.functions';
 import {DEMO_EXAM_QUESTION} from '@/lib/review';
 import {ProgressBar} from './primitives';
+import {QuestionAids} from './QuestionAids';
 import {Dialog,DialogContent,DialogTitle,DialogDescription} from '@/components/ui/dialog';
 import {recordedProgress} from '@/lib/registration';
 import civi from '@/assets/civi.png';
