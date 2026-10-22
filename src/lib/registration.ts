@@ -1,6 +1,7 @@
 import {z} from 'zod';
 import type {SessionQuestion} from './sessions';
-export const objectiveSchema=z.object({parcours:z.enum(['naturalisation','resident','sejour']),locale:z.literal('fr'),goal_date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable()});
+export const localeSchema=z.enum(['fr','zh','en','ar','es','ru']);
+export const objectiveSchema=z.object({parcours:z.enum(['naturalisation','resident','sejour']),locale:localeSchema,goal_date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable()});
 export type Objective=z.infer<typeof objectiveSchema>;
 type Draft={name:string;email:string;password:string};
 // Credentials remain in memory only, never browser storage; refresh returns to step one.
