@@ -1,5 +1,5 @@
 # ExaCiv
-- [ ] Enable real complete-path payments after provider approval/configuration; add protected admin subscription and signup tracking.
+- [ ] Payments and associated admin tracking deferred by user; waits for explicit reactivation and provider configuration.
 - [ ] Replace revision sources with verified official programme references and align learning paths without presenting invented questions as official.
 - [ ] Implement reference-faithful Leçons, Progression and Mon compte with separate demo data and saved real account settings.
 - [ ] Compare three final desktop renders to references and verify tablet/mobile and account save flow.
