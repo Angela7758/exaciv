@@ -37,10 +37,10 @@ export function PricingCards() {
   return (
     <div>
       <div className="grid items-stretch gap-4 pt-3 md:grid-cols-3">
-        {PLANS.map((p) => {
+        {PLANS.map((p, pi) => {
           const l = look[p.id];
           return (
-            <div key={p.id} className={`relative flex h-full flex-col rounded-2xl border p-6 shadow-soft ${l.card}`}>
+            <div key={p.id} style={{ transitionDelay: `${pi * 70}ms` }} className={`reveal-child card-hover relative flex h-full flex-col rounded-2xl border p-6 shadow-soft ${l.card}`}>
               {p.id === "essentiel" && <span className="pricing-popular-home">Le plus choisi</span>}
               <div className="flex items-start gap-4">
                 <span className={`grid size-14 shrink-0 place-items-center rounded-full ${l.iconCls}`}><l.icon className={`size-7 ${p.id === "essentiel" ? "" : "fill-current"}`} strokeWidth={p.id === "essentiel" ? 3 : 2} /></span>
@@ -78,7 +78,7 @@ export function PricingCards() {
 type FaqEntry={q:string;a:string;link?:(typeof FAQ)[number]['link']};
 function FaqItem({ f, i }: { f: FaqEntry; i: number }) {
   return (
-    <AccordionItem value={`f${i}`} className="rounded-xl border bg-card px-5 shadow-soft">
+    <AccordionItem value={`f${i}`} style={{ transitionDelay: `${i * 70}ms` }} className="reveal-child rounded-xl border bg-card px-5 shadow-soft">
       <AccordionTrigger className="text-left text-sm font-semibold [&>svg]:text-primary-interactive">{f.q}</AccordionTrigger>
       <AccordionContent className="rounded-lg bg-muted p-3 text-muted-foreground">
         <p>{f.a}</p>

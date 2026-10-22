@@ -51,6 +51,7 @@ export const zh: Partial<Record<MessageKey, string>> = {
   'home.hero.chip1': '1. 法国机构',
   'home.hero.chip2': '2. 自由与权利',
   'home.hero.chip3': '3. 民主生活与公民身份',
+  'home.hero.civiAsk': '开始吧？',
   'home.hero.civiAlt': 'CIVI，您的备考伙伴',
 
   'home.stats.q': '40 道题',
