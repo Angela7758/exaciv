@@ -19,15 +19,16 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const locationKey = useRouterState({ select: (state) => state.location.href });
+  const reference=useRouterState({select:s=>['/examen','/methode','/faq','/parcours'].includes(s.location.pathname)});
   const home = useRouterState({select:state=>state.location.pathname==='/' });
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); }, [locationKey]);
   return (
-    <header className={`sticky top-0 z-40 px-3 pt-3 ${home?'approved-home-header':''} ${auth?'approved-auth-header':''}`}>
+    <header className={`sticky top-0 z-40 px-3 pt-3 ${home?'approved-home-header':''} ${auth?'approved-auth-header':''} ${reference?'nine-public-header':''}`}>
       <div className="container-page flex h-16 items-center justify-between rounded-2xl border bg-card/95 shadow-soft backdrop-blur">
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} activeOptions={{exact:true}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>
+            <Link key={n.to} to={n.to} activeOptions={{exact:true}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary nav-selected" }}>
               {n.label}
             </Link>
           ))}
@@ -43,7 +44,7 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
             <Link to="/test-gratuit">Test gratuit</Link>
           </Button>
         </div>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
+        <span className="mobile-language lg:hidden" title="Français"><Globe/> FR</span><Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </Button>
       </div>
