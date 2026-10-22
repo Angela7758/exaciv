@@ -43,6 +43,13 @@
       "when": 1792675734068,
       "tag": "0005_exam_navigation_and_mistake_mastery",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792676178241,
+      "tag": "0006_personal_revision_plans",
+      "breakpoints": true
     }
   ]
 }
