@@ -1,0 +1,1 @@
+ALTER TABLE public.profiles ADD COLUMN daily_minutes integer NOT NULL DEFAULT 10 CHECK(daily_minutes BETWEEN 5 AND 60), ADD COLUMN revision_reminder boolean NOT NULL DEFAULT false, ADD COLUMN weekly_summary boolean NOT NULL DEFAULT false;

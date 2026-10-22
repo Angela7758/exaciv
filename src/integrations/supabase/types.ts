@@ -297,29 +297,38 @@ export type Database = {
         Row: {
           avatar_url: string
           created_at: string
+          daily_minutes: number
           display_name: string
           goal_date: string | null
           id: string
           locale: string
           parcours: string
+          revision_reminder: boolean
+          weekly_summary: boolean
         }
         Insert: {
           avatar_url?: string
           created_at?: string
+          daily_minutes?: number
           display_name?: string
           goal_date?: string | null
           id: string
           locale?: string
           parcours?: string
+          revision_reminder?: boolean
+          weekly_summary?: boolean
         }
         Update: {
           avatar_url?: string
           created_at?: string
+          daily_minutes?: number
           display_name?: string
           goal_date?: string | null
           id?: string
           locale?: string
           parcours?: string
+          revision_reminder?: boolean
+          weekly_summary?: boolean
         }
         Relationships: []
       }
