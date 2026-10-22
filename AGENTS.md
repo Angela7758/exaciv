@@ -18,3 +18,4 @@
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
 - Personal revision AI uses an authenticated streaming API route and request-scoped server-only Gateway helpers; plans are owner-readable and terminal billing/access blocks persist server-side to prevent repeated billed calls.
 - The public homepage hero is isolated in HomeHero with homepage-scoped styles so fidelity corrections do not change approved app screens or other public pages.
+- Official programme taxonomy and verified references live in src/config/official-programme.ts; legacy lessons and stored mistakes are mapped at read time, preserving session snapshots, answer order and earned progress. Official references never imply editorial QCM are the ministry's complete bank.
