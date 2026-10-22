@@ -85,6 +85,13 @@
       "when": 1792696436914,
       "tag": "0011_record_mistake_review_history",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1792696446152,
+      "tag": "0012_allow_diagnostic_and_review_sessions",
+      "breakpoints": true
     }
   ]
 }

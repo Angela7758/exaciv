@@ -1,0 +1,2 @@
+ALTER TABLE public.learning_sessions DROP CONSTRAINT learning_sessions_kind_check;
+ALTER TABLE public.learning_sessions ADD CONSTRAINT learning_sessions_kind_check CHECK (kind IN ('practice','lesson','exam','diagnostic','review'));
