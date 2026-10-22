@@ -39,6 +39,7 @@ import { Route as AuthenticatedAppErreursRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAppExamenBlancRouteImport } from './routes/_authenticated/app.examen-blanc'
 import { Route as AuthenticatedAppLeconsRouteImport } from './routes/_authenticated/app.lecons'
 import { Route as AuthenticatedAppMesErreursRouteImport } from './routes/_authenticated/app.mes-erreurs'
+import { Route as AuthenticatedAppMonCompteRouteImport } from './routes/_authenticated/app.mon-compte'
 import { Route as AuthenticatedAppParcoursRouteImport } from './routes/_authenticated/app.parcours'
 import { Route as AuthenticatedAppProfilRouteImport } from './routes/_authenticated/app.profil'
 import { Route as AuthenticatedAppProgressionRouteImport } from './routes/_authenticated/app.progression'
@@ -203,6 +204,12 @@ const AuthenticatedAppMesErreursRoute =
     path: '/mes-erreurs',
     getParentRoute: () => AuthenticatedAppRoute,
   } as any)
+const AuthenticatedAppMonCompteRoute =
+  AuthenticatedAppMonCompteRouteImport.update({
+    id: '/mon-compte',
+    path: '/mon-compte',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 const AuthenticatedAppParcoursRoute =
   AuthenticatedAppParcoursRouteImport.update({
     id: '/parcours',
@@ -292,6 +299,7 @@ export interface FileRoutesByFullPath {
   '/app/examen-blanc': typeof AuthenticatedAppExamenBlancRouteWithChildren
   '/app/lecons': typeof AuthenticatedAppLeconsRouteWithChildren
   '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
+  '/app/mon-compte': typeof AuthenticatedAppMonCompteRoute
   '/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/app/profil': typeof AuthenticatedAppProfilRoute
   '/app/progression': typeof AuthenticatedAppProgressionRoute
@@ -329,6 +337,7 @@ export interface FileRoutesByTo {
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
   '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
+  '/app/mon-compte': typeof AuthenticatedAppMonCompteRoute
   '/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/app/profil': typeof AuthenticatedAppProfilRoute
   '/app/progression': typeof AuthenticatedAppProgressionRoute
@@ -372,6 +381,7 @@ export interface FileRoutesById {
   '/_authenticated/app/examen-blanc': typeof AuthenticatedAppExamenBlancRouteWithChildren
   '/_authenticated/app/lecons': typeof AuthenticatedAppLeconsRouteWithChildren
   '/_authenticated/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
+  '/_authenticated/app/mon-compte': typeof AuthenticatedAppMonCompteRoute
   '/_authenticated/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/_authenticated/app/profil': typeof AuthenticatedAppProfilRoute
   '/_authenticated/app/progression': typeof AuthenticatedAppProgressionRoute
@@ -415,6 +425,7 @@ export interface FileRouteTypes {
     | '/app/examen-blanc'
     | '/app/lecons'
     | '/app/mes-erreurs'
+    | '/app/mon-compte'
     | '/app/parcours'
     | '/app/profil'
     | '/app/progression'
@@ -452,6 +463,7 @@ export interface FileRouteTypes {
     | '/app/abonnement'
     | '/app/erreurs'
     | '/app/mes-erreurs'
+    | '/app/mon-compte'
     | '/app/parcours'
     | '/app/profil'
     | '/app/progression'
@@ -494,6 +506,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/examen-blanc'
     | '/_authenticated/app/lecons'
     | '/_authenticated/app/mes-erreurs'
+    | '/_authenticated/app/mon-compte'
     | '/_authenticated/app/parcours'
     | '/_authenticated/app/profil'
     | '/_authenticated/app/progression'
@@ -742,6 +755,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppMesErreursRouteImport
       parentRoute: typeof AuthenticatedAppRoute
     }
+    '/_authenticated/app/mon-compte': {
+      id: '/_authenticated/app/mon-compte'
+      path: '/mon-compte'
+      fullPath: '/app/mon-compte'
+      preLoaderRoute: typeof AuthenticatedAppMonCompteRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
     '/_authenticated/app/parcours': {
       id: '/_authenticated/app/parcours'
       path: '/parcours'
@@ -874,6 +894,7 @@ interface AuthenticatedAppRouteChildren {
   AuthenticatedAppExamenBlancRoute: typeof AuthenticatedAppExamenBlancRouteWithChildren
   AuthenticatedAppLeconsRoute: typeof AuthenticatedAppLeconsRouteWithChildren
   AuthenticatedAppMesErreursRoute: typeof AuthenticatedAppMesErreursRoute
+  AuthenticatedAppMonCompteRoute: typeof AuthenticatedAppMonCompteRoute
   AuthenticatedAppParcoursRoute: typeof AuthenticatedAppParcoursRoute
   AuthenticatedAppProfilRoute: typeof AuthenticatedAppProfilRoute
   AuthenticatedAppProgressionRoute: typeof AuthenticatedAppProgressionRoute
@@ -890,6 +911,7 @@ const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
     AuthenticatedAppExamenBlancRouteWithChildren,
   AuthenticatedAppLeconsRoute: AuthenticatedAppLeconsRouteWithChildren,
   AuthenticatedAppMesErreursRoute: AuthenticatedAppMesErreursRoute,
+  AuthenticatedAppMonCompteRoute: AuthenticatedAppMonCompteRoute,
   AuthenticatedAppParcoursRoute: AuthenticatedAppParcoursRoute,
   AuthenticatedAppProfilRoute: AuthenticatedAppProfilRoute,
   AuthenticatedAppProgressionRoute: AuthenticatedAppProgressionRoute,
