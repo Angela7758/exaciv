@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CgvRouteImport } from './routes/cgv'
 import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
 import { Route as ConnexionRouteImport } from './routes/connexion'
@@ -22,15 +24,35 @@ import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
 import { Route as ParcoursRouteImport } from './routes/parcours'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
+import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
 import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
+import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app.index'
+import { Route as AuthenticatedAppAbonnementRouteImport } from './routes/_authenticated/app.abonnement'
+import { Route as AuthenticatedAppEntrainementRouteImport } from './routes/_authenticated/app.entrainement'
+import { Route as AuthenticatedAppErreursRouteImport } from './routes/_authenticated/app.erreurs'
+import { Route as AuthenticatedAppExamenBlancRouteImport } from './routes/_authenticated/app.examen-blanc'
+import { Route as AuthenticatedAppLeconsRouteImport } from './routes/_authenticated/app.lecons'
+import { Route as AuthenticatedAppParcoursRouteImport } from './routes/_authenticated/app.parcours'
+import { Route as AuthenticatedAppProfilRouteImport } from './routes/_authenticated/app.profil'
+import { Route as AuthenticatedAppProgressionRouteImport } from './routes/_authenticated/app.progression'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CgvRoute = CgvRouteImport.update({
@@ -93,6 +115,11 @@ const ParcoursRoute = ParcoursRouteImport.update({
   path: '/parcours',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RessourcesRoute = RessourcesRouteImport.update({
   id: '/ressources',
   path: '/ressources',
@@ -108,6 +135,11 @@ const TestGratuitRoute = TestGratuitRouteImport.update({
   path: '/test-gratuit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const RessourcesSlugRoute = RessourcesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -118,9 +150,60 @@ const TarifsPlanRoute = TarifsPlanRouteImport.update({
   path: '/$plan',
   getParentRoute: () => TarifsRoute,
 } as any)
+const AuthenticatedAppIndexRoute = AuthenticatedAppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppAbonnementRoute =
+  AuthenticatedAppAbonnementRouteImport.update({
+    id: '/abonnement',
+    path: '/abonnement',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppEntrainementRoute =
+  AuthenticatedAppEntrainementRouteImport.update({
+    id: '/entrainement',
+    path: '/entrainement',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppErreursRoute = AuthenticatedAppErreursRouteImport.update({
+  id: '/erreurs',
+  path: '/erreurs',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppExamenBlancRoute =
+  AuthenticatedAppExamenBlancRouteImport.update({
+    id: '/examen-blanc',
+    path: '/examen-blanc',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppLeconsRoute = AuthenticatedAppLeconsRouteImport.update({
+  id: '/lecons',
+  path: '/lecons',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppParcoursRoute =
+  AuthenticatedAppParcoursRouteImport.update({
+    id: '/parcours',
+    path: '/parcours',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppProfilRoute = AuthenticatedAppProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppProgressionRoute =
+  AuthenticatedAppProgressionRouteImport.update({
+    id: '/progression',
+    path: '/progression',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/cgv': typeof CgvRoute
   '/confidentialite': typeof ConfidentialiteRoute
   '/connexion': typeof ConnexionRoute
@@ -133,14 +216,26 @@ export interface FileRoutesByFullPath {
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
   '/parcours': typeof ParcoursRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
+  '/app': typeof AuthenticatedAppRouteWithChildren
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
+  '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
+  '/app/entrainement': typeof AuthenticatedAppEntrainementRoute
+  '/app/erreurs': typeof AuthenticatedAppErreursRoute
+  '/app/examen-blanc': typeof AuthenticatedAppExamenBlancRoute
+  '/app/lecons': typeof AuthenticatedAppLeconsRoute
+  '/app/parcours': typeof AuthenticatedAppParcoursRoute
+  '/app/profil': typeof AuthenticatedAppProfilRoute
+  '/app/progression': typeof AuthenticatedAppProgressionRoute
+  '/app/': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/cgv': typeof CgvRoute
   '/confidentialite': typeof ConfidentialiteRoute
   '/connexion': typeof ConnexionRoute
@@ -153,15 +248,27 @@ export interface FileRoutesByTo {
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
   '/parcours': typeof ParcoursRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
+  '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
+  '/app/entrainement': typeof AuthenticatedAppEntrainementRoute
+  '/app/erreurs': typeof AuthenticatedAppErreursRoute
+  '/app/examen-blanc': typeof AuthenticatedAppExamenBlancRoute
+  '/app/lecons': typeof AuthenticatedAppLeconsRoute
+  '/app/parcours': typeof AuthenticatedAppParcoursRoute
+  '/app/profil': typeof AuthenticatedAppProfilRoute
+  '/app/progression': typeof AuthenticatedAppProgressionRoute
+  '/app': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/cgv': typeof CgvRoute
   '/confidentialite': typeof ConfidentialiteRoute
   '/connexion': typeof ConnexionRoute
@@ -174,16 +281,28 @@ export interface FileRoutesById {
   '/methode': typeof MethodeRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
   '/parcours': typeof ParcoursRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
+  '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
+  '/_authenticated/app/abonnement': typeof AuthenticatedAppAbonnementRoute
+  '/_authenticated/app/entrainement': typeof AuthenticatedAppEntrainementRoute
+  '/_authenticated/app/erreurs': typeof AuthenticatedAppErreursRoute
+  '/_authenticated/app/examen-blanc': typeof AuthenticatedAppExamenBlancRoute
+  '/_authenticated/app/lecons': typeof AuthenticatedAppLeconsRoute
+  '/_authenticated/app/parcours': typeof AuthenticatedAppParcoursRoute
+  '/_authenticated/app/profil': typeof AuthenticatedAppProfilRoute
+  '/_authenticated/app/progression': typeof AuthenticatedAppProgressionRoute
+  '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/cgv'
     | '/confidentialite'
     | '/connexion'
@@ -196,14 +315,26 @@ export interface FileRouteTypes {
     | '/methode'
     | '/mot-de-passe-oublie'
     | '/parcours'
+    | '/reset-password'
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
+    | '/app'
     | '/ressources/$slug'
     | '/tarifs/$plan'
+    | '/app/abonnement'
+    | '/app/entrainement'
+    | '/app/erreurs'
+    | '/app/examen-blanc'
+    | '/app/lecons'
+    | '/app/parcours'
+    | '/app/profil'
+    | '/app/progression'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/cgv'
     | '/confidentialite'
     | '/connexion'
@@ -216,14 +347,26 @@ export interface FileRouteTypes {
     | '/methode'
     | '/mot-de-passe-oublie'
     | '/parcours'
+    | '/reset-password'
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
     | '/ressources/$slug'
     | '/tarifs/$plan'
+    | '/app/abonnement'
+    | '/app/entrainement'
+    | '/app/erreurs'
+    | '/app/examen-blanc'
+    | '/app/lecons'
+    | '/app/parcours'
+    | '/app/profil'
+    | '/app/progression'
+    | '/app'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/cgv'
     | '/confidentialite'
     | '/connexion'
@@ -236,15 +379,28 @@ export interface FileRouteTypes {
     | '/methode'
     | '/mot-de-passe-oublie'
     | '/parcours'
+    | '/reset-password'
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
+    | '/_authenticated/app'
     | '/ressources/$slug'
     | '/tarifs/$plan'
+    | '/_authenticated/app/abonnement'
+    | '/_authenticated/app/entrainement'
+    | '/_authenticated/app/erreurs'
+    | '/_authenticated/app/examen-blanc'
+    | '/_authenticated/app/lecons'
+    | '/_authenticated/app/parcours'
+    | '/_authenticated/app/profil'
+    | '/_authenticated/app/progression'
+    | '/_authenticated/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   CgvRoute: typeof CgvRoute
   ConfidentialiteRoute: typeof ConfidentialiteRoute
   ConnexionRoute: typeof ConnexionRoute
@@ -257,6 +413,7 @@ export interface RootRouteChildren {
   MethodeRoute: typeof MethodeRoute
   MotDePasseOublieRoute: typeof MotDePasseOublieRoute
   ParcoursRoute: typeof ParcoursRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   RessourcesRoute: typeof RessourcesRouteWithChildren
   TarifsRoute: typeof TarifsRouteWithChildren
   TestGratuitRoute: typeof TestGratuitRoute
@@ -269,6 +426,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cgv': {
@@ -355,6 +526,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParcoursRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ressources': {
       id: '/ressources'
       path: '/ressources'
@@ -376,6 +554,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestGratuitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/app': {
+      id: '/_authenticated/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/ressources/$slug': {
       id: '/ressources/$slug'
       path: '/$slug'
@@ -390,8 +575,109 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TarifsPlanRouteImport
       parentRoute: typeof TarifsRoute
     }
+    '/_authenticated/app/': {
+      id: '/_authenticated/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AuthenticatedAppIndexRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/abonnement': {
+      id: '/_authenticated/app/abonnement'
+      path: '/abonnement'
+      fullPath: '/app/abonnement'
+      preLoaderRoute: typeof AuthenticatedAppAbonnementRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/entrainement': {
+      id: '/_authenticated/app/entrainement'
+      path: '/entrainement'
+      fullPath: '/app/entrainement'
+      preLoaderRoute: typeof AuthenticatedAppEntrainementRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/erreurs': {
+      id: '/_authenticated/app/erreurs'
+      path: '/erreurs'
+      fullPath: '/app/erreurs'
+      preLoaderRoute: typeof AuthenticatedAppErreursRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/examen-blanc': {
+      id: '/_authenticated/app/examen-blanc'
+      path: '/examen-blanc'
+      fullPath: '/app/examen-blanc'
+      preLoaderRoute: typeof AuthenticatedAppExamenBlancRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/lecons': {
+      id: '/_authenticated/app/lecons'
+      path: '/lecons'
+      fullPath: '/app/lecons'
+      preLoaderRoute: typeof AuthenticatedAppLeconsRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/parcours': {
+      id: '/_authenticated/app/parcours'
+      path: '/parcours'
+      fullPath: '/app/parcours'
+      preLoaderRoute: typeof AuthenticatedAppParcoursRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/profil': {
+      id: '/_authenticated/app/profil'
+      path: '/profil'
+      fullPath: '/app/profil'
+      preLoaderRoute: typeof AuthenticatedAppProfilRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/progression': {
+      id: '/_authenticated/app/progression'
+      path: '/progression'
+      fullPath: '/app/progression'
+      preLoaderRoute: typeof AuthenticatedAppProgressionRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
   }
 }
+
+interface AuthenticatedAppRouteChildren {
+  AuthenticatedAppAbonnementRoute: typeof AuthenticatedAppAbonnementRoute
+  AuthenticatedAppEntrainementRoute: typeof AuthenticatedAppEntrainementRoute
+  AuthenticatedAppErreursRoute: typeof AuthenticatedAppErreursRoute
+  AuthenticatedAppExamenBlancRoute: typeof AuthenticatedAppExamenBlancRoute
+  AuthenticatedAppLeconsRoute: typeof AuthenticatedAppLeconsRoute
+  AuthenticatedAppParcoursRoute: typeof AuthenticatedAppParcoursRoute
+  AuthenticatedAppProfilRoute: typeof AuthenticatedAppProfilRoute
+  AuthenticatedAppProgressionRoute: typeof AuthenticatedAppProgressionRoute
+  AuthenticatedAppIndexRoute: typeof AuthenticatedAppIndexRoute
+}
+
+const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
+  AuthenticatedAppAbonnementRoute: AuthenticatedAppAbonnementRoute,
+  AuthenticatedAppEntrainementRoute: AuthenticatedAppEntrainementRoute,
+  AuthenticatedAppErreursRoute: AuthenticatedAppErreursRoute,
+  AuthenticatedAppExamenBlancRoute: AuthenticatedAppExamenBlancRoute,
+  AuthenticatedAppLeconsRoute: AuthenticatedAppLeconsRoute,
+  AuthenticatedAppParcoursRoute: AuthenticatedAppParcoursRoute,
+  AuthenticatedAppProfilRoute: AuthenticatedAppProfilRoute,
+  AuthenticatedAppProgressionRoute: AuthenticatedAppProgressionRoute,
+  AuthenticatedAppIndexRoute: AuthenticatedAppIndexRoute,
+}
+
+const AuthenticatedAppRouteWithChildren =
+  AuthenticatedAppRoute._addFileChildren(AuthenticatedAppRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface RessourcesRouteChildren {
   RessourcesSlugRoute: typeof RessourcesSlugRoute
@@ -418,6 +704,8 @@ const TarifsRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   CgvRoute: CgvRoute,
   ConfidentialiteRoute: ConfidentialiteRoute,
   ConnexionRoute: ConnexionRoute,
@@ -430,6 +718,7 @@ const rootRouteChildren: RootRouteChildren = {
   MethodeRoute: MethodeRoute,
   MotDePasseOublieRoute: MotDePasseOublieRoute,
   ParcoursRoute: ParcoursRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   RessourcesRoute: RessourcesRouteWithChildren,
   TarifsRoute: TarifsRouteWithChildren,
   TestGratuitRoute: TestGratuitRoute,

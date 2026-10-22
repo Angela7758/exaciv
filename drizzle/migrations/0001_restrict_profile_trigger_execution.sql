@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public.create_learning_profile() FROM PUBLIC,anon,authenticated;
