@@ -488,3 +488,11 @@
 .approved-home [data-slot=accordion-trigger]:focus:not(:focus-visible){outline:none;box-shadow:none;}
 .approved-home [data-slot=accordion-trigger]:focus-visible{outline:2px solid var(--learning-blue);outline-offset:2px;border-radius:8px;}
 .approved-home .pricing-popular-home{position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;border-radius:30px;background:var(--reference-orange);color:var(--secondary-foreground);padding:5px 16px;font-size:12px;font-weight:700;box-shadow:var(--shadow-soft);}
+
+/* Official brand logo */
+.brand-logo{display:block;width:100%;height:auto;}
+.app-logo{padding:0 12px;margin-bottom:32px;line-height:0;}
+.app-logo-badge{display:block;background:var(--card);border-radius:12px;padding:8px 10px;box-shadow:var(--shadow-soft);}
+.reference-shell .app-logo:after{display:none;}
+.quiz-logo{display:block;width:150px;line-height:0;}
+@media(max-width:640px){.app-logo{padding:0;margin-bottom:20px;}.app-logo-badge{padding:5px 4px;border-radius:8px;}.quiz-logo{width:110px;}}
