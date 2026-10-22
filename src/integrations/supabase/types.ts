@@ -230,6 +230,45 @@ export type Database = {
           },
         ]
       }
+      learning_reading_positions: {
+        Row: {
+          lesson_id: string
+          parcours: string
+          section_index: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          lesson_id: string
+          parcours: string
+          section_index?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          lesson_id?: string
+          parcours?: string
+          section_index?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_reading_positions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "learning_lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_reading_positions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_sessions: {
         Row: {
           answers: Json
@@ -237,6 +276,7 @@ export type Database = {
           correct: number | null
           current_index: number
           deadline: string | null
+          diagnostic_key: string | null
           id: string
           kind: string
           lesson_id: string | null
@@ -252,6 +292,7 @@ export type Database = {
           correct?: number | null
           current_index?: number
           deadline?: string | null
+          diagnostic_key?: string | null
           id?: string
           kind: string
           lesson_id?: string | null
@@ -267,6 +308,7 @@ export type Database = {
           correct?: number | null
           current_index?: number
           deadline?: string | null
+          diagnostic_key?: string | null
           id?: string
           kind?: string
           lesson_id?: string | null
@@ -373,7 +415,15 @@ export type Database = {
         Args: { p_session: string }
         Returns: undefined
       }
+      import_learning_diagnostic: {
+        Args: { p_answers: Json; p_ids: string[]; p_key: string }
+        Returns: string
+      }
       record_learning_attempt: { Args: { p_answers: Json }; Returns: string }
+      review_learning_mistake: {
+        Args: { p_answer: number; p_question: string }
+        Returns: boolean
+      }
       save_exam_navigation: {
         Args: {
           p_answer?: number
@@ -381,6 +431,10 @@ export type Database = {
           p_session: string
           p_target?: number
         }
+        Returns: undefined
+      }
+      save_learning_reading_position: {
+        Args: { p_lesson: string; p_section: number }
         Returns: undefined
       }
       start_learning_session: {
