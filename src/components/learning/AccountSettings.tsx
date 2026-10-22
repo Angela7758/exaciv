@@ -3,7 +3,7 @@ import {useSuspenseQuery,useQueryClient} from '@tanstack/react-query';
 import {queryOptions} from '@tanstack/react-query';
 import {useServerFn} from '@tanstack/react-start';
 import {useNavigate} from '@tanstack/react-router';
-import {User,Target,Globe,Bell,BookOpen,ChartNoAxesColumn,Pencil,LockKeyhole,KeyRound,LogOut,ArrowRight} from 'lucide-react';
+import {User,Target,Globe,Bell,BookOpen,ChartNoAxesColumn,Pencil,LockKeyhole,KeyRound,LogOut,ArrowRight,Languages} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {Switch} from '@/components/ui/switch';
 import {Dialog,DialogContent,DialogTitle,DialogDescription} from '@/components/ui/dialog';
