@@ -8,9 +8,9 @@ const helpPreferenceSchema=z.object({
   help_locale:z.enum(['zh','en','ar','es','ru']).optional(),
 });
 export const saveHelpPreference=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(helpPreferenceSchema).handler(async({data,context})=>{
-  const update:Record<string,unknown>={};
+  const update:{translation_help?:boolean;help_locale?:string}={};
   if(data.translation_help!==undefined)update.translation_help=data.translation_help;
-  if(data.help_locale!==undefined)update.help_locale=data.help_locale;
+  if(data['help_locale']!==undefined)update.help_locale=data['help_locale'];
   if(Object.keys(update).length===0)return {success:true};
   const r=await context.supabase.from('profiles').update(update).eq('id',context.userId);
   if(r.error)throw new Error('Votre préférence n’a pas été enregistrée.');
