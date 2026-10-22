@@ -92,13 +92,13 @@ function FaqItem({ f, i }: { f: (typeof FAQ)[number]; i: number }) {
   );
 }
 
-export function FaqList({ limit, twoCol }: { limit?: number; twoCol?: boolean }) {
-  const items = limit ? FAQ.slice(0, limit) : FAQ;
+export function FaqList({ limit, twoCol, indices, initiallyClosed=false }: { limit?: number; twoCol?: boolean; indices?:number[]; initiallyClosed?:boolean }) {
+  const items = indices ? indices.map(i=>FAQ[i]).filter((f):f is (typeof FAQ)[number]=>Boolean(f)) : limit ? FAQ.slice(0, limit) : FAQ;
   if (twoCol) {
     const left = items.filter((_, i) => i % 2 === 0);
     const right = items.filter((_, i) => i % 2 === 1);
     return (
-      <Accordion type="single" collapsible defaultValue="f0" className="grid items-start gap-3 md:grid-cols-2">
+      <Accordion type="single" collapsible defaultValue={initiallyClosed?undefined:"f0"} className="grid items-start gap-3 md:grid-cols-2">
         <div className="space-y-3">{left.map((f) => <FaqItem key={f.q} f={f} i={items.indexOf(f)} />)}</div>
         <div className="space-y-3">{right.map((f) => <FaqItem key={f.q} f={f} i={items.indexOf(f)} />)}</div>
       </Accordion>
