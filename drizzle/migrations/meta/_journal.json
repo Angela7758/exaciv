@@ -99,6 +99,13 @@
       "when": 1792696526563,
       "tag": "0013_validate_lesson_reading_completion",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1792703435255,
+      "tag": "0014_resolve_expired_exam_before_new_start",
+      "breakpoints": true
     }
   ]
 }

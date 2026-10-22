@@ -30,3 +30,6 @@
 - Registration welcome reads non-sensitive objective snapshots while credentials stay in memory; preparation destinations are allowlisted local learning paths to prevent external redirects.
 - Batch 2 app presentation uses a shared mobile-only AppShell header and bottom navigation; desktop dashboard and session scoring remain unchanged so all device sizes read the same account/session data.
 - Password recovery is granted only by a provider PASSWORD_RECOVERY event or verified recovery OTP; root captures the event once, both public reset URLs share one form, and ordinary logged-in sessions or URL flags do not grant password-reset access.
+- Lesson sections use owner/pathway-scoped reading positions; explicit completion stays separate so opening a lesson cannot award XP.
+- Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
+- Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.

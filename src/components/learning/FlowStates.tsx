@@ -1,0 +1,4 @@
+import {Link,useRouter} from '@tanstack/react-router';
+import {Button} from '@/components/ui/button';
+export function FlowError(){const router=useRouter();return <section className="container-page py-10" role="alert"><h1 className="text-2xl font-bold">Chargement impossible</h1><p className="my-4">Vérifiez votre connexion. Vos réponses déjà enregistrées restent conservées.</p><div className="flex flex-wrap gap-3"><Button variant="interactive" onClick={()=>router.invalidate()}>Réessayer</Button><Button asChild variant="outline"><Link to="/">Retour à l’accueil</Link></Button></div></section>;}
+export function FlowNotFound(){return <section className="container-page py-10"><h1 className="text-2xl font-bold">Contenu introuvable</h1><p className="my-4">Ce contenu n’existe pas ou n’est pas accessible avec votre compte.</p><Button asChild variant="outline"><Link to="/">Retour à l’accueil</Link></Button></section>;}
