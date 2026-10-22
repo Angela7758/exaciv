@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Check, ExternalLink, Info, Play } from "lucide-react";
+import { BarChart3, BookOpen, CheckCircle2, Crown, ExternalLink, Info, Play } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PLANS, PRICING_NOTE } from "@/config/pricing";
 import { FAQ } from "@/config/content";
 import civi from "@/assets/civi.png";
+import ctaBg from "@/assets/hero-paris.jpg";
 
 export function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
