@@ -30,8 +30,10 @@ import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as ApiRevisionPlanRouteImport } from './routes/api/revision-plan'
+import { Route as InscriptionObjectifRouteImport } from './routes/inscription_.objectif'
 import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
 import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
+import { Route as TestGratuitResultatRouteImport } from './routes/test-gratuit_.resultat'
 import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app.index'
 import { Route as AuthenticatedAppAbonnementRouteImport } from './routes/_authenticated/app.abonnement'
 import { Route as AuthenticatedAppEntrainementRouteImport } from './routes/_authenticated/app.entrainement'
@@ -50,6 +52,7 @@ import { Route as AuthenticatedAppLeconsIndexRouteImport } from './routes/_authe
 import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authenticated/app.lecons.$slug'
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
 import { Route as AuthenticatedAppEntrainementSessionIdFeedbackRouteImport } from './routes/_authenticated/app.entrainement.$sessionId.feedback'
+import { Route as AuthenticatedAppEntrainementSessionIdRouteImport } from './routes/_authenticated/app.entrainement.session.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -155,6 +158,11 @@ const ApiRevisionPlanRoute = ApiRevisionPlanRouteImport.update({
   path: '/api/revision-plan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InscriptionObjectifRoute = InscriptionObjectifRouteImport.update({
+  id: '/inscription_/objectif',
+  path: '/inscription/objectif',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RessourcesSlugRoute = RessourcesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -164,6 +172,11 @@ const TarifsPlanRoute = TarifsPlanRouteImport.update({
   id: '/$plan',
   path: '/$plan',
   getParentRoute: () => TarifsRoute,
+} as any)
+const TestGratuitResultatRoute = TestGratuitResultatRouteImport.update({
+  id: '/test-gratuit_/resultat',
+  path: '/test-gratuit/resultat',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAppIndexRoute = AuthenticatedAppIndexRouteImport.update({
   id: '/',
@@ -269,6 +282,12 @@ const AuthenticatedAppEntrainementSessionIdFeedbackRoute =
     path: '/$sessionId/feedback',
     getParentRoute: () => AuthenticatedAppEntrainementRoute,
   } as any)
+const AuthenticatedAppEntrainementSessionIdRoute =
+  AuthenticatedAppEntrainementSessionIdRouteImport.update({
+    id: '/session/$id',
+    path: '/session/$id',
+    getParentRoute: () => AuthenticatedAppEntrainementRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -291,8 +310,10 @@ export interface FileRoutesByFullPath {
   '/test-gratuit': typeof TestGratuitRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
+  '/inscription/objectif': typeof InscriptionObjectifRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
+  '/test-gratuit/resultat': typeof TestGratuitResultatRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
@@ -311,6 +332,7 @@ export interface FileRoutesByFullPath {
   '/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -332,8 +354,10 @@ export interface FileRoutesByTo {
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
   '/api/revision-plan': typeof ApiRevisionPlanRoute
+  '/inscription/objectif': typeof InscriptionObjectifRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
+  '/test-gratuit/resultat': typeof TestGratuitResultatRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
   '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
@@ -349,6 +373,7 @@ export interface FileRoutesByTo {
   '/app/examen-blanc': typeof AuthenticatedAppExamenBlancIndexRoute
   '/app/lecons': typeof AuthenticatedAppLeconsIndexRoute
   '/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  '/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -373,8 +398,10 @@ export interface FileRoutesById {
   '/test-gratuit': typeof TestGratuitRoute
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
+  '/inscription_/objectif': typeof InscriptionObjectifRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
+  '/test-gratuit_/resultat': typeof TestGratuitResultatRoute
   '/_authenticated/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/_authenticated/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/_authenticated/app/erreurs': typeof AuthenticatedAppErreursRoute
@@ -393,6 +420,7 @@ export interface FileRoutesById {
   '/_authenticated/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
   '/_authenticated/app/lecons/': typeof AuthenticatedAppLeconsIndexRoute
   '/_authenticated/app/entrainement/$sessionId/feedback': typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  '/_authenticated/app/entrainement/session/$id': typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -417,8 +445,10 @@ export interface FileRouteTypes {
     | '/test-gratuit'
     | '/app'
     | '/api/revision-plan'
+    | '/inscription/objectif'
     | '/ressources/$slug'
     | '/tarifs/$plan'
+    | '/test-gratuit/resultat'
     | '/app/abonnement'
     | '/app/entrainement'
     | '/app/erreurs'
@@ -437,6 +467,7 @@ export interface FileRouteTypes {
     | '/app/examen-blanc/'
     | '/app/lecons/'
     | '/app/entrainement/$sessionId/feedback'
+    | '/app/entrainement/session/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -458,8 +489,10 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/test-gratuit'
     | '/api/revision-plan'
+    | '/inscription/objectif'
     | '/ressources/$slug'
     | '/tarifs/$plan'
+    | '/test-gratuit/resultat'
     | '/app/abonnement'
     | '/app/erreurs'
     | '/app/mes-erreurs'
@@ -475,6 +508,7 @@ export interface FileRouteTypes {
     | '/app/examen-blanc'
     | '/app/lecons'
     | '/app/entrainement/$sessionId/feedback'
+    | '/app/entrainement/session/$id'
   id:
     | '__root__'
     | '/'
@@ -498,8 +532,10 @@ export interface FileRouteTypes {
     | '/test-gratuit'
     | '/_authenticated/app'
     | '/api/revision-plan'
+    | '/inscription_/objectif'
     | '/ressources/$slug'
     | '/tarifs/$plan'
+    | '/test-gratuit_/resultat'
     | '/_authenticated/app/abonnement'
     | '/_authenticated/app/entrainement'
     | '/_authenticated/app/erreurs'
@@ -518,6 +554,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/examen-blanc/'
     | '/_authenticated/app/lecons/'
     | '/_authenticated/app/entrainement/$sessionId/feedback'
+    | '/_authenticated/app/entrainement/session/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -541,6 +578,8 @@ export interface RootRouteChildren {
   TarifsRoute: typeof TarifsRouteWithChildren
   TestGratuitRoute: typeof TestGratuitRoute
   ApiRevisionPlanRoute: typeof ApiRevisionPlanRoute
+  InscriptionObjectifRoute: typeof InscriptionObjectifRoute
+  TestGratuitResultatRoute: typeof TestGratuitResultatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -692,6 +731,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRevisionPlanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/inscription_/objectif': {
+      id: '/inscription_/objectif'
+      path: '/inscription/objectif'
+      fullPath: '/inscription/objectif'
+      preLoaderRoute: typeof InscriptionObjectifRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ressources/$slug': {
       id: '/ressources/$slug'
       path: '/$slug'
@@ -705,6 +751,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/tarifs/$plan'
       preLoaderRoute: typeof TarifsPlanRouteImport
       parentRoute: typeof TarifsRoute
+    }
+    '/test-gratuit_/resultat': {
+      id: '/test-gratuit_/resultat'
+      path: '/test-gratuit/resultat'
+      fullPath: '/test-gratuit/resultat'
+      preLoaderRoute: typeof TestGratuitResultatRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/app/': {
       id: '/_authenticated/app/'
@@ -832,12 +885,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdFeedbackRouteImport
       parentRoute: typeof AuthenticatedAppEntrainementRoute
     }
+    '/_authenticated/app/entrainement/session/$id': {
+      id: '/_authenticated/app/entrainement/session/$id'
+      path: '/session/$id'
+      fullPath: '/app/entrainement/session/$id'
+      preLoaderRoute: typeof AuthenticatedAppEntrainementSessionIdRouteImport
+      parentRoute: typeof AuthenticatedAppEntrainementRoute
+    }
   }
 }
 
 interface AuthenticatedAppEntrainementRouteChildren {
   AuthenticatedAppEntrainementIndexRoute: typeof AuthenticatedAppEntrainementIndexRoute
   AuthenticatedAppEntrainementSessionIdFeedbackRoute: typeof AuthenticatedAppEntrainementSessionIdFeedbackRoute
+  AuthenticatedAppEntrainementSessionIdRoute: typeof AuthenticatedAppEntrainementSessionIdRoute
 }
 
 const AuthenticatedAppEntrainementRouteChildren: AuthenticatedAppEntrainementRouteChildren =
@@ -846,6 +907,8 @@ const AuthenticatedAppEntrainementRouteChildren: AuthenticatedAppEntrainementRou
       AuthenticatedAppEntrainementIndexRoute,
     AuthenticatedAppEntrainementSessionIdFeedbackRoute:
       AuthenticatedAppEntrainementSessionIdFeedbackRoute,
+    AuthenticatedAppEntrainementSessionIdRoute:
+      AuthenticatedAppEntrainementSessionIdRoute,
   }
 
 const AuthenticatedAppEntrainementRouteWithChildren =
@@ -978,6 +1041,8 @@ const rootRouteChildren: RootRouteChildren = {
   TarifsRoute: TarifsRouteWithChildren,
   TestGratuitRoute: TestGratuitRoute,
   ApiRevisionPlanRoute: ApiRevisionPlanRoute,
+  InscriptionObjectifRoute: InscriptionObjectifRoute,
+  TestGratuitResultatRoute: TestGratuitResultatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
