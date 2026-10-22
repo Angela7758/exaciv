@@ -28,3 +28,5 @@
 - New public preparation screens use scoped nine-public/nine-auth styles; homepage overrides stay mobile-only to preserve approved desktop views.
 - Subscription confirmation resolves a selected plan from the pricing configuration and uses the existing AppShell without creating subscription records before real payment is available.
 - Registration welcome reads non-sensitive objective snapshots while credentials stay in memory; preparation destinations are allowlisted local learning paths to prevent external redirects.
+- Batch 2 app presentation uses a shared mobile-only AppShell header and bottom navigation; desktop dashboard and session scoring remain unchanged so all device sizes read the same account/session data.
+- Password recovery is granted only by a provider PASSWORD_RECOVERY event or verified recovery OTP; root captures the event once, both public reset URLs share one form, and ordinary logged-in sessions or URL flags do not grant password-reset access.
