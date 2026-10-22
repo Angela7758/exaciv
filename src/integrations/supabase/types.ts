@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_revision_service_state: {
+        Row: {
+          id: string
+          message: string
+          status: number
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          message: string
+          status: number
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          message?: string
+          status?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       learning_attempts: {
         Row: {
           answers: Json
@@ -299,6 +320,30 @@ export type Database = {
           id?: string
           locale?: string
           parcours?: string
+        }
+        Relationships: []
+      }
+      revision_plans: {
+        Row: {
+          created_at: string
+          id: string
+          inputs: Json
+          plan: Json
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          inputs: Json
+          plan: Json
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          inputs?: Json
+          plan?: Json
+          user_id?: string
         }
         Relationships: []
       }
