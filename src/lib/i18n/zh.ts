@@ -96,6 +96,8 @@ export const zh: Partial<Record<MessageKey, string>> = {
   'home.methode.conditions': '真实考试条件',
   'home.methode.tryExam': '开始模拟考试',
 
+  'home.steps.civiTip': 'CIVI 在每一步陪伴您：课程、练习和模拟考试。',
+  'home.steps.civiOpen': '查看 CIVI 的提示',
   'home.steps.title': '每天进步一小步',
   'home.steps.subtitle': '循序渐进的方法，让您安心学习、增强信心。',
   'home.steps.s1': '1. 发现',

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BarChart3, BookOpen, CheckCircle2, ChevronRight, Clock, ExternalLink, FileText, Landmark, Laptop, Lightbulb, Play, Target, Users, IdCard, XCircle, Award, RotateCcw } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, CheckCircle2, ChevronRight, Clock, ExternalLink, FileText, Landmark, Laptop, Lightbulb, Play, Target, Users, IdCard, X, XCircle, Award, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaqList, FinalCta, PricingCards, SectionHeading } from "@/components/site/sections";
 import { OFFICIAL_SOURCE } from "@/config/content";
@@ -158,7 +158,7 @@ function Index() {
       {/* Un petit pas chaque jour */}
       <Reveal><section className="mx-3 rounded-[2rem] bg-accent/60 py-10">
         <div className="container-page grid items-center gap-8 md:grid-cols-[260px_1fr]">
-          <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="mx-auto w-56 civi-float" />
+          <CiviTip />
           <div>
             <h2 className="text-center text-3xl font-bold md:text-4xl">{t('home.steps.title')}</h2>
             <p className="mt-2 text-center text-lg text-muted-foreground">{t('home.steps.subtitle')}</p>
@@ -270,6 +270,24 @@ function MethodCard({ title, icon: Icon, iconCls, text, children }: { title: str
       <h3 className="mt-3 text-xl font-bold">{title}</h3>
       <p className="mt-1 text-sm text-muted-foreground">{text}</p>
       <div className="mt-4 flex-1 rounded-xl border bg-card p-3 text-left shadow-soft">{children}</div>
+    </div>
+  );
+}
+
+function CiviTip() {
+  const t = useT();
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="relative mx-auto w-56">
+      <button type="button" aria-expanded={open} aria-label={t('home.steps.civiOpen')} onClick={() => setOpen(!open)} className="block w-full cursor-pointer">
+        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="civi-float w-full" />
+      </button>
+      {open && (
+        <div className="civi-tip" role="status">
+          <p>{t('home.steps.civiTip')}</p>
+          <button type="button" aria-label={t('common.close')} onClick={() => setOpen(false)}><X className="size-4" /></button>
+        </div>
+      )}
     </div>
   );
 }

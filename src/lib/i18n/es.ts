@@ -96,6 +96,8 @@ export const es: Partial<Record<MessageKey, string>> = {
   'home.methode.conditions': 'Condiciones reales',
   'home.methode.tryExam': 'Iniciar un examen de prueba',
 
+  'home.steps.civiTip': 'CIVI te acompaña en cada etapa: lecciones, ejercicios y exámenes de prueba.',
+  'home.steps.civiOpen': 'Ver un mensaje de CIVI',
   'home.steps.title': 'Un pequeño paso cada día',
   'home.steps.subtitle': 'Un método progresivo para aprender con calma y ganar confianza.',
   'home.steps.s1': '1. Descubrir',

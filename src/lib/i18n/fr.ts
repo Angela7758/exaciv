@@ -94,6 +94,8 @@ export const fr = {
   'home.methode.conditions': 'Conditions réelles',
   'home.methode.tryExam': 'Lancer un examen blanc',
 
+  'home.steps.civiTip': 'CIVI vous accompagne à chaque étape : leçons, entraînements et examens blancs.',
+  'home.steps.civiOpen': 'Voir un message de CIVI',
   'home.steps.title': 'Un petit pas chaque jour',
   'home.steps.subtitle': 'Une méthode progressive pour apprendre sereinement et gagner en confiance.',
   'home.steps.s1': '1. Découvrir',
