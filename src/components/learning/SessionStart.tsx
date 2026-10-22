@@ -15,10 +15,10 @@ import {PRACTICE_THEMES,practiceSuccessToday,unfinishedSession} from '@/lib/prac
 import {PARCOURS} from '@/config/content';
 import civi from '@/assets/civi.png';
 import skyline from '@/assets/reference-catalogue-skyline.png.asset.json';
-import institutions from '@/assets/reference-institutions.png.asset.json';
-import valeurs from '@/assets/reference-valeurs.png.asset.json';
-import droits from '@/assets/reference-droits.png.asset.json';
-import paper from '@/assets/exam-paper-approved.png.asset.json';
+import institutions from '@/assets/practice-institutions.png.asset.json';
+import valeurs from '@/assets/practice-valeurs.png.asset.json';
+import droits from '@/assets/practice-droits.png.asset.json';
+import paper from '@/assets/exam-paper-v2.png.asset.json';
 const arts=[institutions,valeurs,droits];const icons=[Landmark,Users,FileText];
 export function StartSessionButton({kind='practice',lesson,children,orange=false}:{kind?:'lesson'|'practice'|'exam';lesson?:string|undefined;children?:ReactNode;orange?:boolean}){const [busy,setBusy]=useState(false);const [error,setError]=useState('');const navigate=useNavigate();const start=useServerFn(startSession);const qc=useQueryClient();return <><Button variant={orange?'cta':'interactive'} size="lg" disabled={busy} onClick={async()=>{setBusy(true);setError('');try{const id=await start({data:{kind,lesson}});await qc.invalidateQueries({queryKey:['sessions']});if(kind==='exam')await navigate({to:'/app/examen-blanc/session',search:{session:id}});else await navigate({to:'/app/entrainement/$sessionId/feedback',params:{sessionId:id}});}catch(e){setError(e instanceof Error?e.message:'Impossible de démarrer.');setBusy(false);}}}>{busy?'Préparation…':children??<>Commencer <ArrowRight/></>}</Button>{error&&<p className="text-critical mt-3" role="alert">{error}</p>}</>;}
 export function SessionStart({exam=false,demo=false}:{exam?:boolean;demo?:boolean}){const {data:c}=useSuspenseQuery(catalogueOptions);const {data:all}=useSuspenseQuery(sessionsOptions);const {data:d}=useSuspenseQuery(learningOptions);const sessions=all.filter(s=>s.parcours===d.profile.parcours);const current=unfinishedSession(all,d.profile.parcours,exam?'exam':'practice');const mistakes=collectMistakes(sessions).length;const done=current?Object.keys(current.answers).length:0;const pathway=PARCOURS.find(p=>p.id===d.profile.parcours)?.title??'Naturalisation';const history=sessions.filter(s=>s.kind===(exam?'exam':'practice')&&s.completed_at);

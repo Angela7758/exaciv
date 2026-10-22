@@ -9,7 +9,7 @@ import {saveAttempt} from '@/lib/learning.functions';
 import {useServerFn} from '@tanstack/react-start';
 import paris from '@/assets/hero-paris.jpg';
 import civi from '@/assets/civi.png';
-import stone from '@/assets/auth-stone-approved.png.asset.json';
+import stone from '@/assets/auth-stone-v2.png.asset.json';
 export function AuthForm({mode='login'}:{mode?:'login'|'signup'|'forgot'|'reset'}) {
  const navigate=useNavigate();const save=useServerFn(saveAttempt);const [error,setError]=useState('');const [fields,setFields]=useState<Record<string,string>>({});const [message,setMessage]=useState('');const [busy,setBusy]=useState(false);const [visible,setVisible]=useState(false);const [recovery,setRecovery]=useState(false);
  useEffect(()=>{setError('');setMessage('');setFields({});if(mode==='reset')setRecovery(window.location.hash.includes('type=recovery'));else if(mode==='login')void supabase.auth.getUser().then(({data})=>{if(data.user)void navigate({to:'/app'});});},[mode,navigate]);
