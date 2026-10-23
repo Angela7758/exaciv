@@ -1,3 +1,4 @@
+import {useUiT} from '@/lib/i18n/internal';
 import {useEffect,useRef,useState} from 'react';
 import {useServerFn} from '@tanstack/react-start';
 import {useQueryClient} from '@tanstack/react-query';
@@ -41,7 +42,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   helpEnabled: boolean;
   helpLocale: string;
   assistedLabel?: boolean;
-}){
+}){const ui=useUiT();
   const [speaking,setSpeaking]=useState<'fr'|HelpLocale|null>(null);
   const [speechOk,setSpeechOk]=useState(true);
   const [open,setOpen]=useState(false);
@@ -63,7 +64,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   function toggleSpeech(lang:'fr'|HelpLocale, text:string){
     if (!('speechSynthesis' in window)) { setSpeechOk(false); return; }
     if (speaking){ window.speechSynthesis.cancel(); setSpeaking(null); return; }
-    const u = speak(text, lang==='fr'?'fr-FR':HELP_LOCALES.find(l=>l.id===lang)!.speech, ()=>setSpeaking(null));
+    const u = speak(text, lang==='fr'?'fr-FR':(HELP_LOCALES.find(l=>l.id===lang)?.speech??lang), ()=>setSpeaking(null));
     if (!u) setSpeechOk(false); else setSpeaking(lang);
   }
 
@@ -79,7 +80,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
       const r=await translate({data:{texts,target}});
       setTranslations(t=>({...t,[key]:r.translations}));
     }catch(e){
-      setError(e instanceof Error?e.message:'La traduction a échoué. Réessayez dans un instant.');
+      setError(e instanceof Error?e.message:ui("La traduction a échoué. Réessayez dans un instant."));
     }finally{setBusy(false);}
   }
 
@@ -95,28 +96,28 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   const dir=target==='ar'?'rtl':'ltr';
 
   return <div className="question-aids">
-    <div className="question-aids-bar" role="toolbar" aria-label="Aides pour cette question">
+    <div className="question-aids-bar" role="toolbar" aria-label={ui("Aides pour cette question")}>
       <Button type="button" variant="outline" size="sm" onClick={()=>toggleSpeech('fr',`${question}. ${options.join('. ')}`)} aria-pressed={speaking==='fr'}>
-        {speaking==='fr'?<Square/>:<Volume2/>}{speaking==='fr'?'Arrêter':'Écouter'}
+        {speaking==='fr'?<Square/>:<Volume2/>}{speaking==='fr'?ui("Arrêter"):ui("Écouter")}
       </Button>
       {helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open} disabled={busy}>
-        {busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?'Masquer la traduction':'Traduire'}
+        {busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}
       </Button>}
-      {helpEnabled&&open&&<select aria-label="Langue de traduction" value={target} onChange={e=>changeTarget(e.target.value as HelpLocale)}>
+      {helpEnabled&&open&&<select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(e.target.value as HelpLocale)}>
         {HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}
       </select>}
-      {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">Entraînement avec aide</span>}
+      {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">{ui("Entraînement avec aide")}</span>}
     </div>
-    {!speechOk&&<p role="status" className="question-aids-note">La lecture audio n’est pas disponible dans ce navigateur.</p>}
+    {!speechOk&&<p role="status" className="question-aids-note">{ui("La lecture audio n’est pas disponible dans ce navigateur.")}</p>}
     {open&&helpEnabled&&<div className="question-translation" dir={dir} lang={target}>
-      {busy&&<p className="question-aids-note">Traduction en cours…</p>}
+      {busy&&<p className="question-aids-note">{ui("Traduction en cours…")}</p>}
       {error&&<p role="alert" className="question-aids-note">{error}</p>}
       {current&&<>
         <p className="translation-stem">{current[0]}</p>
         <ul>{current.slice(1,1+options.length).map((t,i)=><li key={i}>{t}</li>)}</ul>
         {explanation&&current[1+options.length]&&<p className="translation-explanation">{current[1+options.length]}</p>}
         <Button type="button" variant="ghost" size="sm" onClick={()=>toggleSpeech(target,[current[0],...current.slice(1,1+options.length)].join('. '))} aria-pressed={speaking===target}>
-          {speaking===target?<Square/>:<Volume2/>}{speaking===target?'Arrêter':'Écouter la traduction'}
+          {speaking===target?<Square/>:<Volume2/>}{speaking===target?ui("Arrêter"):ui("Écouter la traduction")}
         </Button>
       </>}
     </div>}
