@@ -56,7 +56,7 @@ function Index() {
               <div className="relative flex flex-1 flex-col items-start">
                 <h3 className={`home-pathway-title font-bold ${p.title_cls}`}>{p.title}</h3>
                 <p className="mt-2 max-w-[65%] text-muted-foreground">{p.text}</p>
-                <Link to="/parcours" hash={p.id} className="home-more-link mt-auto">En savoir plus<ArrowRight className="size-4 rtl-flip" /></Link>
+                <Link to="/parcours" hash={p.id} className="home-more-link mt-auto">{t('home.parcours.more')}<ArrowRight className="size-4 rtl-flip" /></Link>
               </div>
             </article>
           ))}
@@ -67,7 +67,7 @@ function Index() {
       <Reveal><section data-home-block="method" className="home-method mt-12 rounded-t-[2.5rem] bg-accent/40 py-14">
         <div className="container-page">
           <SectionHeading title={t('home.methode.title')} subtitle={t('home.methode.subtitle')} />
-          <p className="home-method-examples">Exemples d’interface</p>
+          <p className="home-method-examples">{t('home.methode.examples')}</p>
           <div className="home-method-grid">
             <MethodCard index={0} tone="orange" title={t('home.methode.comprendre')} text={t('home.methode.comprendreText')} action={<Button asChild variant="interactive"><Link to="/methode">Découvrir une leçon<ArrowRight className="rtl-flip" /></Link></Button>}>
               <div className="home-method-lesson"><img src={lessonImg} alt="" loading="lazy" /><div><p className="font-semibold">{t('home.methode.lessonTitle')}</p><p lang="fr" className="text-sm text-muted-foreground">La laïcité garantit la liberté de conscience et la neutralité de l’État envers les religions.</p></div></div>
