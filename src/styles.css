@@ -290,6 +290,17 @@
 .lesson-detail-grid{display:grid;grid-template-columns:minmax(0,2.25fr) minmax(0,1fr);gap:14px;align-items:start;}
 .lesson-illustration{width:100%;margin-block:16px;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);background:var(--learning-surface);}
 .lesson-illustration img{display:block;width:100%;height:auto;aspect-ratio:1376/768;object-fit:contain;}
+.lesson-illustration-trigger{position:relative;display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;text-align:inherit;}
+.lesson-illustration-trigger img{transition:transform .2s ease;}
+.lesson-illustration-trigger:hover img,.lesson-illustration-trigger:focus-visible img{transform:scale(1.02);}
+.lesson-illustration-trigger:focus-visible{outline:2px solid var(--ring);outline-offset:3px;border-radius:var(--radius);}
+.lesson-illustration-zoom{position:absolute;right:10px;bottom:10px;display:inline-flex;align-items:center;gap:6px;background:var(--card);color:var(--learning-blue);font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;box-shadow:var(--learning-shadow);pointer-events:none;opacity:0;transition:opacity .2s ease;}
+.lesson-illustration-trigger:hover .lesson-illustration-zoom,.lesson-illustration-trigger:focus-visible .lesson-illustration-zoom{opacity:1;}
+.lesson-illustration-zoom svg{width:14px;height:14px;}
+@media(max-width:640px){.lesson-illustration-zoom{opacity:1;}}
+.lesson-illustration-lightbox{max-width:min(1100px,94vw);padding:14px;border-radius:16px;gap:8px;}
+.lesson-illustration-lightbox img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);background:var(--learning-surface);}
+@media(prefers-reduced-motion:reduce){.lesson-illustration-trigger img,.lesson-illustration-trigger .lesson-illustration-zoom{transition:none;}.lesson-illustration-trigger:hover img,.lesson-illustration-trigger:focus-visible img{transform:none;}}
 .french-original{margin-block:12px;min-width:0;overflow-wrap:anywhere;}
 .french-original>div{border-inline-start:3px solid var(--border);padding-inline-start:12px;color:var(--muted-foreground);}
 .french-original p{margin-block:8px;}
