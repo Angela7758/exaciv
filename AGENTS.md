@@ -33,3 +33,4 @@
 - Lesson sections use owner/pathway-scoped reading positions; explicit completion stays separate so opening a lesson cannot award XP.
 - Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
 - Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.
+- Internal interface translations use an explicit source-message dictionary and the existing locale provider; Cloud lesson/question content is never passed through interface translation, preserving authoritative snapshots and French pedagogy.
