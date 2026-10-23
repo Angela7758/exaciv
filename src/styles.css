@@ -842,10 +842,12 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .app-layout .catalogue-filters label{flex:1 1 auto;min-height:44px;}
 .app-layout .app-content .lesson-illustration .lesson-illustration-trigger{height:auto;min-height:0;aspect-ratio:1376/768;display:block;padding:0;}
 .app-layout .app-content .lesson-illustration-trigger>img{height:100%;width:100%;object-fit:cover;}
+@media(max-width:767px){
 .approved-home .home-learning-scene{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:10px;align-content:start;height:auto;min-height:480px;}
 .approved-home .home-lesson-card{position:relative;inset:auto;grid-column:1/-1;width:100%;transform:none;}
 .approved-home .home-civi{position:relative;inset:auto;grid-column:2;grid-row:2/5;width:160px;height:185px;align-self:center;}
 .approved-home .home-path-chip{position:relative;inset:auto;grid-column:1;justify-self:start;align-self:center;max-width:100%;white-space:normal;}
+}
 .approved-home .home-stone-platform{display:none;}
 @media(max-width:767px){.approved-home .home-learning-scene{grid-template-columns:minmax(0,1fr) 140px;min-height:0;}.approved-home .home-civi{width:140px;height:162px;}.approved-home .home-path-chip{display:flex;font-size:9px;}.approved-home .home-civi-tip{left:auto;right:0;}}
 @media(max-width:640px){.app-layout .catalogue-filters label{flex:none;height:44px;width:100%;}.catalogue-banner>div{padding:0;}.catalogue-banner{padding:20px;}}
