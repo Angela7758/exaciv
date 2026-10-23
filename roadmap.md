@@ -13,5 +13,5 @@
 
 ## Reste (non bloquant)
 - [ ] Images pédagogiques supplémentaires dans les leçons (les cartes de thèmes du Dashboard en ont déjà)
-- [ ] Traduire les interfaces internes en anglais, chinois, arabe, espagnol et russe avec repli français ; conserver les cours et questions en français
-- [ ] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant
+- [x] Traduire les interfaces internes en anglais, chinois, arabe, espagnol et russe avec repli français ; conserver les cours et questions en français
+- [x] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant : cinq langues persistées puis préférence initiale restaurée, questions/corrections/résultats réels, bureau et mobile sans débordement ni erreur d’exécution

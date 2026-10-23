@@ -20,8 +20,11 @@ describe('Interface locale rules',()=>{
       const dictionary=internalMessages[locale] as Record<string,string>;
       expect(Object.keys(dictionary).sort()).toEqual(keys);
       for(const key of keys){
-        expect(dictionary[key].trim().length).toBeGreaterThan(0);
-        expect((dictionary[key].match(/\{\d+\}/g)??[]).sort()).toEqual((key.match(/\{\d+\}/g)??[]).sort());
+        const translated=dictionary[key];
+        expect(translated).toBeDefined();
+        if(translated===undefined)throw new Error(`Missing translation: ${locale}`);
+        expect(translated.trim().length).toBeGreaterThan(0);
+        expect((translated.match(/\{\d+\}/g)??[]).sort()).toEqual((key.match(/\{\d+\}/g)??[]).sort());
       }
     }
   });
