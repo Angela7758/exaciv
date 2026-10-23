@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { InteractionFx } from "@/components/site/InteractionFx";
 import {
   Outlet,
   Link,
@@ -137,6 +138,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
+        <InteractionFx />
         {!standalone && <SiteHeader />}
         <main className="min-h-[60vh]">
           <Outlet />

@@ -1179,3 +1179,56 @@ a,button{-webkit-tap-highlight-color:transparent;}
 .home-faq [data-state=open]{box-shadow:0 10px 26px -16px color-mix(in oklab,var(--primary) 45%,transparent);}
 :focus-visible{outline-offset:3px;}
 @media (prefers-reduced-motion: reduce){.approved-home .home-final-cta [data-slot=button]::after,.approved-home .home-final-layout>img{animation:none;}[data-slot=button],.card-hover,.home-pathway-card img{transition:none;}[data-slot=button]:hover,.card-hover:hover,.home-pathway-card:hover img{transform:none;}}
+
+/* === 23 oct 17:58 — icônes Méthode centrées, bandeau final conforme, interactions === */
+.approved-home .home-method-card .home-method-head-center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin:2px 0 8px;text-align:center;}
+.approved-home .home-method-head-center>h3{margin:0;text-align:center;}
+.approved-home .home-method-icon{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;}
+.approved-home .home-method-card:hover .home-method-icon{transform:translateY(-3px) rotate(-6deg) scale(1.08);box-shadow:0 10px 20px -10px color-mix(in oklab,var(--primary-interactive) 60%,transparent);}
+
+/* Bandeau final : bleu royal profond à gauche, Paris visible à droite */
+.approved-home .home-final-cta{border-radius:40px 40px 0 0;}
+.approved-home .home-final-cta>img{filter:saturate(1.1);}
+.approved-home .home-final-cta>div.absolute{opacity:1;background:linear-gradient(90deg,color-mix(in oklab,var(--primary) 70%,var(--primary-interactive)) 0%,color-mix(in oklab,var(--primary-interactive) 70%,var(--primary)) 40%,color-mix(in oklab,var(--primary-interactive) 72%,transparent) 62%,color-mix(in oklab,var(--primary-interactive) 30%,transparent) 82%,transparent 100%);}
+.approved-home .home-final-layout{grid-template-columns:minmax(0,1.6fr) auto minmax(220px,.9fr);min-height:250px;padding-block:44px;}
+.approved-home .home-final-copy h2{font-size:50px;font-weight:800;letter-spacing:-.025em;white-space:nowrap;}
+.home-final-civi .home-final-star{display:none;}
+.approved-home .home-final-copy p{font-size:21px;font-weight:500;}
+.approved-home .home-final-cta [data-slot=button]{height:68px;padding:0 40px;font-size:22px;font-weight:600;border-radius:14px;background:linear-gradient(180deg,color-mix(in oklab,var(--secondary) 85%,white) 0%,var(--secondary) 35%,var(--secondary-pressed) 100%);box-shadow:0 14px 30px -10px color-mix(in oklab,var(--secondary-pressed) 85%,transparent),inset 0 1px 0 color-mix(in oklab,white 40%,transparent);}
+.home-final-civi{position:absolute;right:40px;bottom:0;width:250px;display:block;pointer-events:none;}
+.home-final-civi .home-final-body{width:100%;height:auto;display:block;animation:civi-cta-float 4.5s ease-in-out infinite;}
+.home-final-civi .home-final-star{position:absolute;left:40%;top:-34px;width:52px;z-index:1;animation:fx-star 3.2s ease-in-out infinite;}
+.home-final-spark{position:absolute;right:-6px;top:22%;width:30px;height:30px;background:conic-gradient(from 0deg,var(--warning,var(--secondary)) 0 8%,transparent 8% 33%,var(--warning,var(--secondary)) 33% 41%,transparent 41% 66%,var(--warning,var(--secondary)) 66% 74%,transparent 74%);border-radius:50%;opacity:.9;animation:fx-spark 1.8s ease-in-out infinite;}
+@keyframes fx-star{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(12deg)}}
+@keyframes fx-spark{0%,100%{transform:scale(.85);opacity:.6}50%{transform:scale(1.1);opacity:1}}
+@media(max-width:1100px){.home-final-civi{width:180px;right:16px;}.approved-home .home-final-copy h2{font-size:36px;white-space:normal;}.approved-home .home-final-cta [data-slot=button]{height:58px;font-size:18px;padding:0 24px;}}
+@media(max-width:767px){.approved-home .home-final-layout{display:flex;min-height:420px;padding:32px 20px 190px;}.approved-home .home-final-copy h2{white-space:normal;}.home-final-civi{width:140px;right:50%;transform:translateX(50%);}.home-final-civi .home-final-star{width:34px;top:-22px;}.approved-home .home-final-copy h2{font-size:32px;}.approved-home .home-final-copy p{font-size:16px;}}
+
+/* Révélation progressive au défilement (plus douce et plus visible) */
+.reveal{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.reveal-ready:not(.reveal-visible){opacity:0;transform:translateY(40px);}
+.reveal .reveal-child{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal-ready:not(.reveal-visible) .reveal-child{opacity:0;transform:translateY(32px) scale(.97);}
+.fx-wait{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.fx-wait.fx-in{opacity:1;transform:none;}
+
+/* Barre de progression de lecture */
+.fx-scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--primary-interactive),var(--secondary));pointer-events:none;}
+@supports (animation-timeline: scroll()){.fx-scroll-progress{animation:fx-progress linear both;animation-timeline:scroll(root);}}
+@keyframes fx-progress{to{transform:scaleX(1)}}
+
+/* Halo qui suit le curseur sur les cartes */
+.home-method-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in oklab,var(--primary-interactive) 12%,transparent),transparent 70%);z-index:0;}
+.home-method-card:hover::before{opacity:1;}
+.home-method-card>*{position:relative;z-index:1;}
+.home-method-card{position:relative;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;}
+.home-method-card:hover{transform:translateY(-6px);box-shadow:0 22px 40px -22px color-mix(in oklab,var(--primary) 45%,transparent);}
+
+/* Ondulation au clic */
+.fx-ripple{position:absolute;border-radius:50%;pointer-events:none;background:color-mix(in oklab,currentColor 25%,transparent);transform:scale(0);animation:fx-ripple .6s ease-out forwards;}
+@keyframes fx-ripple{to{transform:scale(2.4);opacity:0}}
+a,button{transition-property:color,background-color,border-color,transform,box-shadow,opacity;}
+
+@media (prefers-reduced-motion: reduce){.fx-scroll-progress{display:none;}.fx-wait{opacity:1;transform:none;transition:none;}.home-final-civi *,.home-final-spark{animation:none!important;}.home-method-card::before{display:none;}.home-method-card:hover,.approved-home .home-method-card:hover .home-method-icon{transform:none;}.reveal-ready:not(.reveal-visible),.reveal-ready:not(.reveal-visible) .reveal-child{opacity:1;transform:none;}}
+@media(min-width:1101px){.home-final-civi{width:215px;right:56px;}.approved-home .home-final-copy p{white-space:nowrap;}}
+@media(min-width:1101px){.approved-home .home-final-layout{grid-template-columns:auto auto minmax(220px,1fr);gap:40px;}.approved-home .home-final-copy p{font-size:19px;}.approved-home .home-final-copy h2{font-size:48px;}}
