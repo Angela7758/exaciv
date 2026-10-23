@@ -1037,3 +1037,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .nine-public .method-cards a.method-card-link{position:relative;left:auto;bottom:auto;z-index:1;margin-top:14px;border-radius:999px;min-height:44px;padding:0 14px;font-size:13px;background:var(--card);border-color:currentColor;}
 @media(max-width:767px){.nine-public .pathway-public-cards article{padding:20px 16px;}.nine-public .method-cards article{padding:18px;}.nine-public .pathway-public-cards p,.nine-public .method-cards p{font-size:16px;}}
 @media(prefers-reduced-motion:reduce){.hero-enter{animation:none;}.home-learning-scene .home-lesson-card,.home-learning-scene .home-path-chip{translate:none;}.approved-home [data-slot=button],.nine-public [data-slot=button]{transition:none;}}
+.approved-home .home-method-card>h3{min-height:0;display:block;text-align:start;}
+.approved-home .home-method-card>p{min-height:0;}
+.approved-home .home-method-card .home-method-preview{flex:0 1 auto;}
+.approved-home .home-method-card .home-method-action{margin-top:auto;padding-top:14px;}
