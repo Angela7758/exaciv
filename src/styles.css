@@ -668,3 +668,21 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 
 /* Garde-fou débordement 1 px sur la liste des leçons en mobile */
 @media(max-width:640px){.lessons-grid{min-width:0;}.lessons-grid>*{min-width:0;}}
+
+/* Localized internal interface: preserve layout while allowing longer labels. */
+.translation-notice{margin-block-end:16px;padding:10px 14px;border-inline-start:3px solid var(--primary);background:var(--accent);color:var(--muted-foreground);font-size:12px;line-height:1.5;border-radius:6px;}
+.translation-notice>div{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.translation-notice>div>svg{width:18px;height:18px;flex-shrink:0;color:var(--primary);}
+.translation-notice>div>p{flex:1;min-width:180px;}
+.translation-notice>p{margin-block-start:8px;}
+.app-layout [data-slot="button"]{white-space:normal;min-height:var(--button-height,36px);height:auto;}
+.app-sidebar [data-slot="button"]{white-space:nowrap;}
+.app-content input,.app-content select{max-width:100%;min-width:0;}
+.app-content h1,.app-content h2,.app-content h3{overflow-wrap:anywhere;}
+[dir="rtl"] .app-layout .app-sidebar{left:auto;right:0;}
+[dir="rtl"] .app-layout .app-main{margin-left:0;margin-right:240px;}
+[dir="rtl"] .app-layout.sidebar-mini .app-main{margin-right:82px;}
+[dir="rtl"] .app-layout .app-breadcrumb{text-align:right;}
+[dir="rtl"] .app-content [lang="fr"]{text-align:left;unicode-bidi:isolate;}
+[dir="rtl"] .app-content [data-slot="button"] svg.lucide-arrow-right,[dir="rtl"] .app-content [data-slot="button"] svg.lucide-arrow-left{transform:scaleX(-1);}
+@media(max-width:760px){[dir="rtl"] .app-layout .app-main,[dir="rtl"] .app-layout.sidebar-mini .app-main{margin-right:0;}}
