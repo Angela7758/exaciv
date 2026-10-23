@@ -1,9 +1,18 @@
 import {describe,it,expect} from 'vitest';
-import {resolveContentMessage} from '@/lib/i18n/content';
+import {resolveContentMessage,resolveContentPassage} from '@/lib/i18n/content';
 import {localeSchema} from '@/lib/registration';
 import {accountSettingsSchema} from '@/lib/account-settings';
 
 describe('Content translation display rules',()=>{
+  it('reads translated questions and options in each requested language',()=>{
+    for(const locale of ['en','es','ar','ru','pt'] as const){
+      const passage=resolveContentPassage(locale,['Question','Option'],{[locale]:{Question:`${locale} question`,Option:`${locale} option`}});
+      expect(passage).toEqual({locale,texts:[`${locale} question`,`${locale} option`]});
+    }
+  });
+  it('keeps an audio passage entirely French when an option is not translated',()=>{
+    expect(resolveContentPassage('pt',['Question','Option'],{pt:{Question:'Pergunta'}})).toEqual({locale:'fr',texts:['Question','Option']});
+  });
   it('keeps French available and falls back when the source changes',()=>{
     const messages={en:{'Texte source':'Source text'}};
     expect(resolveContentMessage('en','Texte source',messages)).toEqual({text:'Source text',fallback:false});
