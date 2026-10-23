@@ -517,7 +517,11 @@
     "Revoir {0} erreur": "Review {0} mistake",
     "Ouvrir {0}": "Open {0}",
     "Chaque erreur vous fait progresser !": "Every mistake helps you improve!",
-    "Minutes par jour": "Minutes per day"
+    "Minutes par jour": "Minutes per day",
+    "Carte de résident": "Resident card",
+    "Carte de séjour pluriannuelle": "Multi-year residence permit",
+    "Impossible de commencer la session.": "Unable to start the session.",
+    "Questions · {0}": "Questions · {0}"
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1037,7 +1041,11 @@
     "Revoir {0} erreur": "复习{0}道错题",
     "Ouvrir {0}": "打开{0}",
     "Chaque erreur vous fait progresser !": "每个错误都帮助您进步！",
-    "Minutes par jour": "每天分钟数"
+    "Minutes par jour": "每天分钟数",
+    "Carte de résident": "居民卡",
+    "Carte de séjour pluriannuelle": "多年居留卡",
+    "Impossible de commencer la session.": "无法开始练习。",
+    "Questions · {0}": "题目 · {0}"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1557,7 +1565,11 @@
     "Revoir {0} erreur": "مراجعة خطأ واحد ({0})",
     "Ouvrir {0}": "فتح {0}",
     "Chaque erreur vous fait progresser !": "كل خطأ يساعدك على التقدم!",
-    "Minutes par jour": "دقائق يومياً"
+    "Minutes par jour": "دقائق يومياً",
+    "Carte de résident": "بطاقة إقامة",
+    "Carte de séjour pluriannuelle": "بطاقة إقامة متعددة السنوات",
+    "Impossible de commencer la session.": "تعذر بدء الجلسة.",
+    "Questions · {0}": "أسئلة · {0}"
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -2077,7 +2089,11 @@
     "Revoir {0} erreur": "Revisar {0} error",
     "Ouvrir {0}": "Abrir {0}",
     "Chaque erreur vous fait progresser !": "¡Cada error le ayuda a progresar!",
-    "Minutes par jour": "Minutos al día"
+    "Minutes par jour": "Minutos al día",
+    "Carte de résident": "Tarjeta de residente",
+    "Carte de séjour pluriannuelle": "Tarjeta de residencia plurianual",
+    "Impossible de commencer la session.": "No se pudo iniciar la sesión.",
+    "Questions · {0}": "Preguntas · {0}"
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -2597,6 +2613,10 @@
     "Revoir {0} erreur": "Разобрать {0} ошибку",
     "Ouvrir {0}": "Открыть {0}",
     "Chaque erreur vous fait progresser !": "Каждая ошибка помогает вам стать лучше!",
-    "Minutes par jour": "Минут в день"
+    "Minutes par jour": "Минут в день",
+    "Carte de résident": "Карта резидента",
+    "Carte de séjour pluriannuelle": "Многолетний вид на жительство",
+    "Impossible de commencer la session.": "Не удалось начать занятие.",
+    "Questions · {0}": "Вопросы · {0}"
   }
 }
