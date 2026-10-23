@@ -1,147 +1,62 @@
-import {RecordButton} from './RecordButton';
 import {streamSpeech} from '@/lib/speech';
-import {saveLocale} from '@/lib/learning.functions';
 import {useUiT} from '@/lib/i18n/internal';
-import {useI18n} from '@/lib/i18n';
-import {resolveContentMessage,resolveContentPassage} from '@/lib/i18n/content';
 import {useEffect,useRef,useState} from 'react';
 import {useServerFn} from '@tanstack/react-start';
-import {useQueryClient} from '@tanstack/react-query';
 import {Volume2,Square,Languages,LoaderCircle} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {translateQuestionTexts} from '@/lib/translate.functions';
 import {saveHelpPreference} from '@/lib/account-settings.functions';
+import {QUESTION_HELP_LOCALES,questionHelpLocale,visibleQuestionTexts,localQuestionTranslation,type QuestionHelpLocale} from '@/lib/question-aids';
 
-const HELP_LOCALES = [
-  {id:'zh',label:'中文',speech:'zh-CN'},
-  {id:'en',label:'English',speech:'en-GB'},
-  {id:'ar',label:'العربية',speech:'ar-SA'},
-  {id:'es',label:'Español',speech:'es-ES'},
-  {id:'ru',label:'Русский',speech:'ru-RU'},
-  {id:'pt',label:'Português',speech:'pt-PT'},
-] as const;
-type HelpLocale = (typeof HELP_LOCALES)[number]['id'];
-
-function speak(text:string, lang:string, onEnd:()=>void): SpeechSynthesisUtterance | null {
-  if (typeof window==='undefined' || !('speechSynthesis' in window)) return null;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang;
-  const voice = window.speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().startsWith(lang.slice(0,2).toLowerCase()));
-  if (voice) utterance.voice = voice;
-  utterance.onend = onEnd;
-  utterance.onerror = onEnd;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
-  return utterance;
-}
-
-/**
- * Aides pédagogiques d'une question : lecture audio dans la langue affichée (« Écouter »)
- * et traduction à la demande (« Traduire ») vers la langue d'aide du compte.
- * La traduction ne porte que sur le contenu déjà visible (jamais la réponse).
- */
-export function QuestionAids({questionId, question, options, explanation, helpEnabled, helpLocale, assistedLabel=false}:{
-  questionId: string;
-  question: string;
-  options: string[];
-  explanation?: string;
-  helpEnabled: boolean;
-  helpLocale: string;
-  assistedLabel?: boolean;
-}){const ui=useUiT();const {locale,setLocale}=useI18n();const saveUiLocale=useServerFn(saveLocale);
-  const [speaking,setSpeaking]=useState<'fr'|HelpLocale|null>(null);
-  const [speechOk,setSpeechOk]=useState(true);
-  const [open,setOpen]=useState(false);
-  const [target,setTarget]=useState<HelpLocale>((HELP_LOCALES.some(l=>l.id===locale)?locale:HELP_LOCALES.some(l=>l.id===helpLocale)?helpLocale:'en') as HelpLocale);
-  const [translations,setTranslations]=useState<Record<string,string[]>>({});
-  const [busy,setBusy]=useState(false);
-  const [error,setError]=useState('');
-  const translate=useServerFn(translateQuestionTexts);
-  const savePref=useServerFn(saveHelpPreference);
-  const qc=useQueryClient();
-  const cacheKey=useRef('');
-
-  // Arrête toute lecture au changement de question ou à la sortie de page.
-  useEffect(()=>{
-    return ()=>{ if (typeof window!=='undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel(); };
-  },[questionId]);
-  useEffect(()=>{ setOpen(false); setError(''); },[questionId]);
-  useEffect(()=>{if(HELP_LOCALES.some(l=>l.id===locale)){setTarget(locale as HelpLocale);setOpen(false);} },[locale]);
-
-  const speechAbort=useRef<AbortController|null>(null);
-  useEffect(()=>()=>{speechAbort.current?.abort();},[questionId]);
-  function toggleSpeech(lang:'fr'|HelpLocale, text:string){
-    if (speaking){ speechAbort.current?.abort(); if('speechSynthesis' in window) window.speechSynthesis.cancel(); setSpeaking(null); return; }
-    const controller=new AbortController(); speechAbort.current=controller; setSpeaking(lang);
-    streamSpeech(text, lang, controller.signal).then(()=>{ if(!controller.signal.aborted) setSpeaking(null); }).catch(()=>{
-      if (controller.signal.aborted) return;
-      // Repli : voix du navigateur si la voix naturelle est indisponible.
-      if (!('speechSynthesis' in window)) { setSpeechOk(false); setSpeaking(null); return; }
-      const u = speak(text, lang==='fr'?'fr-FR':(HELP_LOCALES.find(l=>l.id===lang)?.speech??lang), ()=>setSpeaking(null));
-      if (!u) { setSpeechOk(false); setSpeaking(null); }
-    });
-  }
-
-  async function toggleTranslate(){
-    if (open){ setOpen(false); return; }
-    setOpen(true);
-    const key = `${questionId}:${target}:${explanation?'x':''}`;
-    cacheKey.current = key;
-    if (translations[key]) return;
-    setBusy(true); setError('');
-    try{
-      const texts=[question,...options,...(explanation?[explanation]:[])];
-      const prepared=texts.map(text=>resolveContentMessage(target,text));
-      if(prepared.every(item=>!item.fallback)){
-        setTranslations(t=>({...t,[key]:prepared.map(item=>item.text)}));
-        return;
-      }
-      const r=await translate({data:{texts,target}});
-      setTranslations(t=>({...t,[key]:r.translations}));
-    }catch(e){
-      setError(e instanceof Error?e.message:ui("La traduction a échoué. Réessayez dans un instant."));
-    }finally{setBusy(false);}
-  }
-
-  async function changeTarget(next:HelpLocale){
-    setTarget(next);
-    setTranslations({});
-    setLocale(next);
-    void saveUiLocale({data:{locale:next}}).catch(()=>{/* langue conservée localement */});
-    if (open){ setOpen(false); }
-    try{ await savePref({data:{help_locale:next}}); await qc.invalidateQueries({queryKey:['learning']}); }catch{ /* préférence non enregistrée : la session garde le choix */ }
-  }
-
-  const key=`${questionId}:${target}:${explanation?'x':''}`;
-  const current=translations[key];
-  const dir=target==='ar'?'rtl':'ltr';
-  const passage=resolveContentPassage(locale,[question,...options]);
-
-  return <div className="question-aids">
-    <div className="question-aids-bar" role="toolbar" aria-label={ui("Aides pour cette question")}>
-      <Button type="button" variant="outline" size="sm" onClick={()=>toggleSpeech(passage.locale,passage.texts.join('. '))} aria-pressed={speaking===passage.locale}>
-        {speaking===passage.locale?<Square/>:<Volume2/>}{speaking===passage.locale?ui("Arrêter"):ui("Écouter")}
-      </Button>
-      <RecordButton/>{helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open} disabled={busy}>
-        {busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}
-      </Button>}
-      {helpEnabled&&open&&<select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(e.target.value as HelpLocale)}>
-        {HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}
-      </select>}
-      {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">{ui("Entraînement avec aide")}</span>}
-    </div>
-    {!speechOk&&<p role="status" className="question-aids-note">{ui("La lecture audio n’est pas disponible dans ce navigateur.")}</p>}
-    {open&&helpEnabled&&<div className="question-translation" dir={dir} lang={target}>
-      {busy&&<p className="question-aids-note">{ui("Traduction en cours…")}</p>}
-      {error&&<p role="alert" className="question-aids-note">{error}</p>}
-      {current&&<>
-        <p className="translation-stem">{current[0]}</p>
-        <ul>{current.slice(1,1+options.length).map((t,i)=><li key={i}>{t}</li>)}</ul>
-        {explanation&&current[1+options.length]&&<p className="translation-explanation">{current[1+options.length]}</p>}
-        <Button type="button" variant="ghost" size="sm" onClick={()=>toggleSpeech(target,[current[0],...current.slice(1,1+options.length)].join('. '))} aria-pressed={speaking===target}>
-          {speaking===target?<Square/>:<Volume2/>}{speaking===target?ui("Arrêter"):ui("Écouter la traduction")}
-        </Button>
-      </>}
-    </div>}
-  </div>;
+export function QuestionAids({questionId,question,options,explanation,helpEnabled,helpLocale,assistedLabel=false}:{
+ questionId:string;question:string;options:string[];explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;
+}) {
+ const ui=useUiT();
+ const [target,setTarget]=useState<QuestionHelpLocale>(()=>questionHelpLocale(helpLocale));
+ const [open,setOpen]=useState(false);
+ const [translations,setTranslations]=useState<Record<string,string[]>>({});
+ const [busy,setBusy]=useState(false);const [error,setError]=useState('');
+ const [speaking,setSpeaking]=useState<'original'|'translation'|null>(null);
+ const abort=useRef<AbortController|null>(null);const request=useRef(0);
+ const translate=useServerFn(translateQuestionTexts);const savePref=useServerFn(saveHelpPreference);
+ const texts=visibleQuestionTexts(question,options,explanation);
+ const sourceKey=JSON.stringify([questionId,...texts]);
+ const key=JSON.stringify([sourceKey,target]);
+ const current=localQuestionTranslation(target,texts)??translations[key];
+ function stop(){abort.current?.abort();if(typeof window!=='undefined'&&'speechSynthesis' in window)window.speechSynthesis.cancel();setSpeaking(null);}
+ useEffect(()=>{setTarget(questionHelpLocale(helpLocale));},[helpLocale]);
+ useEffect(()=>{setOpen(false);setBusy(false);setError('');request.current++;stop();return()=>{request.current++;abort.current?.abort();if('speechSynthesis' in window)window.speechSynthesis.cancel();};},[sourceKey]);
+ useEffect(()=>{if(!helpEnabled){setOpen(false);stop();request.current++;}},[helpEnabled]);
+ async function load(next:QuestionHelpLocale){
+  const local=localQuestionTranslation(next,texts);if(local)return;
+  const cache=JSON.stringify([sourceKey,next]);if(translations[cache])return;
+  const version=++request.current;setBusy(true);setError('');
+  try{const result=await translate({data:{texts,target:next}});if(version===request.current)setTranslations(v=>({...v,[cache]:result.translations}));}
+  catch(e){if(version===request.current)setError(e instanceof Error?e.message:ui("La traduction a échoué. Réessayez dans un instant."));}
+  finally{if(version===request.current)setBusy(false);}
+ }
+ function toggleTranslate(){if(open){setOpen(false);request.current++;setBusy(false);stop();return;}setOpen(true);void load(target);}
+ function changeTarget(next:QuestionHelpLocale){stop();request.current++;setBusy(false);setError('');setTarget(next);void savePref({data:{help_locale:next}}).catch(()=>{});void load(next);}
+ function play(kind:'original'|'translation',lang:QuestionHelpLocale,passage:string[]){
+  if(speaking===kind){stop();return;}stop();const controller=new AbortController();abort.current=controller;setSpeaking(kind);setError('');
+  streamSpeech(passage.join('. '),lang,controller.signal).then(()=>{if(!controller.signal.aborted)setSpeaking(null);}).catch(()=>{
+   if(controller.signal.aborted)return;
+   if(!('speechSynthesis' in window)){setSpeaking(null);setError(ui("La lecture audio n’est pas disponible dans ce navigateur."));return;}
+   const utterance=new SpeechSynthesisUtterance(passage.join('. '));utterance.lang=QUESTION_HELP_LOCALES.find(l=>l.id===lang)?.speech??'fr-FR';
+   utterance.onend=()=>setSpeaking(null);utterance.onerror=()=>setSpeaking(null);window.speechSynthesis.speak(utterance);
+  });
+ }
+ return <div className="question-aids">
+  <div className="question-aids-bar" role="toolbar" aria-label={ui("Aides pour cette question")}>
+   <Button type="button" variant="outline" size="sm" onClick={()=>play('original','fr',[question,...options])} aria-pressed={speaking==='original'}>{speaking==='original'?<Square/>:<Volume2/>}{speaking==='original'?ui("Arrêter"):ui("Écouter")}</Button>
+   {helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open}>{busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}</Button>}
+   {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">{ui("Entraînement avec aide")}</span>}
+  </div>
+  {open&&helpEnabled&&<div className="question-translation" dir={target==='ar'?'rtl':'ltr'} lang={target}>
+   <select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(questionHelpLocale(e.target.value))}>{QUESTION_HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}</select>
+   {busy&&<p role="status">{ui("Traduction en cours…")}</p>}
+   {current&&<><p className="translation-stem">{current[0]}</p><ol>{current.slice(1,1+options.length).map((text,i)=><li key={i}>{text}</li>)}</ol>{explanation&&<p className="translation-explanation">{current[1+options.length]}</p>}<Button type="button" variant="ghost" size="sm" onClick={()=>play('translation',target,current)} aria-pressed={speaking==='translation'}>{speaking==='translation'?<Square/>:<Volume2/>}{speaking==='translation'?ui("Arrêter"):ui("Écouter la traduction")}</Button></>}
+  </div>}
+  {error&&<p role="alert" className="question-aids-note">{error}</p>}
+ </div>;
 }

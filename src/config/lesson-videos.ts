@@ -6,8 +6,14 @@ import vote from '@/assets/videos/lesson-vote.mp4.asset.json';
 import symboles from '@/assets/videos/lesson-symboles.mp4.asset.json';
 import egalite from '@/assets/videos/lesson-egalite.mp4.asset.json';
 
-// Short silent animated clips derived from each lesson illustration (editorial, not lesson content).
-export const LESSON_VIDEOS: Record<string, string> = {
-  devise: devise.url, laicite: laicite.url, parlement: parlement.url, president: president.url,
-  vote: vote.url, symboles: symboles.url, egalite: egalite.url,
-};
+// Archive only: editorial animations with an unverified AAC audio track, not verified teaching videos.
+export const LESSON_VIDEO_INVENTORY = [
+ {lessonId:'devise',title:'La devise de la République',url:devise.url},
+ {lessonId:'laicite',title:'La laïcité',url:laicite.url},
+ {lessonId:'parlement',title:'Le rôle du Parlement',url:parlement.url},
+ {lessonId:'president',title:'Le Président de la République',url:president.url},
+ {lessonId:'vote',title:'Le droit de vote',url:vote.url},
+ {lessonId:'symboles',title:'Les symboles de la République',url:symboles.url},
+ {lessonId:'egalite',title:'L’égalité',url:egalite.url},
+].map(video=>({...video,source:'Animation éditoriale issue de l’illustration (origine déclarée)',language:'Non vérifiée (piste AAC présente)',contentVerified:false,rightsVerified:false}));
+export const LESSON_VIDEOS: Record<string,string> = {};
