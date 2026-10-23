@@ -1,9 +1,10 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
 ## Corrections du 23 octobre
-- [ ] Questions françaises et traduction séparée dans six langues ; écoute et préférences vérifiées.
-- [ ] Images propres, proportions et états d’échec ; vidéos inventoriées et non vérifiées retirées.
-- [ ] Cadre commun et pages filles contrôlés sur ordinateur et mobile ; captures avant/après et bilan.
+- [x] Questions françaises et traduction séparée dans six langues ; écoute et préférences vérifiées.
+- [x] Images propres, proportions et états d’échec ; sept vidéos inventoriées et non vérifiées retirées de l’affichage.
+- [x] Cadre commun et seize pages contrôlés à 1440, 768 et 390 px ; captures avant/après et bilan fournis.
+- [ ] Réactiver des vidéos pédagogiques : attend des contenus et autorisations d’utilisation confirmés.
 
 ## Fait
 - [x] Barre latérale : libellés tronqués proprement (ellipsis), mode réduit propre, breakpoint ≤1100 px pour le gabarit de référence
