@@ -13,17 +13,17 @@ export function RevisionPlanner({mistakes,demo}:{mistakes:Mistake[];demo:boolean
  const [open,setOpen]=useState(false);const [entries,setEntries]=useState([{question:'',response:''}]);const [minutes,setMinutes]=useState(15);const [plan,setPlan]=useState<RevisionPlan|null>(null);const [busy,setBusy]=useState(false);const [error,setError]=useState('');const abort=useRef<AbortController|null>(null);const latest=useServerFn(getLatestRevisionPlan);
  useEffect(()=>()=>abort.current?.abort(),[]);
  async function show(){setOpen(true);setError('');if(!demo){try{const saved=await latest();if(saved)setPlan(saved.plan);}catch{setError(ui("Le dernier plan n’a pas pu être chargé."));}}}
- function importErrors(){setEntries(mistakes.slice(0,20).map(m=>({question:m.question.question,response:m.question.options[m.selected]??'Sans réponse'})));setPlan(null);}
+ function importErrors(){setEntries(mistakes.slice(0,20).map(m=>({question:m.question.question,response:m.question.options[m.selected]??ui("Sans réponse")})));setPlan(null);}
  async function generate(){if(demo||busy)return;setError('');setBusy(true);setPlan(null);const control=new AbortController();abort.current=control;
-  try{const {data}=await supabase.auth.getSession();if(!data.session)throw new Error('Connectez-vous pour créer votre plan.');
+  try{const {data}=await supabase.auth.getSession();if(!data.session)throw new Error(ui("Connectez-vous pour créer votre plan."));
    const r=await fetch('/api/revision-plan',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${data.session.access_token}`},body:JSON.stringify({mistakes:entries,minutes}),signal:control.signal});
-   if(!r.ok){const e=await r.json();throw new Error(e.message??'La génération est indisponible.');}
-   if(!r.body)throw new Error('Aucun plan reçu.');const reader=r.body.getReader();const decoder=new TextDecoder();let buffer='';let received=false;
+   if(!r.ok){const e=await r.json();throw new Error(e.message??ui("La génération est indisponible."));}
+   if(!r.body)throw new Error(ui("Aucun plan reçu."));const reader=r.body.getReader();const decoder=new TextDecoder();let buffer='';let received=false;
    while(true){const next=await reader.read();buffer+=decoder.decode(next.value,{stream:!next.done});const lines=buffer.split('\n');buffer=lines.pop()??'';
     for(const line of lines){if(!line.trim())continue;const event=JSON.parse(line);if(event.type==='error')throw new Error(event.message);if(event.type==='plan'){setPlan(revisionPlanSchema.parse(event.plan));received=true;}}
     if(next.done)break;
-   }if(!received)throw new Error('Aucun plan reçu.');
-  }catch(e){setError(control.signal.aborted?'Génération arrêtée.':e instanceof Error?e.message:'La génération est indisponible.');}
+   }if(!received)throw new Error(ui("Aucun plan reçu."));
+  }catch(e){setError(control.signal.aborted?ui("Génération arrêtée."):e instanceof Error?e.message:ui("La génération est indisponible."));}
   finally{setBusy(false);abort.current=null;}
  }
  function download(){if(!plan)return;const text=[plan.summary,'',...plan.priorities.map(p=>`• ${p}`),'',...plan.days.flatMap((d,i)=>[`Jour ${i+1} — ${d.title}`,...d.tasks.map(t=>`• ${t}`),`À vérifier : ${d.selfCheck}`,''])].join('\n');const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='ExaCiv-plan-de-revision.txt';a.click();URL.revokeObjectURL(url);}

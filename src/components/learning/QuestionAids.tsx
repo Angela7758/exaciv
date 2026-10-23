@@ -64,7 +64,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   function toggleSpeech(lang:'fr'|HelpLocale, text:string){
     if (!('speechSynthesis' in window)) { setSpeechOk(false); return; }
     if (speaking){ window.speechSynthesis.cancel(); setSpeaking(null); return; }
-    const u = speak(text, lang==='fr'?'fr-FR':HELP_LOCALES.find(l=>l.id===lang)!.speech, ()=>setSpeaking(null));
+    const u = speak(text, lang==='fr'?'fr-FR':(HELP_LOCALES.find(l=>l.id===lang)?.speech??lang), ()=>setSpeaking(null));
     if (!u) setSpeechOk(false); else setSpeaking(lang);
   }
 
@@ -80,7 +80,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
       const r=await translate({data:{texts,target}});
       setTranslations(t=>({...t,[key]:r.translations}));
     }catch(e){
-      setError(e instanceof Error?e.message:'La traduction a échoué. Réessayez dans un instant.');
+      setError(e instanceof Error?e.message:ui("La traduction a échoué. Réessayez dans un instant."));
     }finally{setBusy(false);}
   }
 
