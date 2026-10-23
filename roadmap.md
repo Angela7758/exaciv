@@ -58,4 +58,4 @@
 - [x] Icônes fonctionnelles au-dessus des titres des quatre cartes méthode, base gauche commune.
 - [x] Titres des cartes parcours d’accueil : 22 px → 24,2 px (+10 %), 20 px → 22 px sur mobile.
 - [x] Nouveaux textes d’accueil branchés sur les six langues (En savoir plus, Exemples d’interface, boutons des cartes, correction, alt appareils).
-- [ ] Vérification visuelle six largeurs (360–1440) et cinq pages publiques : en cours, captures à contrôler.
+- [x] Vérification visuelle six largeurs (360–1440) et cinq pages publiques : aucun débordement, menu mobile verrouillé, espagnol et arabe RTL contrôlés, 104 tests réussis.
