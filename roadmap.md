@@ -12,6 +12,7 @@
 - [x] Build OK, 60/60 tests
 
 ## Reste (non bloquant)
+- [ ] Raccorder et vérifier les cartes méthode, étapes, FAQ et CTA d’accueil en anglais, espagnol, arabe, russe et portugais, sur bureau et mobile.
 - [ ] Images pédagogiques supplémentaires dans les leçons (les cartes de thèmes du Dashboard en ont déjà)
 - [x] Traduire les interfaces internes en anglais, chinois, arabe, espagnol et russe avec repli français ; conserver les cours et questions en français
 - [x] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant : cinq langues persistées puis préférence initiale restaurée, questions/corrections/résultats réels, bureau et mobile sans débordement ni erreur d’exécution
