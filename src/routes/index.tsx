@@ -54,8 +54,8 @@ function Index() {
             <article key={p.id} style={{ transitionDelay: `${i * 70}ms` }} className={`reveal-child home-pathway-card relative flex h-full min-h-48 overflow-hidden rounded-2xl p-6 card-hover ${p.card}`}>
               <img src={p.art} alt="" aria-hidden loading="lazy" className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto rtl-mirror-off" />
               <div className="relative flex flex-1 flex-col items-start">
-                <h3 className={`home-pathway-title font-bold ${p.title_cls}`}><p.icon className={p.icon_cls} aria-hidden/>{p.title}</h3>
-                <p className="mt-2 max-w-[65%] text-muted-foreground">{p.text}</p>
+                <h3 className={`home-pathway-title font-bold ${p.title_cls}`}>{p.title}</h3>
+                <p className="mt-2 max-w-[62%] text-muted-foreground">{p.text}</p>
                 <Link to="/parcours" hash={p.id} className="home-more-link mt-auto">{t('home.parcours.more')}<ArrowRight className="size-4 rtl-flip" /></Link>
               </div>
             </article>
@@ -254,11 +254,10 @@ function Stat({ icon: Icon, cls, title, sub }: { icon: typeof Landmark; cls: str
   );
 }
 
-function MethodCard({ title, tone, text, children, action, index = 0, num, icon: Icon }: { title: string; tone: 'orange' | 'blue' | 'green'; text: string; children: React.ReactNode; action?: React.ReactNode; index?: number; num: string; icon: typeof BookOpen }) {
+function MethodCard({ title, tone, text, children, action, index = 0 }: { title: string; tone: 'orange' | 'blue' | 'green'; text: string; children: React.ReactNode; action?: React.ReactNode; index?: number; num: string; icon: typeof BookOpen }) {
   return (
     <article style={{ transitionDelay: `${index * 70}ms` }} className={`home-method-card method-tone-${tone} reveal-child card-hover`}>
-      <div className="home-method-head"><span className="home-method-num" aria-hidden>{num}</span><span className="home-method-icon" aria-hidden><Icon /></span></div>
-      <h3>{title}</h3>
+            <h3>{title}</h3>
       <p className="home-method-text">{text}</p>
       <div className="home-method-preview">{children}</div>
       {action && <div className="home-method-action">{action}</div>}
