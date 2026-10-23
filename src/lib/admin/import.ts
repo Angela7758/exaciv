@@ -3,7 +3,7 @@ import {questionSchema,type AdminQuestion,type Draft} from './schema';
 export const IMPORT_FIELDS=['id','question','options','correct_option_id','explanation','theme','exam_theme','pathways','difficulty','source','source_url','lesson_id','image_url','translations'] as const;
 export type ImportField=typeof IMPORT_FIELDS[number];
 export type ImportRow=Record<string,unknown>;
-export interface ImportPreview {row:number;id:string;payload:AdminQuestion|null;errors:string[];status:'new'|'update'|'duplicate'|'error';revision:number;changes:string[];}
+export interface ImportPreview {row:number;id:string;payload:AdminQuestion|null;errors:string[];status:'new'|'update'|'duplicate'|'error';revision:number;changes:ImportField[];}
 export function parseImport(text:string,filename:string):{rows:ImportRow[];columns:string[]}{
  let rows:ImportRow[];
  if(filename.toLowerCase().endsWith('.json')){const value:unknown=JSON.parse(text);if(!Array.isArray(value)||value.some(v=>!v||typeof v!=='object'||Array.isArray(v)))throw new Error('Le JSON doit contenir une liste de questions.');rows=value as ImportRow[];}
