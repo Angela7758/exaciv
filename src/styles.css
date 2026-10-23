@@ -693,7 +693,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 /* Homepage localized blocks: wrapping, equal tracks and logical RTL alignment. */
 .approved-home [data-home-block]{min-width:0;}
 .approved-home [data-home-block] h2,.approved-home [data-home-block] h3,.approved-home [data-home-block] p{overflow-wrap:anywhere;}
-.approved-home [data-home-block] [data-slot=button]{white-space:normal;height:auto;min-height:36px;padding-block:10px;max-width:100%;}
+.approved-home [data-home-block] [data-slot=button],.home-method-preview button,.home-method-preview a{white-space:normal;height:auto;min-height:36px;padding-block:10px;max-width:100%;}
 .home-method-card{min-width:0;}
 .home-method-card>h3{min-height:3.5rem;display:grid;place-items:center;}
 .home-method-card>p{min-height:5.25rem;}

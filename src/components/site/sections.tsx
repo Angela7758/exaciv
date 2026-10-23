@@ -79,8 +79,8 @@ type FaqEntry={q:string;a:string;link?:(typeof FAQ)[number]['link']};
 function FaqItem({ f, i }: { f: FaqEntry; i: number }) {
   return (
     <AccordionItem value={`f${i}`} style={{ transitionDelay: `${i * 70}ms` }} className="reveal-child rounded-xl border bg-card px-5 shadow-soft">
-      <AccordionTrigger className="text-start text-sm font-semibold [&>svg]:text-primary-interactive">{f.q}</AccordionTrigger>
-      <AccordionContent className="rounded-lg bg-muted p-3 text-muted-foreground">
+      <AccordionTrigger data-slot="accordion-trigger" className="text-start text-sm font-semibold [&>svg]:text-primary-interactive">{f.q}</AccordionTrigger>
+      <AccordionContent data-slot="accordion-content" className="rounded-lg bg-muted p-3 text-muted-foreground">
         <p>{f.a}</p>
         {f.link &&
           (f.link.external ? (
@@ -125,7 +125,7 @@ export function FinalCta() {
           <h2 className="text-4xl font-bold md:text-5xl">{t('home.cta.title')}</h2>
           <p className="mt-2 text-lg opacity-95">{t('home.cta.text')}</p>
         </div>
-        <Button asChild variant="cta" size="xl" className="order-2 shrink-0">
+        <Button data-slot="button" asChild variant="cta" size="xl" className="order-2 shrink-0">
           <Link to="/test-gratuit"><Play className="fill-current" /> {t('home.cta.button')}</Link>
         </Button>
         <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 shrink-0 md:w-40" />
