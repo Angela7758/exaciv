@@ -17,5 +17,6 @@
 - [x] Cinq langues vérifiées sur le compte existant à 1440 et 390 px : 14 vues, préférences persistées puis restaurées, aucun débordement ni erreur. Traduction portugaise authentifiée vérifiée ; 69 tests réussis.
 - [x] Cartes méthode, étapes, FAQ et CTA d’accueil : anglais, espagnol, arabe, russe et portugais vérifiés à 1440 et 390 px ; mini-QCM, FAQ et lien vers le test fonctionnels, aucun débordement. Portugais désormais aussi enregistré dans le compte.
 - [x] Sept illustrations pédagogiques propres aux sept leçons publiées, style pastel des thèmes du Dashboard ; affichage sur le compte existant vérifié à 1440 et 390 px, sans débordement ni erreur.
+- [x] Agrandissement des illustrations au clic dans le détail de leçon : aperçu plein écran avec description traduite, fermeture Échap/croix, pastille « Agrandir l'image » traduite, style aligné sur les cartes de thèmes ; vérifié à 1440 et 390 px, tests i18n réussis.
 - [x] Interfaces internes en anglais, chinois, arabe, espagnol, russe et portugais avec repli français ; traductions pédagogiques séparées des originaux français.
 - [x] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant : cinq langues persistées puis préférence initiale restaurée, questions/corrections/résultats réels, bureau et mobile sans débordement ni erreur d’exécution
