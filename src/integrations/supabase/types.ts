@@ -865,6 +865,10 @@ export type Database = {
         Args: { p_answers: Json; p_ids: string[]; p_key: string }
         Returns: string
       }
+      manage_learning_lesson: {
+        Args: { p_action: string; p_id: string; p_payload?: Json }
+        Returns: Json
+      }
       record_learning_attempt: { Args: { p_answers: Json }; Returns: string }
       review_learning_mistake: {
         Args: { p_answer: number; p_question: string }

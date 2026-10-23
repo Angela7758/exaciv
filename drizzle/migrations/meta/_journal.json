@@ -176,6 +176,13 @@
       "when": 1792754822590,
       "tag": "0024_shared_learning_agenda",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1792755207003,
+      "tag": "0025_reviewed_lesson_maintenance",
+      "breakpoints": true
     }
   ]
 }
