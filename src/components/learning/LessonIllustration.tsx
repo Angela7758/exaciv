@@ -1,3 +1,4 @@
+import {recordActivity} from '@/lib/activity';
 import {useState} from 'react';
 import {LESSON_ILLUSTRATIONS} from '@/config/lesson-illustrations';
 import {LESSON_IMAGE_MESSAGES} from '@/config/lesson-illustration-translations';
@@ -28,7 +29,7 @@ export function LessonIllustration({lessonId}:{lessonId:string}) {
     </Dialog>
     {LESSON_VIDEOS[lessonId]&&<div className="lesson-video">
       <p className="lesson-video-label">{ui("Vidéo de la leçon")}</p>
-      <video src={LESSON_VIDEOS[lessonId]} poster={illustration.src} controls muted playsInline loop preload="none" aria-label={description.text} width={1376} height={768}/>
+      <video onPlay={()=>void recordActivity('video',lessonId,locale)} src={LESSON_VIDEOS[lessonId]} poster={illustration.src} controls muted playsInline loop preload="none" aria-label={description.text} width={1376} height={768}/>
     </div>}
   </figure>;
 }

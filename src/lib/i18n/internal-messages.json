@@ -537,7 +537,15 @@
     "Réenregistrer": "Record again",
     "Écouter ma voix": "Play my voice",
     "L’enregistrement n’est pas disponible dans ce navigateur.": "Recording is not available in this browser.",
-    "Autorisez le micro pour enregistrer votre voix.": "Allow microphone access to record your voice."
+    "Autorisez le micro pour enregistrer votre voix.": "Allow microphone access to record your voice.",
+    "Progression par langue": "Progress by language",
+    "Langue": "Language",
+    "Leçons terminées": "Lessons completed",
+    "Vidéos vues": "Videos watched",
+    "Taux de réussite": "Success rate",
+    "Chargement…": "Loading…",
+    "Impossible de charger la progression par langue.": "Unable to load progress by language.",
+    "Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.": "Counted from today, based on the interface language during the activity. Earlier activity has no recorded language."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1077,7 +1085,15 @@
     "Réenregistrer": "重新录制",
     "Écouter ma voix": "听我的录音",
     "L’enregistrement n’est pas disponible dans ce navigateur.": "此浏览器不支持录制。",
-    "Autorisez le micro pour enregistrer votre voix.": "请允许使用麦克风以录制您的声音。"
+    "Autorisez le micro pour enregistrer votre voix.": "请允许使用麦克风以录制您的声音。",
+    "Progression par langue": "按语言的学习进度",
+    "Langue": "语言",
+    "Leçons terminées": "已完成课程",
+    "Vidéos vues": "已观看视频",
+    "Taux de réussite": "正确率",
+    "Chargement…": "加载中…",
+    "Impossible de charger la progression par langue.": "无法加载按语言的进度。",
+    "Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.": "从今天起按学习时的界面语言统计；之前的学习记录没有语言信息。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1617,7 +1633,15 @@
     "Réenregistrer": "إعادة التسجيل",
     "Écouter ma voix": "استمع إلى صوتي",
     "L’enregistrement n’est pas disponible dans ce navigateur.": "التسجيل غير متاح في هذا المتصفح.",
-    "Autorisez le micro pour enregistrer votre voix.": "اسمح باستخدام الميكروفون لتسجيل صوتك."
+    "Autorisez le micro pour enregistrer votre voix.": "اسمح باستخدام الميكروفون لتسجيل صوتك.",
+    "Progression par langue": "التقدم حسب اللغة",
+    "Langue": "اللغة",
+    "Leçons terminées": "الدروس المكتملة",
+    "Vidéos vues": "الفيديوهات المشاهدة",
+    "Taux de réussite": "نسبة النجاح",
+    "Chargement…": "جارٍ التحميل…",
+    "Impossible de charger la progression par langue.": "تعذّر تحميل التقدم حسب اللغة.",
+    "Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.": "تُحتسب ابتداءً من اليوم حسب لغة الواجهة أثناء النشاط. الأنشطة السابقة لا تحمل لغة مسجلة."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -2157,7 +2181,15 @@
     "Réenregistrer": "Volver a grabar",
     "Écouter ma voix": "Escuchar mi voz",
     "L’enregistrement n’est pas disponible dans ce navigateur.": "La grabación no está disponible en este navegador.",
-    "Autorisez le micro pour enregistrer votre voix.": "Permite el micrófono para grabar tu voz."
+    "Autorisez le micro pour enregistrer votre voix.": "Permite el micrófono para grabar tu voz.",
+    "Progression par langue": "Progreso por idioma",
+    "Langue": "Idioma",
+    "Leçons terminées": "Lecciones terminadas",
+    "Vidéos vues": "Vídeos vistos",
+    "Taux de réussite": "Tasa de acierto",
+    "Chargement…": "Cargando…",
+    "Impossible de charger la progression par langue.": "No se pudo cargar el progreso por idioma.",
+    "Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.": "Contabilizado desde hoy, según el idioma de la interfaz durante la actividad. Las actividades anteriores no tienen idioma registrado."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -2697,7 +2729,15 @@
     "Réenregistrer": "Записать снова",
     "Écouter ma voix": "Прослушать мой голос",
     "L’enregistrement n’est pas disponible dans ce navigateur.": "Запись недоступна в этом браузере.",
-    "Autorisez le micro pour enregistrer votre voix.": "Разрешите доступ к микрофону для записи."
+    "Autorisez le micro pour enregistrer votre voix.": "Разрешите доступ к микрофону для записи.",
+    "Progression par langue": "Прогресс по языкам",
+    "Langue": "Язык",
+    "Leçons terminées": "Завершённые уроки",
+    "Vidéos vues": "Просмотренные видео",
+    "Taux de réussite": "Процент правильных",
+    "Chargement…": "Загрузка…",
+    "Impossible de charger la progression par langue.": "Не удалось загрузить прогресс по языкам.",
+    "Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.": "Учитывается с сегодняшнего дня по языку интерфейса во время занятия. Для прежних занятий язык не записан."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -3237,6 +3277,14 @@
     "Réenregistrer": "Gravar novamente",
     "Écouter ma voix": "Ouvir a minha voz",
     "L’enregistrement n’est pas disponible dans ce navigateur.": "A gravação não está disponível neste navegador.",
-    "Autorisez le micro pour enregistrer votre voix.": "Permita o microfone para gravar a sua voz."
+    "Autorisez le micro pour enregistrer votre voix.": "Permita o microfone para gravar a sua voz.",
+    "Progression par langue": "Progresso por idioma",
+    "Langue": "Idioma",
+    "Leçons terminées": "Lições concluídas",
+    "Vidéos vues": "Vídeos vistos",
+    "Taux de réussite": "Taxa de acerto",
+    "Chargement…": "A carregar…",
+    "Impossible de charger la progression par langue.": "Não foi possível carregar o progresso por idioma.",
+    "Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.": "Contabilizado a partir de hoje, segundo o idioma da interface durante a atividade. As atividades anteriores não têm idioma registado."
   }
 }
