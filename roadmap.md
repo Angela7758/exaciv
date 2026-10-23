@@ -1,12 +1,12 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
 ## Administration
-- [ ] Permissions serveur et Cloud, rôles protégés et journal des opérations.
-- [ ] Import CSV/JSON : modèle, mapping, validation, différences, drafts et rapport.
-- [ ] Questions versionnées : édition, examen humain, publication vers le catalogue existant.
-- [ ] Tests configurables et tentatives indépendantes avec règles et questions figées.
-- [ ] Gestion des cours, traductions, médias, comptes et signalements avec données réelles.
-- [ ] Vérifications permissions, import et parcours publication → tentative → résultats.
+- [x] Permissions serveur et Cloud, rôles protégés et journal des opérations.
+- [x] Import CSV/JSON : modèle, mapping, validation, différences, drafts et rapport.
+- [x] Questions versionnées : édition, examen humain, publication vers le catalogue existant.
+- [x] Tests configurables et tentatives indépendantes avec règles et questions figées.
+- [x] Gestion des cours, traductions, médias, comptes et signalements avec données réelles (édition JSON structurée pour cours, traductions et médias).
+- [x] Vérifications permissions, import et parcours publication → tentative → résultats.
 
 ## Corrections du 23 octobre
 - [x] Questions françaises et traduction séparée dans six langues ; écoute et préférences vérifiées.
@@ -34,3 +34,6 @@
 - [x] Agrandissement des illustrations au clic dans le détail de leçon : aperçu plein écran avec description traduite, fermeture Échap/croix, pastille « Agrandir l'image » traduite, style aligné sur les cartes de thèmes ; vérifié à 1440 et 390 px, tests i18n réussis.
 - [x] Interfaces internes en anglais, chinois, arabe, espagnol, russe et portugais avec repli français ; traductions pédagogiques séparées des originaux français.
 - [x] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant : cinq langues persistées puis préférence initiale restaurée, questions/corrections/résultats réels, bureau et mobile sans débordement ni erreur d’exécution
+
+## Services externes
+- [ ] Gestion des paiements : attend la connexion d’un fournisseur de paiement réel.

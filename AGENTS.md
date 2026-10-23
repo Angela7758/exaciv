@@ -42,3 +42,5 @@
 - Signed-in shell dimensions (sidebar, topbar, content width, title levels) come from the shared --app-* tokens at the end of src/styles.css; page variants must not resize the shell, so every section feels like one product.
 
 - Use SafeImage for inspected app artwork so failed media retains an accessible layout slot; preserve clean original CIVI poses and never repair transparency with blending.
+
+- Administration writes use authenticated permission-checked RPCs with audit records; drafts/versioned option IDs publish into the existing catalogue and configured tests freeze independent session snapshots.

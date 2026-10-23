@@ -1,0 +1,3 @@
+CREATE FUNCTION public.validate_question_taxonomy() RETURNS trigger LANGUAGE plpgsql SET search_path=public AS $$ BEGIN IF coalesce(NEW.payload->>'theme','')='Histoire et symboles' THEN NEW.payload:=NEW.payload||jsonb_build_object('theme','Histoire, géographie et culture'); END IF; RETURN NEW;END $$;
+CREATE TRIGGER validate_question_taxonomy BEFORE INSERT OR UPDATE ON public.question_drafts FOR EACH ROW EXECUTE FUNCTION public.validate_question_taxonomy();
+DO $$ DECLARE d text; BEGIN SELECT pg_get_functiondef('public.admin_validate_question(jsonb)'::regprocedure) INTO d;d:=replace(d,'''Institutions françaises'',''Valeurs de la République''','''Institutions françaises'',''Histoire et symboles'',''Valeurs de la République'''); EXECUTE d; END $$;

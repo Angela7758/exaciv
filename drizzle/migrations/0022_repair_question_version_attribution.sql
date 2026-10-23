@@ -1,0 +1,1 @@
+DO $$ DECLARE d text; BEGIN SELECT pg_get_functiondef('public.admin_command(text,jsonb)'::regprocedure) INTO d;d:=replace(d,'VALUES(q.id,q.revision,q.payload,q.status);','VALUES(q.id,q.revision,q.payload,q.status,auth.uid());');EXECUTE d;END $$;

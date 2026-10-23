@@ -123,7 +123,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const standalone = pathname.startsWith('/app') || pathname.startsWith('/test-gratuit') || pathname.startsWith('/inscription') || ['/bienvenue','/abonnement/confirmer','/connexion','/inscription','/auth','/mot-de-passe-oublie','/reset-password','/nouveau-mot-de-passe'].includes(pathname);
+  const standalone = pathname.startsWith('/admin') || pathname.startsWith('/app') || pathname.startsWith('/test-gratuit') || pathname.startsWith('/inscription') || ['/bienvenue','/abonnement/confirmer','/connexion','/inscription','/auth','/mot-de-passe-oublie','/reset-password','/nouveau-mot-de-passe'].includes(pathname);
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event) => {
       if(event==='PASSWORD_RECOVERY'){markPasswordRecovery();return;}
