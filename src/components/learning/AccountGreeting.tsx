@@ -1,0 +1,2 @@
+export function greetingName(name:string){const first=name.trim().split(/\s+/)[0];return first?`Bonjour ${first} !`:'Bonjour !';}
+export function AccountGreeting({name}:{name:string}){return <div className="account-greeting"><h1>{greetingName(name)}</h1><p>Un petit pas chaque jour pour avancer avec confiance.</p></div>;}
