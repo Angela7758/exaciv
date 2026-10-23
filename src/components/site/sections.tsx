@@ -79,8 +79,8 @@ type FaqEntry={q:string;a:string;link?:(typeof FAQ)[number]['link']};
 function FaqItem({ f, i }: { f: FaqEntry; i: number }) {
   return (
     <AccordionItem value={`f${i}`} style={{ transitionDelay: `${i * 70}ms` }} className="reveal-child rounded-xl border bg-card px-5 shadow-soft">
-      <AccordionTrigger className="text-left text-sm font-semibold [&>svg]:text-primary-interactive">{f.q}</AccordionTrigger>
-      <AccordionContent className="rounded-lg bg-muted p-3 text-muted-foreground">
+      <AccordionTrigger data-slot="accordion-trigger" className="text-start text-sm font-semibold [&>svg]:text-primary-interactive">{f.q}</AccordionTrigger>
+      <AccordionContent data-slot="accordion-content" className="rounded-lg bg-muted p-3 text-muted-foreground">
         <p>{f.a}</p>
         {f.link &&
           (f.link.external ? (
@@ -117,18 +117,18 @@ export function FaqList({ limit, twoCol, indices, initiallyClosed=false, items:c
 export function FinalCta() {
   const t = useT();
   return (
-    <section className="relative overflow-hidden">
+    <section data-home-block="cta" className="home-final-cta relative overflow-hidden">
       <img src={ctaBg} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-cta-band opacity-80" />
-      <div className="container-page relative flex flex-col items-center gap-6 py-12 text-center text-primary-foreground md:flex-row md:items-center md:gap-10 md:text-left">
-        <div className="order-1">
+      <div className="home-final-layout container-page relative flex flex-col items-center gap-6 py-12 text-center text-primary-foreground md:flex-row md:items-center md:gap-10 md:text-start">
+        <div className="home-final-copy order-1 min-w-0">
           <h2 className="text-4xl font-bold md:text-5xl">{t('home.cta.title')}</h2>
           <p className="mt-2 text-lg opacity-95">{t('home.cta.text')}</p>
         </div>
-        <Button asChild variant="cta" size="xl" className="order-2 shrink-0">
+        <Button data-slot="button" asChild variant="cta" size="xl" className="order-2 shrink-0">
           <Link to="/test-gratuit"><Play className="fill-current" /> {t('home.cta.button')}</Link>
         </Button>
-        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 md:order-none md:ml-auto md:w-40" />
+        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 shrink-0 md:w-40" />
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import {I18nContext, type I18nValue} from './context';
 import { fr, type MessageKey } from './fr';
 export type { MessageKey } from './fr';
 import { en } from './en';
@@ -6,12 +7,13 @@ import { zh } from './zh';
 import { ar } from './ar';
 import { es } from './es';
 import { ru } from './ru';
+import { pt } from './pt';
 
-export type Locale = 'fr' | 'en' | 'zh' | 'ar' | 'es' | 'ru';
-export const LOCALE_IDS: readonly Locale[] = ['fr', 'en', 'zh', 'ar', 'es', 'ru'];
-export const LOCALE_LABELS: Record<Locale, string> = { fr: 'Français', en: 'English', zh: '中文', ar: 'العربية', es: 'Español', ru: 'Русский' };
+export type Locale = 'fr' | 'en' | 'zh' | 'ar' | 'es' | 'ru' | 'pt';
+export const LOCALE_IDS: readonly Locale[] = ['fr', 'en', 'zh', 'ar', 'es', 'ru', 'pt'];
+export const LOCALE_LABELS: Record<Locale, string> = { fr: 'Français', en: 'English', zh: '中文', ar: 'العربية', es: 'Español', ru: 'Русский', pt: 'Português' };
 
-const dictionaries: Record<Locale, Partial<Record<MessageKey, string>>> = { fr, en, zh, ar, es, ru };
+const dictionaries: Record<Locale, Partial<Record<MessageKey, string>>> = { fr, en, zh, ar, es, ru, pt };
 const STORAGE_KEY = 'exaciv-locale';
 
 export function isLocale(value: unknown): value is Locale {
@@ -21,15 +23,6 @@ export function isLocale(value: unknown): value is Locale {
 export function translate(locale: Locale, key: MessageKey): string {
   return dictionaries[locale][key] ?? fr[key];
 }
-
-type I18nValue = {
-  locale: Locale;
-  dir: 'ltr' | 'rtl';
-  t: (key: MessageKey) => string;
-  setLocale: (locale: Locale) => void;
-};
-
-const I18nContext = createContext<I18nValue | null>(null);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('fr');
