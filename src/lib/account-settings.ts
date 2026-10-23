@@ -1,5 +1,5 @@
 import {z} from 'zod';
-export const accountSettingsSchema=z.object({display_name:z.string().trim().min(1).max(80),parcours:z.enum(['naturalisation','resident','sejour']),locale:z.enum(['fr','zh','en','ar','es','ru','pt','pt']),goal_date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),daily_minutes:z.number().int().min(5).max(60),revision_reminder:z.boolean(),weekly_summary:z.boolean(),translation_help:z.boolean(),help_locale:z.enum(['zh','en','ar','es','ru','pt'])});
+export const accountSettingsSchema=z.object({display_name:z.string().trim().min(1).max(80),parcours:z.enum(['naturalisation','resident','sejour']),locale:z.enum(['fr','zh','en','ar','es','ru','pt']),goal_date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),daily_minutes:z.number().int().min(5).max(60),revision_reminder:z.boolean(),weekly_summary:z.boolean(),translation_help:z.boolean(),help_locale:z.enum(['zh','en','ar','es','ru','pt'])});
 export const demoAccount={display_name:'Sofia Martin',email:'sofia@example.com',parcours:'naturalisation',locale:'fr',goal_date:'2026-11-15',daily_minutes:10,revision_reminder:true,weekly_summary:true,translation_help:true,help_locale:'en'} as const;
 export const demoSummary={lessonsDone:3,lessonsTotal:7,correct:34,total:40,streak:7,xp:320};
 export const demoThemes=[{done:4,total:6},{done:3,total:5},{done:2,total:4}];
