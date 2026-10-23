@@ -169,6 +169,13 @@
       "when": 1792751892351,
       "tag": "0023_restrict_admin_rpc_and_direct_writes",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1792754822590,
+      "tag": "0024_shared_learning_agenda",
+      "breakpoints": true
     }
   ]
 }

@@ -193,6 +193,69 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_agenda: {
+        Row: {
+          completed: boolean
+          created_at: string
+          duration_minutes: number
+          id: string
+          kind: string
+          lesson_id: string | null
+          scheduled_date: string
+          scheduled_time: string | null
+          test_id: string | null
+          timezone: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          kind?: string
+          lesson_id?: string | null
+          scheduled_date: string
+          scheduled_time?: string | null
+          test_id?: string | null
+          timezone?: string
+          title: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          kind?: string
+          lesson_id?: string | null
+          scheduled_date?: string
+          scheduled_time?: string | null
+          test_id?: string | null
+          timezone?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_agenda_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "learning_lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_agenda_test_id_fkey"
+            columns: ["test_id"]
+            isOneToOne: false
+            referencedRelation: "learning_tests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_attempts: {
         Row: {
           answers: Json
@@ -611,6 +674,7 @@ export type Database = {
           locale: string
           parcours: string
           revision_reminder: boolean
+          timezone: string
           translation_help: boolean
           weekly_summary: boolean
         }
@@ -625,6 +689,7 @@ export type Database = {
           locale?: string
           parcours?: string
           revision_reminder?: boolean
+          timezone?: string
           translation_help?: boolean
           weekly_summary?: boolean
         }
@@ -639,6 +704,7 @@ export type Database = {
           locale?: string
           parcours?: string
           revision_reminder?: boolean
+          timezone?: string
           translation_help?: boolean
           weekly_summary?: boolean
         }
