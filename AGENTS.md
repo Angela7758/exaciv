@@ -36,3 +36,4 @@
 - Internal interface translations use an explicit source-message dictionary and the existing locale provider; Cloud lesson/question content is never passed through interface translation, preserving authoritative snapshots and French pedagogy.
 
 - Public homepage locale dictionaries may include browser-only locales; do not send unsupported locales to account preference functions, preserving account validation and French fallback on unlocalized screens.
+- Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.
