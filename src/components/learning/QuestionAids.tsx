@@ -9,8 +9,8 @@ import {saveHelpPreference} from '@/lib/account-settings.functions';
 import {QUESTION_HELP_LOCALES,questionHelpLocale,visibleQuestionTexts,localQuestionTranslation,type QuestionHelpLocale} from '@/lib/question-aids';
 import {AUDIO_STOP_EVENT,stopLearningAudio} from '@/lib/local-audio';
 
-export function QuestionAids({questionId,question,options,explanation,helpEnabled,helpLocale,assistedLabel=false}:{
- questionId:string;question:string;options:string[];explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;
+export function QuestionAids({questionId,question,options,optionIds,explanation,helpEnabled,helpLocale,assistedLabel=false}:{
+ questionId:string;question:string;options:string[];optionIds?:string[]|undefined;explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;
 }) {
  const ui=useUiT();
  const [target,setTarget]=useState<QuestionHelpLocale>(()=>questionHelpLocale(helpLocale));
@@ -57,7 +57,7 @@ export function QuestionAids({questionId,question,options,explanation,helpEnable
   {open&&helpEnabled&&<div className="question-translation" dir={target==='ar'?'rtl':'ltr'} lang={target}>
    <select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(questionHelpLocale(e.target.value))}>{QUESTION_HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}</select>
    {busy&&<p role="status">{ui("Traduction en cours…")}</p>}
-   {current&&<><p className="translation-stem">{current[0]}</p><ol>{current.slice(1,1+options.length).map((text,i)=><li key={i}>{text}</li>)}</ol>{explanation&&<p className="translation-explanation">{current[1+options.length]}</p>}<Button type="button" variant="ghost" size="sm" onClick={()=>play('translation',target,current)} aria-pressed={speaking==='translation'}>{speaking==='translation'?<Square/>:<Volume2/>}{speaking==='translation'?ui("Arrêter"):ui("Écouter la traduction")}</Button></>}
+   {current&&<><p className="translation-stem">{current[0]}</p><ol>{current.slice(1,1+options.length).map((text,i)=><li key={optionIds?.[i]??i} data-option-id={optionIds?.[i]??String(i)}>{text}</li>)}</ol>{explanation&&<p className="translation-explanation">{current[1+options.length]}</p>}<Button type="button" variant="ghost" size="sm" onClick={()=>play('translation',target,current)} aria-pressed={speaking==='translation'}>{speaking==='translation'?<Square/>:<Volume2/>}{speaking==='translation'?ui("Arrêter"):ui("Écouter la traduction")}</Button></>}
   </div>}
   {error&&<p role="alert" className="question-aids-note">{error}</p>}
  </div>;
