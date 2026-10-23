@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useI18n, LOCALE_IDS, LOCALE_LABELS, type Locale } from '@/lib/i18n';
 import { supabase } from '@/integrations/supabase/client';
 import { saveLocale } from '@/lib/learning.functions';
+import {PUBLIC_LOCALES} from '@/config/interface-languages';
 
 export function LanguageMenu({ mobile = false }: { mobile?: boolean }) {
   const { locale, setLocale, t } = useI18n();
@@ -48,7 +49,7 @@ export function LanguageMenu({ mobile = false }: { mobile?: boolean }) {
       </Button>
       {open && (
         <ul className="language-list" role="listbox" aria-label={t('nav.language')}>
-          {LOCALE_IDS.map((id) => (
+          {PUBLIC_LOCALES.map((id) => (
             <li key={id}>
               <button
                 type="button"
