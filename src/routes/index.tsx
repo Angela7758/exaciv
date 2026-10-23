@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BarChart3, BookOpen, CheckCircle2, ChevronRight, Clock, ExternalLink, FileText, Landmark, Laptop, Play, Target, Users, IdCard, X, XCircle, Award, RotateCcw } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, CheckCircle2, ChevronRight, Clock, ExternalLink, FileText, Landmark, Laptop, Lightbulb, Play, Target, Users, IdCard, X, XCircle, Award, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaqList, FinalCta, PricingCards, SectionHeading } from "@/components/site/sections";
 import { OFFICIAL_SOURCE } from "@/config/content";
@@ -35,7 +35,7 @@ function Index() {
       <HomeHero />
 
       {/* Stats bar */}
-      <section className="container-page home-exam-strip relative z-10 -mt-14">
+      <section className="container-page home-exam-strip relative z-10 mt-6">
         <div className="grid items-center gap-4 rounded-2xl border bg-card p-5 shadow-card md:grid-cols-[1fr_1fr_1.2fr_auto]">
           <Stat icon={FileText} cls="bg-secondary-soft text-secondary" title={t('home.stats.q')} sub={t('home.stats.qsub')} />
           <Stat icon={Clock} cls="bg-accent text-primary-interactive" title={t('home.stats.d')} sub={t('home.stats.dsub')} />
@@ -69,23 +69,24 @@ function Index() {
           <SectionHeading title={t('home.methode.title')} subtitle={t('home.methode.subtitle')} />
           <p className="home-method-examples">{t('home.methode.examples')}</p>
           <div className="home-method-grid">
-            <MethodCard index={0} tone="orange" icon={BookOpen} title={t('home.methode.comprendre')} text={t('home.methode.comprendreText')} action={<Button asChild variant="interactive"><Link to="/methode">{t('home.methode.discoverLesson')}<ArrowRight className="rtl-flip" /></Link></Button>}>
-              <Link to="/methode" className="home-method-lesson" aria-label={t('home.methode.discoverLesson')}><img src={lessonImg} alt="" loading="lazy" /><div><p className="font-semibold">{t('home.methode.lessonTitle')}</p><p lang="fr" className="text-sm text-muted-foreground">La laïcité garantit la liberté de conscience et la neutralité de l’État envers les religions.</p></div></Link>
+            <MethodCard index={0} num="01" tone="orange" icon={Lightbulb} title={t('home.methode.comprendre')} text={t('home.methode.comprendreText')} action={<Button asChild variant="interactive"><Link to="/methode">{t('home.methode.discoverLesson')}<ArrowRight className="rtl-flip" /></Link></Button>}>
+              <Link to="/methode" className="home-method-lesson" aria-label={t('home.methode.discoverLesson')}><img src={lessonImg} alt="" loading="lazy" /><div><p className="font-semibold">{t('home.methode.lessonTitle')}</p><p lang="fr" className="text-sm text-muted-foreground">La laïcité garantit la liberté de conscience et la neutralité de l’État envers les religions.</p><div className="home-method-progress" aria-hidden><span /></div></div></Link>
             </MethodCard>
-            <MethodCard index={1} tone="blue" icon={Target} title={t('home.methode.entrainer')} text={t('home.methode.entrainerText')}>
+            <MethodCard index={1} num="02" tone="blue" icon={Target} title={t('home.methode.entrainer')} text={t('home.methode.entrainerText')}>
               <PracticePreview />
             </MethodCard>
-            <MethodCard index={2} tone="green" icon={CheckCircle2} title={t('home.methode.corriger')} text={t('home.methode.corrigerText')}>
+            <MethodCard index={2} num="03" tone="green" icon={FileText} title={t('home.methode.corriger')} text={t('home.methode.corrigerText')}>
               <CorrectionPreview />
             </MethodCard>
-            <MethodCard index={3} tone="blue" icon={Clock} title={t('home.methode.simuler')} text={t('home.methode.simulerText')} action={<Button asChild variant="outline"><Link to="/examen" search={{ demarche: 'naturalisation' }}>{t('home.methode.discoverExam')}<ArrowRight className="rtl-flip" /></Link></Button>}>
+            <MethodCard index={3} num="04" tone="blue" icon={BarChart3} title={t('home.methode.simuler')} text={t('home.methode.simulerText')} action={<Button asChild variant="outline"><Link to="/examen" search={{ demarche: 'naturalisation' }}>{t('home.methode.discoverExam')}<ArrowRight className="rtl-flip" /></Link></Button>}>
               <div className="home-method-exam">
-                <div className="flex items-center justify-between text-sm font-semibold"><span>{t('home.methode.exam')}</span><span className="inline-flex items-center gap-1 text-primary-interactive"><Clock className="size-4" />32:15</span></div>
-                <div className="home-method-progress" aria-hidden><span /></div>
-                <p className="text-xs text-muted-foreground">{t('home.methode.examProgress')}</p>
-                <p lang="fr" className="mt-2 text-sm font-semibold">Qui vote les lois en France ?</p>
-                <div className="mt-2 grid grid-cols-2 gap-2 text-xs" lang="fr">{['Le Parlement', 'Le Président', 'Le Conseil d’État', 'Le maire'].map((o) => <span key={o} className="rounded-lg border bg-card px-2 py-1.5">{o}</span>)}</div>
-                <p className="mt-2 flex items-center gap-2 text-xs"><FileText className="size-4 text-primary-interactive" /> {t('home.methode.conditions')}</p>
+                <p className="text-sm font-semibold">{t('home.methode.exam')}</p>
+                <div className="home-score-ring" role="img" aria-label={`${t('home.methode.ringLabel')} : 28/40, 70%`}>
+                  <svg viewBox="0 0 120 120" aria-hidden="true"><circle className="ring-track" cx="60" cy="60" r="48" /><circle className="ring-value" cx="60" cy="60" r="48" pathLength="100" strokeDasharray="70 100" /></svg>
+                  <div><b>28 / 40</b><span>70%</span></div>
+                </div>
+                <p className="mt-2 flex items-center gap-2 text-xs"><Clock className="size-4 text-secondary" /> {t('home.methode.examDuration')}</p>
+                <p className="mt-1.5 flex items-center gap-2 text-xs"><FileText className="size-4 text-primary-interactive" /> {t('home.methode.conditions')}</p>
               </div>
             </MethodCard>
           </div>
@@ -253,10 +254,10 @@ function Stat({ icon: Icon, cls, title, sub }: { icon: typeof Landmark; cls: str
   );
 }
 
-function MethodCard({ title, tone, text, children, action, index = 0, icon: Icon }: { title: string; tone: 'orange' | 'blue' | 'green'; text: string; children: React.ReactNode; action?: React.ReactNode; index?: number; icon: typeof BookOpen }) {
+function MethodCard({ title, tone, text, children, action, index = 0, num, icon: Icon }: { title: string; tone: 'orange' | 'blue' | 'green'; text: string; children: React.ReactNode; action?: React.ReactNode; index?: number; num: string; icon: typeof BookOpen }) {
   return (
     <article style={{ transitionDelay: `${index * 70}ms` }} className={`home-method-card method-tone-${tone} reveal-child card-hover`}>
-      <span className="home-method-icon" aria-hidden><Icon /></span>
+      <div className="home-method-head"><span className="home-method-num" aria-hidden>{num}</span><span className="home-method-icon" aria-hidden><Icon /></span></div>
       <h3>{title}</h3>
       <p className="home-method-text">{text}</p>
       <div className="home-method-preview">{children}</div>
@@ -271,6 +272,7 @@ function CorrectionPreview() {
   return (
     <div>
       <p className="text-sm font-semibold">{t('home.methode.quizQuestion')}</p>
+      <p className="mt-2 flex items-center gap-2 rounded-lg bg-critical-soft px-3 py-2 text-sm font-semibold text-critical"><XCircle className="size-4 shrink-0 fill-critical text-card" />{t('home.methode.incorrectBadge')}</p>
       <p className="mt-2 flex items-start gap-2 rounded-lg bg-success-soft px-3 py-2 text-sm"><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-success" /><span>{t('home.methode.correctIs')} <b lang="fr" dir="ltr">Liberté, Égalité, Fraternité</b></span></p>
       {open && <p className="mt-2 text-sm text-muted-foreground" role="status">{t('home.methode.explanation')}</p>}
       <div className="home-method-action"><Button variant="outline" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? t('home.methode.hideCorrection') : t('home.methode.showCorrection')}<ArrowRight className="rtl-flip" /></Button></div>

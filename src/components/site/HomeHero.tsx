@@ -9,9 +9,8 @@ import paris from '@/assets/hero-paris.jpg';
 import {useDecorativeMotion} from '@/hooks/use-decorative-motion';
 
 function HeroCivi(){const t=useT();const {ref,paused}=useDecorativeMotion();const [open,setOpen]=useState(false);return <div ref={ref} className={`home-civi ${paused?'motion-paused':''}`}><Button variant="ghost" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><span className="civi-stack"><img src={civiBody} alt={t('home.hero.civiAlt')}/><img className="civi-star" src={civiStar} alt="" aria-hidden/></span></Button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><Button variant="ghost" size="icon" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></Button></div>}</div>;}
-import civiBody from '@/assets/civi-hero-body.png';
+import civiBody from '@/assets/civi-hero-books.png';
 import civiStar from '@/assets/civi-hero-star.png';
-import stone from '@/assets/home-reference-stone.png.asset.json';
 
 export function HomeHero(){
  const t=useT();const {ref,paused}=useDecorativeMotion();const [answer,setAnswer]=useState(true);const [validated,setValidated]=useState(false);
@@ -33,7 +32,7 @@ export function HomeHero(){
      <div className="home-explanation" aria-live="polite"><FileText/><p>{validated?(answer?t('home.hero.correct'):t('home.hero.review')):''}{t('home.hero.explanation')}</p></div>
     </div>
    </div>
-   <div className="home-path-chip chip-institutions"><Landmark/><span>{t('home.hero.chip1')}</span><CheckCircle2/></div><div className="home-path-chip chip-rights"><Users/><span>{t('home.hero.chip2')}</span><span className="home-radio"/></div><div className="home-path-chip chip-democracy"><Star/><span>{t('home.hero.chip3')}</span></div><SafeImage className="home-stone-platform" src={stone.url} alt=""/><HeroCivi/>
+   <svg className="home-path-line" viewBox="0 0 120 280" aria-hidden="true"><path d="M62 8 C 104 62, 18 116, 56 162 S 96 242, 48 272"/></svg><div className="home-path-chip chip-institutions"><Landmark/><span>{t('home.hero.chip1')}</span><CheckCircle2/></div><div className="home-path-chip chip-rights"><Users/><span>{t('home.hero.chip2')}</span><span className="home-radio"/></div><div className="home-path-chip chip-democracy"><Star/><span>{t('home.hero.chip3')}</span></div><HeroCivi/>
   </div></div>
  </section>;
 }

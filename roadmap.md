@@ -59,3 +59,10 @@
 - [x] Titres des cartes parcours d’accueil : 22 px → 24,2 px (+10 %), 20 px → 22 px sur mobile.
 - [x] Nouveaux textes d’accueil branchés sur les six langues (En savoir plus, Exemples d’interface, boutons des cartes, correction, alt appareils).
 - [x] Vérification visuelle six largeurs (360–1440) et cinq pages publiques : aucun débordement, menu mobile verrouillé, espagnol et arabe RTL contrôlés, 104 tests réussis.
+
+## Reprise images du 23 octobre à 14:45 UTC — terminée
+- [x] Hero d'accueil aligné sur la référence : CIVI debout sur une pile de livres (image dérivée du CIVI officiel), pastilles de thèmes à gauche reliées par une pointillée, barre de chiffres sous le héros
+- [x] Méthode : quatre cartes blanches numérotées 01–04, icônes en cercles teintés, titres centrés, anneau de score 28/40 pour Simuler, badge « Réponse incorrecte » pour Corriger
+- [x] Page Parcours : descriptions des cinq étapes et sous-titre des thèmes alignés sur la référence, illustration de chapitre en fond, anneaux de progression sur les cartes de thèmes
+- [x] Bas d'accueil : CTA avec CIVI agrandi à droite, bouton orange centré ; FAQ et pied de page conformes
+- [x] Vérifié : build OK, 104 tests, captures 1440/390 px sans débordement
