@@ -51,3 +51,11 @@
 
 ## Services externes
 - [ ] Gestion des paiements : attend la connexion d’un fournisseur de paiement réel.
+
+## Reprise images 1–10 — demande du 23 octobre à 13:44 UTC
+- [x] Étoile principale de CIVI séparée proprement (pixels transparents, recomposition identique) et animée ; les deux petites étoiles restent sur le corps.
+- [x] Faux bouton lecture supprimé de l’image de leçon ; toute la carte d’aperçu mène à la méthode.
+- [x] Icônes fonctionnelles au-dessus des titres des quatre cartes méthode, base gauche commune.
+- [x] Titres des cartes parcours d’accueil : 22 px → 24,2 px (+10 %), 20 px → 22 px sur mobile.
+- [x] Nouveaux textes d’accueil branchés sur les six langues (En savoir plus, Exemples d’interface, boutons des cartes, correction, alt appareils).
+- [x] Vérification visuelle six largeurs (360–1440) et cinq pages publiques : aucun débordement, menu mobile verrouillé, espagnol et arabe RTL contrôlés, 104 tests réussis.

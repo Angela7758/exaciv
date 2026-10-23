@@ -8,8 +8,9 @@ import {useT} from '@/lib/i18n';
 import paris from '@/assets/hero-paris.jpg';
 import {useDecorativeMotion} from '@/hooks/use-decorative-motion';
 
-function HeroCivi(){const t=useT();const {ref,paused}=useDecorativeMotion();const [open,setOpen]=useState(false);return <div ref={ref} className={`home-civi ${paused?'motion-paused':''}`}><Button variant="ghost" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><SafeImage src={civi} alt={t('home.hero.civiAlt')}/></Button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><Button variant="ghost" size="icon" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></Button></div>}</div>;}
-import civi from '@/assets/civi.png';
+function HeroCivi(){const t=useT();const {ref,paused}=useDecorativeMotion();const [open,setOpen]=useState(false);return <div ref={ref} className={`home-civi ${paused?'motion-paused':''}`}><Button variant="ghost" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><span className="civi-stack"><img src={civiBody} alt={t('home.hero.civiAlt')}/><img className="civi-star" src={civiStar} alt="" aria-hidden/></span></Button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><Button variant="ghost" size="icon" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></Button></div>}</div>;}
+import civiBody from '@/assets/civi-hero-body.png';
+import civiStar from '@/assets/civi-hero-star.png';
 import stone from '@/assets/home-reference-stone.png.asset.json';
 
 export function HomeHero(){
@@ -28,7 +29,7 @@ export function HomeHero(){
     <p className="home-example-label">{t('home.methode.example')}</p>
     <div className="home-lesson-question"><p>{t('home.hero.question')}</p><div className="home-example-answers"><Button variant="outline" className={answer?'chosen':''} aria-pressed={answer} onClick={()=>{setAnswer(true);setValidated(false);}}><CheckCircle2/>{t('home.hero.vrai')}</Button><Button variant="outline" className={!answer?'chosen':''} aria-pressed={!answer} onClick={()=>{setAnswer(false);setValidated(false);}}><span className="home-radio"/>{t('home.hero.faux')}</Button></div>
      <Button variant="interactive" onClick={()=>setValidated(true)} disabled={validated}>{t('home.hero.validate')}</Button>
-     {validated&&<Button variant="ghost" size="icon" className="home-example-reset" aria-label="Recommencer l’exemple" onClick={()=>{setValidated(false);setAnswer(true);}}><RotateCcw/></Button>}
+     {validated&&<Button variant="ghost" size="icon" className="home-example-reset" aria-label={t('home.hero.resetExample')} onClick={()=>{setValidated(false);setAnswer(true);}}><RotateCcw/></Button>}
      <div className="home-explanation" aria-live="polite"><FileText/><p>{validated?(answer?t('home.hero.correct'):t('home.hero.review')):''}{t('home.hero.explanation')}</p></div>
     </div>
    </div>

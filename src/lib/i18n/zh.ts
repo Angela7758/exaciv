@@ -198,4 +198,18 @@ export const zh: Partial<Record<MessageKey, string>> = {
   'account.save': '保存修改',
   'account.saved': '您的修改已保存。',
   'account.logout': '退出登录',
+
+  'home.parcours.more': '了解更多',
+  'home.methode.examples': '界面示例',
+  'home.methode.discoverLesson': '查看课程',
+  'home.methode.discoverExam': '了解模拟考试',
+  'home.methode.examProgress': '第 12 / 40 题 — 示例',
+  'home.methode.showCorrection': '查看解析',
+  'home.methode.hideCorrection': '隐藏解析',
+  'home.hero.resetExample': '重新开始示例',
+  'home.value.lessons.title': '易懂的讲解',
+  'home.value.lessons.text': '清晰的法语课程，并提供多语言支持，帮助您更轻松地学习。',
+  'home.value.progress.title': '您的进度集中在一处',
+  'home.value.progress.text': '在所有设备上查看您的课程、成绩和收藏。随时随地，按自己的节奏前进。',
+  'home.value.devicesAlt': 'ExaCiv 支持电脑、平板和手机',
 };

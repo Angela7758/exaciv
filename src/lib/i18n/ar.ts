@@ -198,4 +198,18 @@ export const ar: Partial<Record<MessageKey, string>> = {
   'account.save': 'حفظ التعديلات',
   'account.saved': 'تم حفظ تعديلاتك.',
   'account.logout': 'تسجيل الخروج',
+
+  'home.parcours.more': 'اعرف المزيد',
+  'home.methode.examples': 'أمثلة من الواجهة',
+  'home.methode.discoverLesson': 'اكتشف درسًا',
+  'home.methode.discoverExam': 'اكتشف الامتحان التجريبي',
+  'home.methode.examProgress': 'السؤال 12 / 40 — مثال',
+  'home.methode.showCorrection': 'عرض التصحيح',
+  'home.methode.hideCorrection': 'إخفاء التصحيح',
+  'home.hero.resetExample': 'إعادة المثال',
+  'home.value.lessons.title': 'شروحات سهلة الفهم',
+  'home.value.lessons.text': 'دروس واضحة بالفرنسية مع دعم متعدد اللغات لتسهيل تعلّمك.',
+  'home.value.progress.title': 'تقدّمك في مكان واحد',
+  'home.value.progress.text': 'اعثر على دروسك ونتائجك ومفضلاتك على جميع أجهزتك. تقدّم بالسرعة التي تناسبك أينما كنت.',
+  'home.value.devicesAlt': 'ExaCiv على الحاسوب والجهاز اللوحي والهاتف',
 };

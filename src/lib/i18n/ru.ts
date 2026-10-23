@@ -198,4 +198,18 @@ export const ru: Partial<Record<MessageKey, string>> = {
   'account.save': 'Сохранить изменения',
   'account.saved': 'Ваши изменения сохранены.',
   'account.logout': 'Выйти',
+
+  'home.parcours.more': 'Подробнее',
+  'home.methode.examples': 'Примеры интерфейса',
+  'home.methode.discoverLesson': 'Открыть урок',
+  'home.methode.discoverExam': 'Открыть пробный экзамен',
+  'home.methode.examProgress': 'Вопрос 12 / 40 — пример',
+  'home.methode.showCorrection': 'Показать исправление',
+  'home.methode.hideCorrection': 'Скрыть исправление',
+  'home.hero.resetExample': 'Начать пример заново',
+  'home.value.lessons.title': 'Понятные объяснения',
+  'home.value.lessons.text': 'Понятные уроки на французском с многоязычной поддержкой, чтобы учиться было проще.',
+  'home.value.progress.title': 'Ваш прогресс в одном месте',
+  'home.value.progress.text': 'Ваши уроки, результаты и избранное на всех устройствах. Занимайтесь в своём темпе, где бы вы ни были.',
+  'home.value.devicesAlt': 'ExaCiv на компьютере, планшете и телефоне',
 };
