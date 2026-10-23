@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { InteractionFx } from "@/components/site/InteractionFx";
 import {
   Outlet,
   Link,
