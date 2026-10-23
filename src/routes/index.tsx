@@ -35,7 +35,7 @@ function Index() {
       <HomeHero />
 
       {/* Stats bar */}
-      <section className="container-page home-exam-strip relative z-10 -mt-14">
+      <section className="container-page home-exam-strip relative z-10 mt-6">
         <div className="grid items-center gap-4 rounded-2xl border bg-card p-5 shadow-card md:grid-cols-[1fr_1fr_1.2fr_auto]">
           <Stat icon={FileText} cls="bg-secondary-soft text-secondary" title={t('home.stats.q')} sub={t('home.stats.qsub')} />
           <Stat icon={Clock} cls="bg-accent text-primary-interactive" title={t('home.stats.d')} sub={t('home.stats.dsub')} />
