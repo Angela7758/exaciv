@@ -740,3 +740,4 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .language-progress-table .head{font-size:12px;font-weight:700;color:var(--learning-muted);}
 .language-progress-note{font-size:12px;color:var(--learning-muted);margin-top:10px;}
 @media(max-width:640px){.language-progress-table{font-size:12px;}.language-progress-table [role=row]{grid-template-columns:1.1fr .8fr .8fr 1.2fr;gap:4px;}.language-progress-table .head{font-size:10px;}.language-progress-table [role=cell]{overflow-wrap:anywhere;}}
+.language-progress-table [role=cell] b{unicode-bidi:isolate;}

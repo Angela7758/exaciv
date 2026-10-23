@@ -23,7 +23,7 @@ export function LanguageProgress(){
     {q.isPending?<p role="status">{ui("Chargement…")}</p>:q.isError?<p role="alert" className="text-critical">{ui("Impossible de charger la progression par langue.")}</p>:
     <div className="language-progress-table" role="table">
       <div role="row" className="head"><span role="columnheader">{ui("Langue")}</span><span role="columnheader">{ui("Leçons terminées")}</span><span role="columnheader">{ui("Vidéos vues")}</span><span role="columnheader">{ui("Taux de réussite")}</span></div>
-      {q.data.map(r=><div role="row" key={r.locale}><span role="cell" lang={r.locale} dir={r.locale==='ar'?'rtl':'ltr'}><b>{NAMES[r.locale]}</b></span><span role="cell">{r.lessons}</span><span role="cell">{r.videos}</span><span role="cell">{r.total?`${Math.round(r.correct/r.total*100)} % (${r.correct}/${r.total})`:'—'}</span></div>)}
+      {q.data.map(r=><div role="row" key={r.locale}><span role="cell" lang={r.locale}><b>{NAMES[r.locale]}</b></span><span role="cell">{r.lessons}</span><span role="cell">{r.videos}</span><span role="cell">{r.total?`${Math.round(r.correct/r.total*100)} % (${r.correct}/${r.total})`:'—'}</span></div>)}
     </div>}
     <p className="language-progress-note">{ui("Comptées à partir d’aujourd’hui, selon la langue de l’interface pendant l’activité. Les activités précédentes n’ont pas de langue enregistrée.")}</p>
   </LearningCard>;
