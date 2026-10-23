@@ -741,3 +741,32 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .language-progress-note{font-size:12px;color:var(--learning-muted);margin-top:10px;}
 @media(max-width:640px){.language-progress-table{font-size:12px;}.language-progress-table [role=row]{grid-template-columns:1.1fr .8fr .8fr 1.2fr;gap:4px;}.language-progress-table .head{font-size:10px;}.language-progress-table [role=cell]{overflow-wrap:anywhere;}}
 .language-progress-table [role=cell] b{unicode-bidi:isolate;}
+
+/* Espace connecté : gabarit unique extrait de l'Accueil (au-dessus de 640px). Les variantes de page ne modifient plus la coque. */
+:root{--app-sidebar-w:240px;--app-sidebar-mini-w:70px;--app-topbar-h:80px;--app-content-max:1200px;--app-content-pad:24px 32px;--app-nav-h:45px;--app-nav-fs:13px;--app-nav-icon:22px;--app-title-fs:32px;--app-title-lh:1.2;}
+@media(min-width:641px){
+ .batch-two-shell.app-layout{grid-template-columns:var(--app-sidebar-w) minmax(0,1fr);}
+ .batch-two-shell.app-layout.sidebar-mini{grid-template-columns:var(--app-sidebar-mini-w) minmax(0,1fr);}
+ .batch-two-shell.app-layout .app-sidebar{background:var(--app-navy);padding:26px 12px 16px;overflow:hidden;animation:none;}
+ .batch-two-shell.app-layout .app-sidebar nav{gap:9px;overflow-y:auto;min-height:0;flex:1 1 auto;}
+ .batch-two-shell.app-layout .app-sidebar nav a{height:var(--app-nav-h);min-height:var(--app-nav-h);font-size:var(--app-nav-fs);padding:0 14px;border-radius:var(--radius);gap:8px;flex-shrink:0;}
+ .batch-two-shell.app-layout.sidebar-mini .app-sidebar nav a{padding:0;justify-content:center;}
+ .batch-two-shell.app-layout .app-sidebar nav svg{width:var(--app-nav-icon);height:var(--app-nav-icon);}
+ .batch-two-shell.app-layout .app-logo{font-size:34px;margin-bottom:32px;padding:0 12px;}
+ .batch-two-shell.app-layout .app-logo:after{display:none;}
+ .batch-two-shell.app-layout .sidebar-bottom{flex-shrink:0;margin-top:12px;}
+ .batch-two-shell.app-layout .sidebar-bottom>a{font-size:12px;gap:8px;}
+ .batch-two-shell.app-layout .sidebar-bottom small{font-size:10px;}
+ .batch-two-shell.app-layout .sidebar-bottom>button{display:inline-flex;}
+ .batch-two-shell.app-layout .sidebar-bottom>img{display:none;}
+ .batch-two-shell.app-layout .app-topbar{height:auto;min-height:var(--app-topbar-h);padding:12px 20px;}
+ .batch-two-shell.app-layout .app-content{max-width:var(--app-content-max);margin-inline:auto;padding:var(--app-content-pad);}
+ .batch-two-shell.app-layout .app-content>*{max-width:none;}
+ .batch-two-shell.app-layout .app-content h1{font-size:var(--app-title-fs);line-height:var(--app-title-lh);font-weight:800;}
+}
+@media(min-width:641px) and (max-width:1100px){
+ :root{--app-sidebar-w:168px;--app-sidebar-mini-w:65px;--app-content-pad:16px;--app-nav-fs:12px;--app-title-fs:28px;}
+ .batch-two-shell.app-layout .app-logo{font-size:24px;}
+ .batch-two-shell.app-layout .app-sidebar nav a{padding:0 10px;}
+}
+@media(max-width:640px){.batch-two-shell.app-layout .app-content h1{font-size:26px;line-height:1.2;}}
