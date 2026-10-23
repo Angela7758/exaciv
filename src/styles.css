@@ -1154,7 +1154,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .approved-home .home-pathway-card p{margin-left:0;margin-inline-start:0;}
 .approved-home .home-pathway-card .home-more-link{align-self:flex-start;margin-inline-start:0;}
 /* CTA final conforme à l'image 4 */
-.approved-home .home-final-cta>div.absolute{opacity:1;background:linear-gradient(90deg,color-mix(in oklab,var(--primary) 96%,black) 0%,color-mix(in oklab,var(--primary) 88%,transparent) 45%,color-mix(in oklab,var(--primary) 35%,transparent) 78%,transparent 100%);}
+.approved-home .home-final-cta>div.absolute{opacity:1;background:linear-gradient(90deg,color-mix(in oklab,var(--primary-interactive) 70%,var(--primary)) 0%,color-mix(in oklab,var(--primary-interactive) 82%,transparent) 50%,color-mix(in oklab,var(--primary-interactive) 55%,transparent) 75%,color-mix(in oklab,var(--primary-interactive) 25%,transparent) 100%);}
 .approved-home .home-final-copy h2{font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--primary-foreground);text-shadow:0 2px 12px color-mix(in oklab,black 25%,transparent);}
 .approved-home .home-final-copy p{font-size:20px;color:var(--primary-foreground);opacity:1;margin-top:10px;}
 .approved-home .home-final-cta [data-slot=button]{position:relative;overflow:hidden;height:64px;padding:0 34px;font-size:20px;border-radius:14px;background:linear-gradient(180deg,var(--secondary) 0%,var(--secondary-pressed) 100%);color:var(--secondary-foreground);box-shadow:0 10px 26px -8px color-mix(in oklab,var(--secondary) 75%,transparent);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;}
