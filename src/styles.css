@@ -733,3 +733,10 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .lesson-video video{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1376/768;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--learning-surface);}
 .listen-button{margin:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
 .record-button{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center;max-width:100%;}.record-button .recording{border-color:var(--destructive);color:var(--destructive);}
+.language-progress-wrap{margin-top:24px;}
+.language-progress h2{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800;color:var(--foreground);margin-bottom:12px;}
+.language-progress-table{display:grid;gap:2px;font-size:14px;}
+.language-progress-table [role=row]{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.3fr;gap:8px;padding:10px 4px;border-bottom:1px solid var(--border);align-items:center;}
+.language-progress-table .head{font-size:12px;font-weight:700;color:var(--learning-muted);}
+.language-progress-note{font-size:12px;color:var(--learning-muted);margin-top:10px;}
+@media(max-width:640px){.language-progress-table [role=row]{grid-template-columns:1fr 1fr;}.language-progress-table .head{display:none;}.language-progress-table [role=cell]:not(:first-child)::before{display:block;font-size:11px;color:var(--learning-muted);}}
