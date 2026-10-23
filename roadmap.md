@@ -1,5 +1,13 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
+## Administration
+- [ ] Permissions serveur et Cloud, rôles protégés et journal des opérations.
+- [ ] Import CSV/JSON : modèle, mapping, validation, différences, drafts et rapport.
+- [ ] Questions versionnées : édition, examen humain, publication vers le catalogue existant.
+- [ ] Tests configurables et tentatives indépendantes avec règles et questions figées.
+- [ ] Gestion des cours, traductions, médias, comptes et signalements avec données réelles.
+- [ ] Vérifications permissions, import et parcours publication → tentative → résultats.
+
 ## Corrections du 23 octobre
 - [x] Questions françaises et traduction séparée dans six langues ; écoute et préférences vérifiées.
 - [x] Images propres, proportions et états d’échec ; sept vidéos inventoriées et non vérifiées retirées de l’affichage.
