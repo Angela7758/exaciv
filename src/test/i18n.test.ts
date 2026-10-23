@@ -10,14 +10,14 @@ describe('Interface locale rules',()=>{
   it('falls back to French when a translation is absent',()=>{
     expect(resolveUiMessage({},'zh','Reprendre la session')).toEqual({text:'Reprendre la session',fallback:true});
     expect(translate('fr','account.title')).toBe('Mon compte');
-    expect(translate('pt','account.title')).toBe('Mon compte');
+    expect(translate('pt','account.title')).toBe('A minha conta');
   });
   it('preserves actual session numbers when translating',()=>{
     expect(resolveUiMessage({en:{'Question {0} sur {1}':'Question {0} of {1}'}},'en','Question {0} sur {1}',[2,8])).toEqual({text:'Question 2 of 8',fallback:false});
   });
   it('includes every internal message in all five dictionaries with unchanged placeholders',()=>{
     const keys=Object.keys(internalMessages.en).sort();
-    for(const locale of ['en','zh','ar','es','ru'] as const){
+    for(const locale of ['en','zh','ar','es','ru','pt'] as const){
       const dictionary=internalMessages[locale] as Record<string,string>;
       expect(Object.keys(dictionary).sort()).toEqual(keys);
       for(const key of keys){
