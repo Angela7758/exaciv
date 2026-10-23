@@ -1,6 +1,13 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
 ## Mobile — demande du 23 octobre à 10:39 UTC
+## Cinq captures — demande du 23 octobre à 11:25 UTC
+- [ ] Agenda partagé avec Dashboard, dates locales et activité réelle.
+- [ ] Cours vertical, français permanent, traduction séparée et prononciation locale.
+- [ ] Salutation commune sur toutes les pages du compte.
+- [ ] Inventaire du catalogue, brouillons des thèmes manquants et couvertures fiables.
+- [ ] Vérification connectée bureau/mobile et bilan des limites.
+
 - [x] Remplacer le menu public superposé par un tiroir accessible et rendre toutes les destinations du compte accessibles sur téléphone.
 - [x] Corriger les largeurs réelles, le premier écran mobile et les fenêtres, sans masquage global ni changement des données.
 - [x] Fiabiliser les animations existantes, le retour tactile et les interactions CIVI.
