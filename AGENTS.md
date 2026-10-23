@@ -34,3 +34,5 @@
 - Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
 - Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.
 - Internal interface translations use an explicit source-message dictionary and the existing locale provider; Cloud lesson/question content is never passed through interface translation, preserving authoritative snapshots and French pedagogy.
+
+- Public homepage locale dictionaries may include browser-only locales; do not send unsupported locales to account preference functions, preserving account validation and French fallback on unlocalized screens.

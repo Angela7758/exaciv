@@ -6,12 +6,13 @@ import { zh } from './zh';
 import { ar } from './ar';
 import { es } from './es';
 import { ru } from './ru';
+import { pt } from './pt';
 
-export type Locale = 'fr' | 'en' | 'zh' | 'ar' | 'es' | 'ru';
-export const LOCALE_IDS: readonly Locale[] = ['fr', 'en', 'zh', 'ar', 'es', 'ru'];
-export const LOCALE_LABELS: Record<Locale, string> = { fr: 'Français', en: 'English', zh: '中文', ar: 'العربية', es: 'Español', ru: 'Русский' };
+export type Locale = 'fr' | 'en' | 'zh' | 'ar' | 'es' | 'ru' | 'pt';
+export const LOCALE_IDS: readonly Locale[] = ['fr', 'en', 'zh', 'ar', 'es', 'ru', 'pt'];
+export const LOCALE_LABELS: Record<Locale, string> = { fr: 'Français', en: 'English', zh: '中文', ar: 'العربية', es: 'Español', ru: 'Русский', pt: 'Português' };
 
-const dictionaries: Record<Locale, Partial<Record<MessageKey, string>>> = { fr, en, zh, ar, es, ru };
+const dictionaries: Record<Locale, Partial<Record<MessageKey, string>>> = { fr, en, zh, ar, es, ru, pt };
 const STORAGE_KEY = 'exaciv-locale';
 
 export function isLocale(value: unknown): value is Locale {

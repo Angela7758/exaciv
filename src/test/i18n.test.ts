@@ -4,12 +4,13 @@ import internalMessages from '@/lib/i18n/internal-messages.json';
 import {translate,LOCALE_IDS} from '@/lib/i18n';
 
 describe('Interface locale rules',()=>{
-  it('offers French plus the five requested interface languages',()=>{
-    expect(LOCALE_IDS).toEqual(['fr','en','zh','ar','es','ru']);
+  it('retains existing languages and adds Portuguese for the homepage',()=>{
+    expect(LOCALE_IDS).toEqual(['fr','en','zh','ar','es','ru','pt']);
   });
   it('falls back to French when a translation is absent',()=>{
     expect(resolveUiMessage({},'zh','Reprendre la session')).toEqual({text:'Reprendre la session',fallback:true});
     expect(translate('fr','account.title')).toBe('Mon compte');
+    expect(translate('pt','account.title')).toBe('Mon compte');
   });
   it('preserves actual session numbers when translating',()=>{
     expect(resolveUiMessage({en:{'Question {0} sur {1}':'Question {0} of {1}'}},'en','Question {0} sur {1}',[2,8])).toEqual({text:'Question 2 of 8',fallback:false});

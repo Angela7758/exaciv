@@ -67,7 +67,7 @@ function Index() {
       </section></Reveal>
 
       {/* Méthode */}
-      <Reveal><section className="mt-12 rounded-t-[2.5rem] bg-accent/40 py-14">
+      <Reveal><section data-home-block="method" className="home-method mt-12 rounded-t-[2.5rem] bg-accent/40 py-14">
         <div className="container-page">
           <SectionHeading title={t('home.methode.title')} subtitle={t('home.methode.subtitle')} />
           <div className="mt-8 grid items-stretch gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -83,14 +83,14 @@ function Index() {
             </MethodCard>
             <MethodCard index={2} title={t('home.methode.corriger')} icon={FileText} iconCls="text-success" text={t('home.methode.corrigerText')}>
               <p className="flex items-center gap-2 rounded-lg bg-critical-soft px-2.5 py-2 text-xs font-medium text-critical"><XCircle className="size-5 fill-critical text-card" /> {t('home.methode.incorrect')}</p>
-              <p className="mt-2 rounded-lg bg-success-soft px-2.5 py-2 text-xs">{t('home.methode.correctIs')}<br /><b>Liberté, Égalité, Fraternité</b></p>
+              <p className="mt-2 rounded-lg bg-success-soft px-2.5 py-2 text-xs">{t('home.methode.correctIs')}<br /><b lang="fr" dir="ltr">Liberté, Égalité, Fraternité</b></p>
               <p className="mt-2 text-xs text-muted-foreground">{t('home.methode.explanation')}</p>
             </MethodCard>
             <MethodCard index={3} title={t('home.methode.simuler')} icon={BarChart3} iconCls="text-primary-interactive" text={t('home.methode.simulerText')}>
               <p className="text-sm font-semibold">{t('home.methode.exam')}</p>
               <div className="relative mx-auto mt-2 size-24" role="img" aria-label={t('home.methode.exampleScore')}>
                 <svg viewBox="0 0 96 96" className="score-ring size-full"><circle cx="48" cy="48" r="40" fill="none" strokeWidth="10" className="score-ring-track" /><circle cx="48" cy="48" r="40" fill="none" strokeWidth="10" strokeLinecap="round" className="score-ring-value" /></svg>
-                <span className="absolute inset-0 grid place-items-center text-center leading-tight"><span><span className="block text-xs">28 / 40</span><span className="text-lg font-extrabold">70%</span></span></span>
+                <span dir="ltr" className="absolute inset-0 grid place-items-center text-center leading-tight"><span><span className="block text-xs">28 / 40</span><span className="text-lg font-extrabold">70%</span></span></span>
               </div>
               <p className="mt-1 text-center text-[11px] text-muted-foreground">{t('home.methode.exampleScore')}</p>
               <p className="mt-2 flex items-center gap-2 text-xs"><Clock className="size-4 text-critical" /> {t('home.methode.minutes')}</p>
@@ -157,7 +157,7 @@ function Index() {
       </section></Reveal>
 
       {/* Un petit pas chaque jour */}
-      <Reveal><section className="mx-3 rounded-[2rem] bg-accent/60 py-10">
+      <Reveal><section data-home-block="steps" className="home-daily mx-3 rounded-[2rem] bg-accent/60 py-10">
         <div className="container-page grid items-center gap-8 md:grid-cols-[260px_1fr]">
           <CiviTip />
           <div>
@@ -176,7 +176,7 @@ function Index() {
                     <p className="mt-2 font-bold">{s.t}</p>
                     <p className="text-sm text-muted-foreground">{s.d}</p>
                   </Link>
-                  {i < 3 && <ArrowRight className="absolute -right-5 top-6 hidden size-5 text-subtle rtl-flip lg:block" />}
+                  {i < 3 && <ArrowRight className="step-arrow absolute -right-5 top-6 hidden size-5 text-subtle rtl-flip lg:block" />}
                 </li>
               ))}
             </ol>
@@ -191,12 +191,12 @@ function Index() {
       </section></Reveal>
 
       {/* FAQ */}
-      <Reveal><section className="container-page pb-12">
+      <Reveal><section data-home-block="faq" className="home-faq container-page pb-12">
         <SectionHeading title={t('home.faq.title')} subtitle={t('home.faq.subtitle')} />
         <div className="mt-6"><HomeFaq /></div>
       </section></Reveal>
 
-      <FinalCta />
+      <Reveal><FinalCta /></Reveal>
     </div>
   );
 }
@@ -224,6 +224,7 @@ function PracticePreview() {
         return (
           <button
             key={o}
+            lang="fr" dir="ltr"
             type="button"
             disabled={validated}
             aria-pressed={choice === i}
@@ -266,11 +267,11 @@ function Stat({ icon: Icon, cls, title, sub }: { icon: typeof Landmark; cls: str
 
 function MethodCard({ title, icon: Icon, iconCls, text, children, index = 0 }: { title: string; icon: typeof Landmark; iconCls: string; text: string; children: React.ReactNode; index?: number }) {
   return (
-    <div style={{ transitionDelay: `${index * 70}ms` }} className="reveal-child flex h-full flex-col rounded-2xl border bg-card p-5 text-center shadow-soft card-hover">
+    <div style={{ transitionDelay: `${index * 70}ms` }} className="home-method-card reveal-child flex h-full flex-col rounded-2xl border bg-card p-5 text-center shadow-soft card-hover">
       <span className="mx-auto grid size-12 place-items-center rounded-full bg-muted card-icon"><Icon className={`size-7 ${iconCls}`} /></span>
       <h3 className="mt-3 text-xl font-bold">{title}</h3>
       <p className="mt-1 text-sm text-muted-foreground">{text}</p>
-      <div className="mt-4 flex-1 rounded-xl border bg-card p-3 text-left shadow-soft">{children}</div>
+      <div className="home-method-preview mt-4 flex-1 rounded-xl border bg-card p-3 text-start shadow-soft">{children}</div>
     </div>
   );
 }
