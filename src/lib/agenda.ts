@@ -9,7 +9,7 @@ export function dailyActivity(d:{completions:{completed_at:string}[];sessions:{i
  const lessons=d.completions.filter(x=>dateKey(new Date(x.completed_at),timezone)===key).length;
  const sessions=d.sessions.filter(x=>x.completed_at&&dateKey(new Date(x.completed_at),timezone)===key);
  const attempts=d.attempts.filter(x=>dateKey(new Date(x.created_at),timezone)===key);
- const questions=sessions.reduce((n,s)=>n+Object.keys(s.answers??{}).length,0)+attempts.reduce((n,a)=>n+a.total,0);
+ const questions=sessions.reduce((n,s)=>n+Object.values(s.answers??{}).filter(a=>typeof a==='number'&&Number.isInteger(a)&&a>=0).length,0)+attempts.reduce((n,a)=>n+a.total,0);
  const exams=sessions.filter(s=>s.kind==='exam').length;
  const minutes=sessions.reduce((n,s)=>n+Math.max(0,(new Date(s.completed_at??s.started_at).getTime()-new Date(s.started_at).getTime())/60000),0);
  return {lessons,questions,exams,minutes:Math.round(minutes),activities:lessons+sessions.length+attempts.length};
