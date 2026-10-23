@@ -12,6 +12,8 @@
 - [x] Build OK, 60/60 tests
 
 ## Reste (non bloquant)
+- [ ] Étendre les pages internes au portugais et afficher les traductions anglaises, espagnoles, arabes, russes et portugaises des contenus de leçon et de session sans modifier les originaux ni les scores.
+- [ ] Vérifier les cinq langues sur le compte existant, sur ordinateur et mobile.
 - [x] Cartes méthode, étapes, FAQ et CTA d’accueil : anglais, espagnol, arabe, russe et portugais vérifiés à 1440 et 390 px ; mini-QCM, FAQ et lien vers le test fonctionnels, aucun débordement. Portugais conservé dans le navigateur, autres pages avec repli français.
 - [x] Sept illustrations pédagogiques propres aux sept leçons publiées, style pastel des thèmes du Dashboard ; affichage sur le compte existant vérifié à 1440 et 390 px, sans débordement ni erreur.
 - [x] Traduire les interfaces internes en anglais, chinois, arabe, espagnol et russe avec repli français ; conserver les cours et questions en français
