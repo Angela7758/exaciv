@@ -507,7 +507,17 @@
     "Masquer les détails": "Hide details",
     "Repli français": "French fallback",
     "Aucun texte d’interface manquant dans ce dictionnaire.": "No missing interface text in this dictionary.",
-    "Chargement de votre espace…": "Loading your dashboard…"
+    "Chargement de votre espace…": "Loading your dashboard…",
+    "Lire : {0}": "Read: {0}",
+    "Choisir une date": "Choose a date",
+    "Bravo ! Vous apprenez chaque jour.": "Well done! You learn every day.",
+    "Une nouvelle aventure commence.": "A new journey begins.",
+    " sur 45 min": " out of 45 min",
+    "Revoir {0} erreurs": "Review {0} mistakes",
+    "Revoir {0} erreur": "Review {0} mistake",
+    "Ouvrir {0}": "Open {0}",
+    "Chaque erreur vous fait progresser !": "Every mistake helps you improve!",
+    "Minutes par jour": "Minutes per day"
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1017,7 +1027,17 @@
     "Masquer les détails": "隐藏详情",
     "Repli français": "法语回退",
     "Aucun texte d’interface manquant dans ce dictionnaire.": "此词典中没有缺失的界面文本。",
-    "Chargement de votre espace…": "正在加载您的个人空间…"
+    "Chargement de votre espace…": "正在加载您的个人空间…",
+    "Lire : {0}": "阅读：{0}",
+    "Choisir une date": "选择日期",
+    "Bravo ! Vous apprenez chaque jour.": "太好了！您每天都在学习。",
+    "Une nouvelle aventure commence.": "新的学习旅程开始了。",
+    " sur 45 min": " / 45分钟",
+    "Revoir {0} erreurs": "复习{0}道错题",
+    "Revoir {0} erreur": "复习{0}道错题",
+    "Ouvrir {0}": "打开{0}",
+    "Chaque erreur vous fait progresser !": "每个错误都帮助您进步！",
+    "Minutes par jour": "每天分钟数"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1527,7 +1547,17 @@
     "Masquer les détails": "إخفاء التفاصيل",
     "Repli français": "الفرنسية لغة بديلة",
     "Aucun texte d’interface manquant dans ce dictionnaire.": "لا توجد نصوص واجهة مفقودة في هذا القاموس.",
-    "Chargement de votre espace…": "جارٍ تحميل مساحتك…"
+    "Chargement de votre espace…": "جارٍ تحميل مساحتك…",
+    "Lire : {0}": "اقرأ: {0}",
+    "Choisir une date": "اختيار تاريخ",
+    "Bravo ! Vous apprenez chaque jour.": "أحسنت! أنت تتعلم كل يوم.",
+    "Une nouvelle aventure commence.": "تبدأ رحلة جديدة.",
+    " sur 45 min": " من أصل 45 دقيقة",
+    "Revoir {0} erreurs": "مراجعة {0} أخطاء",
+    "Revoir {0} erreur": "مراجعة خطأ واحد ({0})",
+    "Ouvrir {0}": "فتح {0}",
+    "Chaque erreur vous fait progresser !": "كل خطأ يساعدك على التقدم!",
+    "Minutes par jour": "دقائق يومياً"
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -2037,7 +2067,17 @@
     "Masquer les détails": "Ocultar detalles",
     "Repli français": "Francés como alternativa",
     "Aucun texte d’interface manquant dans ce dictionnaire.": "No falta ningún texto de la interfaz en este diccionario.",
-    "Chargement de votre espace…": "Cargando tu espacio…"
+    "Chargement de votre espace…": "Cargando tu espacio…",
+    "Lire : {0}": "Leer: {0}",
+    "Choisir une date": "Elegir una fecha",
+    "Bravo ! Vous apprenez chaque jour.": "¡Muy bien! Aprende cada día.",
+    "Une nouvelle aventure commence.": "Comienza una nueva aventura.",
+    " sur 45 min": " de 45 min",
+    "Revoir {0} erreurs": "Revisar {0} errores",
+    "Revoir {0} erreur": "Revisar {0} error",
+    "Ouvrir {0}": "Abrir {0}",
+    "Chaque erreur vous fait progresser !": "¡Cada error le ayuda a progresar!",
+    "Minutes par jour": "Minutos al día"
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -2547,6 +2587,16 @@
     "Masquer les détails": "Скрыть подробности",
     "Repli français": "Французский при отсутствии перевода",
     "Aucun texte d’interface manquant dans ce dictionnaire.": "В этом словаре нет пропущенных текстов интерфейса.",
-    "Chargement de votre espace…": "Загрузка личного кабинета…"
+    "Chargement de votre espace…": "Загрузка личного кабинета…",
+    "Lire : {0}": "Читать: {0}",
+    "Choisir une date": "Выбрать дату",
+    "Bravo ! Vous apprenez chaque jour.": "Отлично! Вы учитесь каждый день.",
+    "Une nouvelle aventure commence.": "Начинается новый путь.",
+    " sur 45 min": " из 45 мин",
+    "Revoir {0} erreurs": "Разобрать {0} ошибок",
+    "Revoir {0} erreur": "Разобрать {0} ошибку",
+    "Ouvrir {0}": "Открыть {0}",
+    "Chaque erreur vous fait progresser !": "Каждая ошибка помогает вам стать лучше!",
+    "Minutes par jour": "Минут в день"
   }
 }

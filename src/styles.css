@@ -680,8 +680,8 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .app-content input,.app-content select{max-width:100%;min-width:0;}
 .app-content h1,.app-content h2,.app-content h3{overflow-wrap:anywhere;}
 [dir="rtl"] .app-layout .app-sidebar{left:auto;right:0;}
-[dir="rtl"] .app-layout .app-main{margin-left:0;margin-right:240px;}
-[dir="rtl"] .app-layout.sidebar-mini .app-main{margin-right:82px;}
+[dir="rtl"] .app-layout .app-main{margin:0;}
+[dir="rtl"] .app-layout.sidebar-mini .app-main{margin:0;}
 [dir="rtl"] .app-layout .app-breadcrumb{text-align:right;}
 [dir="rtl"] .app-content [lang="fr"]{text-align:left;unicode-bidi:isolate;}
 [dir="rtl"] .app-content [data-slot="button"] svg.lucide-arrow-right,[dir="rtl"] .app-content [data-slot="button"] svg.lucide-arrow-left{transform:scaleX(-1);}
