@@ -34,6 +34,7 @@
 - Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
 - Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.
 - Internal interface translations use an explicit source-message dictionary and the existing locale provider; pedagogical translations use a separate exact-French-source dictionary at display time, preserving authoritative Cloud snapshots, option order and scoring. Missing or changed source text falls back to French.
+- Question aids receive French source text, never already translated fragments; audio resolves the entire visible passage in one language to avoid mixed-language narration.
 
 - Keep supported interface locales aligned across browser dictionaries, account validators and profile constraints, so language selection survives reconnecting without changing learning data.
 - Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.

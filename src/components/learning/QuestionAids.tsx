@@ -1,6 +1,6 @@
 import {useUiT} from '@/lib/i18n/internal';
 import {useI18n} from '@/lib/i18n';
-import {resolveContentMessage} from '@/lib/i18n/content';
+import {resolveContentMessage,resolveContentPassage} from '@/lib/i18n/content';
 import {useEffect,useRef,useState} from 'react';
 import {useServerFn} from '@tanstack/react-start';
 import {useQueryClient} from '@tanstack/react-query';
@@ -33,7 +33,7 @@ function speak(text:string, lang:string, onEnd:()=>void): SpeechSynthesisUtteran
 }
 
 /**
- * Aides pédagogiques d'une question : lecture audio française (« Écouter »)
+ * Aides pédagogiques d'une question : lecture audio dans la langue affichée (« Écouter »)
  * et traduction à la demande (« Traduire ») vers la langue d'aide du compte.
  * La traduction ne porte que sur le contenu déjà visible (jamais la réponse).
  */
@@ -103,11 +103,12 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   const key=`${questionId}:${target}:${explanation?'x':''}`;
   const current=translations[key];
   const dir=target==='ar'?'rtl':'ltr';
+  const passage=resolveContentPassage(locale,[question,...options]);
 
   return <div className="question-aids">
     <div className="question-aids-bar" role="toolbar" aria-label={ui("Aides pour cette question")}>
-      <Button type="button" variant="outline" size="sm" onClick={()=>toggleSpeech('fr',`${question}. ${options.join('. ')}`)} aria-pressed={speaking==='fr'}>
-        {speaking==='fr'?<Square/>:<Volume2/>}{speaking==='fr'?ui("Arrêter"):ui("Écouter")}
+      <Button type="button" variant="outline" size="sm" onClick={()=>toggleSpeech(passage.locale,passage.texts.join('. '))} aria-pressed={speaking===passage.locale}>
+        {speaking===passage.locale?<Square/>:<Volume2/>}{speaking===passage.locale?ui("Arrêter"):ui("Écouter")}
       </Button>
       {helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open} disabled={busy}>
         {busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}

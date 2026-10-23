@@ -12,6 +12,7 @@
 - [x] Build OK, 60/60 tests
 
 ## Reste (non bloquant)
+- [x] Aides de session corrigées : sources françaises intactes, questions et options lues dans la langue affichée, descriptions d’images traduites ; leçons et sessions vérifiées dans les cinq langues à 1440 et 390 px, sans débordement ni erreur.
 - [x] Pages internes étendues au portugais ; 267 extraits par langue pour les leçons, questions, options, explications et thèmes. Originaux accessibles, repli français et scores inchangés.
 - [x] Cinq langues vérifiées sur le compte existant à 1440 et 390 px : 14 vues, préférences persistées puis restaurées, aucun débordement ni erreur. Traduction portugaise authentifiée vérifiée ; 69 tests réussis.
 - [x] Cartes méthode, étapes, FAQ et CTA d’accueil : anglais, espagnol, arabe, russe et portugais vérifiés à 1440 et 390 px ; mini-QCM, FAQ et lien vers le test fonctionnels, aucun débordement. Portugais désormais aussi enregistré dans le compte.
