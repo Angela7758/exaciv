@@ -1,5 +1,10 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
+## Reprise stricte des références — 23 octobre à 15:19 UTC
+- [ ] Corriger les proportions du premier écran et des cartes Parcours/Méthode de l’accueil.
+- [ ] Corriger la composition FAQ, bandeau final et pied de page.
+- [ ] Ajuster le Parcours connecté sans modifier les données ni le Dashboard ; vérifier avec une session autorisée.
+
 ## Mobile — demande du 23 octobre à 10:39 UTC
 ## Cinq captures — demande du 23 octobre à 11:25 UTC
 - [x] Agenda partagé avec Dashboard, dates locales et activité réelle ; créer, recharger, modifier, terminer et supprimer vérifiés sur le compte.

@@ -54,7 +54,7 @@ function Index() {
             <article key={p.id} style={{ transitionDelay: `${i * 70}ms` }} className={`reveal-child home-pathway-card relative flex h-full min-h-48 overflow-hidden rounded-2xl p-6 card-hover ${p.card}`}>
               <img src={p.art} alt="" aria-hidden loading="lazy" className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto rtl-mirror-off" />
               <div className="relative flex flex-1 flex-col items-start">
-                <h3 className={`home-pathway-title font-bold ${p.title_cls}`}>{p.title}</h3>
+                <h3 className={`home-pathway-title font-bold ${p.title_cls}`}><p.icon className={p.icon_cls} aria-hidden/>{p.title}</h3>
                 <p className="mt-2 max-w-[65%] text-muted-foreground">{p.text}</p>
                 <Link to="/parcours" hash={p.id} className="home-more-link mt-auto">{t('home.parcours.more')}<ArrowRight className="size-4 rtl-flip" /></Link>
               </div>
@@ -70,7 +70,7 @@ function Index() {
           <p className="home-method-examples">{t('home.methode.examples')}</p>
           <div className="home-method-grid">
             <MethodCard index={0} num="01" tone="orange" icon={Lightbulb} title={t('home.methode.comprendre')} text={t('home.methode.comprendreText')} action={<Button asChild variant="interactive"><Link to="/methode">{t('home.methode.discoverLesson')}<ArrowRight className="rtl-flip" /></Link></Button>}>
-              <Link to="/methode" className="home-method-lesson" aria-label={t('home.methode.discoverLesson')}><img src={lessonImg} alt="" loading="lazy" /><div><p className="font-semibold">{t('home.methode.lessonTitle')}</p><p lang="fr" className="text-sm text-muted-foreground">La laïcité garantit la liberté de conscience et la neutralité de l’État envers les religions.</p><div className="home-method-progress" aria-hidden><span /></div></div></Link>
+              <Link to="/methode" className="home-method-lesson" aria-label={t('home.methode.discoverLesson')}><p className="font-semibold">{t('home.methode.lessonTitle')}</p><img src={lessonImg} alt="" loading="lazy" /><div><div className="home-method-progress" aria-hidden><span /></div><p lang="fr" className="text-sm text-muted-foreground">La laïcité garantit la liberté de conscience.</p></div></Link>
             </MethodCard>
             <MethodCard index={1} num="02" tone="blue" icon={Target} title={t('home.methode.entrainer')} text={t('home.methode.entrainerText')}>
               <PracticePreview />
@@ -268,7 +268,7 @@ function MethodCard({ title, tone, text, children, action, index = 0, num, icon:
 
 function CorrectionPreview() {
   const t = useT();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
     <div>
       <p className="text-sm font-semibold">{t('home.methode.quizQuestion')}</p>

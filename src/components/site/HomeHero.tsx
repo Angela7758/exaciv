@@ -6,6 +6,7 @@ import {BookOpen,CheckCircle2,FileText,Landmark,Users,Star,Play,ArrowRight,X,Rot
 import {Button} from '@/components/ui/button';
 import {useT} from '@/lib/i18n';
 import paris from '@/assets/hero-paris.jpg';
+import stone from '@/assets/home-reference-stone.png.asset.json';
 import {useDecorativeMotion} from '@/hooks/use-decorative-motion';
 
 function HeroCivi(){const t=useT();const {ref,paused}=useDecorativeMotion();const [open,setOpen]=useState(false);return <div ref={ref} className={`home-civi ${paused?'motion-paused':''}`}><Button variant="ghost" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><span className="civi-stack"><img src={civiBody} alt={t('home.hero.civiAlt')}/><img className="civi-star" src={civiStar} alt="" aria-hidden/></span></Button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><Button variant="ghost" size="icon" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></Button></div>}</div>;}
@@ -14,7 +15,7 @@ import civiStar from '@/assets/civi-hero-star.png';
 
 export function HomeHero(){
  const t=useT();const {ref,paused}=useDecorativeMotion();const [answer,setAnswer]=useState(true);const [validated,setValidated]=useState(false);
- return <section className="approved-home-hero"><SafeImage className="home-paris" src={paris} alt="" aria-hidden/>
+  return <section className="approved-home-hero"><SafeImage className="home-paris" src={paris} alt="" aria-hidden/><SafeImage className="home-stone" src={stone.url} alt="" aria-hidden/>
   <div className="home-hero-inner"><div className="home-copy">
    <p className="home-overline hero-enter" style={{'--i':0} as React.CSSProperties}>{t('home.hero.overline')}</p>
    <h1 className="hero-enter" style={{'--i':1} as React.CSSProperties}>{t('home.hero.title1')}<br/>{' '}{t('home.hero.title2')} <span>{t('home.hero.accent')}</span></h1>
