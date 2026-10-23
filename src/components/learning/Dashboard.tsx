@@ -11,6 +11,7 @@ import {LearningCard,ProgressBar,CiviMessage} from './primitives';
 import {useT} from '@/lib/i18n';
 import {AgendaTasks} from './LearningAgenda';
 import {dateKey,userTimezone} from '@/lib/agenda';
+import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import nat from '@/assets/art-naturalisation.png';
 import res from '@/assets/art-resident.png';
 import institutionsArt from '@/assets/practice-institutions.png.asset.json';

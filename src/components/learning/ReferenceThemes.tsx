@@ -6,6 +6,7 @@ import {Landmark,Users,FileText,ChevronRight,ArrowRight} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {TOPICS,percentage} from '@/config/learning';
 import {ProgressBar} from './primitives';
+import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import institutions from '@/assets/reference-institutions.png.asset.json';
 import valeurs from '@/assets/reference-valeurs.png.asset.json';
 import droits from '@/assets/reference-droits.png.asset.json';
