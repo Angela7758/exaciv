@@ -28,7 +28,7 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); }, [locationKey]);
   useEffect(()=>setOpen(false),[locationKey]);
   return (
-    <header className={`sticky top-0 z-40 px-3 pt-3 ${home?'approved-home-header':''} ${auth?'approved-auth-header':''} ${reference?'nine-public-header':''}`}>
+    <header className={`sticky top-0 z-40 px-3 pt-3 ${home||reference?'approved-home-header':''} ${auth?'approved-auth-header':''}`}>
       <div className="container-page flex h-16 items-center justify-between rounded-2xl border bg-card/95 shadow-soft backdrop-blur">
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">

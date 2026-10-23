@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BarChart3, BookOpen, CheckCircle2, ChevronRight, Clock, ExternalLink, FileText, Landmark, Laptop, Lightbulb, Play, Target, Users, IdCard, X, XCircle, Award, RotateCcw } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, CheckCircle2, ChevronRight, Clock, ExternalLink, FileText, Landmark, Laptop, Play, Target, Users, IdCard, X, XCircle, Award, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaqList, FinalCta, PricingCards, SectionHeading } from "@/components/site/sections";
 import { OFFICIAL_SOURCE } from "@/config/content";
