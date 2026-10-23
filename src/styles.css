@@ -743,7 +743,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .language-progress-table [role=cell] b{unicode-bidi:isolate;}
 
 /* Espace connecté : gabarit unique extrait de l'Accueil (au-dessus de 640px). Les variantes de page ne modifient plus la coque. */
-:root{--app-sidebar-w:240px;--app-sidebar-mini-w:70px;--app-topbar-h:80px;--app-content-max:1200px;--app-content-pad:24px 32px;--app-nav-h:45px;--app-nav-fs:13px;--app-nav-icon:22px;--app-title-fs:32px;--app-title-lh:1.2;--app-section-fs:24px;}
+:root{--app-sidebar-w:240px;--app-sidebar-mini-w:70px;--app-topbar-h:80px;--app-content-max:1200px;--app-content-pad:24px 32px;--app-nav-h:45px;--app-nav-fs:13px;--app-nav-icon:22px;--app-title-fs:32px;--app-title-lh:1.2;--app-section-fs:24px;--app-card-fs:18px;}
 @media(min-width:641px){
  .batch-two-shell.app-layout{grid-template-columns:var(--app-sidebar-w) minmax(0,1fr);}
  .batch-two-shell.app-layout.sidebar-mini{grid-template-columns:var(--app-sidebar-mini-w) minmax(0,1fr);}
@@ -764,6 +764,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
  .batch-two-shell.app-layout .app-content>*{max-width:none;}
  .batch-two-shell.app-layout .app-topbar>div:first-child>button{display:inline-flex;}
  .batch-two-shell.app-layout .app-content h2:not([class*=price]){font-size:min(var(--app-section-fs),1.6em);line-height:1.25;}
+ .batch-two-shell.app-layout .app-content h3{font-size:var(--app-card-fs);line-height:1.3;}
  .batch-two-shell.app-layout .app-content h1{font-size:var(--app-title-fs);line-height:var(--app-title-lh);font-weight:800;}
 }
 @media(min-width:641px) and (max-width:1100px){
