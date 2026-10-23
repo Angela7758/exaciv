@@ -1231,3 +1231,4 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 
 @media (prefers-reduced-motion: reduce){.fx-scroll-progress{display:none;}.fx-wait{opacity:1;transform:none;transition:none;}.home-final-civi *,.home-final-spark{animation:none!important;}.home-method-card::before{display:none;}.home-method-card:hover,.approved-home .home-method-card:hover .home-method-icon{transform:none;}.reveal-ready:not(.reveal-visible),.reveal-ready:not(.reveal-visible) .reveal-child{opacity:1;transform:none;}}
 @media(min-width:1101px){.home-final-civi{width:215px;right:56px;}.approved-home .home-final-copy p{white-space:nowrap;}}
+@media(min-width:1101px){.approved-home .home-final-layout{grid-template-columns:auto auto minmax(220px,1fr);gap:40px;}.approved-home .home-final-copy p{font-size:19px;}.approved-home .home-final-copy h2{font-size:48px;}}
