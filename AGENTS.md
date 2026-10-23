@@ -34,9 +34,11 @@
 - Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
 - Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.
 - Internal interface translations use an explicit source-message dictionary and the existing locale provider; pedagogical translations use a separate exact-French-source dictionary at display time, preserving authoritative Cloud snapshots, option order and scoring. Missing or changed source text falls back to French.
-- Question aids receive French source text, never already translated fragments; audio resolves the entire visible passage in one language to avoid mixed-language narration.
+- Primary question content and audio remain French; shared QuestionAids alone translates visible fragments with independent help preferences, preserving answer order and withholding corrections until revealed.
 
 - Keep supported interface locales aligned across browser dictionaries, account validators and profile constraints, so language selection survives reconnecting without changing learning data.
 - Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.
-- Lesson artwork is mapped by stable Cloud lesson ID in src/config/lesson-illustrations.ts and rendered by LessonIllustration; keep editorial visuals separate from authoritative content and progress writes.
+- Lesson artwork is mapped by stable Cloud lesson ID and rendered with SafeImage; unverified editorial video inventory is never exposed as teaching content or counted as video learning.
 - Signed-in shell dimensions (sidebar, topbar, content width, title levels) come from the shared --app-* tokens at the end of src/styles.css; page variants must not resize the shell, so every section feels like one product.
+
+- Use SafeImage for inspected app artwork so failed media retains an accessible layout slot; preserve clean original CIVI poses and never repair transparency with blending.

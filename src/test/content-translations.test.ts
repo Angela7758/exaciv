@@ -30,12 +30,13 @@ describe('Content translation display rules',()=>{
     expect(resolveContentMessage('en','Nouveau texte',messages)).toEqual({text:'Nouveau texte',fallback:true});
     expect(resolveContentMessage('fr','Texte source',messages)).toEqual({text:'Texte source',fallback:false});
   });
-  it('accepts the five requested languages for account and assistance preferences',()=>{
+  it('retains interface languages but restricts question assistance to the six requested languages',()=>{
     for(const locale of ['en','es','ar','ru','pt']){
       expect(localeSchema.parse(locale)).toBe(locale);
       expect(accountSettingsSchema.shape.locale.parse(locale)).toBe(locale);
-      expect(accountSettingsSchema.shape.help_locale.parse(locale)).toBe(locale);
     }
+    for(const locale of ['fr','zh','en','ar','es','ru'])expect(accountSettingsSchema.shape.help_locale.parse(locale)).toBe(locale);
+    expect(accountSettingsSchema.shape.help_locale.safeParse('pt').success).toBe(false);
     expect(localeSchema.safeParse('invalid').success).toBe(false);
   });
   it('translates option display without altering answer indexes or originals',()=>{

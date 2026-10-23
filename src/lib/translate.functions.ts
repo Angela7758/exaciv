@@ -2,14 +2,14 @@ import {createServerFn} from '@tanstack/react-start';
 import {z} from 'zod';
 import {requireSupabaseAuth} from '@/integrations/supabase/auth-middleware';
 
-const HELP_LOCALES = ['zh','en','ar','es','ru','pt'] as const;
+const HELP_LOCALES = ['fr','zh','en','ar','es','ru'] as const;
 const LOCALE_NAMES: Record<(typeof HELP_LOCALES)[number], string> = {
   zh: 'Chinese (Simplified)',
   en: 'English',
   ar: 'Arabic',
   es: 'Spanish',
   ru: 'Russian',
-  pt: 'Portuguese',
+  fr: 'French',
 };
 
 const translateSchema = z.object({
@@ -25,6 +25,7 @@ export const translateQuestionTexts = createServerFn({method: 'POST'})
   .middleware([requireSupabaseAuth])
   .inputValidator(translateSchema)
   .handler(async ({data}) => {
+    if(data.target==='fr')return {translations:data.texts};
     const apiKey = process.env['LOVABLE_API_KEY'];
     if (!apiKey) throw new Error('La traduction n’est pas configurée.');
     const targetName = LOCALE_NAMES[data.target];
