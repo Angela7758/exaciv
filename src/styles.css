@@ -665,3 +665,6 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
   .account-bottom{flex-direction:column;align-items:stretch;}
   .account-bottom>button{width:100%;}
 }
+
+/* Garde-fou débordement 1 px sur la liste des leçons en mobile */
+@media(max-width:640px){.lessons-grid{min-width:0;}.lessons-grid>*{min-width:0;}}
