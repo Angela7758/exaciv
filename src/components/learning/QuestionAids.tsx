@@ -1,4 +1,6 @@
 import {useUiT} from '@/lib/i18n/internal';
+import {useI18n} from '@/lib/i18n';
+import {resolveContentMessage} from '@/lib/i18n/content';
 import {useEffect,useRef,useState} from 'react';
 import {useServerFn} from '@tanstack/react-start';
 import {useQueryClient} from '@tanstack/react-query';
@@ -43,11 +45,11 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   helpEnabled: boolean;
   helpLocale: string;
   assistedLabel?: boolean;
-}){const ui=useUiT();
+}){const ui=useUiT();const {locale}=useI18n();
   const [speaking,setSpeaking]=useState<'fr'|HelpLocale|null>(null);
   const [speechOk,setSpeechOk]=useState(true);
   const [open,setOpen]=useState(false);
-  const [target,setTarget]=useState<HelpLocale>((HELP_LOCALES.some(l=>l.id===helpLocale)?helpLocale:'en') as HelpLocale);
+  const [target,setTarget]=useState<HelpLocale>((HELP_LOCALES.some(l=>l.id===locale)?locale:HELP_LOCALES.some(l=>l.id===helpLocale)?helpLocale:'en') as HelpLocale);
   const [translations,setTranslations]=useState<Record<string,string[]>>({});
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState('');
@@ -61,6 +63,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
     return ()=>{ if (typeof window!=='undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel(); };
   },[questionId]);
   useEffect(()=>{ setOpen(false); setError(''); },[questionId]);
+  useEffect(()=>{if(HELP_LOCALES.some(l=>l.id===locale)){setTarget(locale as HelpLocale);setOpen(false);} },[locale]);
 
   function toggleSpeech(lang:'fr'|HelpLocale, text:string){
     if (!('speechSynthesis' in window)) { setSpeechOk(false); return; }
@@ -78,6 +81,11 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
     setBusy(true); setError('');
     try{
       const texts=[question,...options,...(explanation?[explanation]:[])];
+      const prepared=texts.map(text=>resolveContentMessage(target,text));
+      if(prepared.every(item=>!item.fallback)){
+        setTranslations(t=>({...t,[key]:prepared.map(item=>item.text)}));
+        return;
+      }
       const r=await translate({data:{texts,target}});
       setTranslations(t=>({...t,[key]:r.translations}));
     }catch(e){
