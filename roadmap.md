@@ -1,13 +1,16 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
-## En cours
-- [ ] Barre latérale : libellés tronqués/chevauchés en mode réduit et ≤1100 px (capture image-3)
-- [ ] Entraînement : bouton « Écouter » (synthèse vocale navigateur, lecture question + options, stop au changement)
-- [ ] Entraînement : bouton « Traduire » (repli, langue auxiliaire, RTL arabe, préférence compte « Afficher l'aide à la traduction »)
-- [ ] Audit de la banque de questions (doublons, ambiguïtés, réponse unique, sources) + rapport chiffré
-- [ ] Vérification responsive 1440/1024/768/390 des pages principales
-- [ ] Images pédagogiques dans leçons/cartes de thèmes (ratio stable, alt, lazy)
-
 ## Fait
-- [x] Question « mandat présidentiel » : « 5 ans » déjà correct en base (answer=1)
-- [x] Logo officiel, six langues interface, animations accueil (chantiers précédents)
+- [x] Barre latérale : libellés tronqués proprement (ellipsis), mode réduit propre, breakpoint ≤1100 px pour le gabarit de référence
+- [x] Page « Mon compte » : styles absents recréés (cartes, colonnes, mobile)
+- [x] « Écouter » : synthèse vocale navigateur (question + options), arrêt au changement de question/page, état lecture/arrêt, message si navigateur incompatible
+- [x] « Traduire » : traduction serveur via passerelle IA (5 langues, RTL arabe), repli masquable, « Écouter la traduction », jamais la réponse avant révélation
+- [x] Préférences compte : « Afficher l'aide à la traduction » + langue d'aide, persistées (migration profiles.translation_help / help_locale)
+- [x] Examen blanc : aides marquées « Entraînement avec aide »
+- [x] Audit banque : 41 questions publiées relues — 0 doublon, 0 réponse hors limites, 0 option vide, 0 sans explication ; « 5 ans » déjà correct ; 26 sources génériques remplacées par références exactes + date et état de vérification
+- [x] Responsive : 13 pages × 4 largeurs (1440/1024/768/390) sans débordement (1 px résiduel corrigé)
+- [x] Build OK, 60/60 tests
+
+## Reste (non bloquant)
+- [ ] Images pédagogiques supplémentaires dans les leçons (les cartes de thèmes du Dashboard en ont déjà)
+- [ ] Traduction des pages internes (leçons, sessions) — repli français en attendant
