@@ -30,6 +30,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as ApiRevisionPlanRouteImport } from './routes/api/revision-plan'
 import { Route as ApiSpeechRouteImport } from './routes/api/speech'
@@ -38,6 +39,18 @@ import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
 import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
 import { Route as TestGratuitResultatRouteImport } from './routes/test-gratuit_.resultat'
 import { Route as AuthenticatedAbonnementConfirmerRouteImport } from './routes/_authenticated/abonnement.confirmer'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
+import { Route as AuthenticatedAdminBillingRouteImport } from './routes/_authenticated/admin.billing'
+import { Route as AuthenticatedAdminImportRouteImport } from './routes/_authenticated/admin.import'
+import { Route as AuthenticatedAdminLessonsRouteImport } from './routes/_authenticated/admin.lessons'
+import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin.media'
+import { Route as AuthenticatedAdminQuestionsRouteImport } from './routes/_authenticated/admin.questions'
+import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
+import { Route as AuthenticatedAdminTestsRouteImport } from './routes/_authenticated/admin.tests'
+import { Route as AuthenticatedAdminTranslationsRouteImport } from './routes/_authenticated/admin.translations'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app.index'
 import { Route as AuthenticatedAppAbonnementRouteImport } from './routes/_authenticated/app.abonnement'
 import { Route as AuthenticatedAppEntrainementRouteImport } from './routes/_authenticated/app.entrainement'
@@ -49,6 +62,7 @@ import { Route as AuthenticatedAppMonCompteRouteImport } from './routes/_authent
 import { Route as AuthenticatedAppParcoursRouteImport } from './routes/_authenticated/app.parcours'
 import { Route as AuthenticatedAppProfilRouteImport } from './routes/_authenticated/app.profil'
 import { Route as AuthenticatedAppProgressionRouteImport } from './routes/_authenticated/app.progression'
+import { Route as AuthenticatedAppTestsRouteImport } from './routes/_authenticated/app.tests'
 import { Route as AuthenticatedAppEntrainementIndexRouteImport } from './routes/_authenticated/app.entrainement.index'
 import { Route as AuthenticatedAppExamenBlancIndexRouteImport } from './routes/_authenticated/app.examen-blanc.index'
 import { Route as AuthenticatedAppExamenBlancSessionRouteImport } from './routes/_authenticated/app.examen-blanc.session'
@@ -163,6 +177,11 @@ const TestGratuitRoute = TestGratuitRouteImport.update({
   path: '/test-gratuit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
   id: '/app',
   path: '/app',
@@ -204,6 +223,74 @@ const AuthenticatedAbonnementConfirmerRoute =
     path: '/abonnement/confirmer',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminAnalyticsRoute =
+  AuthenticatedAdminAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminBillingRoute =
+  AuthenticatedAdminBillingRouteImport.update({
+    id: '/billing',
+    path: '/billing',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminImportRoute =
+  AuthenticatedAdminImportRouteImport.update({
+    id: '/import',
+    path: '/import',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminLessonsRoute =
+  AuthenticatedAdminLessonsRouteImport.update({
+    id: '/lessons',
+    path: '/lessons',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminMediaRoute = AuthenticatedAdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminQuestionsRoute =
+  AuthenticatedAdminQuestionsRouteImport.update({
+    id: '/questions',
+    path: '/questions',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReportsRoute =
+  AuthenticatedAdminReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSettingsRoute =
+  AuthenticatedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTestsRoute = AuthenticatedAdminTestsRouteImport.update({
+  id: '/tests',
+  path: '/tests',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminTranslationsRoute =
+  AuthenticatedAdminTranslationsRouteImport.update({
+    id: '/translations',
+    path: '/translations',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedAppIndexRoute = AuthenticatedAppIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -266,6 +353,11 @@ const AuthenticatedAppProgressionRoute =
     path: '/progression',
     getParentRoute: () => AuthenticatedAppRoute,
   } as any)
+const AuthenticatedAppTestsRoute = AuthenticatedAppTestsRouteImport.update({
+  id: '/tests',
+  path: '/tests',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
 const AuthenticatedAppEntrainementIndexRoute =
   AuthenticatedAppEntrainementIndexRouteImport.update({
     id: '/',
@@ -342,6 +434,7 @@ export interface FileRoutesByFullPath {
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
   '/api/speech': typeof ApiSpeechRoute
@@ -350,6 +443,17 @@ export interface FileRoutesByFullPath {
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/test-gratuit/resultat': typeof TestGratuitResultatRoute
   '/abonnement/confirmer': typeof AuthenticatedAbonnementConfirmerRoute
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/billing': typeof AuthenticatedAdminBillingRoute
+  '/admin/import': typeof AuthenticatedAdminImportRoute
+  '/admin/lessons': typeof AuthenticatedAdminLessonsRoute
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/admin/questions': typeof AuthenticatedAdminQuestionsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/tests': typeof AuthenticatedAdminTestsRoute
+  '/admin/translations': typeof AuthenticatedAdminTranslationsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
@@ -360,6 +464,8 @@ export interface FileRoutesByFullPath {
   '/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/app/profil': typeof AuthenticatedAppProfilRoute
   '/app/progression': typeof AuthenticatedAppProgressionRoute
+  '/app/tests': typeof AuthenticatedAppTestsRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
   '/app/': typeof AuthenticatedAppIndexRoute
   '/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
@@ -399,6 +505,17 @@ export interface FileRoutesByTo {
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/test-gratuit/resultat': typeof TestGratuitResultatRoute
   '/abonnement/confirmer': typeof AuthenticatedAbonnementConfirmerRoute
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/billing': typeof AuthenticatedAdminBillingRoute
+  '/admin/import': typeof AuthenticatedAdminImportRoute
+  '/admin/lessons': typeof AuthenticatedAdminLessonsRoute
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/admin/questions': typeof AuthenticatedAdminQuestionsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/tests': typeof AuthenticatedAdminTestsRoute
+  '/admin/translations': typeof AuthenticatedAdminTranslationsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/app/erreurs': typeof AuthenticatedAppErreursRoute
   '/app/mes-erreurs': typeof AuthenticatedAppMesErreursRoute
@@ -406,6 +523,8 @@ export interface FileRoutesByTo {
   '/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/app/profil': typeof AuthenticatedAppProfilRoute
   '/app/progression': typeof AuthenticatedAppProgressionRoute
+  '/app/tests': typeof AuthenticatedAppTestsRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
   '/app': typeof AuthenticatedAppIndexRoute
   '/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
@@ -440,6 +559,7 @@ export interface FileRoutesById {
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
   '/api/speech': typeof ApiSpeechRoute
@@ -448,6 +568,17 @@ export interface FileRoutesById {
   '/tarifs/$plan': typeof TarifsPlanRoute
   '/test-gratuit_/resultat': typeof TestGratuitResultatRoute
   '/_authenticated/abonnement/confirmer': typeof AuthenticatedAbonnementConfirmerRoute
+  '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/billing': typeof AuthenticatedAdminBillingRoute
+  '/_authenticated/admin/import': typeof AuthenticatedAdminImportRoute
+  '/_authenticated/admin/lessons': typeof AuthenticatedAdminLessonsRoute
+  '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/_authenticated/admin/questions': typeof AuthenticatedAdminQuestionsRoute
+  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/_authenticated/admin/tests': typeof AuthenticatedAdminTestsRoute
+  '/_authenticated/admin/translations': typeof AuthenticatedAdminTranslationsRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/app/abonnement': typeof AuthenticatedAppAbonnementRoute
   '/_authenticated/app/entrainement': typeof AuthenticatedAppEntrainementRouteWithChildren
   '/_authenticated/app/erreurs': typeof AuthenticatedAppErreursRoute
@@ -458,6 +589,8 @@ export interface FileRoutesById {
   '/_authenticated/app/parcours': typeof AuthenticatedAppParcoursRoute
   '/_authenticated/app/profil': typeof AuthenticatedAppProfilRoute
   '/_authenticated/app/progression': typeof AuthenticatedAppProgressionRoute
+  '/_authenticated/app/tests': typeof AuthenticatedAppTestsRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
   '/_authenticated/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/_authenticated/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
@@ -492,6 +625,7 @@ export interface FileRouteTypes {
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
+    | '/admin'
     | '/app'
     | '/api/revision-plan'
     | '/api/speech'
@@ -500,6 +634,17 @@ export interface FileRouteTypes {
     | '/tarifs/$plan'
     | '/test-gratuit/resultat'
     | '/abonnement/confirmer'
+    | '/admin/analytics'
+    | '/admin/billing'
+    | '/admin/import'
+    | '/admin/lessons'
+    | '/admin/media'
+    | '/admin/questions'
+    | '/admin/reports'
+    | '/admin/settings'
+    | '/admin/tests'
+    | '/admin/translations'
+    | '/admin/users'
     | '/app/abonnement'
     | '/app/entrainement'
     | '/app/erreurs'
@@ -510,6 +655,8 @@ export interface FileRouteTypes {
     | '/app/parcours'
     | '/app/profil'
     | '/app/progression'
+    | '/app/tests'
+    | '/admin/'
     | '/app/'
     | '/app/examen-blanc/session'
     | '/app/lecons/$slug'
@@ -549,6 +696,17 @@ export interface FileRouteTypes {
     | '/tarifs/$plan'
     | '/test-gratuit/resultat'
     | '/abonnement/confirmer'
+    | '/admin/analytics'
+    | '/admin/billing'
+    | '/admin/import'
+    | '/admin/lessons'
+    | '/admin/media'
+    | '/admin/questions'
+    | '/admin/reports'
+    | '/admin/settings'
+    | '/admin/tests'
+    | '/admin/translations'
+    | '/admin/users'
     | '/app/abonnement'
     | '/app/erreurs'
     | '/app/mes-erreurs'
@@ -556,6 +714,8 @@ export interface FileRouteTypes {
     | '/app/parcours'
     | '/app/profil'
     | '/app/progression'
+    | '/app/tests'
+    | '/admin'
     | '/app'
     | '/app/examen-blanc/session'
     | '/app/lecons/$slug'
@@ -589,6 +749,7 @@ export interface FileRouteTypes {
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
+    | '/_authenticated/admin'
     | '/_authenticated/app'
     | '/api/revision-plan'
     | '/api/speech'
@@ -597,6 +758,17 @@ export interface FileRouteTypes {
     | '/tarifs/$plan'
     | '/test-gratuit_/resultat'
     | '/_authenticated/abonnement/confirmer'
+    | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/billing'
+    | '/_authenticated/admin/import'
+    | '/_authenticated/admin/lessons'
+    | '/_authenticated/admin/media'
+    | '/_authenticated/admin/questions'
+    | '/_authenticated/admin/reports'
+    | '/_authenticated/admin/settings'
+    | '/_authenticated/admin/tests'
+    | '/_authenticated/admin/translations'
+    | '/_authenticated/admin/users'
     | '/_authenticated/app/abonnement'
     | '/_authenticated/app/entrainement'
     | '/_authenticated/app/erreurs'
@@ -607,6 +779,8 @@ export interface FileRouteTypes {
     | '/_authenticated/app/parcours'
     | '/_authenticated/app/profil'
     | '/_authenticated/app/progression'
+    | '/_authenticated/app/tests'
+    | '/_authenticated/admin/'
     | '/_authenticated/app/'
     | '/_authenticated/app/examen-blanc/session'
     | '/_authenticated/app/lecons/$slug'
@@ -796,6 +970,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestGratuitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/app': {
       id: '/_authenticated/app'
       path: '/app'
@@ -851,6 +1032,90 @@ declare module '@tanstack/react-router' {
       fullPath: '/abonnement/confirmer'
       preLoaderRoute: typeof AuthenticatedAbonnementConfirmerRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/analytics': {
+      id: '/_authenticated/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/billing': {
+      id: '/_authenticated/admin/billing'
+      path: '/billing'
+      fullPath: '/admin/billing'
+      preLoaderRoute: typeof AuthenticatedAdminBillingRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/import': {
+      id: '/_authenticated/admin/import'
+      path: '/import'
+      fullPath: '/admin/import'
+      preLoaderRoute: typeof AuthenticatedAdminImportRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/lessons': {
+      id: '/_authenticated/admin/lessons'
+      path: '/lessons'
+      fullPath: '/admin/lessons'
+      preLoaderRoute: typeof AuthenticatedAdminLessonsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/media': {
+      id: '/_authenticated/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AuthenticatedAdminMediaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/questions': {
+      id: '/_authenticated/admin/questions'
+      path: '/questions'
+      fullPath: '/admin/questions'
+      preLoaderRoute: typeof AuthenticatedAdminQuestionsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/reports': {
+      id: '/_authenticated/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/settings': {
+      id: '/_authenticated/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/tests': {
+      id: '/_authenticated/admin/tests'
+      path: '/tests'
+      fullPath: '/admin/tests'
+      preLoaderRoute: typeof AuthenticatedAdminTestsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/translations': {
+      id: '/_authenticated/admin/translations'
+      path: '/translations'
+      fullPath: '/admin/translations'
+      preLoaderRoute: typeof AuthenticatedAdminTranslationsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/app/': {
       id: '/_authenticated/app/'
@@ -929,6 +1194,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppProgressionRouteImport
       parentRoute: typeof AuthenticatedAppRoute
     }
+    '/_authenticated/app/tests': {
+      id: '/_authenticated/app/tests'
+      path: '/tests'
+      fullPath: '/app/tests'
+      preLoaderRoute: typeof AuthenticatedAppTestsRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
     '/_authenticated/app/entrainement/': {
       id: '/_authenticated/app/entrainement/'
       path: '/'
@@ -994,6 +1266,39 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminBillingRoute: typeof AuthenticatedAdminBillingRoute
+  AuthenticatedAdminImportRoute: typeof AuthenticatedAdminImportRoute
+  AuthenticatedAdminLessonsRoute: typeof AuthenticatedAdminLessonsRoute
+  AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
+  AuthenticatedAdminQuestionsRoute: typeof AuthenticatedAdminQuestionsRoute
+  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
+  AuthenticatedAdminTestsRoute: typeof AuthenticatedAdminTestsRoute
+  AuthenticatedAdminTranslationsRoute: typeof AuthenticatedAdminTranslationsRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminBillingRoute: AuthenticatedAdminBillingRoute,
+  AuthenticatedAdminImportRoute: AuthenticatedAdminImportRoute,
+  AuthenticatedAdminLessonsRoute: AuthenticatedAdminLessonsRoute,
+  AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
+  AuthenticatedAdminQuestionsRoute: AuthenticatedAdminQuestionsRoute,
+  AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
+  AuthenticatedAdminTestsRoute: AuthenticatedAdminTestsRoute,
+  AuthenticatedAdminTranslationsRoute: AuthenticatedAdminTranslationsRoute,
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
 
 interface AuthenticatedAppEntrainementRouteChildren {
   AuthenticatedAppEntrainementIndexRoute: typeof AuthenticatedAppEntrainementIndexRoute
@@ -1064,6 +1369,7 @@ interface AuthenticatedAppRouteChildren {
   AuthenticatedAppParcoursRoute: typeof AuthenticatedAppParcoursRoute
   AuthenticatedAppProfilRoute: typeof AuthenticatedAppProfilRoute
   AuthenticatedAppProgressionRoute: typeof AuthenticatedAppProgressionRoute
+  AuthenticatedAppTestsRoute: typeof AuthenticatedAppTestsRoute
   AuthenticatedAppIndexRoute: typeof AuthenticatedAppIndexRoute
   AuthenticatedAppResultatsSessionIdRoute: typeof AuthenticatedAppResultatsSessionIdRoute
 }
@@ -1081,6 +1387,7 @@ const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
   AuthenticatedAppParcoursRoute: AuthenticatedAppParcoursRoute,
   AuthenticatedAppProfilRoute: AuthenticatedAppProfilRoute,
   AuthenticatedAppProgressionRoute: AuthenticatedAppProgressionRoute,
+  AuthenticatedAppTestsRoute: AuthenticatedAppTestsRoute,
   AuthenticatedAppIndexRoute: AuthenticatedAppIndexRoute,
   AuthenticatedAppResultatsSessionIdRoute:
     AuthenticatedAppResultatsSessionIdRoute,
@@ -1090,11 +1397,13 @@ const AuthenticatedAppRouteWithChildren =
   AuthenticatedAppRoute._addFileChildren(AuthenticatedAppRouteChildren)
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
   AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
   AuthenticatedAbonnementConfirmerRoute: typeof AuthenticatedAbonnementConfirmerRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
   AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
   AuthenticatedAbonnementConfirmerRoute: AuthenticatedAbonnementConfirmerRoute,
 }
