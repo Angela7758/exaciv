@@ -728,3 +728,6 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .home-daily .civi-tip{inset-inline-start:0;top:0;width:min(260px,100%);}
 @media(min-width:768px){.home-final-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,320px) 120px;gap:24px;}.home-final-layout>img{width:120px;}.home-final-copy h2{font-size:36px;}.home-final-copy p{font-size:18px;}}
 @media(max-width:767px){.home-method-card>h3,.home-method-card>p{min-height:0;}.home-final-copy h2{font-size:32px;}}
+.lesson-video{border-top:1px solid var(--border);padding:12px;}
+.lesson-video-label{font-size:13px;font-weight:700;color:var(--learning-blue);margin-bottom:8px;}
+.lesson-video video{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1376/768;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--learning-surface);}

@@ -530,7 +530,8 @@
     "Les traductions pédagogiques sont des aides. Les originaux français et les sources restent disponibles. Les textes manquants utilisent le repli français.": "Educational translations are aids. The French originals and sources remain available. Missing texts fall back to French.",
     "Sources officielles et contenus non encore traduits.": "Official sources and content not yet translated.",
     "Fermer": "Close",
-    "Agrandir l'image": "Zoom in on the illustration"
+    "Agrandir l'image": "Zoom in on the illustration",
+    "Vidéo de la leçon": "Lesson video"
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1063,7 +1064,8 @@
     "Les traductions pédagogiques sont des aides. Les originaux français et les sources restent disponibles. Les textes manquants utilisent le repli français.": "教学翻译仅作辅助。法语原文和来源仍可查阅。缺少译文的文本将回退显示法语原文。",
     "Sources officielles et contenus non encore traduits.": "官方来源和尚未翻译的内容。",
     "Fermer": "关闭",
-    "Agrandir l'image": "放大查看教学图片"
+    "Agrandir l'image": "放大查看教学图片",
+    "Vidéo de la leçon": "课程视频"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1596,7 +1598,8 @@
     "Les traductions pédagogiques sont des aides. Les originaux français et les sources restent disponibles. Les textes manquants utilisent le repli français.": "الترجمات التعليمية وسائل مساعدة. تظل النصوص الأصلية الفرنسية والمصادر متاحة. عند غياب الترجمة، يُستخدم النص الفرنسي بديلاً.",
     "Sources officielles et contenus non encore traduits.": "المصادر الرسمية والمحتويات التي لم تُترجم بعد.",
     "Fermer": "إغلاق",
-    "Agrandir l'image": "تكبير الصورة"
+    "Agrandir l'image": "تكبير الصورة",
+    "Vidéo de la leçon": "فيديو الدرس"
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -2129,7 +2132,8 @@
     "Les traductions pédagogiques sont des aides. Les originaux français et les sources restent disponibles. Les textes manquants utilisent le repli français.": "Las traducciones pedagógicas son ayudas. Los originales en francés y las fuentes siguen disponibles. Para los textos que faltan, se utiliza el francés como alternativa.",
     "Sources officielles et contenus non encore traduits.": "Fuentes oficiales y contenidos aún no traducidos.",
     "Fermer": "Cerrar",
-    "Agrandir l'image": "Ampliar la imagen"
+    "Agrandir l'image": "Ampliar la imagen",
+    "Vidéo de la leçon": "Vídeo de la lección"
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -2662,7 +2666,8 @@
     "Les traductions pédagogiques sont des aides. Les originaux français et les sources restent disponibles. Les textes manquants utilisent le repli français.": "Учебные переводы служат вспомогательным средством. Французские оригиналы и источники остаются доступными. При отсутствии перевода используется французский текст.",
     "Sources officielles et contenus non encore traduits.": "Официальные источники и ещё не переведённые материалы.",
     "Fermer": "Закрыть",
-    "Agrandir l'image": "Увеличить изображение"
+    "Agrandir l'image": "Увеличить изображение",
+    "Vidéo de la leçon": "Видео урока"
   },
   "pt": {
     "Original français": "Original em francês",
@@ -3195,6 +3200,7 @@
     "Impossible de commencer la session.": "Não foi possível iniciar a sessão.",
     "Questions · {0}": "Perguntas · {0}",
     "Fermer": "Fechar",
-    "Agrandir l'image": "Ampliar a imagem"
+    "Agrandir l'image": "Ampliar a imagem",
+    "Vidéo de la leçon": "Vídeo da lição"
   }
 }
