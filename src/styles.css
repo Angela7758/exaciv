@@ -686,3 +686,6 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 [dir="rtl"] .app-content [lang="fr"]{text-align:left;unicode-bidi:isolate;}
 [dir="rtl"] .app-content [data-slot="button"] svg.lucide-arrow-right,[dir="rtl"] .app-content [data-slot="button"] svg.lucide-arrow-left{transform:scaleX(-1);}
 @media(max-width:760px){[dir="rtl"] .app-layout .app-main,[dir="rtl"] .app-layout.sidebar-mini .app-main{margin-right:0;}}
+
+/* Numeric ratios are invariant in right-to-left interfaces. */
+[dir="rtl"] .score-main h2,[dir="rtl"] .theme-result-row>b,[dir="rtl"] .mobile-question-counter,[dir="rtl"] .mock-timer b,[dir="rtl"] .score-ring strong,[dir="rtl"] .mock-sidebar>p>b,[dir="rtl"] .practice-count b{direction:ltr;unicode-bidi:isolate;}
