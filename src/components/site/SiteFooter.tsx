@@ -12,7 +12,7 @@ const COLS: { title: MessageKey; links: [string, MessageKey][] }[] = [
 export function SiteFooter() {
   const t = useT();
   return (
-    <footer className="bg-card">
+    <footer className="site-footer bg-card">
       <div className="container-page grid gap-10 py-10 md:grid-cols-[1.6fr_repeat(4,1fr)]">
         <div>
           <Logo />
