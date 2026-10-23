@@ -229,7 +229,7 @@
     "Langue d’accompagnement": "Support language",
     "L’interface est traduite ; les leçons et questions restent en français, comme à l’examen officiel.": "The interface is translated; lessons and questions remain in French, as in the official exam.",
     "Date de mon objectif": "My target date",
-    "Enregistrer": "Save",
+    "Enregistrer": "Record",
     "Mon abonnement": "My subscription",
     "Votre offre : Découverte. Les paiements ne sont pas encore disponibles.": "Your plan: Discovery. Payments are not yet available.",
     "Préparez-vous progressivement": "Prepare step by step",
@@ -532,7 +532,12 @@
     "Fermer": "Close",
     "Agrandir l'image": "Zoom in on the illustration",
     "Vidéo de la leçon": "Lesson video",
-    "La lecture audio a échoué.": "Audio playback failed."
+    "La lecture audio a échoué.": "Audio playback failed.",
+    "Arrêter l’enregistrement": "Stop recording",
+    "Réenregistrer": "Record again",
+    "Écouter ma voix": "Play my voice",
+    "L’enregistrement n’est pas disponible dans ce navigateur.": "Recording is not available in this browser.",
+    "Autorisez le micro pour enregistrer votre voix.": "Allow microphone access to record your voice."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -764,7 +769,7 @@
     "Langue d’accompagnement": "辅助语言",
     "L’interface est traduite ; les leçons et questions restent en français, comme à l’examen officiel.": "界面已翻译；课程和题目仍使用法语，与官方考试一致。",
     "Date de mon objectif": "我的目标日期",
-    "Enregistrer": "保存",
+    "Enregistrer": "录制",
     "Mon abonnement": "我的订阅",
     "Votre offre : Découverte. Les paiements ne sont pas encore disponibles.": "您的方案：体验版。暂未开放支付。",
     "Préparez-vous progressivement": "循序渐进地备考",
@@ -1067,7 +1072,12 @@
     "Fermer": "关闭",
     "Agrandir l'image": "放大查看教学图片",
     "Vidéo de la leçon": "课程视频",
-    "La lecture audio a échoué.": "音频播放失败。"
+    "La lecture audio a échoué.": "音频播放失败。",
+    "Arrêter l’enregistrement": "停止录制",
+    "Réenregistrer": "重新录制",
+    "Écouter ma voix": "听我的录音",
+    "L’enregistrement n’est pas disponible dans ce navigateur.": "此浏览器不支持录制。",
+    "Autorisez le micro pour enregistrer votre voix.": "请允许使用麦克风以录制您的声音。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1299,7 +1309,7 @@
     "Langue d’accompagnement": "لغة المساعدة",
     "L’interface est traduite ; les leçons et questions restent en français, comme à l’examen officiel.": "الواجهة مترجمة؛ تبقى الدروس والأسئلة بالفرنسية، كما في الامتحان الرسمي.",
     "Date de mon objectif": "تاريخ هدفي",
-    "Enregistrer": "حفظ",
+    "Enregistrer": "تسجيل",
     "Mon abonnement": "اشتراكي",
     "Votre offre : Découverte. Les paiements ne sont pas encore disponibles.": "باقتك: الاستكشاف. الدفع غير متاح بعد.",
     "Préparez-vous progressivement": "استعد تدريجيًا",
@@ -1602,7 +1612,12 @@
     "Fermer": "إغلاق",
     "Agrandir l'image": "تكبير الصورة",
     "Vidéo de la leçon": "فيديو الدرس",
-    "La lecture audio a échoué.": "فشل تشغيل الصوت."
+    "La lecture audio a échoué.": "فشل تشغيل الصوت.",
+    "Arrêter l’enregistrement": "إيقاف التسجيل",
+    "Réenregistrer": "إعادة التسجيل",
+    "Écouter ma voix": "استمع إلى صوتي",
+    "L’enregistrement n’est pas disponible dans ce navigateur.": "التسجيل غير متاح في هذا المتصفح.",
+    "Autorisez le micro pour enregistrer votre voix.": "اسمح باستخدام الميكروفون لتسجيل صوتك."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -1834,7 +1849,7 @@
     "Langue d’accompagnement": "Idioma de apoyo",
     "L’interface est traduite ; les leçons et questions restent en français, comme à l’examen officiel.": "La interfaz está traducida; las lecciones y las preguntas siguen en francés, como en el examen oficial.",
     "Date de mon objectif": "Fecha de mi objetivo",
-    "Enregistrer": "Guardar",
+    "Enregistrer": "Grabar",
     "Mon abonnement": "Mi suscripción",
     "Votre offre : Découverte. Les paiements ne sont pas encore disponibles.": "Tu plan: Descubrimiento. Los pagos aún no están disponibles.",
     "Préparez-vous progressivement": "Prepárate paso a paso",
@@ -2137,7 +2152,12 @@
     "Fermer": "Cerrar",
     "Agrandir l'image": "Ampliar la imagen",
     "Vidéo de la leçon": "Vídeo de la lección",
-    "La lecture audio a échoué.": "La lectura de audio ha fallado."
+    "La lecture audio a échoué.": "La lectura de audio ha fallado.",
+    "Arrêter l’enregistrement": "Detener la grabación",
+    "Réenregistrer": "Volver a grabar",
+    "Écouter ma voix": "Escuchar mi voz",
+    "L’enregistrement n’est pas disponible dans ce navigateur.": "La grabación no está disponible en este navegador.",
+    "Autorisez le micro pour enregistrer votre voix.": "Permite el micrófono para grabar tu voz."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -2369,7 +2389,7 @@
     "Langue d’accompagnement": "Язык сопровождения",
     "L’interface est traduite ; les leçons et questions restent en français, comme à l’examen officiel.": "Интерфейс переведён; уроки и вопросы остаются на французском, как на официальном экзамене.",
     "Date de mon objectif": "Дата моей цели",
-    "Enregistrer": "Сохранить",
+    "Enregistrer": "Записать",
     "Mon abonnement": "Моя подписка",
     "Votre offre : Découverte. Les paiements ne sont pas encore disponibles.": "Ваш тариф: Знакомство. Оплата пока недоступна.",
     "Préparez-vous progressivement": "Готовьтесь постепенно",
@@ -2672,7 +2692,12 @@
     "Fermer": "Закрыть",
     "Agrandir l'image": "Увеличить изображение",
     "Vidéo de la leçon": "Видео урока",
-    "La lecture audio a échoué.": "Не удалось воспроизвести аудио."
+    "La lecture audio a échoué.": "Не удалось воспроизвести аудио.",
+    "Arrêter l’enregistrement": "Остановить запись",
+    "Réenregistrer": "Записать снова",
+    "Écouter ma voix": "Прослушать мой голос",
+    "L’enregistrement n’est pas disponible dans ce navigateur.": "Запись недоступна в этом браузере.",
+    "Autorisez le micro pour enregistrer votre voix.": "Разрешите доступ к микрофону для записи."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -2911,7 +2936,7 @@
     "Langue d’accompagnement": "Língua de apoio",
     "L’interface est traduite ; les leçons et questions restent en français, comme à l’examen officiel.": "A interface está traduzida; as lições e as perguntas continuam em francês, como no exame oficial.",
     "Date de mon objectif": "Data do meu objetivo",
-    "Enregistrer": "Guardar",
+    "Enregistrer": "Gravar",
     "Mon abonnement": "A minha subscrição",
     "Votre offre : Découverte. Les paiements ne sont pas encore disponibles.": "O seu plano: Descoberta. Os pagamentos ainda não estão disponíveis.",
     "Préparez-vous progressivement": "Prepare-se progressivamente",
@@ -3207,6 +3232,11 @@
     "Fermer": "Fechar",
     "Agrandir l'image": "Ampliar a imagem",
     "Vidéo de la leçon": "Vídeo da lição",
-    "La lecture audio a échoué.": "A leitura de áudio falhou."
+    "La lecture audio a échoué.": "A leitura de áudio falhou.",
+    "Arrêter l’enregistrement": "Parar a gravação",
+    "Réenregistrer": "Gravar novamente",
+    "Écouter ma voix": "Ouvir a minha voz",
+    "L’enregistrement n’est pas disponible dans ce navigateur.": "A gravação não está disponível neste navegador.",
+    "Autorisez le micro pour enregistrer votre voix.": "Permita o microfone para gravar a sua voz."
   }
 }

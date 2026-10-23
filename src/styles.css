@@ -732,3 +732,4 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .lesson-video-label{font-size:13px;font-weight:700;color:var(--learning-blue);margin-bottom:8px;}
 .lesson-video video{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1376/768;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--learning-surface);}
 .listen-button{margin:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.record-button{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center;max-width:100%;}.record-button .recording{border-color:var(--destructive);color:var(--destructive);}
