@@ -247,8 +247,15 @@
 .topic-title>span{display:flex;align-items:center;gap:3px;background:var(--card);padding:5px 7px;border-radius:12px;font-size:11px;font-weight:700;}
 .topic-title>span svg{width:13px;height:13px;color:var(--learning-blue);}
 .topic-card>p{position:relative;max-width:85%;font-size:11px;color:var(--learning-muted);margin:10px 0 16px;}
-.topic-progress{position:relative;display:flex;align-items:center;gap:7px;width:63%;font-size:10px;}
-.topic-progress progress{height:8px;}
+.topic-progress{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:3px 10px;width:63%;font-size:10px;}
+.topic-progress progress{grid-column:1/-1;height:8px;width:100%;}
+.topic-ring{position:relative;width:44px;height:44px;}
+.topic-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+.topic-ring circle{fill:none;stroke-width:5;stroke-linecap:round;}
+.topic-ring .ring-track{stroke:color-mix(in oklab,var(--learning-blue) 16%,transparent);}
+.topic-ring .ring-value{stroke:var(--learning-blue);}
+.topic-ring>b{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:800;}
+.topic-count{font-size:11px;font-weight:700;color:var(--learning-muted);}
 .dashboard-bottom{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;margin-top:16px;}
 .dashboard-bottom .section-row{margin:0 0 10px;}
 .dashboard-bottom .section-row h2{font-size:17px;}
@@ -732,7 +739,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .home-final-cta [data-slot=button]{max-width:100%;}
 [dir=rtl] .home-daily .step-arrow{right:auto;left:-20px;}
 .home-daily .civi-tip{inset-inline-start:0;top:0;width:min(260px,100%);}
-@media(min-width:768px){.home-final-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,320px) 120px;gap:24px;}.home-final-layout>img{width:120px;}.home-final-copy h2{font-size:36px;}.home-final-copy p{font-size:18px;}}
+@media(min-width:768px){.home-final-layout{display:grid;grid-template-columns:minmax(0,1fr) auto 190px;gap:24px;align-items:end;}.home-final-layout>img{width:190px;}.home-final-copy h2{font-size:36px;}.home-final-copy p{font-size:18px;}}
 @media(max-width:767px){.home-method-card>h3,.home-method-card>p{min-height:0;}.home-final-copy h2{font-size:32px;}}
 .lesson-video{border-top:1px solid var(--border);padding:12px;}
 .lesson-video-label{font-size:13px;font-weight:700;color:var(--learning-blue);margin-bottom:8px;}

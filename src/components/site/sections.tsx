@@ -128,7 +128,7 @@ export function FinalCta() {
         <Button data-slot="button" asChild variant="cta" size="xl" className="order-2 shrink-0">
           <Link to="/test-gratuit"><Play className="fill-current" /> {t('home.cta.button')}</Link>
         </Button>
-        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-28 shrink-0 md:w-40" />
+        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-32 shrink-0 self-end md:w-48" />
       </div>
     </section>
   );
