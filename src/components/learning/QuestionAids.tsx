@@ -1,3 +1,4 @@
+import {saveLocale} from '@/lib/learning.functions';
 import {useUiT} from '@/lib/i18n/internal';
 import {useI18n} from '@/lib/i18n';
 import {resolveContentMessage,resolveContentPassage} from '@/lib/i18n/content';
@@ -45,7 +46,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   helpEnabled: boolean;
   helpLocale: string;
   assistedLabel?: boolean;
-}){const ui=useUiT();const {locale}=useI18n();
+}){const ui=useUiT();const {locale,setLocale}=useI18n();const saveUiLocale=useServerFn(saveLocale);
   const [speaking,setSpeaking]=useState<'fr'|HelpLocale|null>(null);
   const [speechOk,setSpeechOk]=useState(true);
   const [open,setOpen]=useState(false);
@@ -96,6 +97,8 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   async function changeTarget(next:HelpLocale){
     setTarget(next);
     setTranslations({});
+    setLocale(next);
+    void saveUiLocale({data:{locale:next}}).catch(()=>{/* langue conservée localement */});
     if (open){ setOpen(false); }
     try{ await savePref({data:{help_locale:next}}); await qc.invalidateQueries({queryKey:['learning']}); }catch{ /* préférence non enregistrée : la session garde le choix */ }
   }
