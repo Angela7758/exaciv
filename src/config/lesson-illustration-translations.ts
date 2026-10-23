@@ -8,4 +8,11 @@ const descriptions = {
   pt: ['Cidadãos reunidos à volta de Marianne para ilustrar a liberdade, a igualdade e a fraternidade.', 'Alunos acolhidos numa escola pública francesa.', 'A Assembleia Nacional e o Senado, com um livro que representa a lei.', 'A presidência, com um palácio, uma urna e cinco calendários que representam o mandato de cinco anos.', 'Uma cidadã coloca um envelope numa urna, diante de eleitores e de uma cabine de voto.', 'A bandeira tricolor francesa, Marianne e uma partitura que representa o hino nacional.', 'Uma mulher e um homem junto de uma balança equilibrada, com equipas a trabalhar em conjunto.'],
 };
 
-export const LESSON_IMAGE_MESSAGES = Object.fromEntries(Object.entries(descriptions).map(([locale, texts]) => [locale, Object.fromEntries(Object.values(LESSON_ILLUSTRATIONS).map((image, i) => [image.alt, texts[i] ?? image.alt]))]));
+const additions = {
+ en: ['A map of France, heritage and a book for historical landmarks.', 'A map of France and landscapes for territorial landmarks.', 'A family and local services in French society.', 'A doctor and healthcare services for medical follow-up.'],
+ es: ['Mapa de Francia, patrimonio y un libro para los hitos históricos.', 'Mapa de Francia y paisajes para los puntos de referencia territoriales.', 'Familia y servicios de proximidad en la sociedad francesa.', 'Médico y servicios de salud para el seguimiento médico.'],
+ ar: ['خريطة فرنسا والتراث وكتاب للمعالم التاريخية.', 'خريطة فرنسا ومناظر طبيعية للمعالم الإقليمية.', 'أسرة وخدمات محلية في المجتمع الفرنسي.', 'طبيب وخدمات صحية للمتابعة الطبية.'],
+ ru: ['Карта Франции, наследие и книга для исторических ориентиров.', 'Карта Франции и пейзажи для территориальных ориентиров.', 'Семья и местные службы во французском обществе.', 'Врач и службы здравоохранения для медицинского наблюдения.'],
+ pt: ['Mapa de França, património e um livro para os marcos históricos.', 'Mapa de França e paisagens para as referências territoriais.', 'Família e serviços de proximidade na sociedade francesa.', 'Médico e serviços de saúde para o acompanhamento médico.'],
+};
+export const LESSON_IMAGE_MESSAGES = Object.fromEntries(Object.entries(descriptions).map(([locale, texts]) => [locale, Object.fromEntries(Object.values(LESSON_ILLUSTRATIONS).map((image, i) => [image.alt, [...texts,...additions[locale as keyof typeof additions]][i] ?? image.alt]))]));
