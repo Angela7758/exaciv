@@ -13,4 +13,5 @@
 
 ## Reste (non bloquant)
 - [ ] Images pédagogiques supplémentaires dans les leçons (les cartes de thèmes du Dashboard en ont déjà)
-- [ ] Traduction des pages internes (leçons, sessions) — repli français en attendant
+- [ ] Traduire les interfaces internes en anglais, chinois, arabe, espagnol et russe avec repli français ; conserver les cours et questions en français
+- [ ] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant
