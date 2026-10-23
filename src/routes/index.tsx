@@ -254,10 +254,10 @@ function Stat({ icon: Icon, cls, title, sub }: { icon: typeof Landmark; cls: str
   );
 }
 
-function MethodCard({ title, tone, text, children, action, index = 0 }: { title: string; tone: 'orange' | 'blue' | 'green'; text: string; children: React.ReactNode; action?: React.ReactNode; index?: number; num: string; icon: typeof BookOpen }) {
+function MethodCard({ title, tone, text, children, action, index = 0, icon: Icon }: { title: string; tone: 'orange' | 'blue' | 'green'; text: string; children: React.ReactNode; action?: React.ReactNode; index?: number; num: string; icon: typeof BookOpen }) {
   return (
     <article style={{ transitionDelay: `${index * 70}ms` }} className={`home-method-card method-tone-${tone} reveal-child card-hover`}>
-            <h3>{title}</h3>
+      <div className="home-method-head home-method-head-center"><span className="home-method-icon" aria-hidden><Icon /></span><h3>{title}</h3></div>
       <p className="home-method-text">{text}</p>
       <div className="home-method-preview">{children}</div>
       {action && <div className="home-method-action">{action}</div>}

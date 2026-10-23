@@ -8,6 +8,7 @@ import { useT } from "@/lib/i18n";
 import { FAQ } from "@/config/content";
 import civi from "@/assets/civi.png";
 import ctaBg from "@/assets/hero-paris.jpg";
+import civiStar from "@/assets/civi-hero-star.png";
 
 export function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
@@ -128,7 +129,7 @@ export function FinalCta() {
         <Button data-slot="button" asChild variant="cta" size="xl" className="order-2 shrink-0">
           <Link to="/test-gratuit"><Play className="fill-current" /> {t('home.cta.button')}</Link>
         </Button>
-        <img src={civi} alt="" aria-hidden loading="lazy" width={430} height={497} className="order-3 w-32 shrink-0 self-end md:w-48" />
+        <span className="home-final-civi order-3" aria-hidden><img src={civiStar} alt="" className="home-final-star" /><img src={civi} alt="" loading="lazy" width={430} height={497} className="home-final-body" /><i className="home-final-spark" /></span>
       </div>
     </section>
   );
