@@ -13,6 +13,7 @@ const HELP_LOCALES = [
   {id:'ar',label:'العربية',speech:'ar-SA'},
   {id:'es',label:'Español',speech:'es-ES'},
   {id:'ru',label:'Русский',speech:'ru-RU'},
+  {id:'pt',label:'Português',speech:'pt-PT'},
 ] as const;
 type HelpLocale = (typeof HELP_LOCALES)[number]['id'];
 

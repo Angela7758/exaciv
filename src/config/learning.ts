@@ -1,6 +1,6 @@
-export const LOCALES = [{id:'fr',label:'Français',dir:'ltr'}, {id:'zh',label:'中文',dir:'ltr'}, {id:'en',label:'English',dir:'ltr'}, {id:'ar',label:'العربية',dir:'rtl'}, {id:'es',label:'Español',dir:'ltr'}, {id:'ru',label:'Русский',dir:'ltr'}] as const;
+export const LOCALES = [{id:'fr',label:'Français',dir:'ltr'}, {id:'zh',label:'中文',dir:'ltr'}, {id:'en',label:'English',dir:'ltr'}, {id:'ar',label:'العربية',dir:'rtl'}, {id:'es',label:'Español',dir:'ltr'}, {id:'ru',label:'Русский',dir:'ltr'}, {id:'pt',label:'Português',dir:'ltr'}] as const;
 export const INTERFACE_LOCALES = LOCALES;
-export const LOCALE_IDS = LOCALES.map(l=>l.id) as ['fr','zh','en','ar','es','ru'];
+export const LOCALE_IDS = LOCALES.map(l=>l.id) as ['fr','zh','en','ar','es','ru','pt','pt'];
 export const MAP_STAGES = ['Découvrir','Comprendre','S’entraîner','Corriger','Être prêt'];
 import {OFFICIAL_TOPICS} from './official-programme';
 export const TOPICS = OFFICIAL_TOPICS;
