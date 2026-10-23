@@ -931,6 +931,8 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .home-civi-btn[data-slot=button]{padding:0;min-height:0;height:100%;background:none;}
 .home-civi-btn[data-slot=button]:hover{background:none;}
 .home-civi-btn[data-slot=button] img{max-width:100%;}
+.home-example-label{font-size:10px;line-height:1.4;color:var(--muted-foreground);margin-bottom:8px;}
+.home-lesson-question .home-example-reset{width:44px;min-height:44px;margin-top:6px;}
 .learning-mobile-menu-entry{display:none;}
 @media(max-width:640px){
  .learning-mobile-menu-entry{display:block;position:fixed;top:10px;right:22px;z-index:45;}
