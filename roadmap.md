@@ -2,11 +2,12 @@
 
 ## Mobile — demande du 23 octobre à 10:39 UTC
 ## Cinq captures — demande du 23 octobre à 11:25 UTC
-- [ ] Agenda partagé avec Dashboard, dates locales et activité réelle.
-- [ ] Cours vertical, français permanent, traduction séparée et prononciation locale.
-- [ ] Salutation commune sur toutes les pages du compte.
-- [ ] Inventaire du catalogue, brouillons des thèmes manquants et couvertures fiables.
-- [ ] Vérification connectée bureau/mobile et bilan des limites.
+- [x] Agenda partagé avec Dashboard, dates locales et activité réelle ; créer, recharger, modifier, terminer et supprimer vérifiés sur le compte.
+- [x] Cours vertical, français permanent, traduction séparée et prononciation locale ; micro synthétique vérifié, écoute humaine non vérifiée.
+- [x] Salutation commune ; 14 destinations vérifiées à 390 et 1440 px.
+- [x] Inventaire : 7 cours publiés, 4 nouveaux brouillons, résumés complétés, cinq couvertures disponibles ; deux thèmes non publiés marqués Bientôt disponible.
+- [x] Session espagnole : source française et traduction séparée, choix conservé ; 104 tests réussis.
+- [ ] Relecture humaine et publication des quatre nouveaux cours : attend validation éditoriale ; aucun nouveau cours publié.
 
 - [x] Remplacer le menu public superposé par un tiroir accessible et rendre toutes les destinations du compte accessibles sur téléphone.
 - [x] Corriger les largeurs réelles, le premier écran mobile et les fenêtres, sans masquage global ni changement des données.
