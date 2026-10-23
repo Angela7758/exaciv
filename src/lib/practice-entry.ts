@@ -4,4 +4,4 @@ export function practiceSuccessToday(sessions:LearningSession[],parcours:string,
  const day=now.toLocaleDateString('en-CA',{timeZone:'Europe/Paris'});
  return sessions.filter(s=>s.parcours===parcours&&s.kind==='practice'&&s.completed_at&&new Date(s.completed_at).toLocaleDateString('en-CA',{timeZone:'Europe/Paris'})===day).reduce((n,s)=>n+(s.correct??0),0);
 }
-export function unfinishedSession(sessions:LearningSession[],parcours:string,kind:'practice'|'exam') {return sessions.find(s=>s.parcours===parcours&&s.kind===kind&&!s.completed_at);}
+export function unfinishedSession(sessions:LearningSession[],parcours:string,kind:'practice'|'exam') {return sessions.find(s=>s.parcours===parcours&&s.kind===kind&&!s.completed_at&&!s.test_id);}

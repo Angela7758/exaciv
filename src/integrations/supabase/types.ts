@@ -14,6 +14,137 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_audit: {
+        Row: {
+          action: string
+          actor: string | null
+          after_data: Json | null
+          before_data: Json | null
+          created_at: string
+          entity_id: string
+          id: string
+        }
+        Insert: {
+          action: string
+          actor?: string | null
+          after_data?: Json | null
+          before_data?: Json | null
+          created_at?: string
+          entity_id: string
+          id?: string
+        }
+        Update: {
+          action?: string
+          actor?: string | null
+          after_data?: Json | null
+          before_data?: Json | null
+          created_at?: string
+          entity_id?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      admin_imports: {
+        Row: {
+          actor: string
+          created_at: string
+          filename: string
+          id: string
+          report: Json
+        }
+        Insert: {
+          actor: string
+          created_at?: string
+          filename: string
+          id?: string
+          report: Json
+        }
+        Update: {
+          actor?: string
+          created_at?: string
+          filename?: string
+          id?: string
+          report?: Json
+        }
+        Relationships: []
+      }
+      admin_media: {
+        Row: {
+          id: string
+          kind: string
+          language: string
+          lesson_id: string | null
+          rights: string
+          source: string
+          title: string
+          updated_at: string
+          url: string
+          verified: boolean
+        }
+        Insert: {
+          id?: string
+          kind: string
+          language?: string
+          lesson_id?: string | null
+          rights?: string
+          source?: string
+          title: string
+          updated_at?: string
+          url: string
+          verified?: boolean
+        }
+        Update: {
+          id?: string
+          kind?: string
+          language?: string
+          lesson_id?: string | null
+          rights?: string
+          source?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          verified?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_media_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "learning_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_translations: {
+        Row: {
+          id: string
+          locale: string
+          payload: Json
+          question_id: string
+          source_revision: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          locale: string
+          payload: Json
+          question_id: string
+          source_revision: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          locale?: string
+          payload?: Json
+          question_id?: string
+          source_revision?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       ai_revision_service_state: {
         Row: {
           id: string
@@ -207,11 +338,15 @@ export type Database = {
       learning_questions: {
         Row: {
           answer: number
+          content_revision: number
+          correct_option_id: string | null
           exam_theme: string | null
           explanation: string
           id: string
           lesson_id: string | null
+          option_ids: string[]
           options: string[]
+          pathways: string[]
           position: number
           published: boolean
           question: string
@@ -223,11 +358,15 @@ export type Database = {
         }
         Insert: {
           answer: number
+          content_revision?: number
+          correct_option_id?: string | null
           exam_theme?: string | null
           explanation: string
           id: string
           lesson_id?: string | null
+          option_ids?: string[]
           options: string[]
+          pathways?: string[]
           position: number
           published?: boolean
           question: string
@@ -239,11 +378,15 @@ export type Database = {
         }
         Update: {
           answer?: number
+          content_revision?: number
+          correct_option_id?: string | null
           exam_theme?: string | null
           explanation?: string
           id?: string
           lesson_id?: string | null
+          option_ids?: string[]
           options?: string[]
+          pathways?: string[]
           position?: number
           published?: boolean
           question?: string
@@ -316,6 +459,8 @@ export type Database = {
           parcours: string
           questions: Json
           started_at: string
+          test_id: string | null
+          test_rules: Json | null
           total: number
           user_id: string
         }
@@ -332,6 +477,8 @@ export type Database = {
           parcours: string
           questions: Json
           started_at?: string
+          test_id?: string | null
+          test_rules?: Json | null
           total: number
           user_id: string
         }
@@ -348,6 +495,8 @@ export type Database = {
           parcours?: string
           questions?: Json
           started_at?: string
+          test_id?: string | null
+          test_rules?: Json | null
           total?: number
           user_id?: string
         }
@@ -360,6 +509,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "learning_sessions_test_id_fkey"
+            columns: ["test_id"]
+            isOneToOne: false
+            referencedRelation: "learning_tests"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "learning_sessions_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
@@ -367,6 +523,81 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      learning_tests: {
+        Row: {
+          allow_aids: boolean
+          duration_minutes: number
+          id: string
+          instant_feedback: boolean
+          kind: string
+          pathways: string[]
+          question_count: number
+          question_ids: string[]
+          revision: number
+          selection: string
+          status: string
+          themes: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          allow_aids?: boolean
+          duration_minutes?: number
+          id?: string
+          instant_feedback?: boolean
+          kind: string
+          pathways?: string[]
+          question_count?: number
+          question_ids?: string[]
+          revision?: number
+          selection?: string
+          status?: string
+          themes?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          allow_aids?: boolean
+          duration_minutes?: number
+          id?: string
+          instant_feedback?: boolean
+          kind?: string
+          pathways?: string[]
+          question_count?: number
+          question_ids?: string[]
+          revision?: number
+          selection?: string
+          status?: string
+          themes?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      lesson_drafts: {
+        Row: {
+          id: string
+          payload: Json
+          revision: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          payload: Json
+          revision?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          payload?: Json
+          revision?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -413,6 +644,93 @@ export type Database = {
         }
         Relationships: []
       }
+      question_drafts: {
+        Row: {
+          id: string
+          payload: Json
+          revision: number
+          status: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          id: string
+          payload: Json
+          revision?: number
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          id?: string
+          payload?: Json
+          revision?: number
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      question_reports: {
+        Row: {
+          created_at: string
+          id: string
+          question_id: string
+          reason: string
+          reply: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          question_id: string
+          reason: string
+          reply?: string
+          status?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          question_id?: string
+          reason?: string
+          reply?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      question_versions: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          payload: Json
+          question_id: string
+          revision: number
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payload: Json
+          question_id: string
+          revision: number
+          status: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payload?: Json
+          question_id?: string
+          revision?: number
+          status?: string
+        }
+        Relationships: []
+      }
       revision_plans: {
         Row: {
           created_at: string
@@ -437,11 +755,34 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      admin_can: { Args: { p_permission: string }; Returns: boolean }
+      admin_command: { Args: { p_action: string; p_data: Json }; Returns: Json }
+      admin_metrics: { Args: { p_days?: number }; Returns: Json }
+      admin_users: { Args: never; Returns: Json }
+      admin_validate_question: { Args: { p: Json }; Returns: undefined }
       advance_learning_session: {
         Args: { p_session: string }
         Returns: undefined
@@ -476,6 +817,7 @@ export type Database = {
         Args: { p_lesson: string; p_section: number }
         Returns: undefined
       }
+      start_configured_test: { Args: { p_test: string }; Returns: string }
       start_learning_session: {
         Args: { p_kind: string; p_lesson?: string }
         Returns: string

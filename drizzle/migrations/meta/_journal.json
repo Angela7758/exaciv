@@ -134,6 +134,20 @@
       "when": 1792746049445,
       "tag": "0018_learning_activity_locale",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1792750705212,
+      "tag": "0019_admin_versioned_content_and_configured_tests",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1792751015479,
+      "tag": "0020_isolate_configured_sessions_and_validate_test_rules",
+      "breakpoints": true
     }
   ]
 }

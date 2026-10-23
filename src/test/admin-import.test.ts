@@ -1,0 +1,22 @@
+import {describe,it,expect} from 'vitest';
+import {can,emptyQuestion,questionSchema,type Draft} from '@/lib/admin/schema';
+import {parseImport,defaultMapping,validateImport,IMPORT_FIELDS} from '@/lib/admin/import';
+import {sessionSummary} from '@/lib/sessions';
+import {unfinishedSession} from '@/lib/practice-entry';
+const q={...emptyQuestion,id:'test-stable',question:'Quelle est la durée du mandat présidentiel ?',options:[{id:'four',text:'4 ans'},{id:'five',text:'5 ans'},{id:'seven',text:'7 ans'},{id:'ten',text:'10 ans'}],correct_option_id:'five',explanation:'Le mandat du président dure cinq ans.',source:'Constitution, article 6',source_url:'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019241000'};
+const map=defaultMapping([...IMPORT_FIELDS]);
+describe('Import et permissions administration',()=>{
+ it('accepte exactement quatre options et une bonne réponse identifiée',()=>{expect(questionSchema.safeParse(q).success).toBe(true);expect(questionSchema.safeParse({...q,options:q.options.slice(0,3)}).success).toBe(false);});
+ it('refuse une bonne réponse absente',()=>expect(questionSchema.safeParse({...q,correct_option_id:'missing'}).success).toBe(false));
+ it('refuse les options aux IDs dupliqués',()=>expect(questionSchema.safeParse({...q,options:q.options.map(o=>({...o,id:'same'}))}).success).toBe(false));
+ it('refuse une traduction qui ne suit pas les IDs des options',()=>expect(questionSchema.safeParse({...q,translations:{en:{question:'Question',options:{a:'a',b:'b',c:'c',d:'d'}}}}).success).toBe(false));
+ it('refuse un parcours non pris en charge',()=>expect(questionSchema.safeParse({...q,pathways:['other']}).success).toBe(false));
+ it('détecte les doublons dans le fichier',()=>expect(validateImport([q,q],map,[])[1]?.status).toBe('error'));
+ it('reconnaît un import identique sans nouvelle version',()=>{const d={id:q.id,payload:q,status:'draft',revision:1,updated_at:''} as Draft;expect(validateImport([q],map,[d])[0]?.status).toBe('duplicate');});
+ it('présente les différences avant une mise à jour',()=>{const d={id:q.id,payload:q,status:'draft',revision:3,updated_at:''} as Draft;const result=validateImport([{...q,explanation:'Le mandat est de cinq ans selon la Constitution.'}],map,[d])[0];expect(result?.status).toBe('update');expect(result?.changes).toEqual(['explanation']);expect(result?.revision).toBe(3);});
+ it('utilise les colonnes réelles du fichier',()=>{const rows=[{...q,fr_text:q.question,question:undefined}];expect(validateImport(rows,{...map,question:'fr_text'},[])[0]?.status).toBe('new');});
+ it('lit un fichier JSON et refuse une liste vide',()=>{expect(parseImport(JSON.stringify([q]),'questions.json').rows.length).toBe(1);expect(()=>parseImport('[]','questions.json')).toThrow();});
+ it('éditeur ne publie pas et vérificateur ne voit pas les comptes',()=>{expect(can(['editor'],'edit')).toBe(true);expect(can(['editor'],'publish')).toBe(false);expect(can(['reviewer'],'publish')).toBe(true);expect(can(['reviewer'],'users')).toBe(false);});
+ it('opérations ne modifie pas les questions et aucun rôle ne donne aucun droit',()=>{expect(can(['operations'],'users')).toBe(true);expect(can(['operations'],'edit')).toBe(false);expect(can([],'roles')).toBe(false);});
+ it('un changement d’ordre conserve la réponse par identifiant et le score historique',()=>{const reordered=[q.options[1],q.options[0],q.options[2],q.options[3]].filter((v):v is {id:string;text:string}=>Boolean(v));const answer=reordered.findIndex(o=>o.id===q.correct_option_id);expect(answer).toBe(0);const frozen={...q,options:q.options.map(o=>o.text),answer:1};expect(sessionSummary({questions:[frozen],answers:{'0':1},total:1}).correct).toBe(1);});
+});
