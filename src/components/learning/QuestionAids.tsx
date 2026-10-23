@@ -1,3 +1,4 @@
+import {streamSpeech} from '@/lib/speech';
 import {saveLocale} from '@/lib/learning.functions';
 import {useUiT} from '@/lib/i18n/internal';
 import {useI18n} from '@/lib/i18n';
@@ -66,11 +67,18 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
   useEffect(()=>{ setOpen(false); setError(''); },[questionId]);
   useEffect(()=>{if(HELP_LOCALES.some(l=>l.id===locale)){setTarget(locale as HelpLocale);setOpen(false);} },[locale]);
 
+  const speechAbort=useRef<AbortController|null>(null);
+  useEffect(()=>()=>{speechAbort.current?.abort();},[questionId]);
   function toggleSpeech(lang:'fr'|HelpLocale, text:string){
-    if (!('speechSynthesis' in window)) { setSpeechOk(false); return; }
-    if (speaking){ window.speechSynthesis.cancel(); setSpeaking(null); return; }
-    const u = speak(text, lang==='fr'?'fr-FR':(HELP_LOCALES.find(l=>l.id===lang)?.speech??lang), ()=>setSpeaking(null));
-    if (!u) setSpeechOk(false); else setSpeaking(lang);
+    if (speaking){ speechAbort.current?.abort(); if('speechSynthesis' in window) window.speechSynthesis.cancel(); setSpeaking(null); return; }
+    const controller=new AbortController(); speechAbort.current=controller; setSpeaking(lang);
+    streamSpeech(text, lang, controller.signal).then(()=>{ if(!controller.signal.aborted) setSpeaking(null); }).catch(()=>{
+      if (controller.signal.aborted) return;
+      // Repli : voix du navigateur si la voix naturelle est indisponible.
+      if (!('speechSynthesis' in window)) { setSpeechOk(false); setSpeaking(null); return; }
+      const u = speak(text, lang==='fr'?'fr-FR':(HELP_LOCALES.find(l=>l.id===lang)?.speech??lang), ()=>setSpeaking(null));
+      if (!u) { setSpeechOk(false); setSpeaking(null); }
+    });
   }
 
   async function toggleTranslate(){
