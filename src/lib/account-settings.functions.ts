@@ -5,7 +5,7 @@ import {accountSettingsSchema} from './account-settings';
 
 const helpPreferenceSchema=z.object({
   translation_help:z.boolean().optional(),
-  help_locale:z.enum(['zh','en','ar','es','ru']).optional(),
+  help_locale:z.enum(['zh','en','ar','es','ru','pt']).optional(),
 });
 export const saveHelpPreference=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(helpPreferenceSchema).handler(async({data,context})=>{
   const update:{translation_help?:boolean;help_locale?:string}={};

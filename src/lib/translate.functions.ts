@@ -2,13 +2,14 @@ import {createServerFn} from '@tanstack/react-start';
 import {z} from 'zod';
 import {requireSupabaseAuth} from '@/integrations/supabase/auth-middleware';
 
-const HELP_LOCALES = ['zh','en','ar','es','ru'] as const;
+const HELP_LOCALES = ['zh','en','ar','es','ru','pt'] as const;
 const LOCALE_NAMES: Record<(typeof HELP_LOCALES)[number], string> = {
   zh: 'Chinese (Simplified)',
   en: 'English',
   ar: 'Arabic',
   es: 'Spanish',
   ru: 'Russian',
+  pt: 'Portuguese',
 };
 
 const translateSchema = z.object({

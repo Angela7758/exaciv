@@ -27,7 +27,7 @@ export function LanguageMenu({ mobile = false }: { mobile?: boolean }) {
     setLocale(next);
     setOpen(false);
     const { data } = await supabase.auth.getUser();
-    if (data.user && next !== 'pt') {
+    if (data.user) {
       try { await saveLocale({ data: { locale: next } }); } catch { /* preference kept locally */ }
     }
   }
