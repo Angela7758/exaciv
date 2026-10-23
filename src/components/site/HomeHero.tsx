@@ -5,8 +5,9 @@ import {BookOpen,CheckCircle2,FileText,Landmark,Users,Star,Play,ArrowRight,X} fr
 import {Button} from '@/components/ui/button';
 import {useT} from '@/lib/i18n';
 import paris from '@/assets/hero-paris.jpg';
+import {useDecorativeMotion} from '@/hooks/use-decorative-motion';
 
-function HeroCivi(){const t=useT();const [open,setOpen]=useState(false);return <div className="home-civi"><button type="button" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><SafeImage src={civi} alt={t('home.hero.civiAlt')}/></button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><button type="button" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></button></div>}</div>;}
+function HeroCivi(){const t=useT();const {ref,paused}=useDecorativeMotion();const [open,setOpen]=useState(false);return <div ref={ref} className={`home-civi ${paused?'motion-paused':''}`}><Button variant="ghost" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><SafeImage src={civi} alt={t('home.hero.civiAlt')}/></Button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><Button variant="ghost" size="icon" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></Button></div>}</div>;}
 import civi from '@/assets/civi.png';
 import stone from '@/assets/home-reference-stone.png.asset.json';
 
