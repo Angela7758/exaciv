@@ -1,3 +1,4 @@
+import {RecordButton} from './RecordButton';
 import {streamSpeech} from '@/lib/speech';
 import {saveLocale} from '@/lib/learning.functions';
 import {useUiT} from '@/lib/i18n/internal';
@@ -121,7 +122,7 @@ export function QuestionAids({questionId, question, options, explanation, helpEn
       <Button type="button" variant="outline" size="sm" onClick={()=>toggleSpeech(passage.locale,passage.texts.join('. '))} aria-pressed={speaking===passage.locale}>
         {speaking===passage.locale?<Square/>:<Volume2/>}{speaking===passage.locale?ui("Arrêter"):ui("Écouter")}
       </Button>
-      {helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open} disabled={busy}>
+      <RecordButton/>{helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open} disabled={busy}>
         {busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}
       </Button>}
       {helpEnabled&&open&&<select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(e.target.value as HelpLocale)}>
