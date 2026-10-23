@@ -1,0 +1,18 @@
+import devise from '@/assets/lesson-devise.jpg';
+import laicite from '@/assets/lesson-laicite-blue.jpg';
+import parlement from '@/assets/lesson-parlement.jpg';
+import president from '@/assets/lesson-president.jpg';
+import vote from '@/assets/lesson-vote.jpg';
+import symboles from '@/assets/lesson-symboles.jpg';
+import egalite from '@/assets/lesson-egalite.jpg';
+
+// Editorial illustrations accompany the Cloud lesson; they never replace its content.
+export const LESSON_ILLUSTRATIONS: Record<string, {src: string; alt: string}> = {
+  devise: {src: devise, alt: 'Des citoyens réunis autour de Marianne, pour illustrer la liberté, l’égalité et la fraternité.'},
+  laicite: {src: laicite, alt: 'Des élèves accueillis dans une école publique française.'},
+  parlement: {src: parlement, alt: 'Illustration de l’Assemblée nationale et du Sénat, avec un livre représentant la loi.'},
+  president: {src: president, alt: 'Illustration de la présidence, avec un palais, une urne et cinq calendriers évoquant le mandat de cinq ans.'},
+  vote: {src: vote, alt: 'Une citoyenne dépose une enveloppe dans une urne, devant des électeurs et un isoloir.'},
+  symboles: {src: symboles, alt: 'Le drapeau tricolore, Marianne et une partition évoquant l’hymne national.'},
+  egalite: {src: egalite, alt: 'Une femme et un homme devant une balance équilibrée, avec des équipes travaillant ensemble.'},
+};

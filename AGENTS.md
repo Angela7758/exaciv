@@ -37,3 +37,4 @@
 
 - Public homepage locale dictionaries may include browser-only locales; do not send unsupported locales to account preference functions, preserving account validation and French fallback on unlocalized screens.
 - Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.
+- Lesson artwork is mapped by stable Cloud lesson ID in src/config/lesson-illustrations.ts and rendered by LessonIllustration; keep editorial visuals separate from authoritative content and progress writes.
