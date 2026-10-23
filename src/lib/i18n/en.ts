@@ -198,4 +198,18 @@ export const en: Partial<Record<MessageKey, string>> = {
   'account.save': 'Save changes',
   'account.saved': 'Your changes have been saved.',
   'account.logout': 'Log out',
+
+  'home.parcours.more': 'Learn more',
+  'home.methode.examples': 'Interface examples',
+  'home.methode.discoverLesson': 'Discover a lesson',
+  'home.methode.discoverExam': 'Discover the mock exam',
+  'home.methode.examProgress': 'Question 12 / 40 — example',
+  'home.methode.showCorrection': 'See a correction',
+  'home.methode.hideCorrection': 'Hide the correction',
+  'home.hero.resetExample': 'Restart the example',
+  'home.value.lessons.title': 'Accessible explanations',
+  'home.value.lessons.text': 'Clear lessons in French, with multilingual support to make learning easier.',
+  'home.value.progress.title': 'Your progress in one place',
+  'home.value.progress.text': 'Find your lessons, results and favourites on all your devices. Progress at your own pace, wherever you are.',
+  'home.value.devicesAlt': 'ExaCiv on computer, tablet and phone',
 };

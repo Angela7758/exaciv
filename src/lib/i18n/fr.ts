@@ -196,6 +196,20 @@ export const fr = {
   'account.save': 'Enregistrer les modifications',
   'account.saved': 'Vos modifications ont été enregistrées.',
   'account.logout': 'Se déconnecter',
+
+  'home.parcours.more': 'En savoir plus',
+  'home.methode.examples': 'Exemples d’interface',
+  'home.methode.discoverLesson': 'Découvrir une leçon',
+  'home.methode.discoverExam': 'Découvrir l’examen blanc',
+  'home.methode.examProgress': 'Question 12 / 40 — exemple',
+  'home.methode.showCorrection': 'Voir une correction',
+  'home.methode.hideCorrection': 'Masquer la correction',
+  'home.hero.resetExample': 'Recommencer l’exemple',
+  'home.value.lessons.title': 'Des explications accessibles',
+  'home.value.lessons.text': 'Des leçons claires en français, avec un soutien multilingue pour faciliter votre apprentissage.',
+  'home.value.progress.title': 'Vos progrès au même endroit',
+  'home.value.progress.text': 'Retrouvez vos leçons, vos résultats et vos favoris sur tous vos appareils. Avancez à votre rythme, où que vous soyez.',
+  'home.value.devicesAlt': 'ExaCiv sur ordinateur, tablette et téléphone',
 } as const;
 
 export type MessageKey = keyof typeof fr;
