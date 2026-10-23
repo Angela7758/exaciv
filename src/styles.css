@@ -1217,11 +1217,10 @@ a,button{-webkit-tap-highlight-color:transparent;}
 @keyframes fx-progress{to{transform:scaleX(1)}}
 
 /* Halo qui suit le curseur sur les cartes */
-.card-hover,.home-method-card,.learning-card,.topic-card{position:relative;}
-.card-hover::before,.home-method-card::before,.learning-card::before,.topic-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in oklab,var(--primary-interactive) 12%,transparent),transparent 70%);z-index:0;}
-.card-hover:hover::before,.home-method-card:hover::before,.learning-card:hover::before,.topic-card:hover::before{opacity:1;}
+.home-method-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in oklab,var(--primary-interactive) 12%,transparent),transparent 70%);z-index:0;}
+.home-method-card:hover::before{opacity:1;}
 .home-method-card>*{position:relative;z-index:1;}
-.home-method-card{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;}
+.home-method-card{position:relative;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;}
 .home-method-card:hover{transform:translateY(-6px);box-shadow:0 22px 40px -22px color-mix(in oklab,var(--primary) 45%,transparent);}
 
 /* Ondulation au clic */
@@ -1229,4 +1228,4 @@ a,button{-webkit-tap-highlight-color:transparent;}
 @keyframes fx-ripple{to{transform:scale(2.4);opacity:0}}
 a,button{transition-property:color,background-color,border-color,transform,box-shadow,opacity;}
 
-@media (prefers-reduced-motion: reduce){.fx-scroll-progress{display:none;}.fx-wait{opacity:1;transform:none;transition:none;}.home-final-civi *,.home-final-spark{animation:none!important;}.card-hover::before,.home-method-card::before,.learning-card::before,.topic-card::before{display:none;}.home-method-card:hover,.approved-home .home-method-card:hover .home-method-icon{transform:none;}.reveal-ready:not(.reveal-visible),.reveal-ready:not(.reveal-visible) .reveal-child{opacity:1;transform:none;}}
+@media (prefers-reduced-motion: reduce){.fx-scroll-progress{display:none;}.fx-wait{opacity:1;transform:none;transition:none;}.home-final-civi *,.home-final-spark{animation:none!important;}.home-method-card::before{display:none;}.home-method-card:hover,.approved-home .home-method-card:hover .home-method-icon{transform:none;}.reveal-ready:not(.reveal-visible),.reveal-ready:not(.reveal-visible) .reveal-child{opacity:1;transform:none;}}

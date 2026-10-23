@@ -6,7 +6,7 @@ export function InteractionFx() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') return;
-      const el = (e.target as Element | null)?.closest?.('.card-hover,.learning-card,.home-method-card,.topic-card') as HTMLElement | null;
+      const el = (e.target as Element | null)?.closest?.('.home-method-card') as HTMLElement | null;
       if (!el) return;
       const r = el.getBoundingClientRect();
       el.style.setProperty('--mx', `${e.clientX - r.left}px`);
