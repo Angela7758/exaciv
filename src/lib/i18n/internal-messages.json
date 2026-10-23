@@ -531,7 +531,8 @@
     "Sources officielles et contenus non encore traduits.": "Official sources and content not yet translated.",
     "Fermer": "Close",
     "Agrandir l'image": "Zoom in on the illustration",
-    "Vidéo de la leçon": "Lesson video"
+    "Vidéo de la leçon": "Lesson video",
+    "La lecture audio a échoué.": "Audio playback failed."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1065,7 +1066,8 @@
     "Sources officielles et contenus non encore traduits.": "官方来源和尚未翻译的内容。",
     "Fermer": "关闭",
     "Agrandir l'image": "放大查看教学图片",
-    "Vidéo de la leçon": "课程视频"
+    "Vidéo de la leçon": "课程视频",
+    "La lecture audio a échoué.": "音频播放失败。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1599,7 +1601,8 @@
     "Sources officielles et contenus non encore traduits.": "المصادر الرسمية والمحتويات التي لم تُترجم بعد.",
     "Fermer": "إغلاق",
     "Agrandir l'image": "تكبير الصورة",
-    "Vidéo de la leçon": "فيديو الدرس"
+    "Vidéo de la leçon": "فيديو الدرس",
+    "La lecture audio a échoué.": "فشل تشغيل الصوت."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -2133,7 +2136,8 @@
     "Sources officielles et contenus non encore traduits.": "Fuentes oficiales y contenidos aún no traducidos.",
     "Fermer": "Cerrar",
     "Agrandir l'image": "Ampliar la imagen",
-    "Vidéo de la leçon": "Vídeo de la lección"
+    "Vidéo de la leçon": "Vídeo de la lección",
+    "La lecture audio a échoué.": "La lectura de audio ha fallado."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -2667,7 +2671,8 @@
     "Sources officielles et contenus non encore traduits.": "Официальные источники и ещё не переведённые материалы.",
     "Fermer": "Закрыть",
     "Agrandir l'image": "Увеличить изображение",
-    "Vidéo de la leçon": "Видео урока"
+    "Vidéo de la leçon": "Видео урока",
+    "La lecture audio a échoué.": "Не удалось воспроизвести аудио."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -3201,6 +3206,7 @@
     "Questions · {0}": "Perguntas · {0}",
     "Fermer": "Fechar",
     "Agrandir l'image": "Ampliar a imagem",
-    "Vidéo de la leçon": "Vídeo da lição"
+    "Vidéo de la leçon": "Vídeo da lição",
+    "La lecture audio a échoué.": "A leitura de áudio falhou."
   }
 }
