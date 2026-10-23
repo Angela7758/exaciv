@@ -5,6 +5,8 @@ import president from '@/assets/lesson-president.jpg';
 import vote from '@/assets/lesson-vote.jpg';
 import symboles from '@/assets/lesson-symboles.jpg';
 import egalite from '@/assets/lesson-egalite.jpg';
+import history from '@/assets/topic-history.jpg';
+import society from '@/assets/topic-society.jpg';
 
 // Editorial illustrations accompany the Cloud lesson; they never replace its content.
 export const LESSON_ILLUSTRATIONS: Record<string, {src: string; alt: string}> = {
@@ -15,4 +17,8 @@ export const LESSON_ILLUSTRATIONS: Record<string, {src: string; alt: string}> = 
   vote: {src: vote, alt: 'Une citoyenne dépose une enveloppe dans une urne, devant des électeurs et un isoloir.'},
   symboles: {src: symboles, alt: 'Le drapeau tricolore, Marianne et une partition évoquant l’hymne national.'},
   egalite: {src: egalite, alt: 'Une femme et un homme devant une balance équilibrée, avec des équipes travaillant ensemble.'},
+  'revolution-1789': {src: history,alt:'Carte de France, patrimoine et livre pour les repères historiques.'},
+  'territoire-francais': {src: history,alt:'Carte de France et paysages pour les repères territoriaux.'},
+  domiciliation: {src: society,alt:'Famille et services de proximité dans la société française.'},
+  'medecin-traitant': {src: society,alt:'Médecin et services de santé pour le suivi médical.'},
 };

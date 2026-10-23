@@ -5,6 +5,7 @@ import {useI18n} from '@/lib/i18n';
 import {useUiT} from '@/lib/i18n/internal';
 import {resolveContentPassage} from '@/lib/i18n/content';
 import {streamSpeech} from '@/lib/speech';
+import {AUDIO_STOP_EVENT,stopLearningAudio} from '@/lib/local-audio';
 
 /** Reads French source texts aloud in the displayed language (falls back to French when untranslated). */
 export function ListenButton({texts,language}:{texts:string[];language?:'fr'}){
@@ -13,9 +14,11 @@ export function ListenButton({texts,language}:{texts:string[];language?:'fr'}){
   const abort=useRef<AbortController|null>(null);
   const key=texts.join('|');
   useEffect(()=>()=>{abort.current?.abort();},[key,locale]);
+  useEffect(()=>{const stop=()=>{abort.current?.abort();setState('idle');};window.addEventListener(AUDIO_STOP_EVENT,stop);return()=>{window.removeEventListener(AUDIO_STOP_EVENT,stop);stop();};},[]);
   useEffect(()=>{setState('idle');setError('');},[key,locale]);
   function toggle(){
     if(state!=='idle'){abort.current?.abort();setState('idle');return;}
+    stopLearningAudio();
     const passage=resolveContentPassage(language??locale,texts);
     const c=new AbortController();abort.current=c;setState('playing');setError('');
     streamSpeech(passage.texts.join('. '),passage.locale,c.signal).then(()=>{if(!c.signal.aborted)setState('idle');}).catch(e=>{if(c.signal.aborted)return;setState('idle');setError(e instanceof Error?e.message:ui("La lecture audio a échoué."));});

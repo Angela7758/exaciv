@@ -7,9 +7,10 @@ import {Button} from '@/components/ui/button';
 import {translateQuestionTexts} from '@/lib/translate.functions';
 import {saveHelpPreference} from '@/lib/account-settings.functions';
 import {QUESTION_HELP_LOCALES,questionHelpLocale,visibleQuestionTexts,localQuestionTranslation,type QuestionHelpLocale} from '@/lib/question-aids';
+import {AUDIO_STOP_EVENT,stopLearningAudio} from '@/lib/local-audio';
 
-export function QuestionAids({questionId,question,options,explanation,helpEnabled,helpLocale,assistedLabel=false}:{
- questionId:string;question:string;options:string[];explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;
+export function QuestionAids({questionId,question,options,optionIds,explanation,helpEnabled,helpLocale,assistedLabel=false}:{
+ questionId:string;question:string;options:string[];optionIds?:string[]|undefined;explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;
 }) {
  const ui=useUiT();
  const [target,setTarget]=useState<QuestionHelpLocale>(()=>questionHelpLocale(helpLocale));
@@ -25,6 +26,7 @@ export function QuestionAids({questionId,question,options,explanation,helpEnable
  const current=localQuestionTranslation(target,texts)??translations[key];
  function stop(){abort.current?.abort();if(typeof window!=='undefined'&&'speechSynthesis' in window)window.speechSynthesis.cancel();setSpeaking(null);}
  useEffect(()=>{setTarget(questionHelpLocale(helpLocale));},[helpLocale]);
+ useEffect(()=>{const silence=()=>{abort.current?.abort();setSpeaking(null);};window.addEventListener(AUDIO_STOP_EVENT,silence);return()=>window.removeEventListener(AUDIO_STOP_EVENT,silence);},[]);
  useEffect(()=>{setOpen(false);setBusy(false);setError('');request.current++;stop();return()=>{request.current++;abort.current?.abort();if('speechSynthesis' in window)window.speechSynthesis.cancel();};},[sourceKey]);
  useEffect(()=>{if(!helpEnabled){setOpen(false);stop();request.current++;}},[helpEnabled]);
  async function load(next:QuestionHelpLocale){
@@ -38,7 +40,7 @@ export function QuestionAids({questionId,question,options,explanation,helpEnable
  function toggleTranslate(){if(open){setOpen(false);request.current++;setBusy(false);stop();return;}setOpen(true);void load(target);}
  function changeTarget(next:QuestionHelpLocale){stop();request.current++;setBusy(false);setError('');setTarget(next);void savePref({data:{help_locale:next}}).catch(()=>{});void load(next);}
  function play(kind:'original'|'translation',lang:QuestionHelpLocale,passage:string[]){
-  if(speaking===kind){stop();return;}stop();const controller=new AbortController();abort.current=controller;setSpeaking(kind);setError('');
+  if(speaking===kind){stop();return;}stopLearningAudio();stop();const controller=new AbortController();abort.current=controller;setSpeaking(kind);setError('');
   streamSpeech(passage.join('. '),lang,controller.signal).then(()=>{if(!controller.signal.aborted)setSpeaking(null);}).catch(()=>{
    if(controller.signal.aborted)return;
    if(!('speechSynthesis' in window)){setSpeaking(null);setError(ui("La lecture audio n’est pas disponible dans ce navigateur."));return;}
@@ -48,14 +50,14 @@ export function QuestionAids({questionId,question,options,explanation,helpEnable
  }
  return <div className="question-aids">
   <div className="question-aids-bar" role="toolbar" aria-label={ui("Aides pour cette question")}>
-   <Button type="button" variant="outline" size="sm" onClick={()=>play('original','fr',[question,...options])} aria-pressed={speaking==='original'}>{speaking==='original'?<Square/>:<Volume2/>}{speaking==='original'?ui("Arrêter"):ui("Écouter")}</Button>
+   <Button type="button" variant="outline" size="sm" onClick={()=>play('original','fr',texts)} aria-pressed={speaking==='original'}>{speaking==='original'?<Square/>:<Volume2/>}{speaking==='original'?ui("Arrêter"):ui("Écouter")}</Button>
    {helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open}>{busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}</Button>}
    {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">{ui("Entraînement avec aide")}</span>}
   </div>
   {open&&helpEnabled&&<div className="question-translation" dir={target==='ar'?'rtl':'ltr'} lang={target}>
    <select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(questionHelpLocale(e.target.value))}>{QUESTION_HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}</select>
    {busy&&<p role="status">{ui("Traduction en cours…")}</p>}
-   {current&&<><p className="translation-stem">{current[0]}</p><ol>{current.slice(1,1+options.length).map((text,i)=><li key={i}>{text}</li>)}</ol>{explanation&&<p className="translation-explanation">{current[1+options.length]}</p>}<Button type="button" variant="ghost" size="sm" onClick={()=>play('translation',target,current)} aria-pressed={speaking==='translation'}>{speaking==='translation'?<Square/>:<Volume2/>}{speaking==='translation'?ui("Arrêter"):ui("Écouter la traduction")}</Button></>}
+   {current&&<><p className="translation-stem">{current[0]}</p><ol>{current.slice(1,1+options.length).map((text,i)=><li key={optionIds?.[i]??i} data-option-id={optionIds?.[i]??String(i)}>{text}</li>)}</ol>{explanation&&<p className="translation-explanation">{current[1+options.length]}</p>}<Button type="button" variant="ghost" size="sm" onClick={()=>play('translation',target,current)} aria-pressed={speaking==='translation'}>{speaking==='translation'?<Square/>:<Volume2/>}{speaking==='translation'?ui("Arrêter"):ui("Écouter la traduction")}</Button></>}
   </div>}
   {error&&<p role="alert" className="question-aids-note">{error}</p>}
  </div>;

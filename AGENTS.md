@@ -45,3 +45,7 @@
 
 - Administration writes use authenticated permission-checked RPCs with audit records; drafts/versioned option IDs publish into the existing catalogue and configured tests freeze independent session snapshots.
 - Public and learning mobile menus use the existing Radix Sheet portal for focus trapping, scroll locking and dismiss behavior; shared drawer styling must remain independent of homepage header selectors.
+- LearningAgenda is the single owner-scoped planning source for Dashboard and Progression; date keys are calendar dates in the browser timezone, distinct from recorded activities.
+- AccountGreeting is shared by every AppShell page; breadcrumbs belong to content, never replace the greeting.
+- Lesson French source remains visible while LessonTranslation owns separate assistance; local-audio coordinates reference speech and temporary recordings to prevent overlapping playback.
+- Topic artwork is mapped by semantic theme, with local fallback images; unpublished theme counts never masquerade as completion.
