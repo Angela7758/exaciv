@@ -574,7 +574,7 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .home-civi-btn{display:block;width:100%;height:100%;background:none;border:0;padding:0;cursor:pointer;transition:transform .2s ease;}
 .home-civi-btn .civi-stack{position:relative;display:block;height:100%;aspect-ratio:430/497;margin-inline:auto;animation:civi-float 4s ease-in-out infinite;}
 .home-civi-btn .civi-stack>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;}
-.home-civi-btn .civi-star{inset:auto;left:38.6%;top:0;width:18.6%;height:12.07%;animation:civi-star-float 4.6s ease-in-out infinite;transform-origin:50% 50%;}
+.home-civi-btn .civi-stack>.civi-star{inset:auto;left:38.6%;top:0;width:18.6%;height:12.07%;animation:civi-star-float 4.6s ease-in-out infinite;transform-origin:50% 50%;}
 @keyframes civi-star-float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-3px) rotate(8deg);}}
 .home-civi-btn:hover{transform:scale(1.02);}
 .home-civi-tip{position:absolute;bottom:100%;left:-40px;margin-bottom:10px;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow-card);font-size:14px;font-weight:600;white-space:nowrap;z-index:6;}
