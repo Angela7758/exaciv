@@ -33,8 +33,8 @@
 - Lesson sections use owner/pathway-scoped reading positions; explicit completion stays separate so opening a lesson cannot award XP.
 - Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
 - Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.
-- Internal interface translations use an explicit source-message dictionary and the existing locale provider; Cloud lesson/question content is never passed through interface translation, preserving authoritative snapshots and French pedagogy.
+- Internal interface translations use an explicit source-message dictionary and the existing locale provider; pedagogical translations use a separate exact-French-source dictionary at display time, preserving authoritative Cloud snapshots, option order and scoring. Missing or changed source text falls back to French.
 
-- Public homepage locale dictionaries may include browser-only locales; do not send unsupported locales to account preference functions, preserving account validation and French fallback on unlocalized screens.
+- Keep supported interface locales aligned across browser dictionaries, account validators and profile constraints, so language selection survives reconnecting without changing learning data.
 - Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.
 - Lesson artwork is mapped by stable Cloud lesson ID in src/config/lesson-illustrations.ts and rendered by LessonIllustration; keep editorial visuals separate from authoritative content and progress writes.
