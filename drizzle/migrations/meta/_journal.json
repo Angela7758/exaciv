@@ -127,6 +127,13 @@
       "when": 1792743931546,
       "tag": "0017_internal_portuguese_locale",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1792746049445,
+      "tag": "0018_learning_activity_locale",
+      "breakpoints": true
     }
   ]
 }
