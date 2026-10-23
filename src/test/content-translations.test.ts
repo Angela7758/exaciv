@@ -2,8 +2,19 @@ import {describe,it,expect} from 'vitest';
 import {resolveContentMessage,resolveContentPassage} from '@/lib/i18n/content';
 import {localeSchema} from '@/lib/registration';
 import {accountSettingsSchema} from '@/lib/account-settings';
+import {LESSON_ILLUSTRATIONS} from '@/config/lesson-illustrations';
+import {LESSON_IMAGE_MESSAGES} from '@/config/lesson-illustration-translations';
 
 describe('Content translation display rules',()=>{
+  it('provides translated descriptions for every lesson image in the five languages',()=>{
+    for(const locale of ['en','es','ar','ru','pt'] as const){
+      for(const image of Object.values(LESSON_ILLUSTRATIONS)){
+        const result=resolveContentMessage(locale,image.alt,LESSON_IMAGE_MESSAGES);
+        expect(result.fallback).toBe(false);
+        expect(result.text).not.toBe(image.alt);
+      }
+    }
+  });
   it('reads translated questions and options in each requested language',()=>{
     for(const locale of ['en','es','ar','ru','pt'] as const){
       const passage=resolveContentPassage(locale,['Question','Option'],{[locale]:{Question:`${locale} question`,Option:`${locale} option`}});
