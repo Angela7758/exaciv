@@ -195,8 +195,8 @@ function HomeFaq() {
   const items = [
     { q: t('home.faq.q1'), a: t('home.faq.a1') },
     { q: t('home.faq.q2'), a: t('home.faq.a2') },
-    { q: t('home.faq.q3'), a: t('home.faq.a3') },
     { q: t('home.faq.q4'), a: t('home.faq.a4') },
+    { q: t('home.faq.q3'), a: t('home.faq.a3') },
   ];
   return <FaqList items={items} twoCol />;
 }

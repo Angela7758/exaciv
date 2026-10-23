@@ -9,7 +9,7 @@ import paris from '@/assets/hero-paris.jpg';
 import {useDecorativeMotion} from '@/hooks/use-decorative-motion';
 
 function HeroCivi(){const t=useT();const {ref,paused}=useDecorativeMotion();const [open,setOpen]=useState(false);return <div ref={ref} className={`home-civi ${paused?'motion-paused':''}`}><Button variant="ghost" className="home-civi-btn" aria-expanded={open} aria-label={t('home.hero.civiAsk')} onClick={()=>setOpen(!open)}><span className="civi-stack"><img src={civiBody} alt={t('home.hero.civiAlt')}/><img className="civi-star" src={civiStar} alt="" aria-hidden/></span></Button>{open&&<div className="home-civi-tip" role="status"><p>{t('home.hero.civiAsk')}</p><Button variant="ghost" size="icon" aria-label={t('common.close')} onClick={()=>setOpen(false)}><X/></Button></div>}</div>;}
-import civiBody from '@/assets/civi-hero-body.png';
+import civiBody from '@/assets/civi-reference-books.png';
 import civiStar from '@/assets/civi-hero-star.png';
 
 export function HomeHero(){
