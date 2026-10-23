@@ -1,7 +1,7 @@
 import {z} from 'zod';
 import {OFFICIAL_TOPICS} from '@/config/official-programme';
 export const ADMIN_ROLES=['admin','editor','reviewer','operations'] as const;
-export const TOPICS=[...OFFICIAL_TOPICS.map(t=>t.title),'Institutions','Institutions françaises','Valeurs de la République','Principes et valeurs','Histoire','France et Europe'];
+export const TOPICS=[...OFFICIAL_TOPICS.map(t=>t.title),'Institutions','Institutions françaises','Valeurs de la République','Principes et valeurs','Histoire','France et Europe','Histoire et symboles'];
 export const EXAM_THEMES=['Institutions','Valeurs de la République','Histoire','Droits et devoirs','France et Europe'] as const;
 export const PATHWAYS=['naturalisation','resident','sejour'] as const;
 export function can(roles:string[],permission:string){return roles.includes('admin')||(roles.includes('editor')&&['content','edit'].includes(permission))||(roles.includes('reviewer')&&['content','publish'].includes(permission))||(roles.includes('operations')&&['users','reports'].includes(permission));}

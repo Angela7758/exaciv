@@ -148,6 +148,27 @@
       "when": 1792751015479,
       "tag": "0020_isolate_configured_sessions_and_validate_test_rules",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1792751280602,
+      "tag": "0021_validate_legacy_topics_and_source_paths",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1792751365823,
+      "tag": "0022_repair_question_version_attribution",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1792751892351,
+      "tag": "0023_restrict_admin_rpc_and_direct_writes",
+      "breakpoints": true
     }
   ]
 }

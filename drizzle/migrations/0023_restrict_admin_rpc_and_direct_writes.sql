@@ -1,0 +1,5 @@
+REVOKE EXECUTE ON FUNCTION public.admin_command(text,jsonb), public.admin_metrics(integer), public.admin_users(), public.admin_can(text), public.admin_validate_question(jsonb), public.start_configured_test(uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.admin_command(text,jsonb), public.admin_metrics(integer), public.admin_users(), public.admin_can(text), public.start_configured_test(uuid) TO authenticated;
+REVOKE INSERT, UPDATE, DELETE ON public.user_roles, public.question_drafts, public.question_versions, public.admin_audit, public.admin_imports, public.admin_translations, public.admin_media, public.lesson_drafts, public.learning_tests FROM authenticated, anon;
+GRANT SELECT ON public.user_roles, public.question_drafts, public.question_versions, public.admin_audit, public.admin_imports, public.admin_translations, public.admin_media, public.lesson_drafts TO authenticated;
+GRANT SELECT ON public.learning_tests TO authenticated, anon;
