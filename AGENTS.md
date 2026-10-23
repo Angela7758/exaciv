@@ -39,3 +39,4 @@
 - Keep supported interface locales aligned across browser dictionaries, account validators and profile constraints, so language selection survives reconnecting without changing learning data.
 - Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.
 - Lesson artwork is mapped by stable Cloud lesson ID in src/config/lesson-illustrations.ts and rendered by LessonIllustration; keep editorial visuals separate from authoritative content and progress writes.
+- Signed-in shell dimensions (sidebar, topbar, content width, title levels) come from the shared --app-* tokens at the end of src/styles.css; page variants must not resize the shell, so every section feels like one product.
