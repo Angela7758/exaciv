@@ -1,10 +1,10 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
 ## Mobile — demande du 23 octobre à 10:39 UTC
-- [ ] Remplacer le menu public superposé par un tiroir accessible et rendre toutes les destinations du compte accessibles sur téléphone.
-- [ ] Corriger les largeurs réelles, le premier écran mobile et les fenêtres, sans masquage global ni changement des données.
-- [ ] Fiabiliser les animations existantes, le retour tactile et les interactions CIVI.
-- [ ] Contrôler six largeurs, six langues, navigation connectée/déconnectée et réduction du mouvement ; fournir captures et aperçu animé.
+- [x] Remplacer le menu public superposé par un tiroir accessible et rendre toutes les destinations du compte accessibles sur téléphone.
+- [x] Corriger les largeurs réelles, le premier écran mobile et les fenêtres, sans masquage global ni changement des données.
+- [x] Fiabiliser les animations existantes, le retour tactile et les interactions CIVI.
+- [x] Contrôler six largeurs, six langues, navigation connectée/déconnectée et réduction du mouvement ; fournir captures et aperçu animé.
 
 ## Administration
 - [x] Permissions serveur et Cloud, rôles protégés et journal des opérations.
