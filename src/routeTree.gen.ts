@@ -32,6 +32,7 @@ import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as ApiRevisionPlanRouteImport } from './routes/api/revision-plan'
+import { Route as ApiSpeechRouteImport } from './routes/api/speech'
 import { Route as InscriptionObjectifRouteImport } from './routes/inscription_.objectif'
 import { Route as RessourcesSlugRouteImport } from './routes/ressources.$slug'
 import { Route as TarifsPlanRouteImport } from './routes/tarifs.$plan'
@@ -170,6 +171,11 @@ const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
 const ApiRevisionPlanRoute = ApiRevisionPlanRouteImport.update({
   id: '/api/revision-plan',
   path: '/api/revision-plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSpeechRoute = ApiSpeechRouteImport.update({
+  id: '/api/speech',
+  path: '/api/speech',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InscriptionObjectifRoute = InscriptionObjectifRouteImport.update({
@@ -338,6 +344,7 @@ export interface FileRoutesByFullPath {
   '/test-gratuit': typeof TestGratuitRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
+  '/api/speech': typeof ApiSpeechRoute
   '/inscription/objectif': typeof InscriptionObjectifRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
@@ -386,6 +393,7 @@ export interface FileRoutesByTo {
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
   '/api/revision-plan': typeof ApiRevisionPlanRoute
+  '/api/speech': typeof ApiSpeechRoute
   '/inscription/objectif': typeof InscriptionObjectifRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
@@ -434,6 +442,7 @@ export interface FileRoutesById {
   '/test-gratuit': typeof TestGratuitRoute
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
+  '/api/speech': typeof ApiSpeechRoute
   '/inscription_/objectif': typeof InscriptionObjectifRoute
   '/ressources/$slug': typeof RessourcesSlugRoute
   '/tarifs/$plan': typeof TarifsPlanRoute
@@ -485,6 +494,7 @@ export interface FileRouteTypes {
     | '/test-gratuit'
     | '/app'
     | '/api/revision-plan'
+    | '/api/speech'
     | '/inscription/objectif'
     | '/ressources/$slug'
     | '/tarifs/$plan'
@@ -533,6 +543,7 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/test-gratuit'
     | '/api/revision-plan'
+    | '/api/speech'
     | '/inscription/objectif'
     | '/ressources/$slug'
     | '/tarifs/$plan'
@@ -580,6 +591,7 @@ export interface FileRouteTypes {
     | '/test-gratuit'
     | '/_authenticated/app'
     | '/api/revision-plan'
+    | '/api/speech'
     | '/inscription_/objectif'
     | '/ressources/$slug'
     | '/tarifs/$plan'
@@ -630,6 +642,7 @@ export interface RootRouteChildren {
   TarifsRoute: typeof TarifsRouteWithChildren
   TestGratuitRoute: typeof TestGratuitRoute
   ApiRevisionPlanRoute: typeof ApiRevisionPlanRoute
+  ApiSpeechRoute: typeof ApiSpeechRoute
   InscriptionObjectifRoute: typeof InscriptionObjectifRoute
   TestGratuitResultatRoute: typeof TestGratuitResultatRoute
 }
@@ -795,6 +808,13 @@ declare module '@tanstack/react-router' {
       path: '/api/revision-plan'
       fullPath: '/api/revision-plan'
       preLoaderRoute: typeof ApiRevisionPlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/speech': {
+      id: '/api/speech'
+      path: '/api/speech'
+      fullPath: '/api/speech'
+      preLoaderRoute: typeof ApiSpeechRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inscription_/objectif': {
@@ -1128,6 +1148,7 @@ const rootRouteChildren: RootRouteChildren = {
   TarifsRoute: TarifsRouteWithChildren,
   TestGratuitRoute: TestGratuitRoute,
   ApiRevisionPlanRoute: ApiRevisionPlanRoute,
+  ApiSpeechRoute: ApiSpeechRoute,
   InscriptionObjectifRoute: InscriptionObjectifRoute,
   TestGratuitResultatRoute: TestGratuitResultatRoute,
 }
