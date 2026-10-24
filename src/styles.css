@@ -1329,3 +1329,11 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
  .fx-ripple{display:none;}
  .public-site-shell :is(.pathway-public-cards>article,.method-cards>article,.pricing-reference-plan,.help-resources>a){transition:none;translate:none!important;}
 }
+
+/* Alignement gauche sur le bord gauche de la navigation (conteneur 1220 px). */
+.nine-public .public-hero-copy>p,.exam-public .public-hero-copy>small,.batch-pricing .pricing-inner>header>p{padding:6px 0;box-shadow:-10px 0 0 var(--hero-subtitle-veil),10px 0 0 var(--hero-subtitle-veil);border-radius:0;margin-inline-start:0;}
+.public-hero-copy,.home-hero-copy{margin-inline-start:0;padding-inline-start:0;}
+.public-section-heading,.public-section-heading h2,.public-section-heading p{text-align:start;margin-inline:0;}
+.batch-pricing .pricing-inner>header,.batch-pricing .pricing-inner>header h1,.batch-pricing .pricing-inner>header p{text-align:start;margin-inline:0;}
+.batch-pricing .pricing-inner>header{align-items:flex-start;justify-items:start;}
+.pricing-faq>div:first-child,.pricing-faq h2,.pricing-faq p{text-align:start;}
