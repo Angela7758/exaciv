@@ -13,7 +13,6 @@ import {AgendaTasks} from './LearningAgenda';
 import {dateKey,userTimezone} from '@/lib/agenda';
 import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import {collectMistakes} from '@/lib/review';
-import {LESSON_ILLUSTRATIONS} from '@/config/lesson-illustrations';
 import civi from '@/assets/civi.png';
 export function Dashboard(){const ui=useUiT();const ct=useContentT();const {data}=useSuspenseQuery(learningOptions);const {data:catalogue}=useSuspenseQuery(catalogueOptions);const {data:allSessions}=useSuspenseQuery(sessionsOptions);
  const next=catalogue.lessons.find(l=>!data.completions.some(c=>c.lesson_id===l.id));

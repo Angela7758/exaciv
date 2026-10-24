@@ -1574,6 +1574,8 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .exam-history li time{color:var(--learning-muted);font-size:12px;}
 .exam-disclaimer{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--learning-muted);margin-top:24px;}
 .exam-disclaimer svg{width:15px;height:15px;flex-shrink:0;color:var(--learning-blue);}
+.practice-chrono{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--learning-blue);white-space:nowrap;}
+.practice-chrono svg{width:15px;height:15px;}
 
 @media(max-width:1100px){
  .dash-top,.dash-bottom,.exam-cols{grid-template-columns:1fr;}

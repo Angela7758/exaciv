@@ -6,7 +6,7 @@ import {useUiT} from '@/lib/i18n/internal';
 import {useState,type ReactNode} from 'react';
 import {useNavigate,Link} from '@tanstack/react-router';
 import {useSuspenseQuery} from '@tanstack/react-query';
-import {BookOpen,Clock,ArrowRight,RotateCcw,Play,CheckCircle2,ChartNoAxesColumn,Target,FileText,Armchair,CloudUpload,Info,ExternalLink,ListChecks,Timer,FileX} from 'lucide-react';
+import {BookOpen,Clock,ArrowRight,Play,CheckCircle2,Target,FileText,Armchair,CloudUpload,Info,ExternalLink,ListChecks,FileX} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {startSession} from '@/lib/session.functions';
 import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
@@ -20,7 +20,6 @@ import {PRACTICE_THEMES,PRACTICE_COUNTS,unfinishedSession} from '@/lib/practice-
 import {PARCOURS} from '@/config/content';
 import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import {MistakeLibrary} from './MistakeLibrary';
-import civi from '@/assets/civi.png';
 import paper from '@/assets/exam-paper-v2.png.asset.json';
 
 export function StartSessionButton({kind='practice',lesson,children,orange=false,count,correction,chrono}:{kind?:'lesson'|'practice'|'exam';lesson?:string|undefined;children?:ReactNode;orange?:boolean;count?:number;correction?:'immediate'|'fin';chrono?:boolean}){const ui=useUiT();const {locale}=useI18n();const [busy,setBusy]=useState(false);const [error,setError]=useState('');const navigate=useNavigate();const start=useServerFn(startSession);const qc=useQueryClient();return <><Button variant={orange?'cta':'interactive'} size="lg" disabled={busy} onClick={async()=>{setBusy(true);setError('');try{const id=await start({data:{kind,lesson,count}});void recordActivity('session',id,locale);await qc.invalidateQueries({queryKey:['sessions']});if(kind==='exam')await navigate({to:'/app/examen-blanc/session',search:{session:id}});else if(kind==='practice')await navigate({to:'/app/entrainement/session/$id',params:{id},search:{correction:correction==='fin'?'fin':undefined,chrono:chrono||undefined}});else await navigate({to:'/app/entrainement/$sessionId/feedback',params:{sessionId:id}});}catch(e){setError(e instanceof Error?e.message:ui("Impossible de démarrer."));setBusy(false);}}}>{busy?ui("Préparation…"):children??<>{ui("Commencer")} <ArrowRight/></>}</Button>{error&&<p className="text-critical mt-3" role="alert">{error}</p}</>;}
