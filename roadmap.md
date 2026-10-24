@@ -1,9 +1,9 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
 ## Fonds publics et interactions — 24 octobre à 10:29 UTC
-- [ ] Conserver un fond Paris unique et stable sur les six pages publiques.
-- [ ] Rétablir l’illustration complète CIVI/questionnaire de l’examen.
-- [ ] Enrichir les interactions et vérifier bureau, mobile et réduction du mouvement.
+- [x] Fond Paris persistant sur les six pages : même élément, cadrage et dimensions contrôlés pendant la navigation à 1440 et 390 px.
+- [x] Illustration complète CIVI/questionnaire de l’examen visible sur ordinateur et téléphone ; captures ouvertes et contrôlées.
+- [x] Interactions cartes/clic/défilement et accès clavier enrichis ; bulle CIVI et menu testés, réduction du mouvement contrôlée, 17 tests réussis. Pas de nouvelle vérification des espaces connectés.
 
 ## Reprise stricte des références — 23 octobre à 15:19 UTC
 - [x] Corriger les proportions du premier écran et des cartes Parcours/Méthode de l’accueil.
