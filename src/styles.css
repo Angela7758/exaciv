@@ -99,11 +99,12 @@
 @utility bg-hero-fade { background-image: var(--gradient-hero-fade); }
 @utility bg-cta-band { background-image: var(--gradient-cta); }
 @utility container-page {
-  width: 100%;
-  max-width: 76rem;
+  box-sizing: border-box;
+  width: calc(100% - 2 * var(--public-gutter));
+  max-width: var(--public-max-width);
   margin-inline: auto;
-  padding-inline: 1.25rem;
-  @media (min-width: 768px) { padding-inline: 2rem; }
+  padding-inline: 0;
+  min-width: 0;
 }
 
 @keyframes float-y { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
