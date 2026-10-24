@@ -1240,7 +1240,7 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 @media (min-width:1024px){:root{--public-gutter:32px;}}
 
 /* Fond Paris partagé : même image, même cadrage sur toutes les pages publiques. */
-.public-paris-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;pointer-events:none;}
+.public-paris-bg{position:absolute;inset:0 0 auto;width:100%;height:var(--public-scene-height);object-fit:cover;object-position:center 60%;pointer-events:none;animation:none;transition:none;transform:none;}
 
 /* En-tête : la barre blanche suit exactement le conteneur public. */
 .approved-home-header{padding:28px 0 0;}
@@ -1290,3 +1290,42 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 @media (min-width:768px) and (max-width:1100px){.approved-home-header{padding:24px 0 0;}}
 @media (max-width:767px){header.approved-home-header{padding:14px 0 0;}}
 @media (min-width:768px) and (max-width:1100px){header.approved-home-header{padding:24px 0 0;}}
+
+/* One persistent Paris layer, independent of route content and text length. */
+:root{--public-scene-height:665px;--interaction-shadow:0 16px 32px -20px color-mix(in oklab,var(--primary) 42%,transparent);}
+.public-site-shell{position:relative;isolation:isolate;background:var(--background);}
+.public-site-shell>.public-paris-bg{z-index:-1;}
+.public-site-shell>main,.public-site-shell>.site-footer{position:relative;}
+.public-site-shell .approved-home-hero,.public-site-shell .nine-public,.public-site-shell .batch-pricing{background:transparent;}
+.public-site-shell .public-paris-hero{overflow:visible;min-height:var(--public-scene-height);}
+.public-site-shell .public-hero-inner{min-height:var(--public-scene-height);padding-block:150px 64px;}
+.public-site-shell .approved-home-hero{height:auto;min-height:var(--public-scene-height);}
+.exam-public .public-hero-art{height:330px;display:block;}
+.exam-public .public-hero-art>img:not(.public-paper){width:60%;height:100%;bottom:0;left:0;}
+.exam-public .public-hero-art .public-paper{width:60%;height:auto;bottom:60px;right:0;transform:rotate(7deg);}
+.public-site-shell .public-facts,.public-site-shell .help-columns{margin-top:0;}
+.fx-pressable{position:relative;isolation:isolate;}
+.fx-ripple{clip-path:circle(50%);max-width:100%;max-height:100%;inset:0!important;margin:auto;}
+.fx-wait{transition-delay:var(--fx-delay,0ms);}
+.public-site-shell :is(.pathway-public-cards>article,.method-cards>article,.pricing-reference-plan,.help-resources>a){transition:box-shadow .25s ease,border-color .25s ease,translate .25s ease;}
+@media(hover:hover) and (pointer:fine){
+ .public-site-shell :is(.pathway-public-cards>article,.method-cards>article,.pricing-reference-plan,.help-resources>a):hover{translate:0 -4px;box-shadow:var(--interaction-shadow);}
+ .public-site-shell :is(.pathway-public-cards>article,.method-cards>article):hover h3{color:var(--primary);}
+ .public-site-shell .public-track-tabs button:hover{box-shadow:var(--interaction-shadow);}
+}
+.public-site-shell .help-questions details{transition:background-color .2s ease,border-color .2s ease;}
+.public-site-shell .help-questions details[open]{border-color:var(--primary);}
+@media(min-width:768px) and (max-width:1100px){:root{--public-scene-height:620px;}}
+@media(max-width:767px){
+ :root{--public-scene-height:980px;}
+ .public-site-shell .public-hero-inner{min-height:0;padding-block:112px 32px;}
+ .public-site-shell .public-paris-hero{min-height:0;}
+ .public-site-shell .approved-home-hero{min-height:0;}
+ .exam-public .public-hero-art{display:block;height:240px;width:100%;margin-top:20px;grid-column:1/-1;}
+ .exam-public .public-hero-art>img:not(.public-paper){height:100%;width:58%;left:0;bottom:0;}
+ .exam-public .public-hero-art .public-paper{display:block;width:58%;height:auto;right:0;bottom:48px;}
+}
+@media(prefers-reduced-motion:reduce){
+ .fx-ripple{display:none;}
+ .public-site-shell :is(.pathway-public-cards>article,.method-cards>article,.pricing-reference-plan,.help-resources>a){transition:none;translate:none!important;}
+}
