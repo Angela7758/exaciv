@@ -33,7 +33,7 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} activeOptions={{exact:true}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary nav-selected" }}>
+            <Link key={n.to} to={n.to} activeOptions={{exact:true}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary nav-selected", "aria-current": "page" }}>
               {t(n.key)}
             </Link>
           ))}
