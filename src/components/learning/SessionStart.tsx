@@ -31,7 +31,7 @@ export function StartSessionButton({kind='practice',lesson,children,orange=false
    void recordActivity('session',id,locale);
    await qc.invalidateQueries({queryKey:['sessions']});
    if(kind==='exam')await navigate({to:'/app/examen-blanc/session',search:{session:id}});
-   else if(kind==='practice')await navigate({to:'/app/entrainement/session/$id',params:{id},search:{correction:correction==='fin'?'fin':undefined,chrono:chrono||undefined}});
+   else if(kind==='practice')await navigate({to:'/app/entrainement/session/$id',params:{id},search:{...(correction==='fin'?{correction:'fin' as const}:{}),...(chrono?{chrono:true}:{})}});
    else await navigate({to:'/app/entrainement/$sessionId/feedback',params:{sessionId:id}});
   }catch(e){setError(e instanceof Error?e.message:ui("Impossible de démarrer."));setBusy(false);}
  }
