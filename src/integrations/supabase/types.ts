@@ -888,10 +888,12 @@ export type Database = {
         Returns: undefined
       }
       start_configured_test: { Args: { p_test: string }; Returns: string }
-      start_learning_session: {
-        Args: { p_kind: string; p_lesson?: string }
-        Returns: string
-      }
+      start_learning_session:
+        | { Args: { p_kind: string; p_lesson?: string }; Returns: string }
+        | {
+            Args: { p_count?: number; p_kind: string; p_lesson?: string }
+            Returns: string
+          }
       submit_learning_answer: {
         Args: { p_answer: number; p_index: number; p_session: string }
         Returns: undefined
