@@ -4,26 +4,53 @@ import {useUiT} from '@/lib/i18n/internal';
 import {useState} from 'react';
 import {useSuspenseQuery} from '@tanstack/react-query';
 import {Link} from '@tanstack/react-router';
-import {Search,Clock,Compass,Check,BookOpen,ArrowRight,Play} from 'lucide-react';
+import {Search,Clock,Play,ArrowRight,BookOpen} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
-import {filterLessonRows,demoThemes} from '@/lib/account-settings';
+import {filterLessonRows} from '@/lib/account-settings';
 import {TOPICS} from '@/config/learning';
-import {ReferenceThemes} from './ReferenceThemes';
-import civi from '@/assets/civi.png';
-import skyline from '@/assets/reference-catalogue-skyline.png.asset.json';
-import valuesArt from '@/assets/reference-valeurs.png.asset.json';
 import {LESSON_ILLUSTRATIONS} from '@/config/lesson-illustrations';
-export function CourseCatalogue({demo=false}:{demo?:boolean}){const ui=useUiT();const ct=useContentT();
- const {data:c}=useSuspenseQuery(catalogueOptions);const {data:d}=useSuspenseQuery(learningOptions);const [search,setSearch]=useState('');const [theme,setTheme]=useState('all');const [status,setStatus]=useState('all');
+import valuesArt from '@/assets/reference-valeurs.png.asset.json';
+
+type Row={id:string;title:string;topic:string;minutes:number;status:string;description:string};
+
+export function CourseCatalogue({demo=false}:{demo?:boolean}){
+ const ui=useUiT();const ct=useContentT();
+ const {data:c}=useSuspenseQuery(catalogueOptions);
+ const {data:d}=useSuspenseQuery(learningOptions);
+ const [search,setSearch]=useState('');
+ const [theme,setTheme]=useState('all');
+ const [status,setStatus]=useState('all');
  const next=c.lessons.find(l=>!d.completions.some(x=>x.lesson_id===l.id));
- const demoLessons=[{id:'laicite',title:'La laïcité et la liberté de conscience',topic:TOPICS[1].title,minutes:10,status:'current',description:'Découvrez les principes de la laïcité, son rôle dans la société et la liberté de conscience.'},{id:c.lessons.find(l=>/parlement|institution/i.test(l.title))?.id??c.lessons[0]?.id??'laicite',title:'Le rôle du Parlement',topic:TOPICS[0].title,minutes:8,status:'new',description:'Comprenez le fonctionnement, les missions et le rôle du Parlement dans la Ve République.'}];
- const rows=demo?demoLessons:c.lessons.map(l=>({...l,status:d.completions.some(x=>x.lesson_id===l.id)?'done':l.id===next?.id?'current':'new',description:l.body[0]??''}));const filtered=filterLessonRows<{id:string;title:string;topic:string;minutes:number;status:string;description:string}>(rows.map(r=>({...r,title:ct(r.title)})),search,theme,status);
- const counts=demo?demoThemes:TOPICS.map(t=>{const ls=c.lessons.filter(l=>l.topic===t.title);return {total:ls.length,done:ls.filter(l=>d.completions.some(x=>x.lesson_id===l.id)).length};});
- const targets=TOPICS.map(t=>c.lessons.find(l=>l.topic===t.title&&!d.completions.some(x=>x.lesson_id===l.id))?.id??c.lessons.find(l=>l.topic===t.title)?.id);const resume=demo?'laicite':d.readingPositions.find(r=>!d.completions.some(v=>v.lesson_id===r.lesson_id))?.lesson_id??next?.id??c.lessons[0]?.id;
- return <div className="approved-pages catalogue-page"><section className="catalogue-banner"><SafeImage className="catalogue-skyline" src={skyline.url} alt={ui("Architecture civique française")}/><SafeImage className="catalogue-civi" src={civi} alt={ui("CIVI vous accompagne")}/><div><h1>{ui("Aujourd’hui, faites un pas de plus")}</h1><p>{ui("Reprenez votre dernière leçon et continuez votre préparation")}<br className="desktop-break"/> {ui("à l’examen civique avec confiance.")}</p>{resume&&<Button asChild variant="cta"><Link to="/app/lecons/$slug" params={{slug:resume}}><Play/>{ui("Reprendre ma leçon")}<ArrowRight/></Link></Button>}</div></section>
- <div className="catalogue-filters"><label><Search/><input aria-label={ui("Rechercher une leçon")} placeholder={ui("Rechercher une leçon")} value={search} onChange={e=>setSearch(e.target.value)}/></label><select aria-label={ui("Thème des leçons")} value={theme} onChange={e=>setTheme(e.target.value)}><option value="all">{ui("Tous les thèmes")}</option>{[...new Set(rows.map(l=>l.topic))].map(t=><option key={t} value={t}>{ct(t)}</option>)}</select><div className="catalogue-status">{[['current',ui("En cours"),Clock],['new',ui("À découvrir"),Compass],['done',ui("Terminées"),Check]].map(([id,label,I])=>{const Icon=I as typeof Clock;return <Button key={id as string} variant={status===id?'interactive':'outline'} aria-pressed={status===id} onClick={()=>setStatus(status===id?'all':id as string)}><Icon/>{label as string}</Button>;})}</div></div>
- <div className="approved-section-heading"><h2>{ui("Vos thèmes")}</h2><Button variant="link" onClick={()=>{setTheme('all');setStatus('all');}}>{ui("Voir tous les thèmes")}<ArrowRight/></Button></div><ReferenceThemes counts={counts} targets={targets} buttons demo={demo}/>
- <div className="approved-section-heading"><h2>{search||theme!=='all'||status!=='all'?ui("Leçons"):ui("Leçons recommandées")}</h2><Button variant="link" onClick={()=>{setSearch('');setTheme('all');setStatus('all');}}>{ui("Voir toutes les leçons")}<ArrowRight/></Button></div><div className="recommended-grid">{filtered.map((l,i)=><Link to="/app/lecons/$slug" params={{slug:l.id}} className="recommended-lesson" key={l.id}><BookOpen/><div><h3>{ct(l.title)}</h3><span><Clock/>{l.minutes} {ui("min")} <b>{l.status==='done'?ui("Terminée"):l.status==='current'?ui("En cours"):ui("À découvrir")}</b></span><p>{ct(l.description)}</p></div><SafeImage src={LESSON_ILLUSTRATIONS[l.id]?.src??valuesArt.url} alt={LESSON_ILLUSTRATIONS[l.id]?.alt??l.title}/></Link>)}</div>{!filtered.length&&<p className="empty-activity">{ui("Aucune leçon ne correspond à ces filtres.")}</p>}
- </div>;
+ const demoLessons:Row[]=[{id:'laicite',title:'La laïcité et la liberté de conscience',topic:TOPICS[0].title,minutes:10,status:'current',description:'Découvrez les principes de la laïcité, son rôle dans la société et la liberté de conscience.'},{id:c.lessons.find(l=>/parlement|institution/i.test(l.title))?.id??c.lessons[0]?.id??'laicite',title:'Le rôle du Parlement',topic:TOPICS[1].title,minutes:8,status:'new',description:'Comprenez le fonctionnement, les missions et le rôle du Parlement dans la Ve République.'}];
+ const rows:Row[]=demo?demoLessons:c.lessons.map(l=>({id:l.id,title:l.title,topic:l.topic,minutes:l.minutes,status:d.completions.some(x=>x.lesson_id===l.id)?'done':l.id===next?.id||d.readingPositions.some(r=>r.lesson_id===l.id)?'current':'new',description:l.body[0]??''}));
+ const filtered=filterLessonRows(rows.map(r=>({...r,title:ct(r.title)})),search,theme,status);
+ const resumeId=demo?'laicite':d.readingPositions.find(r=>!d.completions.some(v=>v.lesson_id===r.lesson_id))?.lesson_id??next?.id;
+ const resume=c.lessons.find(l=>l.id===resumeId);
+ const topics=[...new Set(rows.map(l=>l.topic))];
+ return <>
+  <header className="page-heading"><h1>{ui("Vos leçons")}</h1><p>{ui("Comprenez les notions essentielles, à votre rythme.")}</p></header>
+  {resume&&<section className="cat-resume"><span><BookOpen/></span><div><h2>{ct(resume.title)}</h2><p>{ct(resume.topic)} · {resume.minutes} {ui("min")}</p></div><Button asChild variant="cta"><Link to="/app/lecons/$slug" params={{slug:resume.id}}><Play className="fill-current"/>{ui("Reprendre ma leçon")}</Link></Button></section>}
+  <div className="cat-tools">
+   <label><Search/><input aria-label={ui("Rechercher une leçon")} placeholder={ui("Rechercher une leçon")} value={search} onChange={e=>setSearch(e.target.value)}/></label>
+   <select aria-label={ui("Thème des leçons")} value={theme} onChange={e=>setTheme(e.target.value)}><option value="all">{ui("Tous les thèmes")}</option>{topics.map(t=><option key={t} value={t}>{ct(t)}</option>)}</select>
+  </div>
+  <div className="cat-status" role="group" aria-label={ui("Filtrer par état")}>
+   {([['all',ui("Toutes")],['new',ui("Non commencées")],['current',ui("En cours")],['done',ui("Terminées")]] as const).map(([id,label])=><button key={id} type="button" aria-pressed={status===id} onClick={()=>setStatus(id)}>{label}</button>)}
+  </div>
+  {filtered.length?<div className="cat-grid">{filtered.map(l=>{
+   const art=LESSON_ILLUSTRATIONS[l.id];
+   const state=l.status==='done'?'done':l.status==='current'?'current':'new';
+   return <article className="cat-card" key={l.id}>
+    <SafeImage src={art?.src??valuesArt.url} alt={art?.alt??l.title} width={1376} height={768} loading="lazy"/>
+    <div>
+     <span className="status-pill">{ct(l.topic)}</span>
+     <h3>{ct(l.title)}</h3>
+     <p className="cat-desc">{ct(l.description)}</p>
+     <div className="cat-meta"><Clock/>{l.minutes} {ui("min")}<span className="lesson-state" data-s={state}>{state==='done'?ui("Terminée"):state==='current'?ui("En cours"):ui("Non commencée")}</span></div>
+     <Button asChild variant={state==='done'?'outline':'interactive'}><Link to="/app/lecons/$slug" params={{slug:l.id}}>{state==='done'?ui("Revoir la leçon"):state==='current'?ui("Continuer"):ui("Commencer")}<ArrowRight/></Link></Button>
+    </div>
+   </article>;
+  })}</div>:<p className="cat-empty">{ui("Aucune leçon ne correspond à ces filtres.")}</p>}
+ </>;
 }
