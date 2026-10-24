@@ -33,7 +33,7 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} activeOptions={{exact:true}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary nav-selected", "aria-current": "page" }}>
+            <Link key={n.to} to={n.to} activeOptions={{exact:true,includeSearch:false}} className="text-sm font-medium text-foreground hover:text-primary" activeProps={{ className: "text-primary nav-selected", "aria-current": "page" }}>
               {t(n.key)}
             </Link>
           ))}
@@ -49,7 +49,7 @@ export function SiteHeader({auth=false}:{auth?:boolean}) {
         </div>
         <div className="public-mobile-tools flex shrink-0 items-center gap-1 lg:hidden"><LanguageMenu mobile /><MobileDrawer id="public-mobile-menu" open={open} onOpenChange={setOpen} label={t('nav.menuOpen')}>
           <nav className="mobile-drawer-nav" aria-label="Navigation mobile">
-            {NAV.map(n=><Link key={n.to} to={n.to} activeOptions={{exact:true}} activeProps={{className:'nav-selected', 'aria-current':'page'}} onClick={()=>setOpen(false)}>{t(n.key)}</Link>)}
+            {NAV.map(n=><Link key={n.to} to={n.to} activeOptions={{exact:true,includeSearch:false}} activeProps={{className:'nav-selected', 'aria-current':'page'}} onClick={()=>setOpen(false)}>{t(n.key)}</Link>)}
             <Link to={signedIn?'/app':'/connexion'} onClick={()=>setOpen(false)}><User/>{signedIn?t('nav.space'):t('nav.login')}</Link>
           </nav>
           <Button asChild variant="cta" size="lg" className="mobile-drawer-cta"><Link to="/test-gratuit" onClick={()=>setOpen(false)}>{t('nav.test')}</Link></Button>
