@@ -72,3 +72,9 @@
 - [x] Page Parcours : descriptions des cinq étapes et sous-titre des thèmes alignés sur la référence, illustration de chapitre en fond, anneaux de progression sur les cartes de thèmes
 - [x] Bas d'accueil : CTA avec CIVI agrandi à droite, bouton orange centré ; FAQ et pied de page conformes
 - [x] Vérifié : build OK, 104 tests, captures 1440/390 px sans débordement
+
+## Conteneur public unique 1220 px — 24 octobre
+- [x] container-page = 1220 px max, gouttières 16/24/32, six pages publiques alignées (en-tête, héros, corps, pied)
+- [x] Fond Paris partagé (PublicHeroBackground), hauteurs de héros unifiées, sans animation de route
+- [x] États de navigation stables + aria-current, grilles Méthode 4/2/1 et FAQ 2/1
+- [x] Mesures Playwright conformes à 1920/1440/1024/768/430/390/360 px, sans débordement
