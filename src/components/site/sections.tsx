@@ -11,7 +11,7 @@ import ctaBg from "@/assets/hero-paris.jpg";
 
 export function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <div className="mx-auto max-w-2xl text-center">
+    <div className="public-section-heading max-w-3xl text-start">
       <h2 className="text-3xl font-bold md:text-4xl">{title}</h2>
       {subtitle && <p className="mt-3 text-lg text-muted-foreground">{subtitle}</p>}
     </div>
