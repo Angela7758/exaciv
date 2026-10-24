@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { InteractionFx } from "@/components/site/InteractionFx";
+import { PublicHeroBackground } from "@/components/site/PublicHeroBackground";
 import {
   Outlet,
   Link,
@@ -124,6 +125,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const publicScene = ['/', '/examen', '/parcours', '/methode', '/tarifs', '/faq'].includes(pathname);
   const standalone = pathname.startsWith('/admin') || pathname.startsWith('/app') || pathname.startsWith('/test-gratuit') || pathname.startsWith('/inscription') || ['/bienvenue','/abonnement/confirmer','/connexion','/inscription','/auth','/mot-de-passe-oublie','/reset-password','/nouveau-mot-de-passe'].includes(pathname);
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event) => {
@@ -139,11 +141,14 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
         <InteractionFx />
+        <div className={publicScene ? 'public-site-shell' : undefined}>
+        {publicScene && <PublicHeroBackground shared />}
         {!standalone && <SiteHeader />}
         <main className="min-h-[60vh]">
           <Outlet />
         </main>
         {!standalone && <SiteFooter />}
+        </div>
       </I18nProvider>
     </QueryClientProvider>
   );
