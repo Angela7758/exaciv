@@ -1355,6 +1355,6 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .approved-home section.py-14,.approved-home section.py-12{padding-block:80px;}
 .site-footer>.container-page:first-child{padding-block:56px;}
 @media(max-width:767px){.public-body>*+*,.exam-information,.public-notice{margin-top:28px;}.approved-home section.py-14,.approved-home section.py-12{padding-block:56px;}.approved-home section.container-page.pt-16{padding-top:64px;}}
-@media(min-width:1024px){.nine-public.exam-public .public-body>.public-facts{margin-top:-130px!important;margin-bottom:40px!important;position:relative;z-index:4;}}
+@media(min-width:1024px){.nine-public.exam-public .public-body>.public-facts{margin-top:-100px!important;margin-bottom:40px!important;position:relative;z-index:4;}}
 @media(min-width:768px) and (max-width:1023px){.nine-public.exam-public .public-body>.public-facts{margin-top:-70px!important;margin-bottom:32px!important;position:relative;z-index:4;}}
 .nine-public .public-body>.exam-information,.nine-public .public-body>.public-notice{margin-top:40px!important;}
