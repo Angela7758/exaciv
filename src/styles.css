@@ -1337,3 +1337,24 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .batch-pricing .pricing-inner>header,.batch-pricing .pricing-inner>header h1,.batch-pricing .pricing-inner>header p{text-align:start;margin-inline:0;}
 .batch-pricing .pricing-inner>header{align-items:flex-start;justify-items:start;}
 .pricing-faq>div:first-child,.pricing-faq h2,.pricing-faq p{text-align:start;}
+
+/* Examen : bandeau des chiffres remonté comme sur l'accueil. */
+@media(min-width:1024px){.exam-public .public-facts{margin-top:-140px;position:relative;z-index:4;}}
+@media(min-width:768px) and (max-width:1023px){.exam-public .public-facts{margin-top:-80px;position:relative;z-index:4;}}
+
+/* Respiration verticale sur les pages publiques. */
+.public-body>*+*,.exam-information,.public-notice{margin-top:40px;}
+.exam-public .public-facts{margin-bottom:40px;}
+.public-section-heading{margin-bottom:32px;}
+.public-section-heading p{margin-top:12px;}
+.public-body{padding-bottom:72px;}
+.method-cards,.help-columns,.pricing-reference-grid{margin-top:32px;}
+.approved-home>div>section,.approved-home>section{scroll-margin-top:96px;}
+.approved-home .home-method,.approved-home .home-daily{margin-block:56px;}
+.approved-home section.container-page.pt-16{padding-top:88px;}
+.approved-home section.py-14,.approved-home section.py-12{padding-block:80px;}
+.site-footer>.container-page:first-child{padding-block:56px;}
+@media(max-width:767px){.public-body>*+*,.exam-information,.public-notice{margin-top:28px;}.approved-home section.py-14,.approved-home section.py-12{padding-block:56px;}.approved-home section.container-page.pt-16{padding-top:64px;}}
+@media(min-width:1024px){.nine-public.exam-public .public-body>.public-facts{margin-top:-100px!important;margin-bottom:40px!important;position:relative;z-index:4;}}
+@media(min-width:768px) and (max-width:1023px){.nine-public.exam-public .public-body>.public-facts{margin-top:-70px!important;margin-bottom:32px!important;position:relative;z-index:4;}}
+.nine-public .public-body>.exam-information,.nine-public .public-body>.public-notice{margin-top:40px!important;}
