@@ -1,5 +1,16 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
+## Refonte des six pages connectées — 24 octobre (en cours)
+- [ ] Design system unifié : sidebar #11183D 240 px, fond #F6F8FC, bleu #2455FF, orange #FF7B25, contenu 1220 px, gouttières 32/24/16.
+- [ ] AppShell : ordre nav (Accueil, Mon parcours, Leçons, S'entraîner, Examen blanc, Mes erreurs, Progression), bas (Abonnement, Aide, Mon compte), en-tête (salutation, parcours, langue, notifications, avatar), logo dans pastille blanche.
+- [ ] Dashboard : titre + sous-titre, tâche à poursuivre + agenda, 3 cartes d'aperçu, 5 lignes de thèmes, À revoir + Activité récente ; retirer le tableau par langue.
+- [ ] Mon parcours : barre d'objectif, recommandation CIVI, progression globale, accordéon des 5 thèmes avec leçons et actions.
+- [ ] Leçons : recherche, filtres thème/état, reprise, grille 3/2/1 colonnes.
+- [ ] Détail de leçon : 70/30, sommaire du chapitre, objectifs, concepts, prononciation/traduction, situation, À retenir, source, « Vérifier mes connaissances » + « Enregistrer et quitter ».
+- [ ] S'entraîner : session en cours, onglets Nouvelle session / Mes erreurs, réglages (5/10/20 questions réels via RPC, correction immédiate, chrono), 5 cartes thème avec compteurs réels, bannière erreurs.
+- [ ] Examen blanc : bandeau de règles (40 q, 45 min, 32/40, correction après remise), Avant de commencer, Votre session, Mes résultats, mention d'indépendance.
+- [ ] Vérification : build, tests, captures 1440/390 px sur les six pages avec le compte réel.
+
 ## Fonds publics et interactions — 24 octobre à 10:29 UTC
 - [x] Fond Paris persistant sur les six pages : même élément, cadrage et dimensions contrôlés pendant la navigation à 1440 et 390 px.
 - [x] Illustration complète CIVI/questionnaire de l’examen visible sur ordinateur et téléphone ; captures ouvertes et contrôlées.
