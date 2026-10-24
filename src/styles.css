@@ -150,11 +150,11 @@
   --color-learning-surface: var(--learning-surface);
 }
 :root {
-  --app-navy: oklch(0.22 0.075 270);
+  --app-navy: #11183D;
   --app-navy-foreground: oklch(0.98 0.008 265);
-  --learning-surface: oklch(0.95 0.028 245);
-  --learning-blue: oklch(0.53 0.25 263);
-  --learning-orange: oklch(0.72 0.20 47);
+  --learning-surface: #F6F8FC;
+  --learning-blue: #2455FF;
+  --learning-orange: #FF7B25;
   --learning-muted: oklch(0.54 0.065 273);
   --learning-shadow: 0 4px 24px color-mix(in oklab, var(--primary) 7%, transparent);
 }
