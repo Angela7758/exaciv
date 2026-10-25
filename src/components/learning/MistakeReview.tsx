@@ -1,0 +1,27 @@
+import {useEffect,useState} from 'react';
+import {Link,useNavigate} from '@tanstack/react-router';
+import {useSuspenseQuery,useQueryClient} from '@tanstack/react-query';
+import {useServerFn} from '@tanstack/react-start';
+import {ArrowLeft,ArrowRight,Bookmark,Info,Landmark} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {SafeImage} from '@/components/site/SafeImage';
+import {reviewMistake} from '@/lib/review.functions';
+import {reviewLearningOptions} from '@/lib/learning.queries';
+import {reviewQuestionsOptions} from '@/lib/review.queries';
+import {reviewNavigation} from '@/lib/review-presentation';
+import type {SessionQuestion} from '@/lib/sessions';
+import {officialTopic} from '@/config/official-programme';
+import {useUiT} from '@/lib/i18n/internal';
+import {QuestionAids} from './QuestionAids';
+import {AnswerCorrection} from './AnswerCorrection';
+import civi from '@/assets/civi.png';
+export function MistakeReview({question}:{question?:string}){
+ const ui=useUiT();const {data:batch}=useSuspenseQuery(reviewQuestionsOptions(question));const {data:d}=useSuspenseQuery(reviewLearningOptions);
+ const [index,setIndex]=useState(0);const [selected,setSelected]=useState<Record<number,number>>({});const [corrections,setCorrections]=useState<Record<number,SessionQuestion>>({});const [busy,setBusy]=useState(false);const [error,setError]=useState('');const save=useServerFn(reviewMistake);const navigate=useNavigate();const qc=useQueryClient();const q=batch[index];const correction=corrections[index];
+ useEffect(()=>{qc.removeQueries({predicate:v=>['learning','sessions','free-catalogue','session','review-questions'].includes(String(v.queryKey[0]))&&v.queryKey[0]!=='review-questions'});},[qc]);
+ async function validate(){const answer=selected[index];if(!q||answer===undefined||busy||correction)return;setBusy(true);setError('');try{const result=await save({data:{question:q.id,answer}});setCorrections(v=>({...v,[index]:result.question}));}catch{setError(ui('Votre révision n’a pas été enregistrée. Réessayez.'));}finally{setBusy(false);}}
+ async function leave(){await Promise.all([qc.invalidateQueries({queryKey:['sessions']}),qc.invalidateQueries({queryKey:['learning']}),qc.invalidateQueries({queryKey:['mastery']})]);qc.removeQueries({queryKey:['review-questions']});await navigate({to:'/app/mes-erreurs'});}
+ function next(){setError('');setIndex(reviewNavigation(index,batch.length));}
+ if(!q)return <section className="review-empty"><h1>{ui(index?'Révision terminée':'Aucune erreur à revoir')}</h1><p>{Object.keys(corrections).length} {ui('révisées')}</p><Button variant="cta" onClick={()=>void leave()}>{ui('Retour à mes erreurs')}<ArrowRight/></Button></section>;
+ return <div className="fidelity-review-grid"><main className="fidelity-review-main"><header><h1>{ui('Réviser mes erreurs')}</h1><div><span>{ui('Question {0} sur {1}',index+1,batch.length)}</span><Button variant="outline" size="icon" aria-label={ui('Question précédente')} disabled={index===0||busy} onClick={()=>setIndex(v=>v-1)}><ArrowLeft/></Button><Button variant="outline" size="icon" aria-label={ui('Question suivante')} disabled={busy||index===batch.length-1} onClick={next}><ArrowRight/></Button></div></header><div className="review-theme"><Landmark/>{officialTopic(q.exam_theme??q.theme)}</div><h2 lang="fr" dir="ltr">{q.question}</h2><p className="review-instruction">{ui('Choisissez une seule réponse.')}</p><fieldset className="fidelity-options" disabled={busy||Boolean(correction)}>{q.options.map((o,i)=><label key={i} className={selected[index]===i?'selected':''}><input type="radio" name={`review-${index}`} checked={selected[index]===i} onChange={()=>setSelected(v=>({...v,[index]:i}))}/><span lang="fr" dir="ltr">{o}</span></label>)}</fieldset><QuestionAids review questionId={q.id} question={q.question} options={q.options} explanation={correction?.explanation} helpEnabled={d.profile.translation_help!==false} helpLocale={d.profile.help_locale??'fr'}/>{correction&&<AnswerCorrection question={correction} answer={selected[index]}/>}<footer>{error&&<p role="alert">{error}</p>}{correction?<Button variant="cta" onClick={index===batch.length-1?()=>void leave():next}>{ui(index===batch.length-1?'Terminer':'Question suivante')}<ArrowRight/></Button>:<><Button variant="outline" disabled={busy} onClick={next}>{ui('Passer')}<ArrowRight/></Button><Button variant="cta" disabled={selected[index]===undefined||busy} onClick={()=>void validate()}>{ui('Valider ma réponse')}</Button></>}</footer></main><aside className="fidelity-review-support"><h2>{ui('Cette révision')}</h2><div className="review-circles">{batch.map((_,i)=><Button key={i} variant="outline" size="icon" aria-label={ui('Question {0}',i+1)} disabled={busy} className={`${index===i?'current':''} ${corrections[i]?'validated':''}`} onClick={()=>setIndex(i)}>{i+1}</Button>)}</div><p>{ui('{0} sur {1} révisées',Object.keys(corrections).length,batch.length)}</p><div className="review-info"><Info/><p>{ui("La correction s’affichera après validation.")}</p></div><Button variant="outline" disabled={busy} onClick={()=>void leave()}><Bookmark/>{ui('Enregistrer et quitter')}</Button><SafeImage src={civi} alt={ui('CIVI vous encourage')}/></aside></div>;
+}

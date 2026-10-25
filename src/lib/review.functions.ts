@@ -1,7 +1,19 @@
 import {createServerFn} from '@tanstack/react-start';
 import {z} from 'zod';
 import {requireSupabaseAuth} from '@/integrations/supabase/auth-middleware';
+import {sessionSchema} from './sessions';
+import {collectMistakes,reviewBatch} from './review';
+import {concealedReviewQuestion} from './review-presentation';
+import {setResponseHeader} from '@tanstack/react-start/server';
+export const getReviewBatch=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({question:z.string().optional()}).optional()).handler(async({context,data})=>{
+ setResponseHeader('Cache-Control','no-store');
+ const p=await context.supabase.from('profiles').select('parcours').eq('id',context.userId).single();if(p.error)throw new Error('Révision indisponible.');
+ const s=await context.supabase.from('learning_sessions').select('*').eq('user_id',context.userId).eq('parcours',p.data.parcours).not('completed_at','is',null).order('started_at',{ascending:false});if(s.error)throw new Error('Révision indisponible.');
+ const rows=collectMistakes(s.data.map(v=>sessionSchema.parse(v)));
+ const batch=data?.question?rows.filter(r=>r.key===data.question&&!r.unanswered).slice(0,1):reviewBatch(rows);
+ return batch.map(r=>concealedReviewQuestion(r.question));
+});
 export const getMastery=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{const r=await context.supabase.from('learning_mistake_reviews').select('question_id,mastered').eq('user_id',context.userId);if(r.error)throw new Error('Révisions indisponibles.');return Object.fromEntries(r.data.map(v=>[v.question_id,v.mastered]));});
 export const saveMastery=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({question:z.string(),mastered:z.boolean()})).handler(async({context,data})=>{const r=await context.supabase.from('learning_mistake_reviews').upsert({user_id:context.userId,question_id:data.question,mastered:data.mastered,updated_at:new Date().toISOString()});if(r.error)throw new Error('Révision non enregistrée.');return {success:true};});
-export const reviewMistake=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({question:z.string(),answer:z.number().int().min(0).max(3)})).handler(async({context,data})=>{const r=await context.supabase.rpc('review_learning_mistake',{p_question:data.question,p_answer:data.answer});if(r.error)throw new Error('Votre révision n’a pas été enregistrée. Réessayez.');return {mastered:r.data};});
+export const reviewMistake=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({question:z.string(),answer:z.number().int().min(0).max(3)})).handler(async({context,data})=>{setResponseHeader('Cache-Control','no-store');const r=await context.supabase.rpc('review_learning_mistake',{p_question:data.question,p_answer:data.answer});if(r.error)throw new Error('Votre révision n’a pas été enregistrée. Réessayez.');const s=await context.supabase.from('learning_sessions').select('*').eq('user_id',context.userId).eq('kind','review').order('started_at',{ascending:false}).limit(20);if(s.error)throw new Error('Correction indisponible.');const recorded=s.data.map(v=>sessionSchema.parse(v)).find(v=>v.questions[0]?.id===data.question&&v.answers['0']===data.answer);if(!recorded?.questions[0])throw new Error('Correction indisponible.');return {mastered:r.data,question:recorded.questions[0],sessionId:recorded.id};});
 export const saveExamNavigation=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({id:z.string().uuid(),index:z.number().int().min(0),answer:z.number().int().min(0).max(3).nullable(),target:z.number().int().min(0).nullable()})).handler(async({data,context})=>{const r=await context.supabase.rpc('save_exam_navigation',{p_session:data.id,p_index:data.index,...(data.answer!==null?{p_answer:data.answer}:{}),...(data.target!==null?{p_target:data.target}:{})});if(r.error)throw new Error(r.error.message);return {success:true};});
