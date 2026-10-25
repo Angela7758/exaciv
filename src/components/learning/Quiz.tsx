@@ -4,7 +4,7 @@ import {Link,useNavigate} from '@tanstack/react-router';
 import {useSuspenseQuery,useQueryClient} from '@tanstack/react-query';
 import {ArrowRight,Check,CheckCircle2,ChartNoAxesColumn,Clock,Landmark,LogOut,RotateCcw,XCircle} from 'lucide-react';
 import {Button} from '@/components/ui/button';
-import {catalogueOptions} from '@/lib/learning.queries';
+import {freeCatalogueOptions} from '@/lib/learning.queries';
 import {saveAttempt} from '@/lib/learning.functions';
 import {scoreTest} from '@/config/free-test';
 import {canValidate,percentage} from '@/config/learning';
@@ -13,7 +13,7 @@ import {BrandLogo} from '@/components/site/BrandLogo';
 import {supabase} from '@/integrations/supabase/client';
 import civi from '@/assets/civi-lecon.png';
 export function Quiz({practice=false}:{practice?:boolean}){
- const {data}=useSuspenseQuery(catalogueOptions);const questions=data.questions;const [index,setIndex]=useState(0);const [answers,setAnswers]=useState<(number|null)[]>(()=>questions.map(()=>null));const [submitted,setSubmitted]=useState(false);const [result,setResult]=useState(false);const [exit,setExit]=useState(false);const [expanded,setExpanded]=useState(false);const [seconds,setSeconds]=useState(0);const [saved,setSaved]=useState(false);const [busy,setBusy]=useState(false);const [error,setError]=useState('');const navigate=useNavigate();const qc=useQueryClient();const q=questions[index];
+ const {data}=useSuspenseQuery(freeCatalogueOptions);const questions=data.questions;const [index,setIndex]=useState(0);const [answers,setAnswers]=useState<(number|null)[]>(()=>questions.map(()=>null));const [submitted,setSubmitted]=useState(false);const [result,setResult]=useState(false);const [exit,setExit]=useState(false);const [expanded,setExpanded]=useState(false);const [seconds,setSeconds]=useState(0);const [saved,setSaved]=useState(false);const [busy,setBusy]=useState(false);const [error,setError]=useState('');const navigate=useNavigate();const qc=useQueryClient();const q=questions[index];
  useEffect(()=>{if(result)return;const timer=setInterval(()=>setSeconds(n=>n+1),1000);return ()=>clearInterval(timer);},[result]);
  async function save(){setBusy(true);setError('');try{const {data:u}=await supabase.auth.getUser();if(!u.user){sessionStorage.setItem('exaciv-pending-free-test',JSON.stringify(answers));await navigate({to:'/inscription'});return;}await saveAttempt({data:{answers}});setSaved(true);await qc.invalidateQueries({queryKey:['learning']});}catch(e){setError(e instanceof Error?e.message:'Impossible de sauvegarder.');}finally{setBusy(false);}}
  function next(){if(index===questions.length-1){if(!practice){sessionStorage.setItem('exaciv-diagnostic-result',JSON.stringify({key:crypto.randomUUID(),questions,answers,seconds}));sessionStorage.removeItem('exaciv-pending-free-test');void navigate({to:'/test-gratuit/resultat'});}else setResult(true);}else{setIndex(i=>i+1);setSubmitted(false);}}

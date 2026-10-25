@@ -55,3 +55,6 @@
 - Bookmarks use owner-scoped functions and a shared query, separate from scoring; export includes them and profile deletion cascades.
 - Practice corrections render in place; navigation is view-only and validation retains the server frontier.
 - Nullable lesson layout uses the admin schema; absent blocks are never synthesized.
+
+- Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
+- Short session result presentation derives titles, duration, continuation count and filters through result-presentation; the complete-exam screen remains separate.
