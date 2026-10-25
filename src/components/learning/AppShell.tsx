@@ -9,7 +9,7 @@ import {Link,Outlet,useRouterState,useNavigate} from '@tanstack/react-router';
 import {useSuspenseQuery,useQueryClient,useQuery} from '@tanstack/react-query';
 import type {ReactNode} from 'react';
 import {useEffect,useState} from 'react';
-import {Home,Target,Route as RouteIcon,BookOpen,Target,ChartNoAxesColumn,FileX,Crown,Settings,Bell,Menu,LogOut,Flame,LifeBuoy,X,ArrowLeft} from 'lucide-react';
+import {Home,Route as RouteIcon,BookOpen,Target,ChartNoAxesColumn,FileX,Crown,Settings,Bell,Menu,LogOut,Flame,LifeBuoy,X,ArrowLeft} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
 import {accessOptions} from '@/lib/admin/queries';

@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
 import type { Database } from '@/integrations/supabase/types';
-import {hasRecordedAnswers} from './sessions';
+import {hasRecordedAnswers,sessionQuestion} from './sessions';
 import {officialTopic} from '@/config/official-programme';
 import {pathwayCoverage} from '@/lib/catalogue-coverage';
 import {PRACTICE_THEMES} from '@/lib/practice-entry';
@@ -21,7 +21,8 @@ export const getCatalogue = createServerFn({method:'GET'}).handler(async()=>{
 export const getLearning = createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{
   const [p,c,a,s,r,g]=await Promise.all([context.supabase.from('profiles').select('*').eq('id',context.userId).single(),context.supabase.from('learning_completions').select('*').eq('user_id',context.userId),context.supabase.from('learning_attempts').select('*').eq('user_id',context.userId).order('created_at',{ascending:false}),context.supabase.from('learning_sessions').select('id,correct,total,answers,questions,completed_at,started_at,kind,parcours').eq('user_id',context.userId).not('completed_at','is',null).order('started_at',{ascending:false}),context.supabase.from('learning_reading_positions').select('*').eq('user_id',context.userId).order('updated_at',{ascending:false}),context.supabase.from('learning_agenda').select('*').eq('user_id',context.userId).order('scheduled_date')]);
   if(p.error || c.error || a.error || s.error || r.error || g.error) throw new Error('Impossible de charger votre progression.');
-  return {profile:p.data,completions:c.data.filter(v=>v.parcours===p.data.parcours),attempts:a.data.filter(v=>v.parcours===p.data.parcours),sessions:s.data.filter(v=>v.parcours===p.data.parcours&&hasRecordedAnswers({...v,questions:v.questions as {options:string[]}[]} as Parameters<typeof hasRecordedAnswers>[0])),readingPositions:r.data.filter(v=>v.parcours===p.data.parcours),agenda:g.data};
+  const evaluated=s.data.map(v=>({...v,questions:z.array(sessionQuestion).parse(v.questions),answers:z.record(z.string(),z.number()).parse(v.answers)})).filter(v=>v.parcours===p.data.parcours&&hasRecordedAnswers(v));
+  return {profile:p.data,completions:c.data.filter(v=>v.parcours===p.data.parcours),attempts:a.data.filter(v=>v.parcours===p.data.parcours),sessions:evaluated,readingPositions:r.data.filter(v=>v.parcours===p.data.parcours),agenda:g.data};
 });
 export const completeLesson = createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({lessonId:z.string()})).handler(async({data,context})=>{const r=await context.supabase.rpc('complete_learning_lesson',{p_lesson:data.lessonId});if(r.error)throw new Error(r.error.message);return {success:true};});
 export const saveReadingPosition = createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({lessonId:z.string(),section:z.number().int().min(0)})).handler(async({data,context})=>{const r=await context.supabase.rpc('save_learning_reading_position',{p_lesson:data.lessonId,p_section:data.section});if(r.error)throw new Error('Votre position n’a pas été enregistrée. Réessayez.');return {success:true};});
