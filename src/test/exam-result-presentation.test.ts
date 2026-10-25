@@ -1,0 +1,13 @@
+import {describe,it,expect} from 'vitest';
+import {examResultPresentation} from '@/lib/exam-result-presentation';
+import {OFFICIAL_TOPICS} from '@/config/official-programme';
+import {sessionSchema} from '@/lib/sessions';
+const fixture=sessionSchema.parse({id:'fixture-only',kind:'exam',parcours:'naturalisation',lesson_id:null,questions:Array.from({length:40},(_,i)=>({id:`fixture-${i}`,theme:OFFICIAL_TOPICS[Math.floor(i/8)]?.title??'',question:`Fixture ${i}`,options:['Oui','Non'],answer:0,explanation:'Fixture',source:'Fixture'})),answers:{},current_index:39,total:40,correct:0,started_at:'2026-10-25T10:00:00Z',deadline:'2026-10-25T10:45:00Z',completed_at:'2026-10-25T10:45:00Z'});
+describe('PAGE 4 frozen exam result data',()=>{
+ it('empty forty-question exam is not evaluated in all five themes',()=>{const r=examResultPresentation(fixture);expect(r).toMatchObject({evaluated:false,correct:0,total:40,wrong:0,unanswered:40,weakest:[],expired:true,duration:45});expect(r.themes).toHaveLength(5);expect(r.themes.every(t=>t.answered===0&&t.correct===0&&t.total===8)).toBe(true);});
+ it('32 recorded correct answers reach the 32/40 threshold with eight blanks',()=>{const r=examResultPresentation({...fixture,answers:Object.fromEntries(Array.from({length:32},(_,i)=>[String(i),0]))});expect(r).toMatchObject({evaluated:true,achieved:true,correct:32,wrong:0,unanswered:8,weakest:[]});expect(r.themes[4]?.answered).toBe(0);});
+ it('31 correct and nine incorrect answers do not reach threshold',()=>{const r=examResultPresentation({...fixture,answers:Object.fromEntries(Array.from({length:40},(_,i)=>[String(i),i<31?0:1]))});expect(r).toMatchObject({achieved:false,correct:31,wrong:9,unanswered:0});expect(r.weakest).toEqual([OFFICIAL_TOPICS[4].title]);});
+ it('lists all tied weakest evaluated themes but excludes unanswered themes',()=>{const r=examResultPresentation({...fixture,answers:{'0':1,'8':1}});expect(r.weakest).toEqual([OFFICIAL_TOPICS[0].title,OFFICIAL_TOPICS[1].title]);expect(r.unanswered).toBe(38);});
+ it('uses completion timestamps to distinguish early finish from deadline',()=>expect(examResultPresentation({...fixture,completed_at:'2026-10-25T10:12:01Z'})).toMatchObject({expired:false,duration:13}));
+ it('invalid answer indexes never evaluate an empty exam',()=>expect(examResultPresentation({...fixture,answers:{'0':9,'99':0}})).toMatchObject({evaluated:false,weakest:[],unanswered:40}));
+});
