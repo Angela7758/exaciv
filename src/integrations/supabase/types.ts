@@ -338,6 +338,7 @@ export type Database = {
           body: string[]
           id: string
           minutes: number
+          pathways: string[]
           position: number
           published: boolean
           source_url: string | null
@@ -349,6 +350,7 @@ export type Database = {
           body: string[]
           id: string
           minutes?: number
+          pathways?: string[]
           position: number
           published?: boolean
           source_url?: string | null
@@ -360,6 +362,7 @@ export type Database = {
           body?: string[]
           id?: string
           minutes?: number
+          pathways?: string[]
           position?: number
           published?: boolean
           source_url?: string | null
@@ -401,6 +404,8 @@ export type Database = {
       learning_questions: {
         Row: {
           answer: number
+          classification_reviewed_at: string | null
+          classification_source: string
           content_revision: number
           correct_option_id: string | null
           exam_theme: string | null
@@ -413,6 +418,7 @@ export type Database = {
           position: number
           published: boolean
           question: string
+          question_type: string
           source: string
           source_status: string
           source_url: string | null
@@ -421,6 +427,8 @@ export type Database = {
         }
         Insert: {
           answer: number
+          classification_reviewed_at?: string | null
+          classification_source?: string
           content_revision?: number
           correct_option_id?: string | null
           exam_theme?: string | null
@@ -433,6 +441,7 @@ export type Database = {
           position: number
           published?: boolean
           question: string
+          question_type?: string
           source: string
           source_status?: string
           source_url?: string | null
@@ -441,6 +450,8 @@ export type Database = {
         }
         Update: {
           answer?: number
+          classification_reviewed_at?: string | null
+          classification_source?: string
           content_revision?: number
           correct_option_id?: string | null
           exam_theme?: string | null
@@ -453,6 +464,7 @@ export type Database = {
           position?: number
           published?: boolean
           question?: string
+          question_type?: string
           source?: string
           source_status?: string
           source_url?: string | null
@@ -597,6 +609,7 @@ export type Database = {
           pathways: string[]
           question_count: number
           question_ids: string[]
+          question_type: string
           revision: number
           selection: string
           status: string
@@ -613,6 +626,7 @@ export type Database = {
           pathways?: string[]
           question_count?: number
           question_ids?: string[]
+          question_type?: string
           revision?: number
           selection?: string
           status?: string
@@ -629,6 +643,7 @@ export type Database = {
           pathways?: string[]
           question_count?: number
           question_ids?: string[]
+          question_type?: string
           revision?: number
           selection?: string
           status?: string
@@ -853,6 +868,7 @@ export type Database = {
         Args: { p_session: string }
         Returns: undefined
       }
+      civic_topic: { Args: { p_theme: string }; Returns: string }
       complete_learning_lesson: {
         Args: { p_lesson: string }
         Returns: undefined
@@ -886,6 +902,16 @@ export type Database = {
       save_learning_reading_position: {
         Args: { p_lesson: string; p_section: number }
         Returns: undefined
+      }
+      start_classified_practice: {
+        Args: {
+          p_chrono?: boolean
+          p_correction?: string
+          p_count?: number
+          p_theme?: string
+          p_type?: string
+        }
+        Returns: string
       }
       start_configured_test: { Args: { p_test: string }; Returns: string }
       start_learning_session:

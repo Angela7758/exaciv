@@ -11,7 +11,7 @@
 - Plan prices and benefits live in src/config/pricing.ts; content (parcours, FAQ, resources, free-test questions) in src/config/*.ts — single source so copy/prices change in one place.
 - Published learning questions and lessons live in the Cloud catalogue; config/free-test.ts is only a legacy scoring fixture, not live content, to avoid divergent question banks.
 - Protected learning routes live under _authenticated/app with shared AppShell; public quiz has its own header so layouts match the supplied reference screens.
-- Learning completion and attempt writes use authenticated database functions; completion uniqueness and sequential unlocks prevent repeated XP and forged progress.
+- Learning completion and attempt writes use authenticated database functions; completion uniqueness and recorded last-section validation prevent repeated XP; recommendation order never locks a published applicable lesson.
 - User-owned reads use authenticated server functions and query loaders; root maintains one auth-state listener, preserving generated bearer middleware.
 
 - Resumable learning sessions snapshot questions, answers, pathway and server deadline in Cloud; authenticated RPCs serialize answer submission and finalization so refresh never duplicates scoring.
@@ -51,3 +51,6 @@
 - AccountGreeting is shared by every AppShell page; breadcrumbs belong to content, never replace the greeting.
 - Lesson French source remains visible while LessonTranslation owns separate assistance; local-audio coordinates reference speech and temporary recordings to prevent overlapping playback.
 - Topic artwork is mapped by semantic theme, with local fallback images; unpublished theme counts never masquerade as completion.
+- Practice entry uses start_classified_practice with shared strict validation; session snapshots store filter/correction/timer settings so navigation cannot reset their rules. Legacy and configured test entry points preserve their independent contracts.
+- Question classification uses reviewed draft publication and a provenance guard; configured tests select the same persisted classification and sessions never update their historical snapshots.
+- Published catalogue exposes pathway-scoped coverage; applicable lesson lists and completion intersections use one shared helper to avoid inflated progress after an objective change.

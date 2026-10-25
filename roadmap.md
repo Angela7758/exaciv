@@ -1,5 +1,13 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
+## Reprise de l’acceptation — 25 octobre
+- [ ] Classification knowledge/scenario/unclassified : catalogue, brouillons, imports, édition, filtres et sélection serveur ; aucune classification supposée.
+- [ ] Couverture réelle cinq thèmes × trois parcours ; bloquer les configurations incomplètes sans modifier les sessions historiques.
+- [ ] Quantités strictes 5/10/20 côté navigateur et serveur, sans réduction silencieuse.
+- [ ] Compléter les traductions des six pages et indiquer les traductions pédagogiques non relues.
+- [ ] Comparaison des références et captures des six pages à 1440/390 ; contrôles 360/430/768/1024/1920.
+- [ ] Vérifier les parcours réels sans altérer les anciens acquis ; livrer matrice et preuves avec limites explicites.
+
 ## Refonte des six pages connectées — 24 octobre (en cours)
 - [ ] Design system unifié : sidebar #11183D 240 px, fond #F6F8FC, bleu #2455FF, orange #FF7B25, contenu 1220 px, gouttières 32/24/16.
 - [ ] AppShell : ordre nav (Accueil, Mon parcours, Leçons, S'entraîner, Examen blanc, Mes erreurs, Progression), bas (Abonnement, Aide, Mon compte), en-tête (salutation, parcours, langue, notifications, avatar), logo dans pastille blanche.

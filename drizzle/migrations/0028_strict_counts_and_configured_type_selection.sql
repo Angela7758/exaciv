@@ -1,0 +1,14 @@
+DO $$ DECLARE definition text; BEGIN SELECT pg_get_functiondef('public.start_learning_session(text,text,integer)'::regprocedure) INTO definition;
+definition:=replace(definition,'IF p_kind NOT IN', 'IF p_kind=''practice'' AND p_count IS NOT NULL AND p_count NOT IN (5,10,20) THEN RAISE EXCEPTION ''Choisissez exactement 5, 10 ou 20 questions.''; END IF; IF p_kind NOT IN');
+definition:=replace(definition,'GREATEST(5,LEAST(20,COALESCE(p_count,10)))','COALESCE(p_count,10)');
+definition:=replace(definition,'IF p_kind=''practice'' AND selected_theme IS NOT NULL AND qs IS NOT NULL THEN expected:=LEAST(expected,jsonb_array_length(qs)); END IF;','');
+definition:=replace(definition,'PARTITION BY exam_theme ORDER BY position','PARTITION BY public.civic_topic(coalesce(exam_theme,theme)) ORDER BY position');
+definition:=replace(definition,'jsonb_build_object(''theme'',q.exam_theme)','jsonb_build_object(''theme'',public.civic_topic(coalesce(q.exam_theme,q.theme)))');
+definition:=replace(definition,'exam_theme IN (''Institutions'',''Valeurs de la République'',''Histoire'',''Droits et devoirs'',''France et Europe'')','public.civic_topic(coalesce(exam_theme,theme)) IN (''Principes et valeurs de la République française'',''Système institutionnel et politique'',''Droits et devoirs'',''Histoire, géographie et culture'',''Vivre dans la société française'')'); EXECUTE definition;
+SELECT pg_get_functiondef('public.admin_command(text,jsonb)'::regprocedure) INTO definition;
+definition:=replace(definition,'INSERT INTO public.learning_tests(id,title,kind,pathways,themes,question_count,duration_minutes,selection,question_ids,instant_feedback,allow_aids)','INSERT INTO public.learning_tests(id,title,kind,pathways,themes,question_count,duration_minutes,selection,question_ids,instant_feedback,allow_aids,question_type)');
+definition:=replace(definition,'(p->>''allow_aids'')::boolean) ON CONFLICT','(p->>''allow_aids'')::boolean,coalesce(p->>''question_type'',''all'')) ON CONFLICT');
+definition:=replace(definition,'allow_aids=excluded.allow_aids,status=''draft''','allow_aids=excluded.allow_aids,question_type=excluded.question_type,status=''draft'''); EXECUTE definition;
+SELECT pg_get_functiondef('public.start_configured_test(uuid)'::regprocedure) INTO definition;
+definition:=replace(definition,'WHERE published AND path=ANY(pathways)','WHERE published AND path=ANY(pathways) AND (t.question_type=''all'' OR question_type=t.question_type) AND (t.question_type NOT IN (''knowledge'',''scenario'') OR classification_reviewed_at IS NOT NULL)'); EXECUTE definition;
+END $$;

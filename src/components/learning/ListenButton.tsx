@@ -21,7 +21,7 @@ export function ListenButton({texts,language}:{texts:string[];language?:'fr'}){
     stopLearningAudio();
     const passage=resolveContentPassage(language??locale,texts);
     const c=new AbortController();abort.current=c;setState('playing');setError('');
-    streamSpeech(passage.texts.join('. '),passage.locale,c.signal).then(()=>{if(!c.signal.aborted)setState('idle');}).catch(e=>{if(c.signal.aborted)return;setState('idle');setError(e instanceof Error?e.message:ui("La lecture audio a échoué."));});
+    streamSpeech(passage.texts.join('. '),passage.locale,c.signal).then(()=>{if(!c.signal.aborted)setState('idle');}).catch(e=>{if(c.signal.aborted)return;setState('idle');setError(e instanceof Error?ui(e.message):ui("La lecture audio a échoué."));});
   }
   return <div className="listen-button"><Button type="button" variant="outline" size="sm" onClick={toggle} aria-pressed={state!=='idle'}>{state==='loading'?<LoaderCircle className="animate-spin"/>:state==='playing'?<Square/>:<Volume2/>}{state==='idle'?ui("Écouter"):ui("Arrêter")}</Button>{error&&<p role="alert" className="question-aids-note">{error}</p>}</div>;
 }
