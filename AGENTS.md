@@ -20,7 +20,7 @@
 - HomeHero uses homepage-scoped styles to preserve approved app screens and other public pages.
 - The six primary public routes share one persistent Paris background in the root public shell; responsive scene dimensions never depend on leaf text or route, preventing recropping during navigation.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
-- Official programme taxonomy and verified references live in src/config/official-programme.ts; legacy lessons and stored mistakes are mapped at read time, preserving session snapshots, answer order and earned progress. Official references never imply editorial QCM are the ministry's complete bank.
+- Official programme taxonomy and verified references live in src/config/official-programme.ts; practice aliases derive from LEGACY_TOPIC_MAP, checked against the latest civic_topic migration; legacy lessons and stored mistakes are mapped at read time, preserving session snapshots, answer order and earned progress. Official references never imply editorial QCM are the ministry's complete bank.
 - Auth and session-entry reference styles are scoped to approved-auth and entry-shell; SessionStart reuses persistent RPCs with click-only creation/resume and theme-prefixed practice selection, preventing introductory visits from starting exam deadlines.
 
 - Registration credentials stay in memory; non-sensitive objectives and diagnostics use scoped session storage, never persisting passwords on return to step one.
@@ -58,3 +58,5 @@
 - Cache lesson assistance by exact French source and target locale; missing responses remain explicit errors rather than translated-looking French, preventing cross-section cache contamination.
 
 - Exam entry and restart share completeExamAvailable for pathway coverage and reviewed classification to prevent conflicting availability states.
+
+- Learner session lists use sessionLabel; readingProgress uses the visible section fraction independently of earned completion, so labels and bars cannot misrepresent records.

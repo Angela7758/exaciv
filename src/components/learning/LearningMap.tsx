@@ -1,3 +1,4 @@
+import {plural} from '@/lib/learner-labels';
 import {useI18n} from '@/lib/i18n';
 import {applicableLessons,completedApplicable} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
@@ -47,7 +48,7 @@ export function LearningMap(){
    <SafeImage src={civi} alt={ui("CIVI vous accompagne")}/>
   </section>}
   <section className="path-progress">
-   <header><h2>{ui("Votre progression globale")}</h2><b>{doneCount} / {catalogue.lessons.length} {ui("leçons terminées")}</b></header>
+   <header><h2>{ui("Votre progression globale")}</h2><b>{doneCount} / {catalogue.lessons.length} {ui(plural(catalogue.lessons.length,"leçon terminée","leçons terminées"))}</b></header>
    <ProgressBar value={progress}/>
    <footer><b>{progress}%</b> {ui("Leçons terminées")}</footer>
   </section>
@@ -63,7 +64,7 @@ export function LearningMap(){
       <span className="path-theme-num" aria-hidden="true">{i+1}</span>
       <span className="path-theme-art"><SafeImage src={art.src} alt=""/></span>
       <div><h2>{ct(t.title)}</h2><p className="path-theme-desc">{ct(t.description)}</p></div>
-      <div className="path-theme-side"><span className="path-theme-count">{lessons.length?ui("{0} / {1} leçons terminées",done,lessons.length):ui("Bientôt disponible")}</span>{lessons.length>0&&<div className="path-theme-bar"><ProgressBar value={pct} tone={t.tone}/><b>{pct}%</b></div>}</div>
+      <div className="path-theme-side"><span className="path-theme-count">{lessons.length?ui(plural(lessons.length,"{0} / {1} leçon terminée","{0} / {1} leçons terminées"),done,lessons.length):ui("Bientôt disponible")}</span>{lessons.length>0&&<div className="path-theme-bar"><ProgressBar value={pct} tone={t.tone}/><b>{pct}%</b></div>}</div>
       {lessons.length>0&&<ChevronDown/>}
      </Button>
      {expanded&&<div className="path-lessons" id={`path-theme-${i}`}>
@@ -79,7 +80,7 @@ export function LearningMap(){
          <Button asChild variant={isDone?'outline':'interactive'}><Link to="/app/lecons/$slug" params={{slug:l.id}}>{isDone?ui("Voir"):inProgress?ui("Reprendre"):ui("Commencer")}</Link></Button>
         </div>;
        })}
-       <Link className="path-theme-link" to="/app/lecons" search={{theme:t.title,q:'',state:'all'}}>{ui("Voir les {0} leçons de ce thème",lessons.length)}<ArrowRight/></Link>
+       <Link className="path-theme-link" to="/app/lecons" search={{theme:t.title,q:'',state:'all'}}>{ui(plural(lessons.length,"Voir la leçon de ce thème","Voir les {0} leçons de ce thème"),lessons.length)}<ArrowRight/></Link>
       </>:<p className="path-empty">{ui("Les leçons de ce thème sont en cours de préparation.")}</p>}
      </div>}
     </section>;
