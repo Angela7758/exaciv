@@ -16,7 +16,7 @@
 - Resumable learning sessions snapshot questions, answers, pathway and server deadline in Cloud; authenticated RPCs serialize answer submission and finalization; refresh never duplicates scoring.
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
 - Personal revision AI uses an authenticated streaming API route and request-scoped server-only Gateway helpers; plans are owner-readable and terminal billing/access blocks persist server-side; repeated billed calls are blocked.
-- HomeHero uses homepage-scoped styles; other screens stay unchanged.
+- HomeHero styles stay homepage-scoped.
 - The six primary public routes share one persistent Paris background in the root public shell; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
 - Official programme taxonomy and verified references live in src/config/official-programme.ts; practice aliases derive from LEGACY_TOPIC_MAP, checked against the latest civic_topic migration; legacy lessons and stored mistakes are mapped at read time, preserving session snapshots, answer order and earned progress. Editorial QCM are not the ministry bank.
@@ -29,16 +29,16 @@
 - Welcome reads objective snapshots, not credentials; preparation destinations are allowlisted local learning paths; external redirects are forbidden.
 - Batch 2 app presentation uses a shared mobile-only AppShell header and bottom navigation; desktop dashboard and session scoring remain unchanged.
 - Password recovery is granted only by a provider PASSWORD_RECOVERY event or verified recovery OTP; root captures the event once, both reset URLs share one form. Ordinary sessions and URL flags never grant reset access.
-- Lesson sections use owner/pathway-scoped reading positions; explicit completion stays separate Opening cannot award XP.
+- Reading positions are owner/pathway-scoped; opening lessons never awards XP.
 - Consented guest diagnostic imports use stable question IDs and an idempotent key in learning_sessions; review answers also create sessions so mistakes, history and statistics share recorded answers.
 - Historical mistakes are retained and mastery follows the newest recorded answer; exam finalization permits blanks, while practice requires all answers and expired exams finalize before a fresh start.
 - Internal interface translations use an explicit source-message dictionary and the existing locale provider; pedagogical translations use a separate exact-French-source dictionary at display time, preserving authoritative Cloud snapshots, option order and scoring. Missing or changed source text falls back to French.
 - Primary question content and audio remain French; shared QuestionAids alone translates visible fragments with independent help preferences, preserving answer order and withholding corrections until revealed.
 - Align interface locales across dictionaries, account validators and profile constraints so reconnecting preserves language without changing learning data.
 - Keep locale context dictionary-independent so hot updates cannot split provider/consumer identities.
-- Lesson artwork is mapped by stable Cloud lesson ID and rendered with SafeImage; unverified editorial video inventory is never exposed as teaching content or counted as video learning.
+- Lesson artwork uses stable Cloud lesson IDs and SafeImage; unverified videos are never teaching content or video-learning credit.
 - Signed-in shell dimensions (sidebar, topbar, content width, title levels) come from the shared --app-* tokens at the end of src/styles.css; page variants must not resize it.
-- Use SafeImage for inspected app artwork so failed media retains an accessible layout slot; preserve clean original CIVI poses and never repair transparency with blending.
+- SafeImage preserves accessible slots for failed artwork; keep original CIVI poses without transparency blending.
 - Administration writes use authenticated permission-checked RPCs with audit records; drafts/versioned option IDs publish into the existing catalogue and configured tests freeze independent session snapshots.
 - Public and learning mobile menus use the existing Radix Sheet portal for focus trapping, scroll locking and dismiss behavior; shared drawer styling must remain independent of homepage header selectors.
 - LearningAgenda is the single owner-scoped planning source for Dashboard and Progression; date keys are calendar dates in the browser timezone, distinct from recorded activities.
@@ -53,8 +53,8 @@
 - Exam entry and restart share completeExamAvailable for reviewed pathway coverage.
 - Learner session lists use sessionLabel; readingProgress uses the visible section fraction independently of earned completion.
 - Bookmarks use owner-scoped functions and a shared query, separate from scoring; export includes them and profile deletion cascades.
-- Practice corrections render in place; navigation is view-only and validation retains the server frontier.
+- Practice corrections render in place; view-only navigation preserves the server frontier.
 - Nullable lesson layout uses the admin schema; absent blocks are never synthesized.
 
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
-- Short session result presentation derives titles, duration, continuation count and filters through result-presentation; the complete-exam screen remains separate.
+- result-presentation owns short-result titles, duration and continuation settings; complete-exam results stay separate.
