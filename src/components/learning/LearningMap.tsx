@@ -57,14 +57,14 @@ export function LearningMap(){
     const done=lessons.filter(l=>data.completions.some(c=>c.lesson_id===l.id)).length;
     const pct=percentage(done,lessons.length);
     const art=TOPIC_ARTWORK[t.art];
-    const expanded=open===i;
+    const expanded=lessons.length>0&&open===i;
     return <section className="path-theme" data-open={expanded} key={ct(t.title)}>
-     <Button variant="ghost" type="button" aria-expanded={expanded} aria-controls={`path-theme-${i}`} onClick={()=>setOpen(expanded?-1:i)}>
+     <Button variant="ghost" type="button" disabled={!lessons.length} aria-expanded={expanded} aria-controls={`path-theme-${i}`} onClick={()=>setOpen(expanded?-1:i)}>
       <span className="path-theme-num" aria-hidden="true">{i+1}</span>
       <span className="path-theme-art"><SafeImage src={art.src} alt=""/></span>
       <div><h2>{ct(t.title)}</h2><p className="path-theme-desc">{ct(t.description)}</p></div>
       <div className="path-theme-side"><span className="path-theme-count">{lessons.length?ui("{0} / {1} leçons terminées",done,lessons.length):ui("Bientôt disponible")}</span>{lessons.length>0&&<div className="path-theme-bar"><ProgressBar value={pct} tone={t.tone}/><b>{pct}%</b></div>}</div>
-      <ChevronDown/>
+      {lessons.length>0&&<ChevronDown/>}
      </Button>
      {expanded&&<div className="path-lessons" id={`path-theme-${i}`}>
       {lessons.length?<>
