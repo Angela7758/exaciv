@@ -771,7 +771,15 @@
     "Question actuelle": "Current question",
     "À faire": "To do",
     "Réponse enregistrée": "Answer recorded",
-    "Validée": "Validated"
+    "Validée": "Validated",
+    "Explication :": "Explanation:",
+    "Signaler un problème": "Report a problem",
+    "Signaler cette question": "Report this question",
+    "Votre message sera transmis à l’équipe ExaCiv.": "Your message will be sent to the ExaCiv team.",
+    "Votre signalement a été enregistré.": "Your report has been recorded.",
+    "Description": "Description",
+    "Envoi impossible.": "Unable to send.",
+    "Envoyer le signalement": "Send report"
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1545,7 +1553,15 @@
     "Question actuelle": "当前题目",
     "À faire": "待完成",
     "Réponse enregistrée": "答案已记录",
-    "Validée": "已确认"
+    "Validée": "已确认",
+    "Explication :": "解释：",
+    "Signaler un problème": "报告问题",
+    "Signaler cette question": "报告此题",
+    "Votre message sera transmis à l’équipe ExaCiv.": "您的消息将发送给 ExaCiv 团队。",
+    "Votre signalement a été enregistré.": "您的报告已记录。",
+    "Description": "描述",
+    "Envoi impossible.": "无法发送。",
+    "Envoyer le signalement": "发送报告"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -2319,7 +2335,15 @@
     "Question actuelle": "السؤال الحالي",
     "À faire": "للإجابة",
     "Réponse enregistrée": "تم تسجيل الإجابة",
-    "Validée": "تم التأكيد"
+    "Validée": "تم التأكيد",
+    "Explication :": "الشرح:",
+    "Signaler un problème": "الإبلاغ عن مشكلة",
+    "Signaler cette question": "الإبلاغ عن هذا السؤال",
+    "Votre message sera transmis à l’équipe ExaCiv.": "ستُرسل رسالتك إلى فريق ExaCiv.",
+    "Votre signalement a été enregistré.": "تم تسجيل بلاغك.",
+    "Description": "الوصف",
+    "Envoi impossible.": "تعذّر الإرسال.",
+    "Envoyer le signalement": "إرسال البلاغ"
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -3093,7 +3117,15 @@
     "Question actuelle": "Pregunta actual",
     "À faire": "Pendiente",
     "Réponse enregistrée": "Respuesta registrada",
-    "Validée": "Validada"
+    "Validée": "Validada",
+    "Explication :": "Explicación:",
+    "Signaler un problème": "Informar de un problema",
+    "Signaler cette question": "Informar sobre esta pregunta",
+    "Votre message sera transmis à l’équipe ExaCiv.": "Tu mensaje se enviará al equipo de ExaCiv.",
+    "Votre signalement a été enregistré.": "Tu aviso ha sido registrado.",
+    "Description": "Descripción",
+    "Envoi impossible.": "No se pudo enviar.",
+    "Envoyer le signalement": "Enviar el aviso"
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -3867,7 +3899,15 @@
     "Question actuelle": "Текущий вопрос",
     "À faire": "Предстоит",
     "Réponse enregistrée": "Ответ записан",
-    "Validée": "Подтверждено"
+    "Validée": "Подтверждено",
+    "Explication :": "Объяснение:",
+    "Signaler un problème": "Сообщить о проблеме",
+    "Signaler cette question": "Сообщить об этом вопросе",
+    "Votre message sera transmis à l’équipe ExaCiv.": "Ваше сообщение будет передано команде ExaCiv.",
+    "Votre signalement a été enregistré.": "Ваше сообщение о проблеме записано.",
+    "Description": "Описание",
+    "Envoi impossible.": "Не удалось отправить.",
+    "Envoyer le signalement": "Отправить сообщение"
   },
   "pt": {
     "Original français": "Original em francês",
@@ -4641,7 +4681,15 @@
     "Question actuelle": "Pergunta atual",
     "À faire": "Por fazer",
     "Réponse enregistrée": "Resposta registada",
-    "Validée": "Validada"
+    "Validée": "Validada",
+    "Explication :": "Explicação:",
+    "Signaler un problème": "Comunicar um problema",
+    "Signaler cette question": "Comunicar esta pergunta",
+    "Votre message sera transmis à l’équipe ExaCiv.": "A sua mensagem será enviada à equipa ExaCiv.",
+    "Votre signalement a été enregistré.": "A sua comunicação foi registada.",
+    "Description": "Descrição",
+    "Envoi impossible.": "Não foi possível enviar.",
+    "Envoyer le signalement": "Enviar a comunicação"
   },
   "fr": {
     "Votre tableau de bord": "Votre tableau de bord",
