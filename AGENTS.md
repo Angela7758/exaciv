@@ -51,3 +51,6 @@
 - AccountGreeting is shared by every AppShell page; breadcrumbs belong to content, never replace the greeting.
 - Lesson French source remains visible while LessonTranslation owns separate assistance; local-audio coordinates reference speech and temporary recordings to prevent overlapping playback.
 - Topic artwork is mapped by semantic theme, with local fallback images; unpublished theme counts never masquerade as completion.
+- Practice entry uses start_classified_practice with shared strict validation; session snapshots store filter/correction/timer settings so navigation cannot reset their rules. Legacy and configured test entry points preserve their independent contracts.
+- Question classification uses reviewed draft publication and a provenance guard; configured tests select the same persisted classification and sessions never update their historical snapshots.
+- Published catalogue exposes pathway-scoped coverage; applicable lesson lists and completion intersections use one shared helper to avoid inflated progress after an objective change.
