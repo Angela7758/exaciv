@@ -1,12 +1,15 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
 ## Reprise de l’acceptation — 25 octobre
-- [ ] Classification knowledge/scenario/unclassified : catalogue, brouillons, imports, édition, filtres et sélection serveur ; aucune classification supposée.
-- [ ] Couverture réelle cinq thèmes × trois parcours ; bloquer les configurations incomplètes sans modifier les sessions historiques.
-- [ ] Quantités strictes 5/10/20 côté navigateur et serveur, sans réduction silencieuse.
-- [ ] Compléter les traductions des six pages et indiquer les traductions pédagogiques non relues.
-- [ ] Comparaison des références et captures des six pages à 1440/390 ; contrôles 360/430/768/1024/1920.
-- [ ] Vérifier les parcours réels sans altérer les anciens acquis ; livrer matrice et preuves avec limites explicites.
+- [x] Classification knowledge/scenario/unclassified raccordée : migrations 0027–0030, édition/import/filtres/sélection ; aucune classification supposée.
+- [x] Couverture cinq thèmes × trois parcours recensée ; configurations incomplètes bloquées, sessions historiques préservées.
+- [x] Entrée classifiée : quantités numériques strictes 5/10/20 vérifiées, sans réduction silencieuse ; anciennes règles indépendantes conservées.
+- [x] Six pages × six langues contrôlées, 238 clés sans manque ; traduction pédagogique séparée/non relue ; six choix visibles, compatibilité historique portugais conservée.
+- [x] Six pages capturées et ouvertes à 1440/390 ; 42 contrôles de largeur sans débordement, de 360 à 1920.
+- [x] Recherche, filtre, ouverture leçon, audio, traduction, reprise et correction réelle contrôlés ; matrice et preuves livrées avec limites.
+- [ ] Relecture/classification des 41 questions : bloque les pratiques knowledge/scenario validées ; nécessite décision éditoriale.
+- [ ] Publication du contenu manquant : Histoire 0 cours ; Vivre 0 cours/0 question pour les trois parcours ; nécessite contenu relu.
+- [ ] Vérification isolée de fin de leçon, scoring, examen complet et permissions : création du compte de test refusée ; banque complète indisponible, ne pas écrire sur les acquis réels.
 
 ## Refonte des six pages connectées — 24 octobre (en cours)
 - [ ] Design system unifié : sidebar #11183D 240 px, fond #F6F8FC, bleu #2455FF, orange #FF7B25, contenu 1220 px, gouttières 32/24/16.

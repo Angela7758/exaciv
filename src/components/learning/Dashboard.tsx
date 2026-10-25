@@ -1,4 +1,5 @@
 import {useI18n} from '@/lib/i18n';
+import {latestCompleteExam} from '@/lib/exam-summary';
 import {applicableLessons,completedApplicable} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
 import {useContentT} from '@/lib/i18n/content';
@@ -23,7 +24,7 @@ export function Dashboard(){const ui=useUiT();const {locale}=useI18n();const ct=
  const progress=percentage(completedApplicable(catalogue.lessons,data.completions),catalogue.lessons.length);
  const sessions=allSessions.filter(s=>s.parcours===data.profile.parcours);
  const lastPractice=sessions.find(s=>s.kind==='practice'&&s.completed_at);
- const lastExam=sessions.find(s=>s.kind==='exam'&&s.completed_at);
+ const lastExam=latestCompleteExam(sessions);
  const mistakes=collectMistakes(sessions).filter(m=>!m.mastered).length;
  const activities=[...data.completions.map(c=>({id:c.lesson_id,title:catalogue.lessons.find(l=>l.id===c.lesson_id)?.title??ui("Leçon"),date:c.completed_at,kind:ui("Leçon")})),...sessions.filter(s=>s.completed_at).map(a=>({id:a.id,title:`${a.kind==='exam'?ui("Examen blanc"):ui("Entraînement")} : ${a.correct}/${a.total}`,date:a.completed_at??a.started_at,kind:a.kind==='exam'?ui("Examen blanc"):ui("Entraînement")}))].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);
  return <>
@@ -44,7 +45,7 @@ export function Dashboard(){const ui=useUiT();const {locale}=useI18n();const ct=
    <section className="dash-stat"><header><span><ChartNoAxesColumn/></span>{ui("Dernière session")}</header>{lastPractice?<><b>{lastPractice.correct}/{lastPractice.total}</b><p>{ui("bonnes réponses le")} {new Date(lastPractice.completed_at??lastPractice.started_at).toLocaleDateString(locale)}</p></>:<><b>—</b><p>{ui("Aucune session terminée pour le moment.")}</p></>}</section>
    <section className="dash-stat"><header><span><FileText/></span>{ui("Examen blanc")}</header>{lastExam?<><b>{lastExam.correct}/{lastExam.total}</b><p>{(lastExam.correct??0)>=(lastExam.total??40)*0.8?ui("Seuil de réussite atteint"):ui("Seuil de réussite non atteint")}</p></>:<><b>{ui("Pas encore évalué")}</b><p>{ui("Lancez une simulation complète quand vous êtes prêt.")}</p></>}</section>
   </div>
-  <section className="dash-themes"><h2>{ui("Vos thèmes")}</h2>{TOPICS.map(t=>{const lessons=catalogue.lessons.filter(l=>l.topic===t.title);const done=lessons.filter(l=>data.completions.some(c=>c.lesson_id===l.id)).length;const pct=percentage(done,lessons.length);const artwork=TOPIC_ARTWORK[t.art];return <Link to="/app/lecons" className="dash-theme" key={ct(t.title)}><SafeImage src={artwork.src} fallbackSrc={artwork.src} width={1376} height={768} loading="lazy" alt={ct(t.title)}/><div><h3>{ct(t.title)}</h3><p>{lessons.length?`${done}/${lessons.length} ${ui("leçons")}`:ui("Bientôt disponible")}</p></div>{lessons.length>0&&<div className="dash-theme-progress"><ProgressBar value={pct} tone={t.tone}/><b>{pct}%</b></div>}<ChevronRight/></Link>;})}</section>
+  <section className="dash-themes"><h2>{ui("Vos thèmes")}</h2>{TOPICS.map(t=>{const lessons=catalogue.lessons.filter(l=>l.topic===t.title);const done=lessons.filter(l=>data.completions.some(c=>c.lesson_id===l.id)).length;const pct=percentage(done,lessons.length);const artwork=TOPIC_ARTWORK[t.art];return <Link to="/app/lecons" search={{theme:t.title,q:'',state:'all'}} className="dash-theme" key={ct(t.title)}><SafeImage src={artwork.src} fallbackSrc={artwork.src} width={1376} height={768} loading="lazy" alt={ct(t.title)}/><div><h3>{ct(t.title)}</h3><p>{lessons.length?`${done}/${lessons.length} ${ui("leçons")}`:ui("Bientôt disponible")}</p></div>{lessons.length>0&&<div className="dash-theme-progress"><ProgressBar value={pct} tone={t.tone}/><b>{pct}%</b></div>}<ChevronRight/></Link>;})}</section>
   <div className="dash-bottom">
    <section className="dash-review"><span><RotateCcw/></span><div><h2>{ui("À revoir aujourd’hui")}</h2><p>{mistakes?ui("{0} questions à revoir",mistakes):ui("Aucune erreur à revoir pour le moment.")}</p></div><Button asChild variant="interactive"><Link to="/app/mes-erreurs">{ui("Réviser")}<ArrowRight/></Link></Button></section>
    <section className="dash-activity"><h2><Clock/>{ui("Activité récente")}</h2>{activities.length?<ul className="activity-list">{activities.map(a=><li key={a.id}><BookOpen/><span>{ct(a.title)}</span><small>{a.kind}</small><time>{new Date(a.date).toLocaleDateString(locale)}</time><ChevronRight/></li>)}</ul>:<div className="empty-activity"><BookOpen/><p>{ui("Votre première leçon vous attend.")}</p><Link to="/app/lecons">{ui("Commencer à apprendre")} <ArrowRight/></Link></div>}</section>
