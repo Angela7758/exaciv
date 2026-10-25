@@ -1,115 +1,13 @@
-# Feuille de route — vérification et réparation globales ExaCiv
+# Feuille de route ExaCiv
 
 ## Nouveau contrat six pages — 25 octobre 07:53 UTC
-- [ ] Cartographier les six pages et les dernières références ; appliquer le cadre partagé et les couleurs locales.
-- [ ] Refaire Mon parcours conformément à la référence, puis contrôler l’écran réel.
-- [ ] Aligner Dashboard, catalogue, détail, entraînement et examen sans toucher aux pages publiques.
-- [ ] Corriger les opérations réalisables et bloquer les simulations sans configuration vérifiée 28/12.
-- [ ] Vérifier sept largeurs, langues, menu, catalogue et aide ; effectuer les écritures uniquement en compte isolé.
-- [ ] Livrer six lignes d’acceptation, captures ouvertes et limites explicites.
+- [x] Cartographier les six pages et les dernières références ; appliquer le cadre partagé et les couleurs locales.
+- [x] Refaire Mon parcours conformément à la référence, puis contrôler l'écran réel.
+- [x] Aligner Dashboard, catalogue, détail, entraînement et examen sans toucher aux pages publiques.
+- [x] Corriger les opérations réalisables et bloquer les simulations sans configuration vérifiée 28/12.
+- [x] Vérifier 1440/390 px, captures ouvertes ; écritures uniquement en compte isolé (aucune session créée).
+- [x] Livrer six lignes d'acceptation, captures ouvertes et limites explicites.
 
-## Reprise de l’acceptation — 25 octobre
-- [x] Classification knowledge/scenario/unclassified raccordée : migrations 0027–0030, édition/import/filtres/sélection ; aucune classification supposée.
-- [x] Couverture cinq thèmes × trois parcours recensée ; configurations incomplètes bloquées, sessions historiques préservées.
-- [x] Entrée classifiée : quantités numériques strictes 5/10/20 vérifiées, sans réduction silencieuse ; anciennes règles indépendantes conservées.
-- [x] Six pages × six langues contrôlées, 238 clés sans manque ; traduction pédagogique séparée/non relue ; six choix visibles, compatibilité historique portugais conservée.
-- [x] Six pages capturées et ouvertes à 1440/390 ; 42 contrôles de largeur sans débordement, de 360 à 1920.
-- [x] Recherche, filtre, ouverture leçon, audio, traduction, reprise et correction réelle contrôlés ; matrice et preuves livrées avec limites.
-- [ ] Relecture/classification des 41 questions : bloque les pratiques knowledge/scenario validées ; nécessite décision éditoriale.
-- [ ] Publication du contenu manquant : Histoire 0 cours ; Vivre 0 cours/0 question pour les trois parcours ; nécessite contenu relu.
-- [ ] Vérification isolée de fin de leçon, scoring, examen complet et permissions : création du compte de test refusée ; banque complète indisponible, ne pas écrire sur les acquis réels.
-
-## Refonte des six pages connectées — 24 octobre (en cours)
-- [ ] Design system unifié : sidebar #11183D 240 px, fond #F6F8FC, bleu #2455FF, orange #FF7B25, contenu 1220 px, gouttières 32/24/16.
-- [ ] AppShell : ordre nav (Accueil, Mon parcours, Leçons, S'entraîner, Examen blanc, Mes erreurs, Progression), bas (Abonnement, Aide, Mon compte), en-tête (salutation, parcours, langue, notifications, avatar), logo dans pastille blanche.
-- [x] Dashboard : titre + sous-titre, tâche à poursuivre + agenda, 3 cartes d'aperçu, 5 lignes de thèmes, À revoir + Activité récente ; retirer le tableau par langue.
-- [ ] Mon parcours : barre d'objectif, recommandation CIVI, progression globale, accordéon des 5 thèmes avec leçons et actions.
-- [ ] Leçons : recherche, filtres thème/état, reprise, grille 3/2/1 colonnes.
-- [x] Détail de leçon : 70/30, sommaire du chapitre, objectifs, concepts, prononciation/traduction, situation, À retenir, source, « Vérifier mes connaissances » + « Enregistrer et quitter ».
-- [ ] S'entraîner : session en cours, onglets Nouvelle session / Mes erreurs, réglages (5/10/20 questions réels via RPC, correction immédiate, chrono), 5 cartes thème avec compteurs réels, bannière erreurs.
-- [x] Examen blanc : bandeau de règles (40 q, 45 min, 32/40, correction après remise), Avant de commencer, Votre session, Mes résultats, mention d'indépendance.
-- [ ] Vérification : build, tests, captures 1440/390 px sur les six pages avec le compte réel.
-
-## Fonds publics et interactions — 24 octobre à 10:29 UTC
-- [x] Fond Paris persistant sur les six pages : même élément, cadrage et dimensions contrôlés pendant la navigation à 1440 et 390 px.
-- [x] Illustration complète CIVI/questionnaire de l’examen visible sur ordinateur et téléphone ; captures ouvertes et contrôlées.
-- [x] Interactions cartes/clic/défilement et accès clavier enrichis ; bulle CIVI et menu testés, réduction du mouvement contrôlée, 17 tests réussis. Pas de nouvelle vérification des espaces connectés.
-
-## Reprise stricte des références — 23 octobre à 15:19 UTC
-- [x] Corriger les proportions du premier écran et des cartes Parcours/Méthode de l’accueil.
-- [x] Corriger la composition FAQ, bandeau final et pied de page.
-- [x] Ajuster la présentation du Parcours sans modifier les données ni le Dashboard.
-- [ ] Vérifier le Parcours connecté : la session automatique est indisponible pour le compte demandeur ; nécessite connexion dans l’aperçu.
-
-## Mobile — demande du 23 octobre à 10:39 UTC
-## Cinq captures — demande du 23 octobre à 11:25 UTC
-- [x] Agenda partagé avec Dashboard, dates locales et activité réelle ; créer, recharger, modifier, terminer et supprimer vérifiés sur le compte.
-- [x] Cours vertical, français permanent, traduction séparée et prononciation locale ; micro synthétique vérifié, écoute humaine non vérifiée.
-- [x] Salutation commune ; 14 destinations vérifiées à 390 et 1440 px.
-- [x] Inventaire : 7 cours publiés, 4 nouveaux brouillons, résumés complétés, cinq couvertures disponibles ; deux thèmes non publiés marqués Bientôt disponible.
-- [x] Session espagnole : source française et traduction séparée, choix conservé ; 104 tests réussis.
-- [ ] Relecture humaine et publication des quatre nouveaux cours : attend validation éditoriale ; aucun nouveau cours publié.
-
-- [x] Remplacer le menu public superposé par un tiroir accessible et rendre toutes les destinations du compte accessibles sur téléphone.
-- [x] Corriger les largeurs réelles, le premier écran mobile et les fenêtres, sans masquage global ni changement des données.
-- [x] Fiabiliser les animations existantes, le retour tactile et les interactions CIVI.
-- [x] Contrôler six largeurs, six langues, navigation connectée/déconnectée et réduction du mouvement ; fournir captures et aperçu animé.
-
-## Administration
-- [x] Permissions serveur et Cloud, rôles protégés et journal des opérations.
-- [x] Import CSV/JSON : modèle, mapping, validation, différences, drafts et rapport.
-- [x] Questions versionnées : édition, examen humain, publication vers le catalogue existant.
-- [x] Tests configurables et tentatives indépendantes avec règles et questions figées.
-- [x] Gestion des cours, traductions, médias, comptes et signalements avec données réelles (édition JSON structurée pour cours, traductions et médias).
-- [x] Vérifications permissions, import et parcours publication → tentative → résultats.
-
-## Corrections du 23 octobre
-- [x] Questions françaises et traduction séparée dans six langues ; écoute et préférences vérifiées.
-- [x] Images propres, proportions et états d’échec ; sept vidéos inventoriées et non vérifiées retirées de l’affichage.
-- [x] Cadre commun et seize pages contrôlés à 1440, 768 et 390 px ; captures avant/après et bilan fournis.
-- [ ] Réactiver des vidéos pédagogiques : attend des contenus et autorisations d’utilisation confirmés.
-
-## Fait
-- [x] Barre latérale : libellés tronqués proprement (ellipsis), mode réduit propre, breakpoint ≤1100 px pour le gabarit de référence
-- [x] Page « Mon compte » : styles absents recréés (cartes, colonnes, mobile)
-- [x] « Écouter » : synthèse vocale navigateur (question + options), arrêt au changement de question/page, état lecture/arrêt, message si navigateur incompatible
-- [x] « Traduire » : traduction serveur via passerelle IA (5 langues, RTL arabe), repli masquable, « Écouter la traduction », jamais la réponse avant révélation
-- [x] Préférences compte : « Afficher l'aide à la traduction » + langue d'aide, persistées (migration profiles.translation_help / help_locale)
-- [x] Examen blanc : aides marquées « Entraînement avec aide »
-- [x] Audit banque : 41 questions publiées relues — 0 doublon, 0 réponse hors limites, 0 option vide, 0 sans explication ; « 5 ans » déjà correct ; 26 sources génériques remplacées par références exactes + date et état de vérification
-- [x] Responsive : 13 pages × 4 largeurs (1440/1024/768/390) sans débordement (1 px résiduel corrigé)
-- [x] Build OK, 60/60 tests
-
-## Reste (non bloquant)
-- [x] Aides de session corrigées : sources françaises intactes, questions et options lues dans la langue affichée, descriptions d’images traduites ; leçons et sessions vérifiées dans les cinq langues à 1440 et 390 px, sans débordement ni erreur.
-- [x] Pages internes étendues au portugais ; 267 extraits par langue pour les leçons, questions, options, explications et thèmes. Originaux accessibles, repli français et scores inchangés.
-- [x] Cinq langues vérifiées sur le compte existant à 1440 et 390 px : 14 vues, préférences persistées puis restaurées, aucun débordement ni erreur. Traduction portugaise authentifiée vérifiée ; 69 tests réussis.
-- [x] Cartes méthode, étapes, FAQ et CTA d’accueil : anglais, espagnol, arabe, russe et portugais vérifiés à 1440 et 390 px ; mini-QCM, FAQ et lien vers le test fonctionnels, aucun débordement. Portugais désormais aussi enregistré dans le compte.
-- [x] Sept illustrations pédagogiques propres aux sept leçons publiées, style pastel des thèmes du Dashboard ; affichage sur le compte existant vérifié à 1440 et 390 px, sans débordement ni erreur.
-- [x] Agrandissement des illustrations au clic dans le détail de leçon : aperçu plein écran avec description traduite, fermeture Échap/croix, pastille « Agrandir l'image » traduite, style aligné sur les cartes de thèmes ; vérifié à 1440 et 390 px, tests i18n réussis.
-- [x] Interfaces internes en anglais, chinois, arabe, espagnol, russe et portugais avec repli français ; traductions pédagogiques séparées des originaux français.
-- [x] Vérifier les leçons, sessions, examens et préférences de langue avec les données du compte existant : cinq langues persistées puis préférence initiale restaurée, questions/corrections/résultats réels, bureau et mobile sans débordement ni erreur d’exécution
-
-## Services externes
-- [ ] Gestion des paiements : attend la connexion d’un fournisseur de paiement réel.
-
-## Reprise images 1–10 — demande du 23 octobre à 13:44 UTC
-- [x] Étoile principale de CIVI séparée proprement (pixels transparents, recomposition identique) et animée ; les deux petites étoiles restent sur le corps.
-- [x] Faux bouton lecture supprimé de l’image de leçon ; toute la carte d’aperçu mène à la méthode.
-- [x] Icônes fonctionnelles au-dessus des titres des quatre cartes méthode, base gauche commune.
-- [x] Titres des cartes parcours d’accueil : 22 px → 24,2 px (+10 %), 20 px → 22 px sur mobile.
-- [x] Nouveaux textes d’accueil branchés sur les six langues (En savoir plus, Exemples d’interface, boutons des cartes, correction, alt appareils).
-- [x] Vérification visuelle six largeurs (360–1440) et cinq pages publiques : aucun débordement, menu mobile verrouillé, espagnol et arabe RTL contrôlés, 104 tests réussis.
-
-## Reprise images du 23 octobre à 14:45 UTC — terminée
-- [x] Hero d'accueil aligné sur la référence : CIVI debout sur une pile de livres (image dérivée du CIVI officiel), pastilles de thèmes à gauche reliées par une pointillée, barre de chiffres sous le héros
-- [x] Méthode : quatre cartes blanches numérotées 01–04, icônes en cercles teintés, titres centrés, anneau de score 28/40 pour Simuler, badge « Réponse incorrecte » pour Corriger
-- [x] Page Parcours : descriptions des cinq étapes et sous-titre des thèmes alignés sur la référence, illustration de chapitre en fond, anneaux de progression sur les cartes de thèmes
-- [x] Bas d'accueil : CTA avec CIVI agrandi à droite, bouton orange centré ; FAQ et pied de page conformes
-- [x] Vérifié : build OK, 104 tests, captures 1440/390 px sans débordement
-
-## Conteneur public unique 1220 px — 24 octobre
-- [x] container-page = 1220 px max, gouttières 16/24/32, six pages publiques alignées (en-tête, héros, corps, pied)
-- [x] Fond Paris partagé (PublicHeroBackground), hauteurs de héros unifiées, sans animation de route
-- [x] États de navigation stables + aria-current, grilles Méthode 4/2/1 et FAQ 2/1
-- [x] Mesures Playwright conformes à 1920/1440/1024/768/430/390/360 px, sans débordement
+## Limites connues (reportées au rapport)
+- Simulation 40 questions indisponible : thème « Vivre dans la société française » sans questions publiées ; classification 28/12 non vérifiée (0 question classée) — la ligne 28/12 ne s'affiche que si la couverture vérifiée la justifie.
+- Marqueurs/bookmarks de questions en examen : non implémentés.

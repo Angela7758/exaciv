@@ -9,5 +9,6 @@ describe('persistent session rules',()=>{
  it('does not claim objective reached below 32 of 40',()=>expect(sessionSummary(make(31)).achieved).toBe(false));
  it('32 of 40 reaches the practice objective',()=>expect(sessionSummary(make(32)).achieved).toBe(true));
  it('derives 38 minutes from stored timestamps',()=>expect(durationMinutes('2026-10-22T12:00:00Z','2026-10-22T12:38:00Z')).toBe(38));
- it('counts unsubmitted answers as errors, not as correct answers',()=>expect(sessionSummary({...make(40),answers:{}}).wrong).toBe(40));
+ it('counts unsubmitted answers separately, never as correct answers',()=>expect(sessionSummary({...make(40),answers:{}})).toMatchObject({correct:0,wrong:0,unanswered:40,answered:0}));
+ it('separates wrong answers from unanswered ones',()=>{const s=make(34);delete s.answers['0'];delete s.answers['1'];expect(sessionSummary(s)).toMatchObject({correct:32,wrong:6,unanswered:2,answered:38});});
 });
