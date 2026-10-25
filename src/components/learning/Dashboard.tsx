@@ -11,8 +11,7 @@ import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
 import {sessionsOptions} from '@/lib/session.queries';
 import {percentage,TOPICS} from '@/config/learning';
 import {ProgressBar} from './primitives';
-import {AgendaTasks} from './LearningAgenda';
-import {dateKey,userTimezone} from '@/lib/agenda';
+import {PlanningAgenda} from './LearningAgenda';
 import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import {collectMistakes} from '@/lib/review';
 import civi from '@/assets/civi.png';
@@ -34,11 +33,11 @@ export function Dashboard(){const ui=useUiT();const {locale}=useI18n();const ct=
     <span className="status-pill">{resume?ct(resume.topic):ui("Entraînement")}</span>
     <h2>{resume?ct(resume.title):ui("Vos leçons sont terminées")}</h2>
     {resume&&<div className="dash-next-meta"><Clock/>{resume.minutes} {ui("min")} · {ui("Leçon")} {resume.position}</div>}
-    <p>{resume?ct(resume.body[0]??''):ui("Vous pouvez maintenant vous entraîner avec les questions de révision.")}</p>
+    <p>{resume?ct(resume.body[0]??''):ui("Vous pouvez maintenant vous entraîner avec les questions de révision.")}</p><small>{ui("Prochaine leçon recommandée dans votre parcours.")}</small>
     {resume?<Button asChild variant="cta" size="lg"><Link to="/app/lecons/$slug" params={{slug:resume.id}}><Play className="fill-current"/>{resumeId?ui("Reprendre la leçon"):ui("Commencer la leçon")}<ChevronRight/></Link></Button>:<Button asChild variant="cta" size="lg"><Link to="/app/entrainement"><Target/>{ui("M’entraîner")}<ChevronRight/></Link></Button>}
     <SafeImage src={civi} alt=""/>
    </section>
-   <section className="dash-agenda"><h2><CalendarDays/>{ui("Mon agenda")}</h2><small className="today-date">{new Date().toLocaleDateString(locale,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</small><AgendaTasks date={dateKey(new Date(),userTimezone())} compact/></section>
+   <section className="dash-agenda"><h2><CalendarDays/>{ui("Mon agenda")}</h2><PlanningAgenda/></section>
   </div>
   <div className="dash-stats">
    <section className="dash-stat"><header><span><BookOpen/></span>{ui("Cours terminés")}</header><b>{completedApplicable(catalogue.lessons,data.completions)}/{catalogue.lessons.length}</b><ProgressBar value={progress}/><p>{progress}% {ui("du parcours")}</p></section>
@@ -47,7 +46,7 @@ export function Dashboard(){const ui=useUiT();const {locale}=useI18n();const ct=
   </div>
   <section className="dash-themes"><h2>{ui("Vos thèmes")}</h2>{TOPICS.map(t=>{const lessons=catalogue.lessons.filter(l=>l.topic===t.title);const done=lessons.filter(l=>data.completions.some(c=>c.lesson_id===l.id)).length;const pct=percentage(done,lessons.length);const artwork=TOPIC_ARTWORK[t.art];return <Link to="/app/lecons" className="dash-theme" key={ct(t.title)}><SafeImage src={artwork.src} fallbackSrc={artwork.src} width={1376} height={768} loading="lazy" alt={ct(t.title)}/><div><h3>{ct(t.title)}</h3><p>{lessons.length?`${done}/${lessons.length} ${ui("leçons")}`:ui("Bientôt disponible")}</p></div>{lessons.length>0&&<div className="dash-theme-progress"><ProgressBar value={pct} tone={t.tone}/><b>{pct}%</b></div>}<ChevronRight/></Link>;})}</section>
   <div className="dash-bottom">
-   <section className="dash-review"><span><RotateCcw/></span><div><h2>{ui("À revoir aujourd’hui")}</h2><p>{mistakes?ui("{0} questions à revoir",mistakes):ui("Aucune erreur à revoir pour le moment.")}</p></div><Button asChild variant="cta"><Link to="/app/mes-erreurs">{ui("Réviser")}<ArrowRight/></Link></Button></section>
+   <section className="dash-review"><span><RotateCcw/></span><div><h2>{ui("À revoir aujourd’hui")}</h2><p>{mistakes?ui("{0} questions à revoir",mistakes):ui("Aucune erreur à revoir pour le moment.")}</p></div><Button asChild variant="interactive"><Link to="/app/mes-erreurs">{ui("Réviser")}<ArrowRight/></Link></Button></section>
    <section className="dash-activity"><h2><Clock/>{ui("Activité récente")}</h2>{activities.length?<ul className="activity-list">{activities.map(a=><li key={a.id}><BookOpen/><span>{ct(a.title)}</span><small>{a.kind}</small><time>{new Date(a.date).toLocaleDateString(locale)}</time><ChevronRight/></li>)}</ul>:<div className="empty-activity"><BookOpen/><p>{ui("Votre première leçon vous attend.")}</p><Link to="/app/lecons">{ui("Commencer à apprendre")} <ArrowRight/></Link></div>}</section>
   </div>
  </>;
