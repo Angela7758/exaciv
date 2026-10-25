@@ -204,6 +204,13 @@
       "when": 1792913122655,
       "tag": "0028_strict_counts_and_configured_type_selection",
       "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1792913271789,
+      "tag": "0029_published_lesson_access_and_completion",
+      "breakpoints": true
     }
   ]
 }
