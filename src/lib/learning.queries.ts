@@ -6,3 +6,4 @@ export const learningOptions=queryOptions({queryKey:['learning'],queryFn:()=>get
 export const freeCatalogueOptions=queryOptions({queryKey:['free-catalogue'],queryFn:()=>getCatalogue({data:{freeTest:true}}),staleTime:300000});
 
 export const reviewLearningOptions=queryOptions({queryKey:['review-learning'],queryFn:()=>getLearning({data:{concealCorrections:true}})});
+export const reviewCatalogueOptions=queryOptions({queryKey:['review-catalogue'],queryFn:()=>getCatalogue({data:{concealCorrections:true}})});

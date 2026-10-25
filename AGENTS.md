@@ -1,13 +1,3 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
 - Plan prices and benefits live in src/config/pricing.ts; content (parcours, FAQ, resources, free-test questions) in src/config/*.ts.
 - Published learning questions and lessons live in the Cloud catalogue; config/free-test.ts is only a legacy scoring fixture, not live content,; no divergent banks.
 - Protected learning routes live under _authenticated/app with shared AppShell; public quiz has its own header.
@@ -55,6 +45,7 @@
 - Bookmarks use owner-scoped functions and a shared query, separate from scoring; export includes them and profile deletion cascades.
 - Practice corrections render in place; view-only navigation preserves the server frontier.
 - Nullable lesson layout uses the admin schema; absent blocks are never synthesized.
-
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
 - result-presentation owns short-result titles, duration and continuation settings; complete-exam results stay separate.
+
+- Full-page mistake review uses safe batch/profile/catalogue reads without correction metadata; only the authenticated review RPC response reveals the validated question, so pre-validation caches remain concealed.

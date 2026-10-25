@@ -1868,3 +1868,7 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 @media(max-width:1250px){.fidelity-review-main>header{align-items:flex-start;flex-wrap:wrap;}.fidelity-review-main>.question-aids>.question-aids-bar{position:static;margin-bottom:16px;}.review-theme{max-width:100%;}.fidelity-review-main>.question-aids{margin-top:16px;}}
 @media(max-width:1023px){.fidelity-review-grid{grid-template-columns:minmax(0,1fr);}}
 @media(max-width:639px){.fidelity-review-main,.fidelity-review-support{padding:20px 16px;}.fidelity-review-main>h2{font-size:23px;}.fidelity-review-main>header>div{flex-wrap:wrap;}.fidelity-review-main>footer>button{flex:1;min-width:120px;}.fidelity-review-support>img{height:160px;}}
+.fidelity-review-main>header h1{font-size:28px!important;}.fidelity-review-main>h2{font-size:28px!important;}
+.fidelity-review-main .question-aids-bar button,.fidelity-review-main>footer button,.fidelity-review-support>button{border-radius:8px;}
+.fidelity-review-main>.question-aids>.question-aids-bar{top:94px;}
+@media(max-width:639px){.fidelity-review-main>header h1{font-size:25px!important;}.fidelity-review-main>h2{font-size:23px!important;}}
