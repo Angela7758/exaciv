@@ -1675,7 +1675,8 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .dash-theme{grid-template-columns:32px 64px minmax(0,1fr) minmax(0,220px) 20px;}
 .dash-theme-num{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--learning-surface);color:var(--learning-blue);font-size:14px;font-weight:800;}
 .seg-types{flex-wrap:wrap;}
-.train-settings-grid{grid-template-columns:repeat(4,minmax(0,1fr));}
+.seg-types button{padding:8px 12px;font-size:12px;}
+.train-settings-grid{grid-template-columns:auto minmax(0,1.7fr) auto auto;}
 .train-desc{font-size:12px;color:var(--learning-muted);line-height:1.45;}
 .exam-step-n{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--learning-surface);color:var(--learning-blue);font-size:14px;font-weight:800;font-style:normal;flex-shrink:0;}
 .score-breakdown{font-size:12px;color:var(--learning-muted);margin-top:4px;}
