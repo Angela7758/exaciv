@@ -7,7 +7,7 @@
 - [x] Corriger numérotation du chapitre, progression et source des leçons — tests 50/100 %, chapitre 1/2/3 et Constitution article 2 contrôlés.
 - [x] Corriger boutons disponibles/examen et présentation des traductions — capture examen et dialogue ; aide fermée à l'ouverture, options sans numéros.
 - [x] Vérifier tests et compte réel — 180/180 ; reprise après rafraîchissement, lecture et ouverture correction contrôlées. Soumission de réponses, nouvelle session et finalisation : non vérifiées, hors corrections 1b.
-- [ ] Publier et livrer le rapport et les quatre captures 1440 px — publication en cours.
+- [x] Demander la publication et livrer le rapport avec les quatre captures 1440 px — demande acceptée ; URL HTTP 200, version déployée non vérifiée avec le compte réel.
 
 ## Lot 1 — règles et affichages
 - [x] 1. Sessions sans réponse non évaluées ; erreurs et blancs distincts — tests batch1/exam-summary et compte réel, filtre 38 blancs séparés de 2 erreurs.
