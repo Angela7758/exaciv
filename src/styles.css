@@ -1685,6 +1685,8 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 
 /* Batch 1: evaluated data, compact goals and accessible preferences. */
 .app-layout .neutral-badge,.app-layout .review-status.neutral-badge{display:inline-flex;background:var(--muted);color:var(--muted-foreground);border:1px solid var(--border);padding:4px 10px;border-radius:999px;font-size:13px;}
+.app-layout .mistake-row:has(.neutral-badge) .mistake-answers p:first-child b{background:var(--muted);color:var(--muted-foreground);}
+.app-layout .review-status.neutral-badge:before{background:var(--muted-foreground);}
 .analytics-middle{align-items:start;}
 .analytics-objective{align-self:start;height:auto;min-height:0;}
 .analytics-goal-date{margin-top:12px;flex-wrap:wrap;}
