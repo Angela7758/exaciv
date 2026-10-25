@@ -30,7 +30,7 @@ export function InteractionFx() {
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     const scan = () => {
       document.querySelectorAll<HTMLElement>('main section:not(.approved-home-hero):not(.public-paris-hero):not(.fx-seen), main .learning-card:not(.fx-seen), main .pathway-public-cards>article:not(.fx-seen), main .method-cards>article:not(.fx-seen), main .pricing-reference-plan:not(.fx-seen), main .help-resources>a:not(.fx-seen)').forEach((el) => {
-        if (el.closest('.reveal')) return;
+        if (el.closest('.reveal, .app-layout, [role=dialog]')) return;
         el.classList.add('fx-seen');
         if (el.getBoundingClientRect().top < window.innerHeight || el.contains(document.activeElement)) return;
         el.style.setProperty('--fx-delay', `${Array.from(el.parentElement?.children ?? []).indexOf(el) % 4 * 70}ms`);
