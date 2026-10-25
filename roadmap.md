@@ -1,8 +1,8 @@
 # Feuille de route ExaCiv
 
 ## Fidélité six pages — 25 octobre 18:43 UTC
-- [ ] 1. Session d’entraînement : affichage 1440/1158/390, marqueurs/filtre et navigation/reprise vérifiés ; 188 tests OK, publication demandée et rapport livré. Soumission, correction après écriture, suivant et finalisation attendent une vérification en compte isolé.
-- [ ] 2. Résultats courts : référence page 2, compte de test isolé, réponses correctes/incorrectes/blanches, confidentialité avant validation, continuation même thème/réglages, titres pratique/révision/examen court, captures 1440/390 et publication/version servie ; bilan par contrôle. Aucune nouvelle migration ni modification du scoring.
+- [ ] 1. Session d’entraînement : affichage 1440/1158/390, marqueurs/filtre et navigation/reprise vérifiés ; soumission réelle de 5 réponses, corrections immédiates, suivant et finalisation contrôlés avec le compte isolé page 2. Vérification de la version publiée encore requise.
+- [ ] 2. Résultats courts : écran et titres pratique/révision/examen court réalisés ; 199 tests OK, réponses 3 justes/2 fausses finalisées, examen court incorrect et examen vide contrôlés, continuation 8 questions avec thème/chrono conservés, captures 1440/1158/390 sans débordement. Limites : pratique avec blanc refusée par les règles existantes ; confidentialité globale non garantie car test gratuit et catalogue public restent accessibles ; fidélité CIVI approximative ; version publiée à vérifier. Aucune nouvelle migration ni modification du scoring.
 - [ ] 3. Révision plein écran : lots de dix, correction après validation, liens depuis Mes erreurs ; publier et rapporter.
 - [ ] 4. Résultats examen : blancs distincts, cinq thèmes et disponibilité réelle ; publier et rapporter.
 - [ ] 5. Leçon continue : lecture sauvegardée au bloc À retenir, blocs éditoriaux présents seulement, marqueur ; publier et rapporter.
