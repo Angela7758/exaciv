@@ -36,5 +36,5 @@ describe('batch 1b reading and plurals',()=>{
  it('shows half at section 1 of 2',()=>expect(readingProgress(0,2)).toBe(50));
  it('shows full at section 2 of 2',()=>expect(readingProgress(1,2)).toBe(100));
  it('keeps empty lessons at zero',()=>expect(readingProgress(0,0)).toBe(0));
- it.each([['jour','jours'],['question','questions'],['leçon','leçons'],['erreur','erreurs'],['session','sessions']])('selects singular %s only for one',(singular,multiple)=>{expect(plural(1,singular,multiple)).toBe(singular);expect(plural(0,singular,multiple)).toBe(multiple);expect(plural(2,singular,multiple)).toBe(multiple);});
+ it.each([['jour','jours'],['question','questions'],['leçon','leçons'],['erreur','erreurs'],['session','sessions']])('selects singular %s for zero and one',(singular,multiple)=>{expect(plural(1,singular,multiple)).toBe(singular);expect(plural(0,singular,multiple)).toBe(singular);expect(plural(2,singular,multiple)).toBe(multiple);});
 });
