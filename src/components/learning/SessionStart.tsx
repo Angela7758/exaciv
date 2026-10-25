@@ -1,3 +1,4 @@
+import {completeExamAvailable} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
 import {recordActivity} from '@/lib/activity';
 import {useI18n} from '@/lib/i18n';
@@ -45,7 +46,7 @@ export function StartSessionButton({kind='practice',lesson,children,orange=false
  </>;
 }
 
-function ExamEntry({demo}:{demo:boolean}){const ui=useUiT();const {locale}=useI18n();const {data:c}=useSuspenseQuery(catalogueOptions);const {data:all}=useSuspenseQuery(sessionsOptions);const {data:d}=useSuspenseQuery(learningOptions);const sessions=all.filter(s=>s.parcours===d.profile.parcours);const current=unfinishedSession(all,d.profile.parcours,'exam');const pathway=PARCOURS.find(p=>p.id===d.profile.parcours)?.title??ui("Naturalisation");const history=sessions.filter(s=>s.kind==='exam'&&s.completed_at);const coverage=c.coverage[d.profile.parcours]??[];const complete=coverage.length===5&&coverage.every(t=>t.total>=8);const knowledge=coverage.reduce((n,t)=>n+t.knowledge,0);const scenario=coverage.reduce((n,t)=>n+t.scenario,0);const verifiedSplit=knowledge>=28&&scenario>=12;
+function ExamEntry({demo}:{demo:boolean}){const ui=useUiT();const {locale}=useI18n();const {data:c}=useSuspenseQuery(catalogueOptions);const {data:all}=useSuspenseQuery(sessionsOptions);const {data:d}=useSuspenseQuery(learningOptions);const sessions=all.filter(s=>s.parcours===d.profile.parcours);const current=unfinishedSession(all,d.profile.parcours,'exam');const pathway=PARCOURS.find(p=>p.id===d.profile.parcours)?.title??ui("Naturalisation");const history=sessions.filter(s=>s.kind==='exam'&&s.completed_at);const coverage=c.coverage[d.profile.parcours]??[];const complete=completeExamAvailable(coverage);const knowledge=coverage.reduce((n,t)=>n+t.knowledge,0);const scenario=coverage.reduce((n,t)=>n+t.scenario,0);const verifiedSplit=knowledge>=28&&scenario>=12;
  return <>
   <header className="page-heading"><h1>{ui("Examen blanc")}</h1><p>{ui("Mesurez vos acquis dans une simulation en français.")}</p></header>
   <div className="exam-rules">
