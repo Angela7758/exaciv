@@ -1,11 +1,6 @@
 import type {LearningSession} from './sessions';
-export const PRACTICE_THEMES=[
- {title:'Principes et valeurs de la République française',themes:['Valeurs de la République','Principes et valeurs'],tone:'blue',art:'valeurs'},
- {title:'Système institutionnel et politique',themes:['Institutions','Institutions françaises'],tone:'orange',art:'institutions'},
- {title:'Droits et devoirs',themes:['Droits et devoirs'],tone:'green',art:'droits'},
- {title:'Histoire, géographie et culture',themes:['Histoire','Histoire et symboles'],tone:'blue',art:'histoire'},
- {title:'Vivre dans la société française',themes:['Vie en société','Société française'],tone:'green',art:'societe'},
-] as const;
+import {LEGACY_TOPIC_MAP,OFFICIAL_TOPICS} from '@/config/official-programme';
+export const PRACTICE_THEMES=OFFICIAL_TOPICS.map(topic=>({...topic,themes:Object.keys(LEGACY_TOPIC_MAP).filter(label=>LEGACY_TOPIC_MAP[label]===topic.title)}));
 export const PRACTICE_COUNTS=[5,10,20] as const;
 export function practiceSuccessToday(sessions:LearningSession[],parcours:string,now=new Date()){
  const day=now.toLocaleDateString('en-CA',{timeZone:'Europe/Paris'});

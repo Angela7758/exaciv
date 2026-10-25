@@ -10,10 +10,17 @@ export const OFFICIAL_TOPICS=[
  {title:'Histoire, géographie et culture',description:'Repères historiques, territoire français et patrimoine culturel.',tone:'blue',art:'histoire',url:'https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/'},
  {title:'Vivre dans la société française',description:'École, travail, santé, famille et vie quotidienne.',tone:'green',art:'societe',url:'https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-fran%C3%A7aise/'},
 ] as const;
-export function officialTopic(topic:string){
- if(['Principes et valeurs','Valeurs de la République','Histoire et symboles'].includes(topic))return OFFICIAL_TOPICS[0].title;
- if(['Institutions','Institutions françaises'].includes(topic))return OFFICIAL_TOPICS[1].title;
- if(['Histoire','France et Europe'].includes(topic))return OFFICIAL_TOPICS[3].title;
- return topic;
-}
+export const LEGACY_TOPIC_MAP:Readonly<Record<string,string>>={
+ 'Valeurs de la République':OFFICIAL_TOPICS[0].title,
+ 'Principes et valeurs':OFFICIAL_TOPICS[0].title,
+ 'Institutions':OFFICIAL_TOPICS[1].title,
+ 'Institutions françaises':OFFICIAL_TOPICS[1].title,
+ 'Droits et devoirs':OFFICIAL_TOPICS[2].title,
+ 'Histoire':OFFICIAL_TOPICS[3].title,
+ 'Histoire et symboles':OFFICIAL_TOPICS[3].title,
+ 'France et Europe':OFFICIAL_TOPICS[3].title,
+ 'Vie en société':OFFICIAL_TOPICS[4].title,
+ 'Société française':OFFICIAL_TOPICS[4].title,
+};
+export function officialTopic(topic:string){return LEGACY_TOPIC_MAP[topic]??topic;}
 export function officialTrack(parcours:string){return OFFICIAL_TRACKS[parcours==='resident'?'resident':parcours==='sejour'?'sejour':'naturalisation'];}
