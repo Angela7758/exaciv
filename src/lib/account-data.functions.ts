@@ -33,6 +33,7 @@ export const exportMyData = createServerFn({ method: "POST" })
       db.from("revision_plans").select("*").eq("user_id", userId),
       db.from("question_reports").select("*").eq("user_id", userId),
       db.from("user_roles").select("*").eq("user_id", userId),
+      db.from("learning_bookmarks").select("*").eq("user_id", userId),
     ]);
     if (results.some((r) => r.error)) throw new Error("Export impossible.");
 
@@ -48,6 +49,7 @@ export const exportMyData = createServerFn({ method: "POST" })
       "revision_plans",
       "question_reports",
       "roles",
+      "bookmarks",
     ];
     const tables: Record<string, Json[]> = Object.fromEntries(
       names.map((name, i) => [name, (results[i]?.data ?? []) as unknown as Json[]]),

@@ -1,0 +1,6 @@
+import {BookOpen,CheckCircle2,Lightbulb,XCircle} from 'lucide-react';
+import {Link} from '@tanstack/react-router';
+import {useUiT} from '@/lib/i18n/internal';
+import type {SessionQuestion} from '@/lib/sessions';
+import {SourceLink} from './SourceLink';
+export function AnswerCorrection({question:q,answer}:{question:SessionQuestion;answer:number|undefined}){const ui=useUiT();return <div className="fidelity-correction" lang="fr" dir="ltr"><div className="fidelity-correction-answers"><section className={answer===undefined?'neutral':'wrong'}><h3>{answer===undefined?null:<XCircle/>}{ui('Votre réponse :')}</h3><p>{answer===undefined?ui('Sans réponse'):q.options[answer]}</p></section><section className="right"><h3><CheckCircle2/>{ui('Bonne réponse :')}</h3><p>{q.options[q.answer]}</p></section></div><section className="fidelity-explanation"><div><h3><Lightbulb/>{ui('Explication :')}</h3><p>{q.explanation}</p><SourceLink url={q.source_url} label={q.source?`${ui('Source :')} ${q.source}`:undefined}/></div>{q.lesson_id&&<Link to="/app/lecons/$slug" params={{slug:q.lesson_id}}><BookOpen/>{ui('Revoir la leçon')}<span aria-hidden="true">›</span></Link>}</section></div>;}

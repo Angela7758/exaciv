@@ -294,6 +294,35 @@ export type Database = {
           },
         ]
       }
+      learning_bookmarks: {
+        Row: {
+          created_at: string
+          item_id: string
+          kind: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          item_id: string
+          kind: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          item_id?: string
+          kind?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_bookmarks_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_completions: {
         Row: {
           completed_at: string
@@ -337,6 +366,7 @@ export type Database = {
         Row: {
           body: string[]
           id: string
+          layout: Json | null
           minutes: number
           pathways: string[]
           position: number
@@ -349,6 +379,7 @@ export type Database = {
         Insert: {
           body: string[]
           id: string
+          layout?: Json | null
           minutes?: number
           pathways?: string[]
           position: number
@@ -361,6 +392,7 @@ export type Database = {
         Update: {
           body?: string[]
           id?: string
+          layout?: Json | null
           minutes?: number
           pathways?: string[]
           position?: number

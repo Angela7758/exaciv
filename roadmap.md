@@ -1,5 +1,14 @@
 # Feuille de route ExaCiv
 
+## Fidélité six pages — 25 octobre 18:43 UTC
+- [ ] 1. Session d’entraînement : affichage 1440/1158/390, marqueurs/filtre et navigation/reprise vérifiés ; 188 tests OK, publication demandée et rapport livré. Soumission, correction après écriture, suivant et finalisation attendent une vérification en compte isolé.
+- [ ] 2. Résultats courts : corrections ordonnées, données réelles, nouvelle pratique disponible ; publier et rapporter.
+- [ ] 3. Révision plein écran : lots de dix, correction après validation, liens depuis Mes erreurs ; publier et rapporter.
+- [ ] 4. Résultats examen : blancs distincts, cinq thèmes et disponibilité réelle ; publier et rapporter.
+- [ ] 5. Leçon continue : lecture sauvegardée au bloc À retenir, blocs éditoriaux présents seulement, marqueur ; publier et rapporter.
+- [ ] 6. Administration : indicateurs par période et priorités calculées avec permissions existantes ; publier et rapporter.
+- [x] Migration additive unique 0032 : marqueurs et layout nullable appliqués, export personnel et validation layout testés ; bâtiment de la devise absent, blocs non encore affichés (page 5 à faire).
+
 ## Lot 1b — corrections résiduelles
 - [x] Unifier thèmes TypeScript/SQL et noms visibles sans modifier les questions — tests batch1b, question reprise avec un seul thème canonique.
 - [x] Partager les libellés réels de sessions et corriger les pluriels — tests des cinq types, six langues synchronisées, historique et 1 jour contrôlés.
