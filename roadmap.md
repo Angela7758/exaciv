@@ -1,5 +1,13 @@
 # Feuille de route — vérification et réparation globales ExaCiv
 
+## Nouveau contrat six pages — 25 octobre 07:53 UTC
+- [ ] Cartographier les six pages et les dernières références ; appliquer le cadre partagé et les couleurs locales.
+- [ ] Refaire Mon parcours conformément à la référence, puis contrôler l’écran réel.
+- [ ] Aligner Dashboard, catalogue, détail, entraînement et examen sans toucher aux pages publiques.
+- [ ] Corriger les opérations réalisables et bloquer les simulations sans configuration vérifiée 28/12.
+- [ ] Vérifier sept largeurs, langues, menu, catalogue et aide ; effectuer les écritures uniquement en compte isolé.
+- [ ] Livrer six lignes d’acceptation, captures ouvertes et limites explicites.
+
 ## Reprise de l’acceptation — 25 octobre
 - [x] Classification knowledge/scenario/unclassified raccordée : migrations 0027–0030, édition/import/filtres/sélection ; aucune classification supposée.
 - [x] Couverture cinq thèmes × trois parcours recensée ; configurations incomplètes bloquées, sessions historiques préservées.
