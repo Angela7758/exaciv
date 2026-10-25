@@ -17,7 +17,7 @@ describe('batch 1b theme contract',()=>{
   for(const branch of (sql??'').matchAll(/WHEN p_theme(?:\s+IN\s*\(([^)]+)\)|\s*=\s*('(?:[^']|'')*'))\s+THEN\s+'((?:[^']|'')*)'/gi)){
    for(const label of (branch[1]??branch[2]??'').matchAll(/'((?:[^']|'')*)'/g))table[(label[1]??'').replaceAll("''","'")]=(branch[3]??'').replaceAll("''","'");
   }
-  expect(Object.keys(table).length).toBe(15);
+  expect(Object.keys(table).length).toBe(14);
   for(const [label,topic] of Object.entries(LEGACY_TOPIC_MAP))expect(table[label]).toBe(topic);
   for(const [label,topic] of Object.entries(table))expect(officialTopic(label)).toBe(topic);
  });

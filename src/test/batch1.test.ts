@@ -13,5 +13,5 @@ describe('Lot 1 — règles de données',()=>{
  it.each([[10,8,8],[20,9,9],[5,3,3],[5,1,1],[10,0,0],[5,20,5]] as const)('clamps requested %s to available %s = %s',(request,available,result)=>expect(effectivePracticeCount(request,available)).toBe(result));
  it('hides learner types when no reviewed classifications exist',()=>expect(learnerQuestionTypes([{knowledge:0,scenario:0}])).toEqual([]));
  it('only exposes three learner types and disables an empty classification',()=>expect(learnerQuestionTypes([{knowledge:2,scenario:0}])).toEqual([{id:'all',disabled:false},{id:'knowledge',disabled:false},{id:'scenario',disabled:true}]));
- it('preserves uncertain legacy topic labels but prefers exact official exam themes',()=>{expect(collectMistakes([{...session,questions:[q],answers:{0:1}}])[0]?.question.theme).toBe('France et Europe');expect(collectMistakes([{...session,questions:[{...q,exam_theme:'Droits et devoirs'}],answers:{0:1}}])[0]?.question.theme).toBe('Droits et devoirs');});
+ it('normalizes legacy labels while preferring frozen official exam themes',()=>{expect(collectMistakes([{...session,questions:[q],answers:{0:1}}])[0]?.question.theme).toBe('Histoire, géographie et culture');expect(collectMistakes([{...session,questions:[{...q,exam_theme:'Droits et devoirs'}],answers:{0:1}}])[0]?.question.theme).toBe('Droits et devoirs');});
 });
