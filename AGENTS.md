@@ -47,8 +47,8 @@
 - Topic artwork is mapped by semantic theme, with local fallback images; unpublished theme counts never masquerade as completion.
 - Practice entry uses start_classified_practice with strict requested-count validation and server-side availability clamping; session snapshots store filter/correction/timer settings so navigation cannot reset their rules. Preserve legacy/configured test contracts.
 - Question classification uses reviewed draft publication and provenance; configured tests select the same persisted classification and sessions never update their historical snapshots.
-- Published catalogue exposes pathway-scoped coverage; applicable lesson lists and completion intersections use one shared helper; objective changes cannot inflate progress.
-- All result summaries use hasRecordedAnswers against frozen options; empty sessions remain in history as not evaluated. Dashboard exam summaries select completed 40-question exams; short historical tests remain in history without masquerading as complete simulations.
+- Catalogue exposes pathway coverage; applicable lesson lists and completion intersections use one shared helper; objective changes cannot inflate progress.
+- Result summaries use hasRecordedAnswers on frozen options; empty sessions remain in history as not evaluated. Dashboard exam summaries select completed 40-question exams; short historical tests remain in history without masquerading as complete simulations.
 - Cache lesson assistance by exact French source and target locale; missing translations are explicit errors.
 - Exam entry and restart share completeExamAvailable for reviewed pathway coverage.
 - Learner session lists use sessionLabel; readingProgress uses the visible section fraction independently of earned completion.
