@@ -2,9 +2,8 @@ import {applicableLessons} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
 import {useContentT} from '@/lib/i18n/content';
 import {useUiT} from '@/lib/i18n/internal';
-import {useState} from 'react';
 import {useSuspenseQuery} from '@tanstack/react-query';
-import {Link} from '@tanstack/react-router';
+import {Link,useSearch,useNavigate} from '@tanstack/react-router';
 import {Search,Clock,Play,ArrowRight,BookOpen} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
@@ -20,9 +19,7 @@ export function CourseCatalogue({demo=false}:{demo?:boolean}){
  const {data:catalogueData}=useSuspenseQuery(catalogueOptions);
  const {data:d}=useSuspenseQuery(learningOptions);
  const c={...catalogueData,lessons:applicableLessons(catalogueData.lessons,d.profile.parcours)};
- const [search,setSearch]=useState('');
- const [theme,setTheme]=useState('all');
- const [status,setStatus]=useState('all');
+ const filters=useSearch({from:'/_authenticated/app/lecons/'});const navigate=useNavigate();const search=filters.q;const theme=filters.theme;const status=filters.state;const update=(patch:Partial<typeof filters>)=>{void navigate({to:'/app/lecons',search:{...filters,...patch},replace:true});};const setSearch=(q:string)=>update({q});const setTheme=(theme:string)=>update({theme});const setStatus=(state:string)=>update({state});
  
  const demoLessons:Row[]=[{id:'laicite',title:'La laïcité et la liberté de conscience',topic:TOPICS[0].title,minutes:10,status:'current',description:'Découvrez les principes de la laïcité, son rôle dans la société et la liberté de conscience.'},{id:c.lessons.find(l=>/parlement|institution/i.test(l.title))?.id??c.lessons[0]?.id??'laicite',title:'Le rôle du Parlement',topic:TOPICS[1].title,minutes:8,status:'new',description:'Comprenez le fonctionnement, les missions et le rôle du Parlement dans la Ve République.'}];
  const rows:Row[]=demo?demoLessons:c.lessons.map(l=>({id:l.id,title:l.title,topic:l.topic,minutes:l.minutes,status:d.completions.some(x=>x.lesson_id===l.id)?'done':d.readingPositions.some(r=>r.lesson_id===l.id)?'current':'new',description:l.body[0]??''}));
@@ -34,7 +31,7 @@ export function CourseCatalogue({demo=false}:{demo?:boolean}){
   <header className="page-heading"><h1>{ui("Vos leçons")}</h1><p>{ui("Comprenez les notions essentielles, à votre rythme.")}</p></header>
   {resume&&<section className="cat-resume"><span><BookOpen/></span><div><h2>{ct(resume.title)}</h2><p>{ct(resume.topic)} · {resume.minutes} {ui("min")}</p></div><Button asChild variant="cta"><Link to="/app/lecons/$slug" params={{slug:resume.id}}><Play className="fill-current"/>{ui("Reprendre ma leçon")}</Link></Button></section>}
   <div className="cat-tools">
-   <label><Search/><input aria-label={ui("Rechercher une leçon")} placeholder={ui("Rechercher une leçon")} value={search} onChange={e=>setSearch(e.target.value)}/></label>
+   <label><Search/><input aria-label={ui("Rechercher une leçon")} placeholder={ui("Rechercher une leçon")} value={search} onChange={e=>setSearch(e.target.value)}/></label><Button variant="outline" onClick={()=>update({q:'',theme:'all',state:'all'})}>{ui("Réinitialiser")}</Button>
    <select aria-label={ui("Thème des leçons")} value={theme} onChange={e=>setTheme(e.target.value)}><option value="all">{ui("Tous les thèmes")}</option>{topics.map(t=><option key={t} value={t}>{ct(t)}</option>)}</select>
   </div>
   <div className="cat-status" role="group" aria-label={ui("Filtrer par état")}>
