@@ -73,3 +73,15 @@ describe("no personal data is left behind when an account is deleted", () => {
     for (const table of orphanProne) expect(ERASE_BEFORE_USER_DELETE).toContain(table);
   });
 });
+
+// The export list and queries are paired; bookmark ownership comes from the verified caller.
+describe("bookmark personal export",()=>{
+ it("includes owner-scoped bookmarks in exportMyData",()=>{
+  const source=readFileSync("src/lib/account-data.functions.ts","utf8").split("export const deleteMyAccount")[0]??"";
+  expect(source).toContain('db.from("learning_bookmarks").select("*").eq("user_id", userId)');
+  expect(source).toContain('"bookmarks",');
+  const marker={kind:"question",item_id:"question-1",created_at:"2026-10-25T18:00:00Z"};
+  const out=assembleExport({account:{email:"",created_at:null},tables:{bookmarks:[marker]}});
+  expect(out.data["bookmarks"]).toEqual([marker]);
+ });
+});
