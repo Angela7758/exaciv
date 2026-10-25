@@ -9,7 +9,7 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 - Plan prices and benefits live in src/config/pricing.ts; content (parcours, FAQ, resources, free-test questions) in src/config/*.ts.
-- Published learning questions and lessons live in the Cloud catalogue; config/free-test.ts is only a legacy scoring fixture, not live content, to avoid divergent question banks.
+- Published learning questions and lessons live in the Cloud catalogue; config/free-test.ts is only a legacy scoring fixture, not live content,; no divergent banks.
 - Protected learning routes live under _authenticated/app with shared AppShell; public quiz has its own header.
 - Learning completion and attempt writes use authenticated database functions; completion uniqueness and recorded last-section validation prevent repeated XP; recommendations never lock applicable lessons.
 - User-owned reads use authenticated server functions and query loaders; root maintains one auth-state listener, preserving generated bearer middleware.
@@ -49,6 +49,6 @@
 - Question classification uses reviewed draft publication and provenance; configured tests select the same persisted classification and sessions never update their historical snapshots.
 - Published catalogue exposes pathway-scoped coverage; applicable lesson lists and completion intersections use one shared helper; objective changes cannot inflate progress.
 - All result summaries use hasRecordedAnswers against frozen options; empty sessions remain in history as not evaluated. Dashboard exam summaries select completed 40-question exams; short historical tests remain in history without masquerading as complete simulations.
-- Cache lesson assistance by exact French source and target locale; missing responses remain explicit errors rather than translated-looking French,.
+- Cache lesson assistance by exact French source and target locale; missing translations are explicit errors.
 - Exam entry and restart share completeExamAvailable for reviewed pathway coverage.
 - Learner session lists use sessionLabel; readingProgress uses the visible section fraction independently of earned completion.
