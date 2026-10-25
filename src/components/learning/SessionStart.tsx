@@ -19,6 +19,7 @@ import {collectMistakes} from '@/lib/review';
 import {PRACTICE_THEMES,PRACTICE_COUNTS,unfinishedSession} from '@/lib/practice-entry';
 import {type QuestionType} from '@/lib/practice-rules';
 import {PARCOURS} from '@/config/content';
+import {TOPICS} from '@/config/learning';
 import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import {MistakeLibrary} from './MistakeLibrary';
 import paper from '@/assets/exam-paper-v2.png.asset.json';
