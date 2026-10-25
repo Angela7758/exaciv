@@ -1,10 +1,10 @@
 # Feuille de route ExaCiv
 
 ## Fidélité six pages — 25 octobre 18:43 UTC
-- [ ] Correctif page 2 demandé à 19:19 UTC : navigation des résultats courts, aides dans l’en-tête, icônes pleines, pluriel français 0/1 ; tests, publication et preuve du commit servi.
+- [ ] Correctif page 2 : navigation courte et mobile, aides en-tête, icônes pleines, pluriel 0/1 contrôlés ; 209 tests OK ; publication et identité exacte servie à confirmer.
 - [ ] 1. Session d’entraînement : affichage 1440/1158/390, marqueurs/filtre et navigation/reprise vérifiés ; soumission réelle de 5 réponses, corrections immédiates, suivant et finalisation contrôlés avec le compte isolé page 2. Vérification de la version publiée encore requise.
 - [ ] 2. Résultats courts : écran et titres pratique/révision/examen court réalisés ; 199 tests OK, réponses 3 justes/2 fausses finalisées, examen court incorrect et examen vide contrôlés, continuation 8 questions avec thème/chrono conservés, captures 1440/1158/390 sans débordement. Limites : pratique avec blanc refusée par les règles existantes ; confidentialité globale non garantie car test gratuit et catalogue public restent accessibles ; fidélité CIVI approximative ; version publiée à vérifier. Aucune nouvelle migration ni modification du scoring.
-- [ ] 3. Révision plein écran : lots de dix, correction après validation, liens depuis Mes erreurs ; publier et rapporter.
+- [ ] 3. Révision plein écran : route et liens, lot réel de 10, réponses alternées justes/fausses via RPC, correction/suivant/terminer et passer/quitter sans écriture vérifiés avec compte isolé ; réponses réseau/DOM/état React sans correction avant validation, CIVI et captures 1440/1158/390 contrôlés ; 209 tests OK. Fidélité pixel exacte et identité du commit servi non établies ; publication et rapport à fournir.
 - [ ] 4. Résultats examen : blancs distincts, cinq thèmes et disponibilité réelle ; publier et rapporter.
 - [ ] 5. Leçon continue : lecture sauvegardée au bloc À retenir, blocs éditoriaux présents seulement, marqueur ; publier et rapporter.
 - [ ] 6. Administration : indicateurs par période et priorités calculées avec permissions existantes ; publier et rapporter.
