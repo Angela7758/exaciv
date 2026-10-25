@@ -1704,4 +1704,12 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .dash-stat:nth-child(3)>header>span{color:var(--learning-orange);background:var(--secondary-soft);}
 .train-settings-grid:not(:has(.seg-types)){grid-template-columns:repeat(3,minmax(0,1fr));}
 .path-theme>button:disabled{opacity:1;cursor:default;}
+.dash-theme.unavailable:hover h3{color:inherit;}
+.dash-continue{background:var(--secondary-soft);color:var(--secondary-pressed);gap:6px;}
+.dash-continue svg{width:14px;height:14px;fill:currentColor;}
+.exam-session>a,.exam-session>button{display:flex;justify-content:center;width:100%;white-space:normal;height:auto;min-height:44px;}
+.exam-session>a+ a,.exam-session>button+ a{margin-top:16px;}
+.question-translation .translation-options{list-style:none;padding-left:0;display:grid;gap:8px;margin-block:12px;}
+.question-translation .translation-options li{padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);}
+.practice-category .status-pill,.mock-category .status-pill,.mistake-reference .status-pill,.theme-result-row>span{white-space:normal;text-overflow:clip;overflow:visible;line-height:1.5;}
 @media(max-width:760px){.train-settings-grid:not(:has(.seg-types)){grid-template-columns:1fr;}.analytics-metrics strong{white-space:normal;overflow-wrap:anywhere;font-size:18px;}.analytics-metrics>section{gap:8px;}.analytics-metrics>section>svg:last-child{display:none;}.analytics-metrics>section>div{min-width:0;}.activity-agenda .agenda-date-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;overflow:visible;}.activity-agenda .agenda-date-strip>button{width:100%;min-width:0;padding:4px 0;font-size:11px;}.activity-agenda .agenda-date-strip>button span{font-size:10px;}}
