@@ -1,5 +1,6 @@
 import {hasRecordedAnswers,type LearningSession} from './sessions';
 export function plural(n:number,singular:string,multiple:string){return n>=0&&n<=1?singular:multiple;}
+export function resultNavigation(s:Pick<LearningSession,'kind'|'total'>){return s.kind==='exam'&&s.total===40?'/app/examen-blanc':'/app/entrainement';}
 export function sessionKindLabel(s:Pick<LearningSession,'kind'|'total'>){
  if(s.kind==='exam')return s.total===40?'Examen blanc':'Test court';
  if(s.kind==='review')return 'Révision';
