@@ -46,6 +46,6 @@
 - Practice corrections render in place; view-only navigation preserves the server frontier.
 - Nullable lesson layout uses the admin schema; absent blocks are never synthesized.
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
-- result-presentation owns short-result titles, duration and continuation settings; complete-exam results stay separate.
+- Result presentation modules separate short and complete exams; exam metrics derive from frozen answers, never current catalogue content.
 
 - Full-page mistake review uses safe batch/profile/catalogue reads without correction metadata; only the authenticated review RPC response reveals the validated question, so pre-validation caches remain concealed.
