@@ -1,13 +1,13 @@
 # Feuille de route ExaCiv
 
 ## Lot 1 — règles et affichages
-- [ ] 1. Sessions sans réponse non évaluées ; erreurs et blancs distincts — not verified.
-- [ ] 2. Révision et liste par lots de dix — not verified.
-- [ ] 3. Entraînement limité au disponible côté client et serveur — not verified.
-- [ ] 4. Types internes masqués aux apprenants — not verified.
-- [ ] 5. Démarrage/reprise/examen indisponible cohérents — not verified.
-- [ ] 6. Corrections Progression, parcours, Dashboard et sélecteurs — not verified.
-- [ ] Tests, captures 1440/390 et rapport avec limites — not verified.
+- [x] 1. Sessions sans réponse non évaluées ; erreurs et blancs distincts — tests batch1/exam-summary et compte réel, filtre 38 blancs séparés de 2 erreurs.
+- [x] 2. Révision et liste par lots de dix — test cap, dialogue 2 erreurs, liste 10 puis 20 via Afficher plus. Soumission de révision : not verified.
+- [ ] 3. Entraînement limité au disponible côté client et serveur — code, tests 1/3/8/9/0 et fonction Cloud contrôlés ; démarrage réel et lecture du snapshot : not verified (compte isolé absent).
+- [x] 4. Types internes masqués aux apprenants — tests learnerQuestionTypes, contrôle visuel et ligne 28/12 absente. Compte classifié réel : not verified.
+- [ ] 5. Démarrage/reprise/examen indisponible cohérents — bouton indisponible contrôlé, disponibilité partagée testée ; reprise d’examen actif et recommencer : not verified (aucun examen actif).
+- [x] 6. Corrections Progression, parcours, Dashboard et sélecteurs — captures 1440/390 ouvertes ; pagination/clavier et deux thèmes non dépliables contrôlés. Écriture des préférences : not verified.
+- [x] Tests : 153/153 ; compilation automatique OK ; captures 1440/390 ouvertes et rapport avec limites.
 
 ## Nouveau contrat six pages — 25 octobre 07:53 UTC
 - [x] Cartographier les six pages et les dernières références ; appliquer le cadre partagé et les couleurs locales.

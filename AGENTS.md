@@ -56,3 +56,5 @@
 - Published catalogue exposes pathway-scoped coverage; applicable lesson lists and completion intersections use one shared helper to avoid inflated progress after an objective change.
 - All result summaries use hasRecordedAnswers against frozen options; empty sessions remain in history as not evaluated. Dashboard exam summaries select completed 40-question exams; short historical tests remain in history without masquerading as complete simulations.
 - Cache lesson assistance by exact French source and target locale; missing responses remain explicit errors rather than translated-looking French, preventing cross-section cache contamination.
+
+- Complete exam entry and restart share completeExamAvailable against pathway coverage and reviewed classification; one helper prevents conflicting availability states.
