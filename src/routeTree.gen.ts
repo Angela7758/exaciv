@@ -69,6 +69,7 @@ import { Route as AuthenticatedAppExamenBlancSessionRouteImport } from './routes
 import { Route as AuthenticatedAppLeconsIndexRouteImport } from './routes/_authenticated/app.lecons.index'
 import { Route as AuthenticatedAppLeconsSlugRouteImport } from './routes/_authenticated/app.lecons.$slug'
 import { Route as AuthenticatedAppMesErreursIndexRouteImport } from './routes/_authenticated/app.mes-erreurs.index'
+import { Route as AuthenticatedAppMesErreursReviserRouteImport } from './routes/_authenticated/app.mes-erreurs.reviser'
 import { Route as AuthenticatedAppResultatsSessionIdRouteImport } from './routes/_authenticated/app.resultats.$sessionId'
 import { Route as AuthenticatedAppEntrainementSessionIdFeedbackRouteImport } from './routes/_authenticated/app.entrainement.$sessionId.feedback'
 import { Route as AuthenticatedAppEntrainementSessionIdRouteImport } from './routes/_authenticated/app.entrainement.session.$id'
@@ -395,6 +396,12 @@ const AuthenticatedAppMesErreursIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedAppMesErreursRoute,
   } as any)
+const AuthenticatedAppMesErreursReviserRoute =
+  AuthenticatedAppMesErreursReviserRouteImport.update({
+    id: '/reviser',
+    path: '/reviser',
+    getParentRoute: () => AuthenticatedAppMesErreursRoute,
+  } as any)
 const AuthenticatedAppResultatsSessionIdRoute =
   AuthenticatedAppResultatsSessionIdRouteImport.update({
     id: '/resultats/$sessionId',
@@ -476,6 +483,7 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AuthenticatedAppIndexRoute
   '/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
+  '/app/mes-erreurs/reviser': typeof AuthenticatedAppMesErreursReviserRoute
   '/app/resultats/$sessionId': typeof AuthenticatedAppResultatsSessionIdRoute
   '/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
   '/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
@@ -535,6 +543,7 @@ export interface FileRoutesByTo {
   '/app': typeof AuthenticatedAppIndexRoute
   '/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
+  '/app/mes-erreurs/reviser': typeof AuthenticatedAppMesErreursReviserRoute
   '/app/resultats/$sessionId': typeof AuthenticatedAppResultatsSessionIdRoute
   '/app/entrainement': typeof AuthenticatedAppEntrainementIndexRoute
   '/app/examen-blanc': typeof AuthenticatedAppExamenBlancIndexRoute
@@ -602,6 +611,7 @@ export interface FileRoutesById {
   '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
   '/_authenticated/app/examen-blanc/session': typeof AuthenticatedAppExamenBlancSessionRoute
   '/_authenticated/app/lecons/$slug': typeof AuthenticatedAppLeconsSlugRoute
+  '/_authenticated/app/mes-erreurs/reviser': typeof AuthenticatedAppMesErreursReviserRoute
   '/_authenticated/app/resultats/$sessionId': typeof AuthenticatedAppResultatsSessionIdRoute
   '/_authenticated/app/entrainement/': typeof AuthenticatedAppEntrainementIndexRoute
   '/_authenticated/app/examen-blanc/': typeof AuthenticatedAppExamenBlancIndexRoute
@@ -669,6 +679,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/examen-blanc/session'
     | '/app/lecons/$slug'
+    | '/app/mes-erreurs/reviser'
     | '/app/resultats/$sessionId'
     | '/app/entrainement/'
     | '/app/examen-blanc/'
@@ -728,6 +739,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/examen-blanc/session'
     | '/app/lecons/$slug'
+    | '/app/mes-erreurs/reviser'
     | '/app/resultats/$sessionId'
     | '/app/entrainement'
     | '/app/examen-blanc'
@@ -794,6 +806,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/'
     | '/_authenticated/app/examen-blanc/session'
     | '/_authenticated/app/lecons/$slug'
+    | '/_authenticated/app/mes-erreurs/reviser'
     | '/_authenticated/app/resultats/$sessionId'
     | '/_authenticated/app/entrainement/'
     | '/_authenticated/app/examen-blanc/'
@@ -1254,6 +1267,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppMesErreursIndexRouteImport
       parentRoute: typeof AuthenticatedAppMesErreursRoute
     }
+    '/_authenticated/app/mes-erreurs/reviser': {
+      id: '/_authenticated/app/mes-erreurs/reviser'
+      path: '/reviser'
+      fullPath: '/app/mes-erreurs/reviser'
+      preLoaderRoute: typeof AuthenticatedAppMesErreursReviserRouteImport
+      parentRoute: typeof AuthenticatedAppMesErreursRoute
+    }
     '/_authenticated/app/resultats/$sessionId': {
       id: '/_authenticated/app/resultats/$sessionId'
       path: '/resultats/$sessionId'
@@ -1377,11 +1397,14 @@ const AuthenticatedAppLeconsRouteWithChildren =
   )
 
 interface AuthenticatedAppMesErreursRouteChildren {
+  AuthenticatedAppMesErreursReviserRoute: typeof AuthenticatedAppMesErreursReviserRoute
   AuthenticatedAppMesErreursIndexRoute: typeof AuthenticatedAppMesErreursIndexRoute
 }
 
 const AuthenticatedAppMesErreursRouteChildren: AuthenticatedAppMesErreursRouteChildren =
   {
+    AuthenticatedAppMesErreursReviserRoute:
+      AuthenticatedAppMesErreursReviserRoute,
     AuthenticatedAppMesErreursIndexRoute: AuthenticatedAppMesErreursIndexRoute,
   }
 
