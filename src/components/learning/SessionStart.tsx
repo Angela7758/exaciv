@@ -3,7 +3,7 @@ import {recordActivity} from '@/lib/activity';
 import {useI18n} from '@/lib/i18n';
 import {useContentT} from '@/lib/i18n/content';
 import {useUiT} from '@/lib/i18n/internal';
-import {useState,type ReactNode} from 'react';
+import {useState,useEffect,type ReactNode} from 'react';
 import {useNavigate,Link} from '@tanstack/react-router';
 import {useSuspenseQuery} from '@tanstack/react-query';
 import {BookOpen,Clock,ArrowRight,Play,CheckCircle2,Target,FileText,Armchair,CloudUpload,Info,ExternalLink,ListChecks,FileX} from 'lucide-react';
@@ -67,7 +67,7 @@ function PracticeEntry({demo}:{demo:boolean}){const ui=useUiT();const ct=useCont
  const [correction,setCorrection]=useState<'immediate'|'fin'>('immediate');
  const [chrono,setChrono]=useState(false);
  const demoCounts=[8,9,8,8,0];
- const types=learnerQuestionTypes(c.coverage[d.profile.parcours]??[]);
+ const types=learnerQuestionTypes(c.coverage[d.profile.parcours]??[]);useEffect(()=>{if(!types.length||types.find(t=>t.id===questionType)?.disabled)setQuestionType('all');},[d.profile.parcours,types.length,questionType]);
  return <>
   <header className="page-heading"><h1>{ui("S’entraîner")}</h1><p>{ui("Choisissez une session courte ou révisez vos erreurs.")}</p></header>
   {current&&<section className="train-resume"><span><BookOpen/></span><div><h2>{ui("Session en cours")} · {ct(current.questions[0]?.theme??ui("Entraînement"))}</h2><p>{done} / {current.total} {ui("questions répondues")}</p><ProgressBar value={done/current.total*100}/></div><Button asChild variant="cta"><Link to="/app/entrainement/session/$id" params={{id:current.id}} search={{...(current.test_rules?.correction==='fin'?{correction:'fin' as const}:{}),...(current.test_rules?.chrono?{chrono:true}:{})}}><Play/>{ui("Reprendre la session")}<ArrowRight/></Link></Button></section>}
