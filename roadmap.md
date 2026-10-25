@@ -1,5 +1,14 @@
 # Feuille de route ExaCiv
 
+## Lot 1b — corrections résiduelles
+- [x] Unifier thèmes TypeScript/SQL et noms visibles sans modifier les questions — tests batch1b, question reprise avec un seul thème canonique.
+- [x] Partager les libellés réels de sessions et corriger les pluriels — tests des cinq types, six langues synchronisées, historique et 1 jour contrôlés.
+- [x] Corriger thèmes indisponibles et continuation Dashboard — capture 1440 px ouverte, deux lignes sans lien/chevron.
+- [x] Corriger numérotation du chapitre, progression et source des leçons — tests 50/100 %, chapitre 1/2/3 et Constitution article 2 contrôlés.
+- [x] Corriger boutons disponibles/examen et présentation des traductions — capture examen et dialogue ; aide fermée à l'ouverture, options sans numéros.
+- [x] Vérifier tests et compte réel — 180/180 ; reprise après rafraîchissement, lecture et ouverture correction contrôlées. Soumission de réponses, nouvelle session et finalisation : non vérifiées, hors corrections 1b.
+- [ ] Publier et livrer le rapport et les quatre captures 1440 px — publication en cours.
+
 ## Lot 1 — règles et affichages
 - [x] 1. Sessions sans réponse non évaluées ; erreurs et blancs distincts — tests batch1/exam-summary et compte réel, filtre 38 blancs séparés de 2 erreurs.
 - [x] 2. Révision et liste par lots de dix — test cap, dialogue 2 erreurs, liste 10 puis 20 via Afficher plus. Soumission de révision : not verified.

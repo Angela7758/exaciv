@@ -12,6 +12,7 @@ vi.mock('@/lib/speech',()=>({streamSpeech:mocks.speech}));
 const source={questionId:'president',question:'Pour combien d’années le Président de la République est-il élu ?',options:['4 ans','5 ans','7 ans','10 ans'],helpEnabled:true,helpLocale:'fr'};
 afterEach(()=>{cleanup();vi.clearAllMocks();});
 describe('Question assistance rules',()=>{
+ it('does not open help automatically for a saved non-French help language',()=>{render(<QuestionAids {...source} helpLocale="zh"/>);expect(screen.queryByRole('combobox')).toBeNull();expect(mocks.translate).not.toHaveBeenCalled();});
  it('offers exactly the six requested languages without Portuguese',()=>{
   expect(QUESTION_HELP_LOCALES.map(l=>l.label)).toEqual(['Français','中文','English','العربية','Español','Русский']);
  });
