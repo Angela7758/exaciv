@@ -1637,3 +1637,6 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .path-theme>button>span:empty{display:none;}.path-theme>button{grid-template-columns:44px minmax(0,1fr) minmax(0,180px) 18px;}
 .exam-rules-note{display:block;}.exam-rules-note>svg{display:inline-block;margin-inline:5px;vertical-align:middle;}.exam-guidance a.exam-rules{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
 @media(max-width:760px){.cat-resume{display:grid;grid-template-columns:42px minmax(0,1fr);}.cat-resume>a{grid-column:1/-1;justify-self:start;}.path-theme>button{grid-template-columns:36px minmax(0,1fr) 18px;}.lesson-chapter{margin-bottom:0;}.exam-session>a{display:flex;margin:8px auto;white-space:normal;}.dash-next>img{display:block;position:static;align-self:flex-end;width:100px;height:110px;}.path-next>img{display:block;align-self:flex-end;width:95px;height:100px;}}
+
+@media(max-width:1000px){.app-layout .lesson-detail-grid{grid-template-columns:1fr;}}
+[dir=rtl] .app-content{text-align:start;}

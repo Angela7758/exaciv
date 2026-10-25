@@ -34,7 +34,7 @@ export function StartSessionButton({kind='practice',lesson,children,orange=false
    if(kind==='exam')await navigate({to:'/app/examen-blanc/session',search:{session:id}});
    else if(kind==='practice')await navigate({to:'/app/entrainement/session/$id',params:{id},search:{...(correction==='fin'?{correction:'fin' as const}:{}),...(chrono?{chrono:true}:{})}});
    else await navigate({to:'/app/entrainement/$sessionId/feedback',params:{sessionId:id}});
-  }catch(e){setError(e instanceof Error?ui(e.message):ui("Impossible de démarrer."));setBusy(false);}
+  }catch(e){setError(e instanceof Error?ui(e.message.startsWith('Questions disponibles :')?'Questions disponibles : %. Choisissez un autre thème, un autre type ou 5 questions si disponibles.':e.message):ui("Impossible de démarrer."));setBusy(false);}
  }
  const label=busy?ui("Préparation…"):(children??(<span>{ui("Commencer")} <ArrowRight/></span>));
  return <>
