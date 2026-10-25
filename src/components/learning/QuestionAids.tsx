@@ -9,8 +9,8 @@ import {saveHelpPreference} from '@/lib/account-settings.functions';
 import {QUESTION_HELP_LOCALES,questionHelpLocale,visibleQuestionTexts,localQuestionTranslation,type QuestionHelpLocale} from '@/lib/question-aids';
 import {AUDIO_STOP_EVENT,stopLearningAudio} from '@/lib/local-audio';
 
-export function QuestionAids({questionId,question,options,optionIds,explanation,helpEnabled,helpLocale,assistedLabel=false,fidelity=false,result=false,extraControls}:{
- questionId:string;question:string;options:string[];optionIds?:string[]|undefined;explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;fidelity?:boolean;result?:boolean;extraControls?:ReactNode;
+export function QuestionAids({questionId,question,options,optionIds,explanation,helpEnabled,helpLocale,assistedLabel=false,fidelity=false,result=false,extraControls,headerTitle,review=false}:{
+ questionId:string;question:string;options:string[];optionIds?:string[]|undefined;explanation?:string|undefined;helpEnabled:boolean;helpLocale:string;assistedLabel?:boolean;fidelity?:boolean;result?:boolean;extraControls?:ReactNode;headerTitle?:ReactNode;review?:boolean;
 }) {
  const ui=useUiT();
  const [target,setTarget]=useState<QuestionHelpLocale>(()=>questionHelpLocale(helpLocale));
@@ -49,13 +49,14 @@ export function QuestionAids({questionId,question,options,optionIds,explanation,
   });
  }
  return <div className={result?'question-aids fidelity-result-aids':fidelity?'question-aids fidelity-aids':'question-aids'}>
+  {headerTitle&&<h2 className="question-aids-title">{headerTitle}</h2>}
   <div className="question-aids-bar" role="toolbar" aria-label={ui("Aides pour cette question")}>
    <Button type="button" variant="outline" size="sm" onClick={()=>play('original','fr',result?[question,...options]:texts)} aria-pressed={speaking==='original'}>{speaking==='original'?<Square/>:<Volume2/>}{speaking==='original'?ui("Arrêter"):ui(result?'Écouter la question':"Écouter")}</Button>
    {helpEnabled&&<Button type="button" variant="outline" size="sm" onClick={toggleTranslate} aria-expanded={open}>{busy?<LoaderCircle className="animate-spin"/>:<Languages/>}{open?ui("Masquer la traduction"):ui("Traduire")}</Button>}
    {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">{ui("Entraînement avec aide")}</span>}
     {extraControls}
   </div>
-  {result&&helpEnabled&&<Button variant="outline" className="fidelity-result-translation-toggle" onClick={toggleTranslate} aria-expanded={open}><Languages/>{ui('Traduction de la question (facultatif)')}{open?<ChevronUp/>:<ChevronDown/>}</Button>}
+  {(result||review)&&helpEnabled&&<Button variant="outline" className="fidelity-result-translation-toggle" onClick={toggleTranslate} aria-expanded={open}><Languages/>{ui(review?'Traduction · Choisir une langue':'Traduction de la question (facultatif)')}{open?<ChevronUp/>:<ChevronDown/>}</Button>}
   {open&&helpEnabled&&<div className="question-translation" dir={target==='ar'?'rtl':'ltr'} lang={target}>
     {fidelity&&<Button variant="ghost" className="fidelity-translation-heading" onClick={toggleTranslate} aria-label={ui('Masquer la traduction')}><Languages/>{QUESTION_HELP_LOCALES.find(l=>l.id===target)?.label} · {ui('Masquer')}<ChevronUp/></Button>}
    <p className="question-aids-note">{target!=='fr'&&ui("Traduction d’aide non relue ; l’original français reste la référence.")}</p><select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(questionHelpLocale(e.target.value))}>{QUESTION_HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}</select>

@@ -1,25 +1,15 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
 - Plan prices and benefits live in src/config/pricing.ts; content (parcours, FAQ, resources, free-test questions) in src/config/*.ts.
-- Published learning questions and lessons live in the Cloud catalogue; config/free-test.ts is only a legacy scoring fixture, not live content,; no divergent banks.
+- Cloud is the single published lesson/question catalogue; config/free-test.ts is a legacy scoring fixture, not live content.
 - Protected learning routes live under _authenticated/app with shared AppShell; public quiz has its own header.
 - Learning completion and attempt writes use authenticated database functions; completion uniqueness and recorded last-section validation prevent repeated XP; recommendations never lock applicable lessons.
 - User-owned reads use authenticated server functions and query loaders; root maintains one auth-state listener, preserving generated bearer middleware.
-- Resumable learning sessions snapshot questions, answers, pathway and server deadline in Cloud; authenticated RPCs serialize answer submission and finalization; refresh never duplicates scoring.
+- Cloud session snapshots preserve questions, answers, pathway and deadline; authenticated RPCs serialize submission/finalization without duplicate scoring.
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
 - Personal revision AI uses an authenticated streaming API route and request-scoped server-only Gateway helpers; plans are owner-readable and terminal billing/access blocks persist server-side; repeated billed calls are blocked.
-- HomeHero styles stay homepage-scoped.
+- HomeHero styles are homepage-scoped.
 - The six primary public routes share one persistent Paris background in the root public shell; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
-- Official programme taxonomy and verified references live in src/config/official-programme.ts; practice aliases derive from LEGACY_TOPIC_MAP, checked against the latest civic_topic migration; legacy lessons and stored mistakes are mapped at read time, preserving session snapshots, answer order and earned progress. Editorial QCM are not the ministry bank.
+- Official taxonomy/references use src/config/official-programme.ts; LEGACY_TOPIC_MAP matches civic_topic. Map legacy lessons/mistakes at read time, preserving snapshots/order/progress; editorial QCM are not the ministry bank.
 - Auth and session-entry reference styles are scoped to approved-auth and entry-shell; SessionStart reuses persistent RPCs with click-only creation/resume and theme-prefixed practice selection, Introductory visits never start deadlines.
 - Registration credentials stay in memory; non-sensitive objectives and diagnostics use scoped session storage, never persisting passwords on return to step one.
 - Practice question presentation is separate from feedback; recorded answers and server current index remain authoritative while previous-question viewing and tentative selections never alter scoring.
@@ -55,6 +45,7 @@
 - Bookmarks use owner-scoped functions and a shared query, separate from scoring; export includes them and profile deletion cascades.
 - Practice corrections render in place; view-only navigation preserves the server frontier.
 - Nullable lesson layout uses the admin schema; absent blocks are never synthesized.
-
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
 - result-presentation owns short-result titles, duration and continuation settings; complete-exam results stay separate.
+
+- Full-page mistake review uses safe batch/profile/catalogue reads without correction metadata; only the authenticated review RPC response reveals the validated question, so pre-validation caches remain concealed.

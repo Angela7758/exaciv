@@ -796,7 +796,12 @@
     "{0} réponses incorrectes": "{0} incorrect answers",
     "sur {0} question": "out of {0} question",
     "sur {0} questions": "out of {0} questions",
-    "bonne réponse": "correct answer"
+    "bonne réponse": "correct answer",
+    "Cette révision": "This review",
+    "{0} sur {1} révisées": "{0} of {1} reviewed",
+    "Révision terminée": "Review completed",
+    "Traduction · Choisir une langue": "Translation · Choose a language",
+    "La correction s’affichera après validation.": "The correction will appear after submitting."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -886,7 +891,7 @@
     "questions": "道题",
     "environ": "约",
     "Une question à la fois !": "一次做好一道题！",
-    "Réviser mes erreurs": "复习错题",
+    "Réviser mes erreurs": "复习我的错题",
     "Voir mes réponses": "查看我的答案",
     "Cette session est encore en cours": "本次答题尚未结束",
     "Reprendre": "继续",
@@ -1595,7 +1600,12 @@
     "{0} réponses incorrectes": "{0} 道错误答案",
     "sur {0} question": "共 {0} 道题",
     "sur {0} questions": "共 {0} 道题",
-    "bonne réponse": "正确答案"
+    "bonne réponse": "正确答案",
+    "Cette révision": "本次复习",
+    "{0} sur {1} révisées": "已复习 {0} / {1}",
+    "Révision terminée": "复习已完成",
+    "Traduction · Choisir une langue": "翻译 · 选择语言",
+    "La correction s’affichera après validation.": "提交后显示解析。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -2179,7 +2189,7 @@
     "Toutes": "الكل",
     "Non commencées": "لم تبدأ",
     "Objectifs de la leçon": "أهداف الدرس",
-    "Enregistrer et quitter": "حفظ وخروج",
+    "Enregistrer et quitter": "الحفظ والخروج",
     "Vérifier mes connaissances": "اختبار معرفتي",
     "Lisez toutes les sections pour terminer": "اقرأ جميع الأقسام للإكمال",
     "Dans ce chapitre": "في هذا الفصل",
@@ -2394,7 +2404,12 @@
     "{0} réponses incorrectes": "{0} إجابات خاطئة",
     "sur {0} question": "من أصل {0} سؤال",
     "sur {0} questions": "من أصل {0} أسئلة",
-    "bonne réponse": "إجابة صحيحة"
+    "bonne réponse": "إجابة صحيحة",
+    "Cette révision": "هذه المراجعة",
+    "{0} sur {1} révisées": "تمت مراجعة {0} من {1}",
+    "Révision terminée": "اكتملت المراجعة",
+    "Traduction · Choisir une langue": "الترجمة · اختر لغة",
+    "La correction s’affichera après validation.": "سيظهر التصحيح بعد التأكيد."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -3193,7 +3208,12 @@
     "{0} réponses incorrectes": "{0} respuestas incorrectas",
     "sur {0} question": "de {0} pregunta",
     "sur {0} questions": "de {0} preguntas",
-    "bonne réponse": "respuesta correcta"
+    "bonne réponse": "respuesta correcta",
+    "Cette révision": "Esta revisión",
+    "{0} sur {1} révisées": "{0} de {1} repasadas",
+    "Révision terminée": "Repaso terminado",
+    "Traduction · Choisir une langue": "Traducción · Elegir idioma",
+    "La correction s’affichera après validation.": "La corrección aparecerá tras validar."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -3283,7 +3303,7 @@
     "questions": "вопросов",
     "environ": "около",
     "Une question à la fois !": "По одному вопросу за раз!",
-    "Réviser mes erreurs": "Разобрать ошибки",
+    "Réviser mes erreurs": "Повторить мои ошибки",
     "Voir mes réponses": "Посмотреть мои ответы",
     "Cette session est encore en cours": "Эта сессия ещё идёт",
     "Reprendre": "Продолжить",
@@ -3992,7 +4012,12 @@
     "{0} réponses incorrectes": "{0} неверных ответов",
     "sur {0} question": "из {0} вопроса",
     "sur {0} questions": "из {0} вопросов",
-    "bonne réponse": "правильный ответ"
+    "bonne réponse": "правильный ответ",
+    "Cette révision": "Это повторение",
+    "{0} sur {1} révisées": "Повторено {0} из {1}",
+    "Révision terminée": "Повторение завершено",
+    "Traduction · Choisir une langue": "Перевод · Выбрать язык",
+    "La correction s’affichera après validation.": "Разбор появится после подтверждения."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -4791,7 +4816,12 @@
     "{0} réponses incorrectes": "{0} respostas incorretas",
     "sur {0} question": "de {0} pergunta",
     "sur {0} questions": "de {0} perguntas",
-    "bonne réponse": "resposta correta"
+    "bonne réponse": "resposta correta",
+    "Cette révision": "Esta revisão",
+    "{0} sur {1} révisées": "{0} de {1} revistas",
+    "Révision terminée": "Revisão concluída",
+    "Traduction · Choisir une langue": "Tradução · Escolher um idioma",
+    "La correction s’affichera après validation.": "A correção aparecerá após a validação."
   },
   "fr": {
     "Votre tableau de bord": "Votre tableau de bord",
