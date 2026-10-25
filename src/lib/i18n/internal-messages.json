@@ -4816,7 +4816,12 @@
     "{0} réponses incorrectes": "{0} respostas incorretas",
     "sur {0} question": "de {0} pergunta",
     "sur {0} questions": "de {0} perguntas",
-    "bonne réponse": "resposta correta"
+    "bonne réponse": "resposta correta",
+    "Cette révision": "Esta revisão",
+    "{0} sur {1} révisées": "{0} de {1} revistas",
+    "Révision terminée": "Revisão concluída",
+    "Traduction · Choisir une langue": "Tradução · Escolher um idioma",
+    "La correction s’affichera après validation.": "A correção aparecerá após a validação."
   },
   "fr": {
     "Votre tableau de bord": "Votre tableau de bord",
