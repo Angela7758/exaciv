@@ -1,6 +1,7 @@
 # Feuille de route ExaCiv
 
 ## Fidélité six pages — 25 octobre 18:43 UTC
+- [x] Suivi PAGE 3 : rapport fourni, titres équilibrés et ponctuation liée, fil retiré, aides sur la ligne du thème ; PAGE 2 contrôlée à 1440/390, 209 tests OK et build OK. Publication ciblée 00bd63c42e5c38e429b75e64248c030ddbf47e77 ; identité du commit servi non prouvée. Aucune migration ; PAGE 4 non commencée.
 - [ ] Correctif page 2 : navigation courte et mobile, aides en-tête, icônes pleines, pluriel 0/1 contrôlés ; 209 tests OK ; publication et identité exacte servie à confirmer.
 - [ ] 1. Session d’entraînement : affichage 1440/1158/390, marqueurs/filtre et navigation/reprise vérifiés ; soumission réelle de 5 réponses, corrections immédiates, suivant et finalisation contrôlés avec le compte isolé page 2. Vérification de la version publiée encore requise.
 - [ ] 2. Résultats courts : écran et titres pratique/révision/examen court réalisés ; 199 tests OK, réponses 3 justes/2 fausses finalisées, examen court incorrect et examen vide contrôlés, continuation 8 questions avec thème/chrono conservés, captures 1440/1158/390 sans débordement. Limites : pratique avec blanc refusée par les règles existantes ; confidentialité globale non garantie car test gratuit et catalogue public restent accessibles ; fidélité CIVI approximative ; version publiée à vérifier. Aucune nouvelle migration ni modification du scoring.
