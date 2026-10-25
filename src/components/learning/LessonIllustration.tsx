@@ -27,6 +27,6 @@ export function LessonIllustration({lessonId}:{lessonId:string}) {
         <SafeImage src={illustration.src} alt={description.text} width={1376} height={768} decoding="async" />
       </DialogContent>
     </Dialog>
-    <figcaption className="lesson-text-link"><Button asChild variant="outline"><a href="#lesson-text">Lire la leçon</a></Button></figcaption>
+    <figcaption className="lesson-text-link"><Button asChild variant="outline"><a href="#lesson-text">{ui("Lire la leçon")}</a></Button></figcaption>
   </figure>;
 }

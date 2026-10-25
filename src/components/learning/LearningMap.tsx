@@ -1,3 +1,4 @@
+import {applicableLessons,completedApplicable} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
 import {useContentT} from '@/lib/i18n/content';
 import {useUiT} from '@/lib/i18n/internal';
@@ -16,12 +17,13 @@ import civi from '@/assets/civi.png';
 export function LearningMap(){
  const ui=useUiT();const ct=useContentT();
  const {data}=useSuspenseQuery(learningOptions);
- const {data:catalogue}=useSuspenseQuery(catalogueOptions);
+ const {data:catalogueData}=useSuspenseQuery(catalogueOptions);
+ const catalogue={...catalogueData,lessons:applicableLessons(catalogueData.lessons,data.profile.parcours)};
  const next=catalogue.lessons.find(l=>!data.completions.some(c=>c.lesson_id===l.id));
  const resumeId=data.readingPositions.find(r=>!data.completions.some(v=>v.lesson_id===r.lesson_id))?.lesson_id;
  const resume=catalogue.lessons.find(l=>l.id===resumeId)??next;
  const pathway=PARCOURS.find(p=>p.id===data.profile.parcours)?.title;
- const progress=percentage(data.completions.length,catalogue.lessons.length);
+ const progress=percentage(completedApplicable(catalogue.lessons,data.completions),catalogue.lessons.length);
  const firstOpen=TOPICS.findIndex(t=>catalogue.lessons.some(l=>l.topic===t.title&&!data.completions.some(c=>c.lesson_id===l.id)));
  const [open,setOpen]=useState<number>(firstOpen===-1?0:firstOpen);
  return <>
@@ -42,7 +44,7 @@ export function LearningMap(){
    <SafeImage src={civi} alt={ui("CIVI vous accompagne")}/>
   </section>}
   <section className="path-progress">
-   <header><h2>{ui("Leçons terminées")}</h2><b>{data.completions.length}/{catalogue.lessons.length} · {progress}%</b></header>
+   <header><h2>{ui("Leçons terminées")}</h2><b>{completedApplicable(catalogue.lessons,data.completions)}/{catalogue.lessons.length} · {progress}%</b></header>
    <ProgressBar value={progress}/>
   </section>
   <div className="path-themes">
@@ -65,7 +67,7 @@ export function LearningMap(){
        const isDone=data.completions.some(c=>c.lesson_id===l.id);
        const locked=!isDone&&l.id!==next?.id;
        const inProgress=!isDone&&data.readingPositions.some(r=>r.lesson_id===l.id);
-       const state=isDone?'done':inProgress||l.id===next?.id?'current':'new';
+       const state=isDone?'done':inProgress?'current':'new';
        return <div className={`path-lesson ${isDone?'done':locked?'locked':''}`} key={l.id}>
         <span>{isDone?<Check size={14}/>:locked?<Lock size={13}/>:l.position}</span>
         <div><h3>{ct(l.title)}</h3><small>{l.minutes} {ui("min")}</small></div>

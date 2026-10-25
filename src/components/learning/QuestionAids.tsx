@@ -34,7 +34,7 @@ export function QuestionAids({questionId,question,options,optionIds,explanation,
   const cache=JSON.stringify([sourceKey,next]);if(translations[cache])return;
   const version=++request.current;setBusy(true);setError('');
   try{const result=await translate({data:{texts,target:next}});if(version===request.current)setTranslations(v=>({...v,[cache]:result.translations}));}
-  catch(e){if(version===request.current)setError(e instanceof Error?e.message:ui("La traduction a échoué. Réessayez dans un instant."));}
+  catch{if(version===request.current)setError(ui("Traduction indisponible ; l’original français reste affiché."));}
   finally{if(version===request.current)setBusy(false);}
  }
  function toggleTranslate(){if(open){setOpen(false);request.current++;setBusy(false);stop();return;}setOpen(true);void load(target);}
@@ -55,7 +55,7 @@ export function QuestionAids({questionId,question,options,optionIds,explanation,
    {assistedLabel&&(speaking!==null||open)&&<span className="assisted-pill">{ui("Entraînement avec aide")}</span>}
   </div>
   {open&&helpEnabled&&<div className="question-translation" dir={target==='ar'?'rtl':'ltr'} lang={target}>
-   <select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(questionHelpLocale(e.target.value))}>{QUESTION_HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}</select>
+   <p className="question-aids-note">{target!=='fr'&&ui("Traduction d’aide non relue ; l’original français reste la référence.")}</p><select aria-label={ui("Langue de traduction")} value={target} onChange={e=>changeTarget(questionHelpLocale(e.target.value))}>{QUESTION_HELP_LOCALES.map(l=><option key={l.id} value={l.id}>{l.label}</option>)}</select>
    {busy&&<p role="status">{ui("Traduction en cours…")}</p>}
    {current&&<><p className="translation-stem">{current[0]}</p><ol>{current.slice(1,1+options.length).map((text,i)=><li key={optionIds?.[i]??i} data-option-id={optionIds?.[i]??String(i)}>{text}</li>)}</ol>{explanation&&<p className="translation-explanation">{current[1+options.length]}</p>}<Button type="button" variant="ghost" size="sm" onClick={()=>play('translation',target,current)} aria-pressed={speaking==='translation'}>{speaking==='translation'?<Square/>:<Volume2/>}{speaking==='translation'?ui("Arrêter"):ui("Écouter la traduction")}</Button></>}
   </div>}

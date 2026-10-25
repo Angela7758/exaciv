@@ -1,3 +1,4 @@
+import {applicableLessons,completedApplicable} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
 import {useContentT} from '@/lib/i18n/content';
 import {useUiT} from '@/lib/i18n/internal';
@@ -14,11 +15,12 @@ import {dateKey,userTimezone} from '@/lib/agenda';
 import {TOPIC_ARTWORK} from '@/config/topic-artwork';
 import {collectMistakes} from '@/lib/review';
 import civi from '@/assets/civi.png';
-export function Dashboard(){const ui=useUiT();const ct=useContentT();const {data}=useSuspenseQuery(learningOptions);const {data:catalogue}=useSuspenseQuery(catalogueOptions);const {data:allSessions}=useSuspenseQuery(sessionsOptions);
+export function Dashboard(){const ui=useUiT();const ct=useContentT();const {data}=useSuspenseQuery(learningOptions);const {data:catalogueData}=useSuspenseQuery(catalogueOptions);const {data:allSessions}=useSuspenseQuery(sessionsOptions);
+ const catalogue={...catalogueData,lessons:applicableLessons(catalogueData.lessons,data.profile.parcours)};
  const next=catalogue.lessons.find(l=>!data.completions.some(c=>c.lesson_id===l.id));
  const resumeId=data.readingPositions.find(r=>!data.completions.some(v=>v.lesson_id===r.lesson_id))?.lesson_id;
  const resume=catalogue.lessons.find(l=>l.id===resumeId)??next;
- const progress=percentage(data.completions.length,catalogue.lessons.length);
+ const progress=percentage(completedApplicable(catalogue.lessons,data.completions),catalogue.lessons.length);
  const sessions=allSessions.filter(s=>s.parcours===data.profile.parcours);
  const lastPractice=sessions.find(s=>s.kind==='practice'&&s.completed_at);
  const lastExam=sessions.find(s=>s.kind==='exam'&&s.completed_at);
@@ -38,7 +40,7 @@ export function Dashboard(){const ui=useUiT();const ct=useContentT();const {data
    <section className="dash-agenda"><h2><CalendarDays/>{ui("Mon agenda")}</h2><small className="today-date">{new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</small><AgendaTasks date={dateKey(new Date(),userTimezone())} compact/></section>
   </div>
   <div className="dash-stats">
-   <section className="dash-stat"><header><span><BookOpen/></span>{ui("Cours terminés")}</header><b>{data.completions.length}/{catalogue.lessons.length}</b><ProgressBar value={progress}/><p>{progress}% {ui("du parcours")}</p></section>
+   <section className="dash-stat"><header><span><BookOpen/></span>{ui("Cours terminés")}</header><b>{completedApplicable(catalogue.lessons,data.completions)}/{catalogue.lessons.length}</b><ProgressBar value={progress}/><p>{progress}% {ui("du parcours")}</p></section>
    <section className="dash-stat"><header><span><ChartNoAxesColumn/></span>{ui("Dernière session")}</header>{lastPractice?<><b>{lastPractice.correct}/{lastPractice.total}</b><p>{ui("bonnes réponses le")} {new Date(lastPractice.completed_at??lastPractice.started_at).toLocaleDateString('fr-FR')}</p></>:<><b>—</b><p>{ui("Aucune session terminée pour le moment.")}</p></>}</section>
    <section className="dash-stat"><header><span><FileText/></span>{ui("Examen blanc")}</header>{lastExam?<><b>{lastExam.correct}/{lastExam.total}</b><p>{(lastExam.correct??0)>=(lastExam.total??40)*0.8?ui("Seuil de réussite atteint"):ui("Seuil de réussite non atteint")}</p></>:<><b>{ui("Pas encore évalué")}</b><p>{ui("Lancez une simulation complète quand vous êtes prêt.")}</p></>}</section>
   </div>

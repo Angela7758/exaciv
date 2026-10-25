@@ -1,3 +1,4 @@
+import {applicableLessons} from '@/lib/catalogue-coverage';
 import {SafeImage} from '@/components/site/SafeImage';
 import {useContentT} from '@/lib/i18n/content';
 import {useUiT} from '@/lib/i18n/internal';
@@ -16,16 +17,17 @@ type Row={id:string;title:string;topic:string;minutes:number;status:string;descr
 
 export function CourseCatalogue({demo=false}:{demo?:boolean}){
  const ui=useUiT();const ct=useContentT();
- const {data:c}=useSuspenseQuery(catalogueOptions);
+ const {data:catalogueData}=useSuspenseQuery(catalogueOptions);
  const {data:d}=useSuspenseQuery(learningOptions);
+ const c={...catalogueData,lessons:applicableLessons(catalogueData.lessons,d.profile.parcours)};
  const [search,setSearch]=useState('');
  const [theme,setTheme]=useState('all');
  const [status,setStatus]=useState('all');
- const next=c.lessons.find(l=>!d.completions.some(x=>x.lesson_id===l.id));
+ 
  const demoLessons:Row[]=[{id:'laicite',title:'La laïcité et la liberté de conscience',topic:TOPICS[0].title,minutes:10,status:'current',description:'Découvrez les principes de la laïcité, son rôle dans la société et la liberté de conscience.'},{id:c.lessons.find(l=>/parlement|institution/i.test(l.title))?.id??c.lessons[0]?.id??'laicite',title:'Le rôle du Parlement',topic:TOPICS[1].title,minutes:8,status:'new',description:'Comprenez le fonctionnement, les missions et le rôle du Parlement dans la Ve République.'}];
- const rows:Row[]=demo?demoLessons:c.lessons.map(l=>({id:l.id,title:l.title,topic:l.topic,minutes:l.minutes,status:d.completions.some(x=>x.lesson_id===l.id)?'done':l.id===next?.id||d.readingPositions.some(r=>r.lesson_id===l.id)?'current':'new',description:l.body[0]??''}));
+ const rows:Row[]=demo?demoLessons:c.lessons.map(l=>({id:l.id,title:l.title,topic:l.topic,minutes:l.minutes,status:d.completions.some(x=>x.lesson_id===l.id)?'done':d.readingPositions.some(r=>r.lesson_id===l.id)?'current':'new',description:l.body[0]??''}));
  const filtered=filterLessonRows(rows.map(r=>({...r,title:ct(r.title)})),search,theme,status);
- const resumeId=demo?'laicite':d.readingPositions.find(r=>!d.completions.some(v=>v.lesson_id===r.lesson_id))?.lesson_id??next?.id;
+ const resumeId=demo?'laicite':d.readingPositions.find(r=>!d.completions.some(v=>v.lesson_id===r.lesson_id))?.lesson_id;
  const resume=c.lessons.find(l=>l.id===resumeId);
  const topics=[...new Set(rows.map(l=>l.topic))];
  return <>
@@ -36,7 +38,7 @@ export function CourseCatalogue({demo=false}:{demo?:boolean}){
    <select aria-label={ui("Thème des leçons")} value={theme} onChange={e=>setTheme(e.target.value)}><option value="all">{ui("Tous les thèmes")}</option>{topics.map(t=><option key={t} value={t}>{ct(t)}</option>)}</select>
   </div>
   <div className="cat-status" role="group" aria-label={ui("Filtrer par état")}>
-   {([['all',ui("Toutes")],['new',ui("Non commencées")],['current',ui("En cours")],['done',ui("Terminées")]] as const).map(([id,label])=><button key={id} type="button" aria-pressed={status===id} onClick={()=>setStatus(id)}>{label}</button>)}
+   {([['all',ui("Toutes")],['new',ui("Non commencées")],['current',ui("En cours")],['done',ui("Terminées")]] as const).map(([id,label])=><Button variant="ghost" key={id} type="button" aria-pressed={status===id} onClick={()=>setStatus(id)}>{label}</Button>)}
   </div>
   {filtered.length?<div className="cat-grid">{filtered.map(l=>{
    const art=LESSON_ILLUSTRATIONS[l.id];
