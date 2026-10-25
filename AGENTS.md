@@ -52,3 +52,6 @@
 - Cache lesson assistance by exact French source and target locale; missing translations are explicit errors.
 - Exam entry and restart share completeExamAvailable for reviewed pathway coverage.
 - Learner session lists use sessionLabel; readingProgress uses the visible section fraction independently of earned completion.
+- Bookmarks use owner-scoped functions and a shared query, separate from scoring; export includes them and profile deletion cascades.
+- Practice corrections render in place; navigation is view-only and validation retains the server frontier.
+- Nullable lesson layout uses the admin schema; absent blocks are never synthesized.
