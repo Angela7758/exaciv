@@ -39,7 +39,7 @@
 - Primary question content and audio remain French; shared QuestionAids alone translates visible fragments with independent help preferences, preserving answer order and withholding corrections until revealed.
 
 - Align interface locales across dictionaries, account validators and profile constraints so reconnecting preserves language without changing learning data.
-- Keep the React locale context in a dictionary-independent module so hot updates cannot split provider and consumer context identities.
+- Keep locale context dictionary-independent so hot updates cannot split provider/consumer identities.
 - Lesson artwork is mapped by stable Cloud lesson ID and rendered with SafeImage; unverified editorial video inventory is never exposed as teaching content or counted as video learning.
 - Signed-in shell dimensions (sidebar, topbar, content width, title levels) come from the shared --app-* tokens at the end of src/styles.css; page variants must not resize the shell, so every section feels like one product.
 
