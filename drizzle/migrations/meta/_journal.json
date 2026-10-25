@@ -211,6 +211,13 @@
       "when": 1792913271789,
       "tag": "0029_published_lesson_access_and_completion",
       "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1792913878208,
+      "tag": "0030_atomic_classification_publication",
+      "breakpoints": true
     }
   ]
 }

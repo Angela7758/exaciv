@@ -1,0 +1,13 @@
+DO $patch$
+DECLARE definition text; original text;
+BEGIN
+SELECT pg_get_functiondef('public.admin_command(text,jsonb)'::regprocedure) INTO definition;
+original:=definition;
+definition:=replace(definition,'content_revision,pathways,source_status,source_verified_at) VALUES(entity','content_revision,pathways,source_status,source_verified_at,question_type,classification_source,classification_reviewed_at) VALUES(entity');
+definition:=replace(definition,'''verifie'',now()) ON CONFLICT(id) DO UPDATE SET theme=excluded.theme','''verifie'',now(),coalesce(q.payload->>''question_type'',''unclassified''),coalesce(q.payload->>''classification_source'',''''),CASE WHEN coalesce(q.payload->>''question_type'',''unclassified'')<>''unclassified'' THEN now() ELSE NULL END) ON CONFLICT(id) DO UPDATE SET theme=excluded.theme');
+definition:=replace(definition,'source_verified_at=now(); UPDATE public.question_drafts SET status=''published''','source_verified_at=now(),question_type=excluded.question_type,classification_source=excluded.classification_source,classification_reviewed_at=excluded.classification_reviewed_at; UPDATE public.question_drafts SET status=''published''');
+IF definition=original OR position('classification_reviewed_at=excluded.classification_reviewed_at' IN definition)=0 THEN RAISE EXCEPTION 'Publication patch could not be verified'; END IF;
+EXECUTE definition;
+END $patch$;
+CREATE OR REPLACE FUNCTION public.validate_question_classification() RETURNS trigger LANGUAGE plpgsql SET search_path=public AS $$ BEGIN IF NEW.question_type NOT IN ('knowledge','scenario','unclassified') THEN RAISE EXCEPTION 'Type de question invalide.'; END IF; IF NEW.question_type<>'unclassified' AND (btrim(NEW.classification_source)='' OR NEW.classification_reviewed_at IS NULL) THEN RAISE EXCEPTION 'Une source de classification et une relecture sont requises.'; END IF; RETURN NEW; END $$;
+CREATE OR REPLACE FUNCTION public.review_question_classification() RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS $$ DECLARE typ text:=coalesce(NEW.payload->>'question_type','unclassified'); proof text:=coalesce(NEW.payload->>'classification_source',''); BEGIN IF typ NOT IN ('knowledge','scenario','unclassified') THEN RAISE EXCEPTION 'Type de question invalide.'; END IF; IF typ<>'unclassified' AND btrim(proof)='' THEN RAISE EXCEPTION 'Justification fiable de classification requise.'; END IF; IF NEW.status IN ('verified','published') AND typ<>'unclassified' AND NOT public.admin_can('publish') THEN RAISE EXCEPTION 'Relecture non autorisée.'; END IF; RETURN NEW; END $$;
