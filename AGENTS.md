@@ -5,7 +5,7 @@
 - User-owned reads use authenticated server functions and query loaders; root maintains one auth-state listener, preserving generated bearer middleware.
 - Cloud session snapshots preserve questions, answers, pathway and deadline; authenticated RPCs serialize submission/finalization without duplicate scoring.
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
-- Personal revision AI uses an authenticated streaming API route and request-scoped server-only Gateway helpers; plans are owner-readable and terminal billing/access blocks persist server-side; repeated billed calls are blocked.
+- Revision AI uses authenticated streaming and request-scoped server-only Gateway helpers; plans are owner-readable, terminal billing/access blocks persist, and repeated billed calls are blocked.
 - HomeHero styles are scoped.
 - Six public routes share a persistent Paris background; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.

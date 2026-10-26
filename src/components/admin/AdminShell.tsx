@@ -18,7 +18,6 @@ export function AdminShell(){
  const [open,setOpen]=useState(false);
  const path=useRouterState({select:s=>s.location.pathname});
  useEffect(()=>setOpen(false),[path]);
- const visible=links.filter(l=>l.p==='overview'||can(roles,l.p));
  if(!roles.length)return <div className="admin-denied"><h1>Accès réservé</h1><p>Ce compte n’a pas de rôle d’administration.</p><Link to="/app">Retour à mon espace</Link></div>;
  return <AdminFrame roles={roles} open={open} onOpenChange={setOpen}><Outlet/></AdminFrame>;
 }
