@@ -56,3 +56,8 @@
 - [ ] Médias : migration 0035 bucket admin-media + politiques, téléversement réel validé serveur
 - [ ] Correctifs UI admin : tiroirs Ajouter, retrait Abonnement, rôles/journal lisibles
 - [ ] Tests + vérification réelle + rapport
+
+## Lot saisie administration (26/10) — terminé
+- [x] Migration 0035 : bucket admin-media privé + politiques, actions groupées/export/suppression média, héros de cours
+- [x] Actions groupées Questions, éditeur de cours en formulaire, import enrichi, téléversement médias, correctifs UI admin
+- [x] 258 tests, typecheck OK ; refus serveur non-admin vérifié ; catalogue apprenant inchangé (11/12/8/10/0)
