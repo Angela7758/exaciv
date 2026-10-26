@@ -1,6 +1,6 @@
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query';
 import {describe,expect,it,vi} from 'vitest';
-import {render,screen,cleanup} from '@testing-library/react';
+import {render,screen,cleanup,act} from '@testing-library/react';
 
 vi.mock('@tanstack/react-router',()=>{
   const state={location:{pathname:'/app',href:'/app',search:{}}};
@@ -34,15 +34,17 @@ function Shell(){
 
 describe('Learner shell',()=>{
   it('renders the learner space for a user with an admin role without any /admin link',async()=>{
-    render(<Shell/>);
-    expect(await screen.findByRole('link',{name:/Mon compte/})).toBeDefined();
+    await act(async()=>{render(<Shell/>);});
+    await act(async()=>{await new Promise(r=>setTimeout(r,100));});
+    expect(screen.getByRole('link',{name:/Mon compte/})).toBeDefined();
     expect(screen.queryByRole('link',{name:/Administration/})).toBeNull();
     expect(document.querySelector('a[href="/admin"]')).toBeNull();
     cleanup();
   });
   it('keeps the learner destinations and the logout action',async()=>{
-    render(<Shell/>);
-    expect(await screen.findByRole('link',{name:/ExaCiv – mon espace/})).toBeDefined();
+    await act(async()=>{render(<Shell/>);});
+    await act(async()=>{await new Promise(r=>setTimeout(r,100));});
+    expect(screen.getByRole('link',{name:/ExaCiv – mon espace/})).toBeDefined();
     expect(screen.getByRole('link',{name:/Abonnement/})).toBeDefined();
     expect(screen.getByRole('link',{name:/Aide/})).toBeDefined();
     expect(screen.getByRole('button',{name:/Se déconnecter/})).toBeDefined();
