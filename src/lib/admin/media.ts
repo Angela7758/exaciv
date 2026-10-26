@@ -11,7 +11,7 @@ export function detectImageMime(head:Uint8Array):'image/png'|'image/jpeg'|'image
 
 export function sanitizeMediaFilename(name:string):string{
  const base=name.split(/[\\/]/).pop()??'image';
- const clean=base.normalize('NFD').replace(/\p{Diacritic}/gu,'').replace(/[^A-Za-z0-9._-]+/g,'-').replace(/^-+|-+$/g,'').toLowerCase();
+ const clean=base.normalize('NFD').replace(/\p{Diacritic}/gu,'').replace(/[^A-Za-z0-9._-]+/g,'-').replace(/-\./g,'.').replace(/^-+|-+$/g,'').toLowerCase();
  return clean||'image';
 }
 

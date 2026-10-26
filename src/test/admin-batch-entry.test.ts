@@ -55,7 +55,7 @@ describe('Export et modèle simple',()=>{
  const draft={id:'q-1',payload:{...emptyQuestion,id:'q-1',theme:THEME,exam_theme:THEME,question:'Quelle est la durée du mandat présidentiel ?',options:[{id:'a',text:'4 ans'},{id:'b',text:'5 ans'},{id:'c',text:'7 ans'},{id:'d',text:'10 ans'}],correct_option_id:'b',explanation:'Le mandat du président dure cinq ans.',source:'Constitution',source_url:'https://www.legifrance.gouv.fr/'},status:'draft',revision:1,updated_at:''} as Draft;
  it('exporte exactement les colonnes IMPORT_FIELDS et se réimporte sans erreur',()=>{
   const csv=draftsToCsv([draft]);
-  expect(csv.split('\n')[0]).toBe(IMPORT_FIELDS.join(','));
+  expect(csv.split('\n')[0]?.replace(/\r$/,'')).toBe(IMPORT_FIELDS.join(','));
   const parsed=parseImport(csv,'export.csv');
   const preview=validateImport(parsed.rows,defaultMapping(parsed.columns),[]);
   expect(preview[0]?.status).toBe('new');
