@@ -19,6 +19,6 @@ export function catalogueOverview(questions:Question[],lessons:Lesson[]){
 }
 export const overviewPeriod=(days:number)=>{if(![7,30,90].includes(days))throw new Error('Période invalide.');return days;};
 export function activeLearners(sessions:{user_id:string}[],completions:{user_id:string}[]){return new Set([...sessions,...completions].map(r=>r.user_id)).size;}
-export function completedSimulations(sessions:Parameters<typeof hasRecordedAnswers>[0][]){const count=sessions.filter(s=>s.total===40&&hasRecordedAnswers(s)).length;return count||null;}
+export function completedSimulations(sessions:(Parameters<typeof hasRecordedAnswers>[0]&{total:number})[]){const count=sessions.filter(s=>s.total===40&&hasRecordedAnswers(s)).length;return count||null;}
 export function confirmedRevenue(paymentsEnabled:boolean){return paymentsEnabled?'—':'Non connecté';}
 export function overviewActionAllowed(roles:string[],permission:string){return can(roles,permission);}

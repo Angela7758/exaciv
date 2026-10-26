@@ -3,6 +3,8 @@ import {z} from 'zod';
 import {requireSupabaseAuth} from '@/integrations/supabase/auth-middleware';
 import {can,type Draft,type TestConfig} from './schema';
 import type {Json} from '@/integrations/supabase/types';
+import {assertOverviewAccess,catalogueOverview,activeLearners,completedSimulations} from './overview';
+import {sessionQuestion} from '@/lib/sessions';
 export const adminAccess=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{const r=await context.supabase.from('user_roles').select('role').eq('user_id',context.userId);if(r.error)throw new Error('Permissions indisponibles.');return r.data.map(v=>v.role);});
 export const adminData=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({section:z.enum(['overview','questions','imports','tests','lessons','translations','media','users','reports','audit']),days:z.number().int().min(1).max(30).default(7)})).handler(async({data,context})=>{
  const r=await context.supabase.from('user_roles').select('role').eq('user_id',context.userId);if(r.error||!r.data.length)throw new Error('Accès réservé à l’administration.');const roles=r.data.map(v=>v.role);
@@ -21,3 +23,28 @@ export const adminCommand=createServerFn({method:'POST'}).middleware([requireSup
 export const availableTests=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{const p=await context.supabase.from('profiles').select('parcours').eq('id',context.userId).single();if(p.error)throw new Error('Profil indisponible.');const r=await context.supabase.from('learning_tests').select('*').eq('status','published').contains('pathways',[p.data.parcours]);if(r.error)throw new Error('Tests indisponibles.');return r.data as TestConfig[];});
 export const startConfiguredTest=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({id:z.string().uuid()})).handler(async({context,data})=>{const r=await context.supabase.rpc('start_configured_test',{p_test:data.id});if(r.error)throw new Error(r.error.message);const s=await context.supabase.from('learning_sessions').select('kind').eq('id',r.data).single();if(s.error)throw new Error('Session indisponible.');return {id:r.data,kind:s.data.kind};});
 export const submitQuestionReport=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({questionId:z.string().min(1),reason:z.string().trim().min(5).max(2000)})).handler(async({context,data})=>{const r=await context.supabase.from('question_reports').insert({question_id:data.questionId,reason:data.reason,user_id:context.userId});if(r.error)throw new Error('Signalement non enregistré.');return {success:true};});
+
+export const adminOverviewData=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({days:z.union([z.literal(7),z.literal(30),z.literal(90)])})).handler(async({context,data})=>{
+ const access=await context.supabase.from('user_roles').select('role').eq('user_id',context.userId);
+ if(access.error)throw new Error('Permissions indisponibles.');
+ const roles=access.data.map(r=>r.role);assertOverviewAccess(roles);
+ // Cross-account aggregation is privileged, after the unchanged role boundary.
+ const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');
+ const since=new Date(Date.now()-data.days*86400000).toISOString();
+ const [accounts,questions,lessons,reports]=await Promise.all([
+  db.from('profiles').select('id',{count:'exact',head:true}).gte('created_at',since),
+  db.from('learning_questions').select('theme,exam_theme,pathways,question_type,classification_reviewed_at').eq('published',true),
+  db.from('learning_lessons').select('topic').eq('published',true),
+  db.from('question_reports').select('id',{count:'exact',head:true}).eq('status','open')
+ ]);
+ if(accounts.error||questions.error||lessons.error||reports.error)throw new Error('Indicateurs indisponibles.');
+ // Page through activity rows: totals must not silently stop at the Data API cap.
+ const sessions=[];const completions=[];
+ for(let offset=0;;offset+=1000){const r=await db.from('learning_sessions').select('user_id').gte('started_at',since).range(offset,offset+999);if(r.error)throw new Error('Activité indisponible.');sessions.push(...r.data);if(r.data.length<1000)break;}
+ for(let offset=0;;offset+=1000){const r=await db.from('learning_completions').select('user_id').gte('completed_at',since).range(offset,offset+999);if(r.error)throw new Error('Activité indisponible.');completions.push(...r.data);if(r.data.length<1000)break;}
+ const exams=[];
+ for(let offset=0;;offset+=1000){const r=await db.from('learning_sessions').select('total,questions,answers').eq('kind','exam').eq('total',40).gte('completed_at',since).range(offset,offset+999);if(r.error)throw new Error('Simulations indisponibles.');exams.push(...r.data.map(s=>({total:s.total,questions:z.array(sessionQuestion).parse(s.questions),answers:z.record(z.number()).parse(s.answers)})));if(r.data.length<1000)break;}
+ const audit=can(roles,'audit')?await context.supabase.from('admin_audit').select('id,actor,action,created_at').gte('created_at',since).order('created_at',{ascending:false}).limit(10):null;
+ if(audit?.error)throw new Error('Journal indisponible.');
+ return {roles,days:data.days,accounts:accounts.count,active:activeLearners(sessions,completions),completed:completedSimulations(exams),reports:reports.count,...catalogueOverview(questions.data,lessons.data),operations:audit?.data??null};
+});
