@@ -1,0 +1,15 @@
+import {describe,it,expect} from 'vitest';
+import {catalogueOverview,activeLearners,completedSimulations,confirmedRevenue,overviewPeriod,assertOverviewAccess} from '@/lib/admin/overview';
+import {OFFICIAL_TOPICS} from '@/config/official-programme';
+const question={theme:OFFICIAL_TOPICS[0]?.title??'',exam_theme:null,pathways:['naturalisation','resident','sejour'],question_type:'unclassified',classification_reviewed_at:null};
+describe('PAGE 6 — indicateurs réels',()=>{
+ it('refuses the test learner without an existing administrative role',()=>{expect(()=>assertOverviewAccess([])).toThrow('Accès réservé à l’administration.');expect(()=>assertOverviewAccess(['learner'])).toThrow();expect(()=>assertOverviewAccess(['admin'])).not.toThrow();});
+ it('accepts exactly 7, 30 and 90 day periods',()=>{expect([7,30,90].map(overviewPeriod)).toEqual([7,30,90]);expect(()=>overviewPeriod(91)).toThrow();});
+ it('counts active accounts once across sessions and lesson completions',()=>expect(activeLearners([{user_id:'a'},{user_id:'a'}],[{user_id:'a'},{user_id:'b'}])).toBe(2));
+ it('counts only 40-question simulations with valid recorded answers and shows null for none',()=>{const questions=[{id:'q',theme:'Institutions',question:'Question',options:['a','b'],answer:0,explanation:'',source:''}];expect(completedSimulations([{total:40,questions,answers:{}},{total:1,questions,answers:{'0':0}},{total:40,questions,answers:{'0':9}}])).toBeNull();expect(completedSimulations([{total:40,questions,answers:{'0':0}}])).toBe(1);});
+ it('keeps revenue disconnected while payment is disabled',()=>expect(confirmedRevenue(false)).toBe('Non connecté'));
+ it('marks missing lessons or fewer than eight questions as incomplete',()=>{const rows=catalogueOverview(Array.from({length:8},()=>question),[]);expect(rows.themes[0]).toMatchObject({lessons:0,questions:8,unclassified:8,status:'À compléter'});expect(catalogueOverview(Array.from({length:7},()=>question),[{topic:question.theme}]).themes[0]?.status).toBe('À compléter');});
+ it('requires a classification audit for covered themes with any unclassified question',()=>expect(catalogueOverview(Array.from({length:8},()=>question),[{topic:question.theme}]).themes[0]?.status).toBe('Audit requis'));
+ it('marks covered classified themes complete and identifies the first incomplete official theme',()=>{const rows=catalogueOverview(Array.from({length:8},()=>({...question,question_type:'knowledge',classification_reviewed_at:'2026-10-26'})),[{topic:question.theme}]);expect(rows.themes[0]?.status).toBe('Complet');expect(rows.firstIncomplete).toBe(OFFICIAL_TOPICS[1]?.title);expect(rows.unclassified).toBe(0);});
+ it('blocks all three categories without the reviewed 28/12 coverage',()=>{const qs=OFFICIAL_TOPICS.flatMap(t=>Array.from({length:8},()=>({...question,theme:t.title})));expect(catalogueOverview(qs,[]).simulations.map(s=>s.available)).toEqual([false,false,false]);});
+});

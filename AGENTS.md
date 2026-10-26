@@ -5,9 +5,9 @@
 - User-owned reads use authenticated server functions and query loaders; root maintains one auth-state listener, preserving generated bearer middleware.
 - Cloud session snapshots preserve questions, answers, pathway and deadline; authenticated RPCs serialize submission/finalization without duplicate scoring.
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
-- Personal revision AI uses an authenticated streaming API route and request-scoped server-only Gateway helpers; plans are owner-readable and terminal billing/access blocks persist server-side; repeated billed calls are blocked.
+- Revision AI uses authenticated streaming and request-scoped server-only Gateway helpers; plans are owner-readable, terminal billing/access blocks persist, and repeated billed calls are blocked.
 - HomeHero styles are homepage-scoped.
-- The six primary public routes share one persistent Paris background in the root public shell; scene dimensions never depend on leaf text or route.
+- Six public routes share a persistent Paris background; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
 - Official taxonomy/references use src/config/official-programme.ts; LEGACY_TOPIC_MAP matches civic_topic. Map legacy lessons/mistakes at read time, preserving snapshots/order/progress; editorial QCM are not the ministry bank.
 - Auth and session-entry reference styles are scoped to approved-auth and entry-shell; SessionStart reuses persistent RPCs with click-only creation/resume and theme-prefixed practice selection, Introductory visits never start deadlines.
@@ -15,7 +15,7 @@
 - Practice question presentation is separate from feedback; recorded answers and server current index remain authoritative while previous-question viewing and tentative selections never alter scoring.
 - Exam confirmation counts only recorded answers, navigation never validates tentative selections, and finalization is a separate authenticated idempotent RPC; all questions remain revisitable.
 - New public preparation screens use scoped nine-public/nine-auth styles; homepage overrides stay mobile-only to preserve approved desktop views.
-- Subscription confirmation resolves a selected plan from the pricing configuration and uses the existing AppShell without creating subscription records before real payment is available.
+- Subscription confirmation uses pricing configuration and AppShell; no subscription record before real payment.
 - Welcome reads objective snapshots, not credentials; preparation destinations are allowlisted local learning paths; external redirects are forbidden.
 - Batch 2 app presentation uses a shared mobile-only AppShell header and bottom navigation; desktop dashboard and session scoring remain unchanged.
 - Password recovery is granted only by a provider PASSWORD_RECOVERY event or verified recovery OTP; root captures the event once, both reset URLs share one form. Ordinary sessions and URL flags never grant reset access.
@@ -46,6 +46,7 @@
 - Practice corrections render in place; view-only navigation preserves the server frontier.
 - Continuous lessons save the final section at À retenir; nullable layout and server guards prevent invented blocks or completion.
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
-- Results separate short/full exams; metrics use frozen answers.
+- Results distinguish short/full exams; metrics use snapshots.
+- Admin overview aggregates across owners only after existing role checks; pure rules share the catalogue coverage helper.
 
 - Full-page mistake review uses safe batch/profile/catalogue reads without correction metadata; only the authenticated review RPC response reveals the validated question, so pre-validation caches remain concealed.
