@@ -46,7 +46,7 @@ function LessonReader({slug}:{slug:string}){
   <p className="lesson-meta"><Clock/>{l.minutes} {ui('min')} · {ui(status)}</p>
   <div className={`lesson-overview ${layout?.objectives.length?'':'lesson-overview-no-objectives'}`}>
    {layout&&layout.objectives.length>0&&<section className="lesson-objectives" lang="fr" dir="ltr"><h2><Target/>{ui('Objectifs de la leçon')}</h2><ul>{layout.objectives.map(text=><li key={text}>{text}</li>)}</ul></section>}
-   {artwork&&<SafeImage className="lesson-hero" src={artwork.src} alt={artwork.alt} width={1376} height={768}/>}
+   {heroMedia?<SafeImage className="lesson-hero" src={heroMedia.url} alt={heroMedia.alt} width={1376} height={768}/>:artwork&&<SafeImage className="lesson-hero" src={artwork.src} alt={artwork.alt} width={1376} height={768}/>}
   </div>
   {!l.body.length?<p role="status">{ui('Le contenu de cette leçon est en cours de préparation. Aucun progrès ne sera enregistré.')}</p>:<>
    <div id="lesson-text" className="lesson-continuous-body" lang="fr" dir="ltr"><h2>{layout?.pillars.length?layout.pillars.map(p=>p.title).join(', '):l.title}</h2>{l.body.map((text,index)=><p className="lesson-source-text" key={index}>{text}</p>)}</div>
