@@ -63,7 +63,8 @@
 - [x] 258 tests, typecheck OK ; refus serveur non-admin vérifié ; catalogue apprenant inchangé (11/12/8/10/0)
 
 ## Suivi A2 — alignements et vérification publiée
-- [ ] Reprise 26 octobre : vérifier A1–A5 sur le site publié avec Test fidélité 2 (editor/reviewer confirmés), capturer 1440/390 et retirer uniquement les éléments test ; Comptes exclu.
+- [x] Reprise 26 octobre : A1–A4 vérifiés sur le site publié avec Test fidélité 2 ; CSV/JSON exportés et question test seule réimportée comme doublon, avec correspondance explanation manuelle ; captures 1440/390, 261 tests et build OK.
+- [ ] Nettoyage cours zz-test-a2-lesson-20261026 : reste brouillon jamais publié ; aucune commande de suppression/retrait autorisée existante. Question zz-test-a2-20261026 retirée ; média et objet supprimés. Correctifs du réimport automatique/champs/erreurs du tiroir vérifiés en aperçu seulement ; aucune publication demandée dans cette reprise.
 - [x] Corriger colonnes de sélection/options, choix de rôle vide et retirer les langues admin uniquement — tests et compilation OK ; rendu admin réel bloqué.
 - [ ] Vérifier tiroirs, question test seule, cours, média, export/import et accès Comptes : bloqué par roles=[] sur Test fidélité 2 ; refus publié capturé à 1440/390, aucun contenu créé.
 - [ ] Tests, captures 1440/390, publication et rapport avec limites exactes.
