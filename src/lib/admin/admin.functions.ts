@@ -61,7 +61,7 @@ export const exportQuestions=createServerFn({method:'POST'}).middleware([require
  const r=await context.supabase.rpc('admin_command',{p_action:'questions_export',p_data:{}});
  if(r.error)throw new Error(r.error.message);return r.data;
 });
-async function requireContentEdit(supabase:typeof import('@/integrations/supabase/client.server').supabaseAdmin extends never?never:{rpc:(n:string,a:Record<string,unknown>)=>Promise<{data:unknown;error:unknown}>}){
+async function requireContentEdit(supabase:{rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:unknown}>}){
  const p=await supabase.rpc('admin_can',{p_permission:'edit'});if(!p.data)throw new Error('Accès refusé.');
 }
 export const uploadAdminMedia=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((data:unknown)=>{
