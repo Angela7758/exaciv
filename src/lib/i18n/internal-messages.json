@@ -884,7 +884,15 @@
     "Signalements": "Reports",
     "Statistiques": "Statistics",
     "Paiements": "Payments",
-    "Rôles et journal": "Roles and audit log"
+    "Rôles et journal": "Roles and audit log",
+    "Suivez vos apprentissages et organisez vos révisions.": "Track your learning and plan your revision.",
+    "Leçons publiées terminées": "Published lessons completed",
+    "Ce taux mesure les leçons terminées, pas votre préparation à l’examen.": "This measures lesson completion, not exam readiness.",
+    "Dernier examen blanc": "Latest mock exam",
+    "Planifier ma semaine": "Plan my week",
+    "Aperçu avec vos données réelles": "Preview with your actual data",
+    "{0} questions enregistrées": "{0} recorded answers",
+    "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.": "Repeated answers count as attempts, not as mastered questions."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -981,7 +989,7 @@
     "Votre examen blanc est terminé": "您的模拟考试已结束",
     "Votre entraînement est terminé": "您的练习已结束",
     "Voici vos résultats et les thèmes à renforcer.": "以下是您的结果和需要加强的主题。",
-    "bonnes réponses": "题答对",
+    "bonnes réponses": "正确回答",
     "Objectif atteint": "已达目标",
     "À renforcer, à votre rythme": "按自己的节奏加强巩固",
     "Durée :": "用时：",
@@ -1771,7 +1779,15 @@
     "Signalements": "反馈",
     "Statistiques": "统计",
     "Paiements": "付款",
-    "Rôles et journal": "角色与日志"
+    "Rôles et journal": "角色与日志",
+    "Suivez vos apprentissages et organisez vos révisions.": "跟踪学习进展，安排复习。",
+    "Leçons publiées terminées": "已完成的已发布课程",
+    "Ce taux mesure les leçons terminées, pas votre préparation à l’examen.": "此比例代表课程完成度，不代表考试准备程度。",
+    "Dernier examen blanc": "最近一次模拟考试",
+    "Planifier ma semaine": "安排本周学习",
+    "Aperçu avec vos données réelles": "使用本人数据预览",
+    "{0} questions enregistrées": "已记录 {0} 次答题",
+    "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.": "重复答题计为答题次数，不代表已掌握的题目。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -1787,7 +1803,7 @@
     "À retenir": "للتذكّر",
     "Section précédente": "القسم السابق",
     "Section suivante": "القسم التالي",
-    "Leçon terminée": "اكتمل الدرس",
+    "Leçon terminée": "درس مكتمل",
     "Enregistrement…": "جارٍ الحفظ…",
     "Terminer la leçon": "إنهاء الدرس",
     "Passer aux 5 questions": "الانتقال إلى الأسئلة الـ5",
@@ -2658,7 +2674,15 @@
     "Signalements": "البلاغات",
     "Statistiques": "الإحصاءات",
     "Paiements": "المدفوعات",
-    "Rôles et journal": "الأدوار والسجل"
+    "Rôles et journal": "الأدوار والسجل",
+    "Suivez vos apprentissages et organisez vos révisions.": "تابع تعلمك ونظّم مراجعتك.",
+    "Leçons publiées terminées": "الدروس المنشورة المكتملة",
+    "Ce taux mesure les leçons terminées, pas votre préparation à l’examen.": "تقيس هذه النسبة إكمال الدروس، وليس الاستعداد للامتحان.",
+    "Dernier examen blanc": "آخر امتحان تجريبي",
+    "Planifier ma semaine": "تخطيط أسبوعي",
+    "Aperçu avec vos données réelles": "معاينة ببياناتك الفعلية",
+    "{0} questions enregistrées": "{0} إجابات مسجلة",
+    "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.": "تُحسب الإجابات المتكررة كمحاولات، وليس كأسئلة تم إتقانها."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -3545,7 +3569,15 @@
     "Signalements": "Avisos",
     "Statistiques": "Estadísticas",
     "Paiements": "Pagos",
-    "Rôles et journal": "Roles y registro"
+    "Rôles et journal": "Roles y registro",
+    "Suivez vos apprentissages et organisez vos révisions.": "Sigue tu aprendizaje y organiza tus repasos.",
+    "Leçons publiées terminées": "Lecciones publicadas completadas",
+    "Ce taux mesure les leçons terminées, pas votre préparation à l’examen.": "Este porcentaje mide las lecciones completadas, no la preparación para el examen.",
+    "Dernier examen blanc": "Último examen de práctica",
+    "Planifier ma semaine": "Planificar mi semana",
+    "Aperçu avec vos données réelles": "Vista previa con tus datos reales",
+    "{0} questions enregistrées": "{0} respuestas registradas",
+    "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.": "Las respuestas repetidas cuentan como intentos, no como preguntas dominadas."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -3561,7 +3593,7 @@
     "À retenir": "Важно запомнить",
     "Section précédente": "Предыдущий раздел",
     "Section suivante": "Следующий раздел",
-    "Leçon terminée": "Урок завершён",
+    "Leçon terminée": "Урок пройден",
     "Enregistrement…": "Сохранение…",
     "Terminer la leçon": "Завершить урок",
     "Passer aux 5 questions": "Перейти к 5 вопросам",
@@ -4432,7 +4464,15 @@
     "Signalements": "Обращения",
     "Statistiques": "Статистика",
     "Paiements": "Платежи",
-    "Rôles et journal": "Роли и журнал"
+    "Rôles et journal": "Роли и журнал",
+    "Suivez vos apprentissages et organisez vos révisions.": "Следите за обучением и планируйте повторение.",
+    "Leçons publiées terminées": "Пройденные опубликованные уроки",
+    "Ce taux mesure les leçons terminées, pas votre préparation à l’examen.": "Этот показатель отражает прохождение уроков, а не готовность к экзамену.",
+    "Dernier examen blanc": "Последний пробный экзамен",
+    "Planifier ma semaine": "Планирование недели",
+    "Aperçu avec vos données réelles": "Предпросмотр с вашими данными",
+    "{0} questions enregistrées": "Сохранено ответов: {0}",
+    "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.": "Повторные ответы считаются попытками, а не освоенными вопросами."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -5319,7 +5359,15 @@
     "Signalements": "Relatos",
     "Statistiques": "Estatísticas",
     "Paiements": "Pagamentos",
-    "Rôles et journal": "Papéis e registro"
+    "Rôles et journal": "Papéis e registro",
+    "Suivez vos apprentissages et organisez vos révisions.": "Acompanhe a sua aprendizagem e organize as suas revisões.",
+    "Leçons publiées terminées": "Lições publicadas concluídas",
+    "Ce taux mesure les leçons terminées, pas votre préparation à l’examen.": "Esta percentagem mede as lições concluídas, não a preparação para o exame.",
+    "Dernier examen blanc": "Último exame de simulação",
+    "Planifier ma semaine": "Planear a minha semana",
+    "Aperçu avec vos données réelles": "Pré-visualização com os seus dados reais",
+    "{0} questions enregistrées": "{0} respostas registadas",
+    "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.": "As respostas repetidas contam como tentativas, não como perguntas dominadas."
   },
   "fr": {
     "Votre tableau de bord": "Votre tableau de bord",
