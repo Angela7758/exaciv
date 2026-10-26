@@ -1,22 +1,239 @@
-import {plural} from '@/lib/learner-labels';
-import {latestCompleteExam} from '@/lib/exam-summary';
-import {sessionsOptions} from '@/lib/session.queries';
-import {SafeImage} from '@/components/site/SafeImage';
-import {useContentT} from '@/lib/i18n/content';
-import {useUiT} from '@/lib/i18n/internal';
-import {useSuspenseQuery} from '@tanstack/react-query';
-import {Link} from '@tanstack/react-router';
-import {Flame,Star,ChartNoAxesColumn,BookOpen,FileText,Target,Settings,CalendarDays,Flag,ArrowRight} from 'lucide-react';
-import {Button} from '@/components/ui/button';
-import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
-import {earnedXp,streakDays,percentage,TOPICS} from '@/config/learning';
-import {demoSummary,demoThemes} from '@/lib/account-settings';
-import {ReferenceThemes} from './ReferenceThemes';
-import {ActivityAgenda} from './LearningAgenda';
-import civi from '@/assets/civi.png';
-export function MetricRing({value}:{value:number}){return <div className="metric-ring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle className="ring-track" cx="50" cy="50" r="42"/><circle className="ring-value" cx="50" cy="50" r="42" strokeDasharray={`${value*2.639} 263.9`}/></svg><b>{value}%</b></div>;}
-export function ProgressAnalytics({demo=false}:{demo?:boolean}){const ui=useUiT();const ct=useContentT();const {data:c}=useSuspenseQuery(catalogueOptions);const {data:d}=useSuspenseQuery(learningOptions);const {data:sessions}=useSuspenseQuery(sessionsOptions);const exam=latestCompleteExam(sessions.filter(s=>s.parcours===d.profile.parcours));const done=demo?demoSummary.lessonsDone:d.completions.length,total=demo?demoSummary.lessonsTotal:c.lessons.length,correct=demo?34:exam?.correct??0,examTotal=demo?40:exam?.total??0;const dates=Array.from({length:7},(_,i)=>{const date=new Date();date.setDate(date.getDate()-6+i);return date;});const activity=dates.map((date,i)=>{const key=date.toLocaleDateString('fr-FR');const value=demo?[26,40,20,35,50,36,30][i]??0:d.completions.filter(x=>new Date(x.completed_at).toLocaleDateString('fr-FR')===key).length+d.sessions.filter(x=>new Date(x.completed_at??x.started_at).toLocaleDateString('fr-FR')===key).length+d.attempts.filter(x=>new Date(x.created_at).toLocaleDateString('fr-FR')===key).length;return {label:date.toLocaleDateString('fr-FR',{weekday:'short'}).replace('.','')+' '+date.getDate(),value};});const max=demo?60:Math.max(1,...activity.map(a=>a.value));const goal=demo?'2026-11-15':d.profile.goal_date;const goalText=goal?new Date(goal+'T12:00:00').toLocaleDateString('fr-FR',{month:'long',year:'numeric'}):ui("À définir");const counts=demo?demoThemes:TOPICS.map(t=>{const lessons=c.lessons.filter(l=>l.topic===t.title);return {total:lessons.length,done:lessons.filter(l=>d.completions.some(x=>x.lesson_id===l.id)).length};});const targets=TOPICS.map(t=>c.lessons.find(l=>l.topic===t.title)?.id);
- return <div className="approved-pages analytics-page"><h1>{ui("Votre progression")}</h1><p className="approved-subtitle">{ui("Voyez le chemin parcouru et les étapes à venir.")}</p><div className="analytics-metrics"><section><MetricRing value={percentage(done,total)}/><div><strong><em>{done}</em> / {total}</strong><p>{ui(plural(done,"leçon terminée","leçons terminées"))}</p></div><BookOpen/></section><section>{exam||demo?<MetricRing value={percentage(correct,examTotal)}/>:<FileText className="large-metric-icon"/>}<div><strong>{exam||demo?<><em>{correct}</em> / 40</>:ui("Non évalué")}</strong><p>{ui("dernier examen blanc")}</p></div><FileText/></section><section><Flame className="large-metric-icon"/><div><strong>{demo?7:streakDays(d.completions.map(x=>x.completed_at))} {ui(plural(demo?7:streakDays(d.completions.map(x=>x.completed_at)),"jour","jours"))}</strong><p>{ui("de suite")}</p></div></section><section><Star className="large-metric-icon"/><div><strong>{demo?320:earnedXp(d.completions)} {ui("XP")}</strong><p>{ui("gagnés")}</p></div><ChartNoAxesColumn/></section></div>
- <div className="analytics-middle"><ActivityAgenda/><section className="analytics-objective"><header><Target/><h2>{ui("Votre objectif")}</h2><Button asChild variant="link"><Link to="/app/mon-compte" search={demo?{demo:true}:{}}>{ui("Modifier mon objectif")}<Settings/></Link></Button></header><div className="analytics-goal"><Target/><h3>{ui("Réussir l’examen civique")}<br/>{d.profile.parcours==='resident'&&!demo?ui("de carte de résident"):d.profile.parcours==='sejour'&&!demo?ui("de carte de séjour pluriannuelle"):ui("de naturalisation")}</h3></div><SafeImage src={civi} alt={ui("CIVI vous encourage")}/><div className="analytics-goal-date"><CalendarDays/><div><small>{ui("Date prévue")}</small><b>{goalText}</b></div><Flag/><span>{demo?ui("En bonne voie"):done?ui("En progression"):ui("À votre rythme")}</span></div></section></div>
- <div className="approved-section-heading"><h2>{ui("Progression par thème")}</h2><Button asChild variant="cta"><Link to="/app/parcours">{ui("Continuer mon parcours")}<ArrowRight/></Link></Button></div><ReferenceThemes counts={counts} targets={targets} demo={demo}/></div>;
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
+import { BookOpen, FileText, Flame, Star, Target, ArrowRight } from "lucide-react";
+import { SafeImage } from "@/components/site/SafeImage";
+import { useContentT } from "@/lib/i18n/content";
+import { useUiT } from "@/lib/i18n/internal";
+import { useI18n } from "@/lib/i18n";
+import { latestCompleteExam } from "@/lib/exam-summary";
+import { sessionsOptions } from "@/lib/session.queries";
+import { catalogueOptions, learningOptions } from "@/lib/learning.queries";
+import { applicableLessons, completedApplicable } from "@/lib/catalogue-coverage";
+import { earnedXp, streakDays, percentage, TOPICS } from "@/config/learning";
+import { TOPIC_ARTWORK } from "@/config/topic-artwork";
+import { plural } from "@/lib/learner-labels";
+import { recordedAnswer } from "@/lib/sessions";
+import { ActivityAgenda } from "./LearningAgenda";
+import { ProgressBar } from "./primitives";
+import { topicPracticeSummary, recentLearningActivity } from "@/lib/progress-summary";
+import civi from "@/assets/civi.png";
+
+export function ProgressAnalytics({ demo = false }: { demo?: boolean }) {
+  const ui = useUiT();
+  const ct = useContentT();
+  const { locale } = useI18n();
+  const { data: c } = useSuspenseQuery(catalogueOptions);
+  const { data: d } = useSuspenseQuery(learningOptions);
+  const { data: sessions } = useSuspenseQuery(sessionsOptions);
+  const lessons = applicableLessons(c.lessons, d.profile.parcours);
+  const completions = d.completions.filter((x) => lessons.some((l) => l.id === x.lesson_id));
+  const done = completedApplicable(lessons, completions),
+    total = lessons.length;
+  const exam = latestCompleteExam(sessions.filter((s) => s.parcours === d.profile.parcours));
+  const days = streakDays(d.completions.map((x) => x.completed_at));
+  const goal = d.profile.goal_date
+    ? new Date(d.profile.goal_date + "T12:00:00").toLocaleDateString(locale, {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : ui("À définir");
+  const practice = topicPracticeSummary(d.sessions),
+    events = recentLearningActivity(completions, d.sessions);
+  const label =
+    d.profile.parcours === "resident"
+      ? "Carte de résident"
+      : d.profile.parcours === "sejour"
+        ? "Carte de séjour pluriannuelle"
+        : "Naturalisation";
+  const examCorrect = exam
+    ? exam.questions.filter((q, i) => recordedAnswer(exam, i) === q.answer).length
+    : 0;
+  return (
+    <div className="approved-pages progress-v2">
+      <header className="progress-heading">
+        <div>
+          <h1>{ui("Votre progression")}</h1>
+          <p className="approved-subtitle">
+            {ui("Suivez vos apprentissages et organisez vos révisions.")}
+          </p>
+        </div>
+        {demo && <span className="progress-badge">{ui("Aperçu avec vos données réelles")}</span>}
+      </header>
+      <section className="progress-overview" aria-label={ui("Votre progression")}>
+        <div className="progress-overview-main">
+          <h2>
+            <BookOpen />
+            {ui("Leçons publiées terminées")}
+          </h2>
+          <div className="progress-total">
+            <strong>
+              {done} / {total}
+            </strong>
+            <b>{percentage(done, total)} %</b>
+          </div>
+          <ProgressBar value={percentage(done, total)} />
+          <p>{ui("Ce taux mesure les leçons terminées, pas votre préparation à l’examen.")}</p>
+          <div className="progress-rewards">
+            <span>
+              <Flame />
+              {days} {ui(plural(days, "jour", "jours"))} {ui("de suite")}
+            </span>
+            <span>
+              <Star />
+              {earnedXp(d.completions)} XP
+            </span>
+          </div>
+        </div>
+        <div className="progress-companion">
+          <SafeImage src={civi} alt={ui("CIVI vous encourage")} />
+          <p>{ui("Un petit pas chaque jour pour avancer avec confiance.")}</p>
+        </div>
+        <div className="progress-context">
+          <section>
+            <FileText />
+            <div>
+              <h2>{ui("Dernier examen blanc")}</h2>
+              <p>{exam ? `${examCorrect} / ${exam.total}` : ui("Pas encore évalué")}</p>
+              {exam ? (
+                <Link
+                  to="/app/examen-blanc/resultats/$id"
+                  params={{ id: exam.id }}
+                  search={{ review: false }}
+                >
+                  {ui("Voir le détail")}
+                  <ArrowRight />
+                </Link>
+              ) : (
+                <Link to="/app/examen-blanc">
+                  {ui("Examen blanc")}
+                  <ArrowRight />
+                </Link>
+              )}
+            </div>
+          </section>
+          <section>
+            <Target />
+            <div>
+              <h2>
+                {ui("Votre objectif")} : {ui(label)}
+              </h2>
+              <p>
+                {ui("Date prévue")} : {goal}
+              </p>
+              <Link to="/app/mon-compte">
+                {ui("Modifier mon objectif")}
+                <ArrowRight />
+              </Link>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section className="progress-themes">
+        <h2>{ui("Progression par thème")}</h2>
+        <p>{ui("La lecture et les résultats aux exercices sont suivis séparément.")}</p>
+        <p>
+          {ui(
+            "Les réponses répétées sont comptées comme des tentatives, pas comme des questions maîtrisées.",
+          )}
+        </p>
+        <div className="progress-columns" aria-hidden="true">
+          <span>{ui("Thème")}</span>
+          <span>{ui("Leçons terminées")}</span>
+          <span>{ui("Questions enregistrées")}</span>
+          <span />
+        </div>
+        {TOPICS.map((topic) => {
+          const rows = lessons.filter((l) => l.topic === topic.title);
+          const count = { done: completedApplicable(rows, completions), total: rows.length };
+          const score = practice[topic.title];
+          return (
+            <article className="progress-theme-row" key={topic.title}>
+              <div className="progress-theme-name">
+                <SafeImage src={TOPIC_ARTWORK[topic.art].src} alt="" loading="lazy" />
+                <div>
+                  <h3>{ct(topic.title)}</h3>
+                  <p>{ct(topic.description)}</p>
+                </div>
+              </div>
+              <div className="progress-theme-reading">
+                <small>{ui("Leçons terminées")}</small>
+                {count.total ? (
+                  <>
+                    <b>
+                      {count.done} / {count.total}{" "}
+                      <span>{percentage(count.done, count.total)} %</span>
+                    </b>
+                    <ProgressBar value={percentage(count.done, count.total)} />
+                  </>
+                ) : (
+                  <span className="progress-badge">{ui("Bientôt disponible")}</span>
+                )}
+              </div>
+              <div className="progress-theme-practice">
+                <small>{ui("Questions enregistrées")}</small>
+                {score?.answered ? (
+                  <>
+                    <b>
+                      {score.correct} / {score.answered}
+                    </b>
+                    <span>{ui("bonnes réponses")}</span>
+                  </>
+                ) : (
+                  <span>{ui("Pas encore évalué")}</span>
+                )}
+              </div>
+              <div className="progress-theme-action">
+                {count.total > 0 && (
+                  <Link
+                    to="/app/lecons"
+                    search={{ theme: topic.title, q: "", state: "all" }}
+                    aria-label={`${ui(count.done ? "Continuer" : "Commencer")} · ${ct(topic.title)}`}
+                  >
+                    {ui(count.done ? "Continuer" : "Commencer")}
+                    <ArrowRight />
+                  </Link>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </section>
+      <div className="progress-bottom">
+        <section className="progress-recent">
+          <h2>{ui("Activité récente")}</h2>
+          {events.length ? (
+            <ol>
+              {events.map((e) => (
+                <li key={e.id}>
+                  <BookOpen aria-hidden="true" />
+                  <div>
+                    <time dateTime={e.date}>
+                      {new Date(e.date).toLocaleDateString(locale, {
+                        day: "numeric",
+                        month: "long",
+                      })}
+                    </time>
+                    <b>{ui(e.label)}</b>
+                    <p>
+                      {e.kind === "lesson"
+                        ? ct(lessons.find((l) => l.id === e.ref)?.title ?? "Leçon terminée")
+                        : ui("{0} questions enregistrées", e.answered)}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p>{ui("Votre première leçon vous attend.")}</p>
+          )}
+          <Link to="/app/parcours">
+            {ui("Continuer mon parcours")}
+            <ArrowRight />
+          </Link>
+        </section>
+        <ActivityAgenda compact />
+      </div>
+    </div>
+  );
 }
