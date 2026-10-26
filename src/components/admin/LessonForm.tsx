@@ -5,7 +5,8 @@ import {Plus,Trash2,ArrowUp,ArrowDown,Eye,Code,ImageOff} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {EXAM_THEMES} from '@/lib/admin/schema';
 import {payloadToLessonForm,lessonFormToPayload,validateLessonForm,type LessonFormState,type LessonPayload} from '@/lib/admin/lesson-form';
-import {verifiedMediaOptions,adminMediaSignedUrl} from '@/lib/admin/admin.functions';
+import {adminMediaSignedUrl} from '@/lib/admin/admin.functions';
+import {verifiedMediaQuery} from '@/lib/admin/queries';
 import {LESSON_ILLUSTRATIONS} from '@/config/lesson-illustrations';
 
 function ListEditor({label,items,onChange,min=0,textarea=false}:{label:string;items:string[];onChange:(items:string[])=>void;min?:number;textarea?:boolean}){
