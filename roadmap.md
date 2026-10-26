@@ -40,3 +40,6 @@
 ## Limites connues (reportées au rapport)
 - Simulation 40 questions indisponible : thème « Vivre dans la société française » sans questions publiées ; classification 28/12 non vérifiée (0 question classée) — la ligne 28/12 ne s'affiche que si la couverture vérifiée la justifie.
 - Marqueurs/bookmarks de questions en examen : non implémentés.
+
+## Lot barre latérale (26/10)
+- [x] Retirer tout lien « Administration » de l'interface apprenante (AppShell, MobileSpaceMenu, aucun lien dans Mon compte) ; /admin accessible par URL uniquement ; requête de rôle retirée de la coque apprenante ; test rendant la coque pour un compte avec rôle admin et assertion d'absence du lien ; 232 tests et build OK.
