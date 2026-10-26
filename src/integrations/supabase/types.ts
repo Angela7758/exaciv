@@ -70,36 +70,48 @@ export type Database = {
       }
       admin_media: {
         Row: {
+          alt: string
           id: string
           kind: string
           language: string
           lesson_id: string | null
+          mime: string | null
           rights: string
+          size_bytes: number | null
           source: string
+          storage_path: string | null
           title: string
           updated_at: string
           url: string
           verified: boolean
         }
         Insert: {
+          alt?: string
           id?: string
           kind: string
           language?: string
           lesson_id?: string | null
+          mime?: string | null
           rights?: string
+          size_bytes?: number | null
           source?: string
+          storage_path?: string | null
           title: string
           updated_at?: string
           url: string
           verified?: boolean
         }
         Update: {
+          alt?: string
           id?: string
           kind?: string
           language?: string
           lesson_id?: string | null
+          mime?: string | null
           rights?: string
+          size_bytes?: number | null
           source?: string
+          storage_path?: string | null
           title?: string
           updated_at?: string
           url?: string
@@ -365,6 +377,7 @@ export type Database = {
       learning_lessons: {
         Row: {
           body: string[]
+          hero_media_id: string | null
           id: string
           layout: Json | null
           minutes: number
@@ -378,6 +391,7 @@ export type Database = {
         }
         Insert: {
           body: string[]
+          hero_media_id?: string | null
           id: string
           layout?: Json | null
           minutes?: number
@@ -391,6 +405,7 @@ export type Database = {
         }
         Update: {
           body?: string[]
+          hero_media_id?: string | null
           id?: string
           layout?: Json | null
           minutes?: number

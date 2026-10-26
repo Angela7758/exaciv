@@ -26,3 +26,82 @@ export const IMPORT_EXAMPLE={id:'exemple-1',question:'Qui vote les lois en Franc
 export function csvExample(){const e=IMPORT_EXAMPLE;return Papa.unparse({fields:[...IMPORT_FIELDS],data:[[e.id,e.question,JSON.stringify(e.options),e.correct_option_id,e.explanation,e.theme,e.exam_theme,IMPORT_PATHWAYS,e.difficulty,e.question_type,e.classification_source,e.source,e.source_url,e.lesson_id,e.image_url,'{}']]});}
 export function csvTemplate(){return csvExample();}
 export function downloadText(name:string,text:string,type='text/plain'){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url);}
+
+// ============= Simplified CSV template (section 3) =============
+export const SIMPLE_FIELDS=['question','option_a','option_b','option_c','option_d','bonne_reponse','explication','theme','pathways','difficulte','source','source_url'] as const;
+export type SimpleField=typeof SIMPLE_FIELDS[number];
+const strip=(s:string)=>s.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+// Case- and accent-insensitive header synonyms for both the full and the simple template.
+export const HEADER_SYNONYMS:Record<string,string[]>={
+ id:['id','identifiant','identifiant_stable','question_id'],
+ question:['question','texte','intitule','enonce','question_fr'],
+ options:['options','choix','reponses_json'],
+ correct_option_id:['correct_option_id','bonne_reponse_id','reponse_id','correct'],
+ explanation:['explication','correction','explication_fr'],
+ theme:['theme','theme_officiel','thematique','categorie'],
+ exam_theme:['exam_theme','theme_examen'],
+ pathways:['pathways','parcours','parcours_concernes'],
+ difficulty:['difficulty','difficulte','niveau'],
+ question_type:['question_type','type','type_de_question'],
+ classification_source:['classification_source','justification','justification_classification'],
+ source:['source','nom_source','reference'],
+ source_url:['source_url','url_source','lien_source','lien'],
+ lesson_id:['lesson_id','lecon','lecon_id','cours_id'],
+ image_url:['image_url','image','illustration'],
+ translations:['translations','traductions'],
+ option_a:['option_a','optiona','reponse_a','a'],
+ option_b:['option_b','optionb','reponse_b','b'],
+ option_c:['option_c','optionc','reponse_c','c'],
+ option_d:['option_d','optiond','reponse_d','d'],
+ bonne_reponse:['bonne_reponse','bonne_reponse_lettre','reponse_correcte','answer'],
+ explication:['explication','explication_simple'],
+};
+export function synonymMapping(columns:string[]):Record<ImportField,string>{
+ const byNorm=new Map(columns.map(c=>[strip(c),c]));
+ return Object.fromEntries(IMPORT_FIELDS.map(f=>{
+  const hit=(HEADER_SYNONYMS[f]??[f]).map(s=>strip(s)).find(s=>byNorm.has(s));
+  return [f,hit?byNorm.get(hit)!:''];
+ })) as Record<ImportField,string>;
+}
+export function detectSimpleMapping(columns:string[]):Record<SimpleField,string>|null{
+ const byNorm=new Map(columns.map(c=>[strip(c),c]));
+ const out:Record<string,string>={};
+ for(const f of SIMPLE_FIELDS){const hit=(HEADER_SYNONYMS[f]??[f]).map(s=>strip(s)).find(s=>byNorm.has(s));if(!hit)return null;out[f]=byNorm.get(hit)!;}
+ return out as Record<SimpleField,string>;
+}
+export const isSimpleColumns=(columns:string[])=>detectSimpleMapping(columns)!==null;
+function stableImportId(question:string,index:number):string{
+ const slug=question.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40);
+ return `import-${slug||'question'}-${index+1}`;
+}
+// Convert one simple-template row into a full import row (generated option ids a–d).
+export function simpleRowToImportRow(row:ImportRow,mapping:Record<SimpleField,string>,index:number):ImportRow{
+ const get=(f:SimpleField)=>String(row[mapping[f]]??'').trim();
+ const letter=get('bonne_reponse').toUpperCase();
+ const options=['A','B','C','D'].map(l=>({id:l.toLowerCase(),text:get(('option_'+l.toLowerCase()) as SimpleField)}));
+ return {
+  id:stableImportId(get('question'),index),question:get('question'),
+  options:JSON.stringify(options),correct_option_id:['A','B','C','D'].includes(letter)?letter.toLowerCase():letter,
+  explanation:get('explication'),theme:get('theme'),exam_theme:get('theme'),pathways:get('pathways')||IMPORT_PATHWAYS,
+  difficulty:get('difficulte')||'standard',source:get('source'),source_url:get('source_url'),
+ };
+}
+export function simpleRowsToImportRows(rows:ImportRow[],columns:string[]):{rows:ImportRow[];mapping:Record<SimpleField,string>}|null{
+ const mapping=detectSimpleMapping(columns);if(!mapping)return null;
+ return {rows:rows.map((r,i)=>simpleRowToImportRow(r,mapping,i)),mapping};
+}
+export function csvSimpleTemplate(){
+ return Papa.unparse({fields:[...SIMPLE_FIELDS],data:[['Qui vote les lois en France ?','Le Parlement','Le maire','Le préfet','Le juge','A','Le Parlement vote les lois.',EXAM_THEMES[1]??'','naturalisation|resident|sejour','standard','Service-Public','https://www.service-public.fr/']]});
+}
+// Export of the current drafts using exactly IMPORT_FIELDS (section 3).
+export function draftsToCsv(drafts:Draft[]):string{
+ return Papa.unparse({fields:[...IMPORT_FIELDS],data:drafts.map(d=>IMPORT_FIELDS.map(f=>{
+  const v=(d.payload as Record<string,unknown>)[f];
+  return typeof v==='object'&&v!==null?JSON.stringify(v):(v??'');
+ }))});
+}
+export function draftsToJson(drafts:Draft[]):string{return JSON.stringify(drafts.map(d=>d.payload),null,2);}
+// Row-level validation report, downloadable as CSV (row, id, reasons).
+export function errorReportCsv(preview:ImportPreview[]):string{
+ return Papa.unparse({fields:['ligne','id','statut','raisons'],data:preview.map(r=>[r.row,r.id,r.status,r.errors.join(' | ')])});
+}

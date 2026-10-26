@@ -6,12 +6,12 @@ import {RecordButton} from './RecordButton';
 import {stopLearningAudio} from '@/lib/local-audio';
 import {useUiT} from '@/lib/i18n/internal';
 import {useEffect,useRef,useState} from 'react';
-import {useSuspenseQuery,useQueryClient} from '@tanstack/react-query';
+import {useSuspenseQuery,useQueryClient,useQuery} from '@tanstack/react-query';
 import {Link,useNavigate} from '@tanstack/react-router';
 import {useServerFn} from '@tanstack/react-start';
 import {BookOpen,Lightbulb,CheckCircle2,ChevronRight,ArrowRight,Target,Save,Clock,Languages,Unlock,Equal,Users} from 'lucide-react';
 import {Button} from '@/components/ui/button';
-import {catalogueOptions,learningOptions} from '@/lib/learning.queries';
+import {catalogueOptions,learningOptions,lessonHeroOptions} from '@/lib/learning.queries';
 import {completeLesson,saveReadingPosition} from '@/lib/learning.functions';
 import {startSession} from '@/lib/session.functions';
 import {LearningCard} from './primitives';
@@ -27,6 +27,8 @@ function LessonReader({slug}:{slug:string}){
  const qc=useQueryClient();const complete=useServerFn(completeLesson);const save=useServerFn(saveReadingPosition);const start=useServerFn(startSession);const navigate=useNavigate();
  const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [saving,setSaving]=useState(false);const [translation,setTranslation]=useState(false);
  const lessons=applicableLessons(catalogue.lessons,d.profile.parcours);const lesson=lessons.find(v=>v.id===slug);const last=lastLessonSection(lesson?.body??[]);
+ const heroMediaId=(lesson as {hero_media_id?:string|null}|undefined)?.hero_media_id??null;
+ const {data:heroMedia}=useQuery({...lessonHeroOptions(heroMediaId??''),enabled:Boolean(heroMediaId)});
  const saved=d.readingPositions.find(v=>v.lesson_id===slug);const finalSaved=last!==null&&saved?.section_index===last;const [reached,setReached]=useState(finalSaved);const [persisted,setPersisted]=useState(finalSaved);
  const summaryRef=useRef<HTMLElement|null>(null);const writing=useRef(false);const savedRef=useRef(finalSaved);
  async function persist(){if(last===null||writing.current||savedRef.current)return;writing.current=true;setSaving(true);setError('');try{await save({data:{lessonId:slug,section:last}});savedRef.current=true;setPersisted(true);await qc.invalidateQueries({queryKey:['learning']});}catch(e){setError(e instanceof Error?ui(e.message):ui('Position non enregistrée.'));}finally{writing.current=false;setSaving(false);}}
@@ -44,7 +46,7 @@ function LessonReader({slug}:{slug:string}){
   <p className="lesson-meta"><Clock/>{l.minutes} {ui('min')} · {ui(status)}</p>
   <div className={`lesson-overview ${layout?.objectives.length?'':'lesson-overview-no-objectives'}`}>
    {layout&&layout.objectives.length>0&&<section className="lesson-objectives" lang="fr" dir="ltr"><h2><Target/>{ui('Objectifs de la leçon')}</h2><ul>{layout.objectives.map(text=><li key={text}>{text}</li>)}</ul></section>}
-   {artwork&&<SafeImage className="lesson-hero" src={artwork.src} alt={artwork.alt} width={1376} height={768}/>}
+   {heroMedia?<SafeImage className="lesson-hero" src={heroMedia.url} alt={heroMedia.alt} width={1376} height={768}/>:artwork&&<SafeImage className="lesson-hero" src={artwork.src} alt={artwork.alt} width={1376} height={768}/>}
   </div>
   {!l.body.length?<p role="status">{ui('Le contenu de cette leçon est en cours de préparation. Aucun progrès ne sera enregistré.')}</p>:<>
    <div id="lesson-text" className="lesson-continuous-body" lang="fr" dir="ltr"><h2>{layout?.pillars.length?layout.pillars.map(p=>p.title).join(', '):l.title}</h2>{l.body.map((text,index)=><p className="lesson-source-text" key={index}>{text}</p>)}</div>

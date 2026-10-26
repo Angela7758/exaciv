@@ -21,7 +21,7 @@ export function AdminShell(){
  if(!roles.length)return <div className="admin-denied"><h1>Accès réservé</h1><p>Ce compte n’a pas de rôle d’administration.</p><Link to="/app">Retour à mon espace</Link></div>;
  return <AdminFrame roles={roles} open={open} onOpenChange={setOpen}><Outlet/></AdminFrame>;
 }
-const bottomLinks=[{to:'/app/abonnement',label:'Abonnement',icon:Receipt},{to:'/faq',label:'Aide',icon:HelpCircle},{to:'/app/mon-compte',label:'Mon compte',icon:User}] as const;
+const bottomLinks=[{to:'/faq',label:'Aide',icon:HelpCircle},{to:'/app/mon-compte',label:'Mon compte',icon:User}] as const;
 export function AdminFrame({roles,children,open=false,onOpenChange=()=>{}}:{roles:string[];children:React.ReactNode;open?:boolean;onOpenChange?:(open:boolean)=>void}){
  const u=useUiT();const {locale,setLocale}=useI18n();
  const visible=links.filter(l=>l.p==='overview'||can(roles,l.p));

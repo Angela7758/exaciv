@@ -47,3 +47,17 @@
 ## Lot unification des thèmes (26/10)
 - [x] Migration 0034 : 41 questions et leçons sur les cinq thèmes officiels, contrainte et validation (tests theme-unification, contrôle base)
 - [x] Admin : sélecteur unique, filtre thème, aide import, badges En ligne/Hors ligne (tests ; session admin réelle non vérifiée)
+
+## Lot saisie administration (26/10)
+- [ ] Pré-check : édition cours JSON, héros statiques, aucun bucket Storage, admin_media/media_save/media_verify recensés
+- [ ] Actions groupées Questions (thème/type, transaction, audit, ≤200, refus serveur)
+- [ ] Éditeur de cours en formulaire (+ aperçu apprenant, JSON avancé, alerte modifications)
+- [ ] Import : export CSV/JSON, modèle simple, synonymes, rapport d'erreurs CSV, barre collante
+- [ ] Médias : migration 0035 bucket admin-media + politiques, téléversement réel validé serveur
+- [ ] Correctifs UI admin : tiroirs Ajouter, retrait Abonnement, rôles/journal lisibles
+- [ ] Tests + vérification réelle + rapport
+
+## Lot saisie administration (26/10) — terminé
+- [x] Migration 0035 : bucket admin-media privé + politiques, actions groupées/export/suppression média, héros de cours
+- [x] Actions groupées Questions, éditeur de cours en formulaire, import enrichi, téléversement médias, correctifs UI admin
+- [x] 258 tests, typecheck OK ; refus serveur non-admin vérifié ; catalogue apprenant inchangé (11/12/8/10/0)

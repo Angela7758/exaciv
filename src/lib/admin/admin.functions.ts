@@ -14,8 +14,9 @@ export const adminData=createServerFn({method:'POST'}).middleware([requireSupaba
  else if(data.section!=='overview'){
  const table={questions:'question_drafts',imports:'admin_imports',tests:'learning_tests',lessons:'lesson_drafts',translations:'admin_translations',media:'admin_media',reports:'question_reports',audit:'admin_audit'}[data.section] as 'question_drafts'|'admin_imports'|'learning_tests'|'lesson_drafts'|'admin_translations'|'admin_media'|'question_reports'|'admin_audit';
  const result=await context.supabase.from(table).select('*').limit(1000);if(result.error)throw new Error(result.error.message);rows=result.data;
- if(data.section==='lessons'){const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');const live=await db.from('learning_lessons').select('id,published,title,topic,body,takeaway,minutes,source_url');const byId=new Map((live.data??[]).map(l=>[l.id,l]));rows=(result.data as {id:string}[]).map(r=>({...r,live:byId.get(r.id)??null})) as unknown as Json[];}
- }
+  if(data.section==='lessons'){const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');const live=await db.from('learning_lessons').select('id,published,title,topic,body,takeaway,minutes,source_url');const byId=new Map((live.data??[]).map(l=>[l.id,l]));rows=(result.data as {id:string}[]).map(r=>({...r,live:byId.get(r.id)??null})) as unknown as Json[];}
+  if(data.section==='audit'){const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');const actorIds=[...new Set((result.data as {actor:string|null}[]).map(r=>r.actor).filter((v):v is string=>Boolean(v)))];const profs=actorIds.length?await db.from('profiles').select('id,display_name').in('id',actorIds):{data:[] as {id:string;display_name:string}[]};const names=new Map((profs.data??[]).map(p=>[p.id,p.display_name]));rows=(result.data as {actor:string|null}[]).map(r=>({...r,actor_name:r.actor?(names.get(r.actor)??null):null})) as unknown as Json[];}
+  }
  return {roles,metrics:metrics.data as Record<string,number|null>,rows};
 });
 export const adminQuestions=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{const p=await context.supabase.rpc('admin_can',{p_permission:'content'});if(!p.data)throw new Error('Accès refusé.');// Live rows include unpublished ones (RLS hides them), read only after the content permission check.
@@ -49,4 +50,69 @@ export const adminOverviewData=createServerFn({method:'POST'}).middleware([requi
  const audit=can(roles,'audit')?await context.supabase.from('admin_audit').select('id,actor,action,created_at').gte('created_at',since).order('created_at',{ascending:false}).limit(10):null;
  if(audit?.error)throw new Error('Journal indisponible.');
  return {roles,days:data.days,accounts:accounts.count,active:activeLearners(sessions,completions),completed:completedSimulations(exams),reports:reports.count,...catalogueOverview(questions.data,lessons.data),operations:audit?.data??null};
+});
+
+// ============= Batch entry lot: bulk update, export, real media uploads =============
+const bulkSchema=z.object({ids:z.array(z.string().min(1).max(100)).min(1).max(200),theme:z.string().optional(),question_type:z.enum(['knowledge','scenario','unclassified']).optional(),classification_source:z.string().max(1000).optional()});
+export const bulkUpdateQuestions=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(bulkSchema).handler(async({context,data})=>{
+ const r=await context.supabase.rpc('admin_command',{p_action:'questions_bulk_update',p_data:data as Json});
+ if(r.error)throw new Error(r.error.message);return r.data;
+});
+export const exportQuestions=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{
+ const r=await context.supabase.rpc('admin_command',{p_action:'questions_export',p_data:{}});
+ if(r.error)throw new Error(r.error.message);return r.data;
+});
+export const uploadAdminMedia=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((data:unknown)=>{
+ if(!(data instanceof FormData))throw new Error('Fichier requis.');return data;
+}).handler(async({context,data})=>{
+ const perm=await context.supabase.rpc('admin_can',{p_permission:'edit'});if(!perm.data)throw new Error('Accès refusé.');
+ const file=data.get('file');const title=String(data.get('title')??'').trim();const alt=String(data.get('alt')??'').trim();
+ const language=String(data.get('language')??'fr');const source=String(data.get('source')??'').trim();const rights=String(data.get('rights')??'').trim();const lessonId=String(data.get('lesson_id')??'').trim();
+ if(!(file instanceof File))throw new Error('Fichier requis.');
+ if(!title)throw new Error('Le titre est requis.');
+ const bytes=new Uint8Array(await file.arrayBuffer());
+ const {validateMediaUpload,detectImageMime,sanitizeMediaFilename}=await import('./media');
+ const invalid=validateMediaUpload({name:file.name,size:file.size,head:bytes.slice(0,16),alt,rights});
+ if(invalid)throw new Error(invalid);
+ const mime=detectImageMime(bytes.slice(0,16))!;const ext=mime==='image/png'?'png':mime==='image/jpeg'?'jpg':'webp';
+ const path=`${crypto.randomUUID()}-${sanitizeMediaFilename(file.name).replace(/\.[a-z0-9]+$/,'')}.${ext}`;
+ const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');
+ const up=await db.storage.from('admin-media').upload(path,bytes,{contentType:mime,upsert:false});
+ if(up.error)throw new Error('Téléversement impossible.');
+ const row=await db.from('admin_media').insert({title,alt,url:`storage://admin-media/${path}`,storage_path:path,mime,size_bytes:file.size,kind:'image',language,source,rights,lesson_id:lessonId||null,verified:false}).select().single();
+ if(row.error)throw new Error('Enregistrement du média impossible.');
+ await db.from('admin_audit').insert({actor:context.userId,action:'media_upload',entity_id:row.data.id,after_data:{title,path,size:file.size}});
+ return row.data;
+});
+export const deleteAdminMedia=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({id:z.string().uuid()})).handler(async({context,data})=>{
+ const r=await context.supabase.rpc('admin_command',{p_action:'media_delete',p_data:{id:data.id}});
+ if(r.error)throw new Error(r.error.message);
+ const path=(r.data as {storage_path?:string}|null)?.storage_path;
+ if(path){const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');await db.storage.from('admin-media').remove([path]);}
+ return {success:true};
+});
+export const verifiedMediaOptions=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{
+ const p=await context.supabase.rpc('admin_can',{p_permission:'content'});if(!p.data)throw new Error('Accès refusé.');
+ const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');
+ const r=await db.from('admin_media').select('id,title,alt,language,storage_path').eq('verified',true).order('updated_at',{ascending:false}).limit(500);
+ if(r.error)throw new Error('Médias indisponibles.');return r.data;
+});
+export const adminMediaSignedUrl=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({id:z.string().uuid()})).handler(async({context,data})=>{
+ const p=await context.supabase.rpc('admin_can',{p_permission:'content'});if(!p.data)throw new Error('Accès refusé.');
+ const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');
+ const row=await db.from('admin_media').select('storage_path').eq('id',data.id).single();
+ if(row.error||!row.data.storage_path)throw new Error('Média introuvable.');
+ const signed=await db.storage.from('admin-media').createSignedUrl(row.data.storage_path,3600);
+ if(signed.error)throw new Error('Lecture impossible.');return {url:signed.data.signedUrl};
+});
+// Learner-facing: a verified uploaded hero replaces the static illustration only when one was chosen.
+export const lessonHeroMedia=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({lessonId:z.string().min(1).max(100)})).handler(async({context,data})=>{
+ const lesson=await context.supabase.from('learning_lessons').select('hero_media_id').eq('id',data.lessonId).eq('published',true).single();
+ if(lesson.error||!lesson.data.hero_media_id)return null;
+ const {supabaseAdmin:db}=await import('@/integrations/supabase/client.server');
+ const media=await db.from('admin_media').select('storage_path,alt,verified').eq('id',lesson.data.hero_media_id).single();
+ if(media.error||!media.data.verified||!media.data.storage_path)return null;
+ const signed=await db.storage.from('admin-media').createSignedUrl(media.data.storage_path,3600);
+ if(signed.error)return null;
+ return {url:signed.data.signedUrl,alt:media.data.alt};
 });
