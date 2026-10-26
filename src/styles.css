@@ -1370,7 +1370,7 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .sidebar-bottom .side-link.admin-secondary{margin-top:6px;padding:5px 14px;font-size:11px;gap:8px;color:color-mix(in oklab,var(--app-navy-foreground) 70%,transparent);}
 .sidebar-bottom .side-link.admin-secondary svg{width:13px;height:13px;}
 .sidebar-bottom .side-link.admin-secondary:hover{color:var(--app-navy-foreground);}
-.mobile-drawer-nav .admin-secondary-link{font-size:12px;padding:7px 12px;gap:8px;color:color-mix(in oklab,var(--app-navy-foreground) 70%,transparent);}
+.mobile-drawer-nav .admin-secondary-link{font-size:12px;padding:7px 12px;gap:8px;color:color-mix(in oklab,var(--app-navy) 72%,white);}
 .mobile-drawer-nav .admin-secondary-link svg{width:14px;height:14px;}
 .reference-shell .sidebar-bottom .side-link.admin-secondary{font-size:11px;}
 .sidebar-account{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:12px;color:var(--app-navy-foreground);text-align:start;}
