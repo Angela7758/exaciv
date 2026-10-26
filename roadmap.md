@@ -43,3 +43,7 @@
 
 ## Lot barre latérale (26/10)
 - [x] Retirer tout lien « Administration » de l'interface apprenante (AppShell, MobileSpaceMenu, aucun lien dans Mon compte) ; /admin accessible par URL uniquement ; requête de rôle retirée de la coque apprenante ; test rendant la coque pour un compte avec rôle admin et assertion d'absence du lien ; 232 tests et build OK.
+
+## Lot unification des thèmes (26/10)
+- [x] Migration 0034 : 41 questions et leçons sur les cinq thèmes officiels, contrainte et validation (tests theme-unification, contrôle base)
+- [x] Admin : sélecteur unique, filtre thème, aide import, badges En ligne/Hors ligne (tests ; session admin réelle non vérifiée)

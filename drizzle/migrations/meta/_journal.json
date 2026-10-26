@@ -239,6 +239,13 @@
       "when": 1792976331760,
       "tag": "0033_drop_ambiguous_start_learning_session_overload",
       "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1793008549956,
+      "tag": "0034_unify_official_question_themes",
+      "breakpoints": true
     }
   ]
 }

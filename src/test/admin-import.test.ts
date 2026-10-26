@@ -3,7 +3,7 @@ import {can,emptyQuestion,questionSchema,type Draft} from '@/lib/admin/schema';
 import {parseImport,defaultMapping,validateImport,IMPORT_FIELDS} from '@/lib/admin/import';
 import {sessionSummary} from '@/lib/sessions';
 import {unfinishedSession} from '@/lib/practice-entry';
-const q={...emptyQuestion,id:'test-stable',question:'Quelle est la durée du mandat présidentiel ?',options:[{id:'four',text:'4 ans'},{id:'five',text:'5 ans'},{id:'seven',text:'7 ans'},{id:'ten',text:'10 ans'}],correct_option_id:'five',explanation:'Le mandat du président dure cinq ans.',source:'Constitution, article 6',source_url:'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019241000'};
+const q={...emptyQuestion,theme:'Système institutionnel et politique',exam_theme:'Système institutionnel et politique',id:'test-stable',question:'Quelle est la durée du mandat présidentiel ?',options:[{id:'four',text:'4 ans'},{id:'five',text:'5 ans'},{id:'seven',text:'7 ans'},{id:'ten',text:'10 ans'}],correct_option_id:'five',explanation:'Le mandat du président dure cinq ans.',source:'Constitution, article 6',source_url:'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019241000'};
 const map=defaultMapping([...IMPORT_FIELDS]);
 describe('Import et permissions administration',()=>{
  it('accepte exactement quatre options et une bonne réponse identifiée',()=>{expect(questionSchema.safeParse(q).success).toBe(true);expect(questionSchema.safeParse({...q,options:q.options.slice(0,3)}).success).toBe(false);});

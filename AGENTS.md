@@ -9,7 +9,7 @@
 - HomeHero styles are homepage-scoped.
 - Six public routes share a persistent Paris background; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
-- Official taxonomy/references use src/config/official-programme.ts; LEGACY_TOPIC_MAP matches civic_topic. Map legacy lessons/mistakes at read time, preserving snapshots/order/progress; editorial QCM are not the ministry bank.
+- Official themes (official-programme.ts) are the only writable question/lesson themes; exam_theme is authoritative and equals theme (DB CHECK). LEGACY_TOPIC_MAP/civic_topic only read old snapshots.
 - Auth and session-entry reference styles are scoped to approved-auth and entry-shell; SessionStart reuses persistent RPCs with click-only creation/resume and theme-prefixed practice selection, Introductory visits never start deadlines.
 - Registration credentials stay in memory; non-sensitive objectives and diagnostics use scoped session storage, never persisting passwords on return to step one.
 - Practice question presentation is separate from feedback; recorded answers and server current index remain authoritative while previous-question viewing and tentative selections never alter scoring.
