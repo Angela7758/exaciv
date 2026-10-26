@@ -43,7 +43,7 @@ export function LessonForm({lessonId,payload,busy,onSave,onCancel}:{lessonId:str
  const [jsonEdit,setJsonEdit]=useState(false);
  const [jsonText,setJsonText]=useState('');
  const [preview,setPreview]=useState(false);
- const {data:media}=useQuery({...verifiedMediaOptionsQuery});
+ const {data:media}=useQuery(verifiedMediaQuery);
  const signedUrl=useServerFn(adminMediaSignedUrl);
  const [heroUrl,setHeroUrl]=useState<string|null>(null);
  const staticArt=LESSON_ILLUSTRATIONS[lessonId];
@@ -86,6 +86,3 @@ export function LessonForm({lessonId,payload,busy,onSave,onCancel}:{lessonId:str
   {preview&&<LessonPreview form={form} heroUrl={heroUrl}/>}
  </div>;
 }
-
-import {queryOptions} from '@tanstack/react-query';
-const verifiedMediaOptionsQuery=queryOptions({queryKey:['admin','verified-media'],queryFn:()=>verifiedMediaOptions()});
