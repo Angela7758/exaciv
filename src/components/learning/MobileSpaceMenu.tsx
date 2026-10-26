@@ -1,10 +1,8 @@
 import {useEffect,useState} from 'react';
 import {Link} from '@tanstack/react-router';
-import {useQuery} from '@tanstack/react-query';
-import {BookOpen,Home,Target,Route,FileX,ChartNoAxesColumn,Crown,Settings,LifeBuoy,Shield} from 'lucide-react';
+import {BookOpen,Home,Target,Route,FileX,ChartNoAxesColumn,Crown,Settings,LifeBuoy} from 'lucide-react';
 import {MobileDrawer} from '@/components/site/MobileDrawer';
 import {useUiT} from '@/lib/i18n/internal';
-import {accessOptions} from '@/lib/admin/queries';
 
 const destinations=[
  {to:'/app',label:'Accueil',icon:Home},
@@ -19,7 +17,7 @@ const destinations=[
  {to:'/app/mon-compte',label:'Mon compte',icon:Settings},
 ] as const;
 export function MobileSpaceMenu({pathname}:{pathname:string}){
- const [open,setOpen]=useState(false);const ui=useUiT();const {data:roles}=useQuery(accessOptions);
+ const [open,setOpen]=useState(false);const ui=useUiT();
  useEffect(()=>setOpen(false),[pathname]);
- return <div className="learning-mobile-menu-entry"><MobileDrawer id="learning-mobile-menu" open={open} onOpenChange={setOpen} label={ui('Mon espace')}><nav className="mobile-drawer-nav" aria-label={ui('Mon espace')}>{destinations.map(n=><Link to={n.to} key={n.to} activeOptions={{exact:n.to==='/app'}} activeProps={{className:'nav-selected','aria-current':'page'}} onClick={()=>setOpen(false)}><n.icon/>{ui(n.label)}</Link>)}{Boolean(roles?.length)&&<Link to="/admin" className="admin-secondary-link" onClick={()=>setOpen(false)}><Shield/>{ui("Administration")}</Link>}<Link to="/faq" search={{q:''}} onClick={()=>setOpen(false)}><LifeBuoy/>{ui("Aide")}</Link><Link to="/" onClick={()=>setOpen(false)}><Home/>ExaCiv</Link></nav></MobileDrawer></div>;
+ return <div className="learning-mobile-menu-entry"><MobileDrawer id="learning-mobile-menu" open={open} onOpenChange={setOpen} label={ui('Mon espace')}><nav className="mobile-drawer-nav" aria-label={ui('Mon espace')}>{destinations.map(n=><Link to={n.to} key={n.to} activeOptions={{exact:n.to==='/app'}} activeProps={{className:'nav-selected','aria-current':'page'}} onClick={()=>setOpen(false)}><n.icon/>{ui(n.label)}</Link>)}<Link to="/faq" search={{q:''}} onClick={()=>setOpen(false)}><LifeBuoy/>{ui("Aide")}</Link><Link to="/" onClick={()=>setOpen(false)}><Home/>ExaCiv</Link></nav></MobileDrawer></div>;
 }
