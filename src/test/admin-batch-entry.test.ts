@@ -79,6 +79,14 @@ describe('Export et modèle simple',()=>{
   expect(mapping.pathways).toBe('Parcours');
   expect(detectSimpleMapping(['Question','OPTION_A','option_b','option_c','option_d','Bonne réponse','Explication','Thème','Parcours','Difficulté','Source','Lien source'])).not.toBeNull();
  });
+ it('réimporte les exports CSV et JSON avec la correspondance utilisée par la page',()=>{
+  for(const [text,name] of [[draftsToCsv([draft]),'export.csv'],[JSON.stringify([draft.payload]),'export.json']]){
+   const parsed=parseImport(text??'',name??'');
+   const mapping=synonymMapping(parsed.columns);
+   expect(mapping.explanation).toBe('explanation');
+   expect(validateImport(parsed.rows,mapping,[draft])[0]?.status).toBe('duplicate');
+  }
+ });
  it('produit un rapport d’erreurs ligne par ligne en CSV',()=>{
   const preview=validateImport([{id:'x'}],defaultMapping(['id']),[]);
   const csv=errorReportCsv(preview);
