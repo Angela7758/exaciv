@@ -20,7 +20,8 @@ export function InteractionFx() {
       s.className = 'fx-ripple';
       const size = Math.max(r.width, r.height);
       s.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
-      btn.classList.add('fx-pressable');
+      // Never reposition an already positioned control (e.g. dialog close buttons): switching absolute→relative on pointerdown moved it out from under the pointer, so the click was lost.
+      if (getComputedStyle(btn).position === 'static') btn.classList.add('fx-pressable'); else btn.classList.add('fx-pressable-clip');
       btn.appendChild(s);
       window.setTimeout(() => s.remove(), 600);
     };

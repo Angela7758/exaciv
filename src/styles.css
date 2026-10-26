@@ -1980,3 +1980,7 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .admin-lesson-preview{margin-top:1rem;border:1px solid var(--border);border-radius:.75rem;padding:1rem;background:var(--background)}
 .admin-preview-caption{font-size:.75rem;color:var(--muted-foreground);margin-bottom:.5rem}
 .admin-lesson-preview .lesson-hero{max-width:100%;border-radius:.5rem}
+
+.fx-pressable-clip{overflow:hidden;}
+.admin-issues{margin:8px 0 0;padding-inline-start:18px;display:grid;gap:4px;font-size:13px;}.admin-issues button{text-align:start;text-decoration:underline;text-underline-offset:2px;}.admin-editor [aria-invalid=true]{border-color:var(--destructive)!important;}
+@media(max-width:1023px){.fidelity-admin-shell .admin-topbar>.mobile-menu-trigger{display:inline-flex;}}
