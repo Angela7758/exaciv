@@ -22,7 +22,8 @@ describe('Migration function overloads',()=>{
   const files=readdirSync(DIR).filter(f=>f.endsWith('.sql')).sort();
   const live=new Map<string,Set<string>>();
   for(const file of files){
-   const sql=readFileSync(join(DIR,file),'utf8');
+   // Strip line comments so commented rollbacks (e.g. 0033) are not scanned.
+   const sql=readFileSync(join(DIR,file),'utf8').split('\n').filter(l=>!l.trimStart().startsWith('--')).join('\n');
    const {creates,drops}=signatures(sql);
    for(const d of drops) live.get(d.name)?.delete(d.args);
    for(const c of creates){
