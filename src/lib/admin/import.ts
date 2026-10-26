@@ -59,7 +59,7 @@ export const HEADER_SYNONYMS:Record<string,string[]>={
 export function synonymMapping(columns:string[]):Record<ImportField,string>{
  const byNorm=new Map(columns.map(c=>[strip(c),c]));
  return Object.fromEntries(IMPORT_FIELDS.map(f=>{
-  const hit=(HEADER_SYNONYMS[f]??[f]).map(s=>strip(s)).find(s=>byNorm.has(s));
+  const hit=[f,...(HEADER_SYNONYMS[f]??[])].map(s=>strip(s)).find(s=>byNorm.has(s));
   return [f,hit?byNorm.get(hit)!:''];
  })) as Record<ImportField,string>;
 }
