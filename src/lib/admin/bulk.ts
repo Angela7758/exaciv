@@ -2,7 +2,7 @@ import {EXAM_THEMES} from './schema';
 import {questionTypeSchema} from '@/lib/practice-rules';
 
 export const BULK_MAX=200;
-export interface BulkUpdate {ids:string[];theme?:string;question_type?:string;classification_source?:string;}
+export interface BulkUpdate {ids:string[];theme?:string|undefined;question_type?:string|undefined;classification_source?:string|undefined;}
 
 // Mirrors the server rules in admin_command(questions_bulk_update): the server stays
 // authoritative; this client copy gives immediate French feedback and is unit-tested.

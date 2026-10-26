@@ -62,13 +62,10 @@ export const exportQuestions=createServerFn({method:'POST'}).middleware([require
  const r=await context.supabase.rpc('admin_command',{p_action:'questions_export',p_data:{}});
  if(r.error)throw new Error(r.error.message);return r.data;
 });
-async function requireContentEdit(supabase:{rpc:(name:string,args:Record<string,unknown>)=>Promise<{data:unknown}>}){
- const p=await supabase.rpc('admin_can',{p_permission:'edit'});if(!p.data)throw new Error('Accès refusé.');
-}
 export const uploadAdminMedia=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((data:unknown)=>{
  if(!(data instanceof FormData))throw new Error('Fichier requis.');return data;
 }).handler(async({context,data})=>{
- await requireContentEdit(context.supabase);
+ const perm=await context.supabase.rpc('admin_can',{p_permission:'edit'});if(!perm.data)throw new Error('Accès refusé.');
  const file=data.get('file');const title=String(data.get('title')??'').trim();const alt=String(data.get('alt')??'').trim();
  const language=String(data.get('language')??'fr');const source=String(data.get('source')??'').trim();const rights=String(data.get('rights')??'').trim();const lessonId=String(data.get('lesson_id')??'').trim();
  if(!(file instanceof File))throw new Error('Fichier requis.');
