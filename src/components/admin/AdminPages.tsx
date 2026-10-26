@@ -22,6 +22,10 @@ export function AdminBilling(){return <><h1>Paiements</h1><p className="admin-em
 
 const ACTION_LABELS:Record<string,string>={question_save:'Brouillon de question enregistré',question_import:'Import de questions',question_submit:'Question soumise à vérification',question_verify:'Question vérifiée',question_publish:'Question publiée',question_offline:'Question retirée',question_restore:'Version restaurée',questions_bulk_update:'Action groupée sur les questions',questions_export:'Export des questions',test_save:'Test enregistré',test_publish:'Test publié',test_offline:'Test retiré',role_set:'Rôle modifié',translation_save:'Traduction enregistrée',translation_review:'Traduction relue',media_save:'Média enregistré',media_verify:'Média vérifié',media_upload:'Média téléversé',media_delete:'Média supprimé',lesson_save:'Cours enregistré',lesson_review:'Cours relu',lesson_publish:'Cours publié',report_update:'Signalement traité',migration_theme_unification:'Unification des thèmes'};
 const ROLE_LABELS:Record<string,string>={admin:'Administrateur',editor:'Éditeur',reviewer:'Relecteur',operations:'Opérations'};
+export function RoleChoice({id,label}:{id:string;label:string}){
+ const [role,setRole]=useState('');
+ return <select id={id} aria-label={label} value={role} onChange={e=>setRole(e.target.value)}><option value="" disabled>Choisir un rôle</option>{Object.entries(ROLE_LABELS).map(([value,title])=><option key={value} value={value}>{title}</option>)}</select>;
+}
 const isTestAccount=(email:unknown)=>typeof email==='string'&&(email.endsWith('@example.com')||email.includes('test'));
 
 function entityLabel(r:Row):string{
