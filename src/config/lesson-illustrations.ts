@@ -9,8 +9,9 @@ import history from '@/assets/topic-history.jpg';
 import society from '@/assets/topic-society.jpg';
 
 // Editorial illustrations accompany the Cloud lesson; they never replace its content.
+const optionalHero=import.meta.glob<string>('/src/assets/lesson-devise-hero.png',{eager:true,query:'?url',import:'default'});
 export const LESSON_ILLUSTRATIONS: Record<string, {src: string; alt: string}> = {
-  devise: {src: devise, alt: 'Des citoyens réunis autour de Marianne, pour illustrer la liberté, l’égalité et la fraternité.'},
+  devise: {src: optionalHero['/src/assets/lesson-devise-hero.png']??devise, alt: optionalHero['/src/assets/lesson-devise-hero.png']?'Un bâtiment républicain avec le drapeau français et la devise Liberté, Égalité, Fraternité.':'Des citoyens réunis autour de Marianne, pour illustrer la liberté, l’égalité et la fraternité.'},
   laicite: {src: laicite, alt: 'Des élèves accueillis dans une école publique française.'},
   parlement: {src: parlement, alt: 'Illustration de l’Assemblée nationale et du Sénat, avec un livre représentant la loi.'},
   president: {src: president, alt: 'Illustration de la présidence, avec un palais, une urne et cinq calendriers évoquant le mandat de cinq ans.'},

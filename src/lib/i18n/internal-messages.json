@@ -820,7 +820,11 @@
     "Thèmes à renforcer : {0}": "Topics to strengthen: {0}",
     "Aucun thème faible parmi les thèmes évalués.": "No weak topics among those assessed.",
     "Vous pensez avoir répondu ?": "Do you think you answered?",
-    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "If you think there was a problem saving your answers, report it so we can check."
+    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "If you think there was a problem saving your answers, report it so we can check.",
+    "Prononcer": "Pronounce",
+    "Sauvegardé": "Saved",
+    "Consulter": "Consult",
+    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Exercises for this lesson are unavailable: at least 5 published questions are required."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1643,7 +1647,11 @@
     "Thèmes à renforcer : {0}": "需要加强的主题：{0}",
     "Aucun thème faible parmi les thèmes évalués.": "已评估的主题中没有薄弱主题。",
     "Vous pensez avoir répondu ?": "您认为自己已作答？",
-    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "如果您认为答案保存出现问题，请反馈以便我们核查。"
+    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "如果您认为答案保存出现问题，请反馈以便我们核查。",
+    "Prononcer": "练习发音",
+    "Sauvegardé": "已保存",
+    "Consulter": "查看",
+    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "本课练习暂不可用：至少需要5道已发布的题目。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -2466,7 +2474,11 @@
     "Thèmes à renforcer : {0}": "مواضيع تحتاج إلى تعزيز: {0}",
     "Aucun thème faible parmi les thèmes évalués.": "لا توجد مواضيع ضعيفة بين المواضيع المقيّمة.",
     "Vous pensez avoir répondu ?": "هل تعتقد أنك أجبت؟",
-    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "إذا كنت تعتقد أن هناك مشكلة في حفظ إجاباتك، فأبلغنا لنتحقق."
+    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "إذا كنت تعتقد أن هناك مشكلة في حفظ إجاباتك، فأبلغنا لنتحقق.",
+    "Prononcer": "تدرّب على النطق",
+    "Sauvegardé": "تم الحفظ",
+    "Consulter": "اطّلع على",
+    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "تمارين هذا الدرس غير متاحة: يلزم نشر 5 أسئلة على الأقل."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -3289,7 +3301,11 @@
     "Thèmes à renforcer : {0}": "Temas a reforzar: {0}",
     "Aucun thème faible parmi les thèmes évalués.": "Ningún tema débil entre los evaluados.",
     "Vous pensez avoir répondu ?": "¿Cree que respondió?",
-    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "Si cree que hubo un problema al guardar sus respuestas, notifíquelo para que podamos comprobarlo."
+    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "Si cree que hubo un problema al guardar sus respuestas, notifíquelo para que podamos comprobarlo.",
+    "Prononcer": "Pronunciar",
+    "Sauvegardé": "Guardado",
+    "Consulter": "Consultar",
+    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Los ejercicios de esta lección no están disponibles: se necesitan al menos 5 preguntas publicadas."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -4112,7 +4128,11 @@
     "Thèmes à renforcer : {0}": "Темы для повторения: {0}",
     "Aucun thème faible parmi les thèmes évalués.": "Среди оценённых тем нет слабых.",
     "Vous pensez avoir répondu ?": "Вы уверены, что отвечали?",
-    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "Если вы считаете, что ответы сохранились неправильно, сообщите нам для проверки."
+    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "Если вы считаете, что ответы сохранились неправильно, сообщите нам для проверки.",
+    "Prononcer": "Произнести",
+    "Sauvegardé": "Сохранено",
+    "Consulter": "Посмотреть",
+    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Упражнения к этому уроку недоступны: необходимо не менее 5 опубликованных вопросов."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -4935,7 +4955,11 @@
     "Thèmes à renforcer : {0}": "Temas a reforçar: {0}",
     "Aucun thème faible parmi les thèmes évalués.": "Nenhum tema fraco entre os avaliados.",
     "Vous pensez avoir répondu ?": "Acha que respondeu?",
-    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "Se acha que houve um problema no registo das respostas, comunique-o para podermos verificar."
+    "Si vous pensez qu'il y a un problème d'enregistrement de vos réponses, signalez-le pour que nous puissions vérifier.": "Se acha que houve um problema no registo das respostas, comunique-o para podermos verificar.",
+    "Prononcer": "Pronunciar",
+    "Sauvegardé": "Guardado",
+    "Consulter": "Consultar",
+    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Os exercícios desta lição estão indisponíveis: são necessárias pelo menos 5 perguntas publicadas."
   },
   "fr": {
     "Votre tableau de bord": "Votre tableau de bord",
