@@ -30,7 +30,6 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as TestGratuitRouteImport } from './routes/test-gratuit'
-import { Route as ZzHarnessRouteImport } from './routes/zz-harness'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as ApiRevisionPlanRouteImport } from './routes/api/revision-plan'
@@ -178,11 +177,6 @@ const TarifsRoute = TarifsRouteImport.update({
 const TestGratuitRoute = TestGratuitRouteImport.update({
   id: '/test-gratuit',
   path: '/test-gratuit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ZzHarnessRoute = ZzHarnessRouteImport.update({
-  id: '/zz-harness',
-  path: '/zz-harness',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -454,7 +448,6 @@ export interface FileRoutesByFullPath {
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
-  '/zz-harness': typeof ZzHarnessRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
@@ -521,7 +514,6 @@ export interface FileRoutesByTo {
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
-  '/zz-harness': typeof ZzHarnessRoute
   '/api/revision-plan': typeof ApiRevisionPlanRoute
   '/api/speech': typeof ApiSpeechRoute
   '/inscription/objectif': typeof InscriptionObjectifRoute
@@ -584,7 +576,6 @@ export interface FileRoutesById {
   '/ressources': typeof RessourcesRouteWithChildren
   '/tarifs': typeof TarifsRouteWithChildren
   '/test-gratuit': typeof TestGratuitRoute
-  '/zz-harness': typeof ZzHarnessRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/api/revision-plan': typeof ApiRevisionPlanRoute
@@ -653,7 +644,6 @@ export interface FileRouteTypes {
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
-    | '/zz-harness'
     | '/admin'
     | '/app'
     | '/api/revision-plan'
@@ -720,7 +710,6 @@ export interface FileRouteTypes {
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
-    | '/zz-harness'
     | '/api/revision-plan'
     | '/api/speech'
     | '/inscription/objectif'
@@ -782,7 +771,6 @@ export interface FileRouteTypes {
     | '/ressources'
     | '/tarifs'
     | '/test-gratuit'
-    | '/zz-harness'
     | '/_authenticated/admin'
     | '/_authenticated/app'
     | '/api/revision-plan'
@@ -851,7 +839,6 @@ export interface RootRouteChildren {
   RessourcesRoute: typeof RessourcesRouteWithChildren
   TarifsRoute: typeof TarifsRouteWithChildren
   TestGratuitRoute: typeof TestGratuitRoute
-  ZzHarnessRoute: typeof ZzHarnessRoute
   ApiRevisionPlanRoute: typeof ApiRevisionPlanRoute
   ApiSpeechRoute: typeof ApiSpeechRoute
   InscriptionObjectifRoute: typeof InscriptionObjectifRoute
@@ -1005,13 +992,6 @@ declare module '@tanstack/react-router' {
       path: '/test-gratuit'
       fullPath: '/test-gratuit'
       preLoaderRoute: typeof TestGratuitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/zz-harness': {
-      id: '/zz-harness'
-      path: '/zz-harness'
-      fullPath: '/zz-harness'
-      preLoaderRoute: typeof ZzHarnessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -1531,7 +1511,6 @@ const rootRouteChildren: RootRouteChildren = {
   RessourcesRoute: RessourcesRouteWithChildren,
   TarifsRoute: TarifsRouteWithChildren,
   TestGratuitRoute: TestGratuitRoute,
-  ZzHarnessRoute: ZzHarnessRoute,
   ApiRevisionPlanRoute: ApiRevisionPlanRoute,
   ApiSpeechRoute: ApiSpeechRoute,
   InscriptionObjectifRoute: InscriptionObjectifRoute,
