@@ -7,8 +7,9 @@ import {overviewOptions} from '@/lib/admin/queries';
 import {overviewActionAllowed,confirmedRevenue} from '@/lib/admin/overview';
 import {PAYMENTS_ENABLED} from '@/config/pricing';
 import {useUiT} from '@/lib/i18n/internal';
+import type {adminOverviewData} from '@/lib/admin/admin.functions';
 
-export type OverviewData=Awaited<ReturnType<typeof overviewOptions>['queryFn'] extends (...args:any[])=>infer R?R:never>;
+export type OverviewData=Awaited<ReturnType<typeof adminOverviewData>>;
 export function AdminOverview(){const [days,setDays]=useState<7|30|90>(7);const {data}=useSuspenseQuery(overviewOptions(days));return <AdminOverviewView data={data} onPeriodChange={setDays}/>;}
 export function AdminOverviewView({data,onPeriodChange}:{data:OverviewData;onPeriodChange:(days:7|30|90)=>void}){
  const u=useUiT();
