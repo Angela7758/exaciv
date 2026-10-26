@@ -6,7 +6,7 @@ import {EXAM_THEMES,TOPICS,emptyQuestion,questionSchema} from '@/lib/admin/schem
 import {validateImport,defaultMapping,IMPORT_FIELDS} from '@/lib/admin/import';
 import {questionLiveState,lessonLiveState,type LiveQuestion} from '@/lib/admin/live-status';
 const DIR=join(__dirname,'../../drizzle/migrations');
-const OFFICIAL=OFFICIAL_TOPICS.map(t=>t.title);
+const OFFICIAL:string[]=OFFICIAL_TOPICS.map(t=>t.title);
 const LEGACY=['Institutions','Valeurs de la République','Histoire','France et Europe'];
 const files=readdirSync(DIR).filter(f=>f.endsWith('.sql')).sort();
 const live=(f:string)=>readFileSync(join(DIR,f),'utf8').split('\n').filter(l=>!l.trimStart().startsWith('--')).join('\n');
