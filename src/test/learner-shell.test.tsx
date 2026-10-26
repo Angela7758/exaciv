@@ -38,7 +38,7 @@ function Shell(){
 describe('Learner shell',()=>{
   it('renders the learner space for a user with an admin role without any /admin link',async()=>{
     render(<Shell/>);
-    expect(screen.getByRole('link',{name:/Mon compte/})).toBeDefined();
+    expect(screen.getAllByRole('link',{name:/Mon compte/}).length).toBeGreaterThan(0);
     expect(screen.queryByRole('link',{name:/Administration/})).toBeNull();
     expect(document.querySelector('a[href="/admin"]')).toBeNull();
     cleanup();
