@@ -232,6 +232,13 @@
       "when": 1792953916169,
       "tag": "0032_learning_bookmarks_and_lesson_layout",
       "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1792976331760,
+      "tag": "0033_drop_ambiguous_start_learning_session_overload",
+      "breakpoints": true
     }
   ]
 }
