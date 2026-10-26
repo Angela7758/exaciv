@@ -27,6 +27,8 @@ function LessonReader({slug}:{slug:string}){
  const qc=useQueryClient();const complete=useServerFn(completeLesson);const save=useServerFn(saveReadingPosition);const start=useServerFn(startSession);const navigate=useNavigate();
  const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [saving,setSaving]=useState(false);const [translation,setTranslation]=useState(false);
  const lessons=applicableLessons(catalogue.lessons,d.profile.parcours);const lesson=lessons.find(v=>v.id===slug);const last=lastLessonSection(lesson?.body??[]);
+ const heroMediaId=(lesson as {hero_media_id?:string|null}|undefined)?.hero_media_id??null;
+ const {data:heroMedia}=useQuery({...lessonHeroOptions(heroMediaId??''),enabled:Boolean(heroMediaId)});
  const saved=d.readingPositions.find(v=>v.lesson_id===slug);const finalSaved=last!==null&&saved?.section_index===last;const [reached,setReached]=useState(finalSaved);const [persisted,setPersisted]=useState(finalSaved);
  const summaryRef=useRef<HTMLElement|null>(null);const writing=useRef(false);const savedRef=useRef(finalSaved);
  async function persist(){if(last===null||writing.current||savedRef.current)return;writing.current=true;setSaving(true);setError('');try{await save({data:{lessonId:slug,section:last}});savedRef.current=true;setPersisted(true);await qc.invalidateQueries({queryKey:['learning']});}catch(e){setError(e instanceof Error?ui(e.message):ui('Position non enregistrée.'));}finally{writing.current=false;setSaving(false);}}
