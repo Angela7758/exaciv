@@ -3,10 +3,10 @@ import {useSuspenseQuery,useQueryClient} from '@tanstack/react-query';
 import {useServerFn} from '@tanstack/react-start';
 import {Download,Upload,Check,ArrowRight} from 'lucide-react';
 import {Button} from '@/components/ui/button';
-import {adminCommand} from '@/lib/admin/admin.functions';
+import {adminCommand,exportQuestions} from '@/lib/admin/admin.functions';
 import {questionsOptions,accessOptions} from '@/lib/admin/queries';
 import {can} from '@/lib/admin/schema';
-import {IMPORT_FIELDS,parseImport,defaultMapping,validateImport,csvTemplate,csvExample,downloadText,IMPORT_THEMES,IMPORT_PATHWAYS,IMPORT_EXAMPLE,type ImportField,type ImportRow,type ImportPreview} from '@/lib/admin/import';
+import {IMPORT_FIELDS,parseImport,defaultMapping,synonymMapping,validateImport,csvTemplate,csvExample,csvSimpleTemplate,simpleRowsToImportRows,isSimpleColumns,draftsToCsv,draftsToJson,errorReportCsv,downloadText,IMPORT_THEMES,IMPORT_PATHWAYS,IMPORT_EXAMPLE,type ImportField,type ImportRow,type ImportPreview} from '@/lib/admin/import';
 interface Report {success:number;failed:number;duplicates:number;pending_review:number;rows:{row:number;id:string;status:string;message?:string}[];}
 export function AdminImport(){const {data:existing}=useSuspenseQuery(questionsOptions);const {data:roles}=useSuspenseQuery(accessOptions);const [rows,setRows]=useState<ImportRow[]>([]);const [columns,setColumns]=useState<string[]>([]);const [mapping,setMapping]=useState<Record<ImportField,string>>(defaultMapping([]));const [preview,setPreview]=useState<ImportPreview[]>([]);const [filename,setFilename]=useState('');const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [confirmed,setConfirmed]=useState(false);const [updates,setUpdates]=useState<string[]>([]);const [report,setReport]=useState<Report|null>(null);const input=useRef<HTMLInputElement>(null);const qc=useQueryClient();const command=useServerFn(adminCommand);if(!can(roles,'edit'))return <p>Votre rôle ne permet pas les imports.</p>;
  async function upload(file:File|undefined){if(!file)return;setError('');setReport(null);setPreview([]);setConfirmed(false);setUpdates([]);try{if(file.size>5_000_000)throw new Error('Fichier trop volumineux (5 Mo maximum).');const parsed=parseImport(await file.text(),file.name);setRows(parsed.rows);setColumns(parsed.columns);setMapping(defaultMapping(parsed.columns));setFilename(file.name);}catch(e){setError(e instanceof Error?e.message:'Fichier invalide.');}}
