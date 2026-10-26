@@ -44,8 +44,8 @@
 - Learner session lists use sessionLabel; readingProgress uses the visible section fraction independently of earned completion.
 - Bookmarks use owner-scoped functions and a shared query, separate from scoring; export includes them and profile deletion cascades.
 - Practice corrections render in place; view-only navigation preserves the server frontier.
-- Continuous lessons validate nullable layout; À retenir saves the final section before completion and lesson practice, preserving server guards.
+- Continuous lessons save the final section at À retenir; nullable layout and server guards prevent invented blocks or completion.
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
-- Result modules separate short/full exams; metrics use frozen answers, not current catalogue.
+- Results separate short/full exams; metrics use frozen answers.
 
 - Full-page mistake review uses safe batch/profile/catalogue reads without correction metadata; only the authenticated review RPC response reveals the validated question, so pre-validation caches remain concealed.
