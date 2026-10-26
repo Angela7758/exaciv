@@ -6,8 +6,8 @@
 - Cloud session snapshots preserve questions, answers, pathway and deadline; authenticated RPCs serialize submission/finalization without duplicate scoring.
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
 - Personal revision AI uses an authenticated streaming API route and request-scoped server-only Gateway helpers; plans are owner-readable and terminal billing/access blocks persist server-side; repeated billed calls are blocked.
-- HomeHero styles are homepage-scoped.
-- The six primary public routes share one persistent Paris background in the root public shell; scene dimensions never depend on leaf text or route.
+- HomeHero styles are scoped.
+- Six public routes share a persistent Paris background; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
 - Official taxonomy/references use src/config/official-programme.ts; LEGACY_TOPIC_MAP matches civic_topic. Map legacy lessons/mistakes at read time, preserving snapshots/order/progress; editorial QCM are not the ministry bank.
 - Auth and session-entry reference styles are scoped to approved-auth and entry-shell; SessionStart reuses persistent RPCs with click-only creation/resume and theme-prefixed practice selection, Introductory visits never start deadlines.
@@ -46,6 +46,7 @@
 - Practice corrections render in place; view-only navigation preserves the server frontier.
 - Continuous lessons save the final section at À retenir; nullable layout and server guards prevent invented blocks or completion.
 - Learner session responses redact unrevealed correction fields without mutating frozen snapshots; completed results reveal them and the legacy public quiz uses a separate catalogue query.
-- Results separate short/full exams; metrics use frozen answers.
+- Results distinguish short/full exams; metrics use snapshots.
+- Admin overview aggregates across owners only after existing role checks; pure rules share the catalogue coverage helper.
 
 - Full-page mistake review uses safe batch/profile/catalogue reads without correction metadata; only the authenticated review RPC response reveals the validated question, so pre-validation caches remain concealed.
