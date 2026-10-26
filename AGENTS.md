@@ -29,7 +29,7 @@
 - Lesson artwork uses stable Cloud lesson IDs and SafeImage; unverified videos are never teaching content or video-learning credit.
 - Signed-in shell dimensions (sidebar, topbar, content width, title levels) come from the shared --app-* tokens at the end of src/styles.css; page variants must not resize it.
 - SafeImage preserves accessible slots for failed artwork; keep original CIVI poses without transparency blending.
-- Administration writes use authenticated permission-checked RPCs with audit records; drafts/versioned option IDs publish into the existing catalogue and configured tests freeze independent session snapshots.
+- Admin writes use permission-checked audited RPCs; versioned IDs publish to the catalogue and tests freeze snapshots. Role menus start empty to prevent implicit grants.
 - Public and learning mobile menus use the existing Radix Sheet portal for focus trapping, scroll locking and dismiss behavior; shared drawer styling must remain independent of homepage header selectors.
 - LearningAgenda is the single owner-scoped planning source for Dashboard and Progression; date keys are calendar dates in the browser timezone, distinct from recorded activities.
 - AccountGreeting is shared by every AppShell page; breadcrumbs belong to content, never replace the greeting.
