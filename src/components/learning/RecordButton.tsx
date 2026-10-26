@@ -5,7 +5,7 @@ import {useUiT} from '@/lib/i18n/internal';
 import {AUDIO_STOP_EVENT,stopLearningAudio} from '@/lib/local-audio';
 
 /** Local-only pronunciation practice: records the learner, keeps audio in memory, never uploads it. */
-export function RecordButton(){
+export function RecordButton({label}:{label?:string}){
   const ui=useUiT();
   const [state,setState]=useState<'idle'|'recording'|'ready'>('idle');
   const [url,setUrl]=useState<string|null>(null);
@@ -31,7 +31,7 @@ export function RecordButton(){
   return <span className="record-button">
     {state==='recording'
       ?<Button type="button" variant="outline" size="sm" onClick={stop} aria-pressed="true" className="recording"><Square/>{ui("Arrêter l’enregistrement")}</Button>
-      :<Button type="button" variant="outline" size="sm" onClick={start}>{state==='ready'?<RotateCcw/>:<Mic/>}{state==='ready'?ui("Réenregistrer"):ui("S’entraîner à prononcer")}</Button>}
+      :<Button type="button" variant="outline" size="sm" onClick={start}>{state==='ready'?<RotateCcw/>:<Mic/>}{state==='ready'?ui("Réenregistrer"):ui(label??"S’entraîner à prononcer")}</Button>}
     {state==='ready'&&<Button type="button" variant="outline" size="sm" onClick={play}><Play/>{ui("Écouter ma voix")}</Button>}
     {error&&<span role="alert" className="question-aids-note">{error}</span>}
   </span>;
