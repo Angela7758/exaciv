@@ -824,7 +824,7 @@
     "Prononcer": "Pronounce",
     "Sauvegardé": "Saved",
     "Consulter": "Consult",
-    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Exercises for this lesson are unavailable: at least 5 published questions are required."
+    "Cette leçon n’a pas encore assez de questions pour un exercice.": "This lesson does not have enough questions for an exercise yet."
   },
   "zh": {
     "Leçon introuvable": "未找到课程",
@@ -1651,7 +1651,7 @@
     "Prononcer": "练习发音",
     "Sauvegardé": "已保存",
     "Consulter": "查看",
-    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "本课练习暂不可用：至少需要5道已发布的题目。"
+    "Cette leçon n’a pas encore assez de questions pour un exercice.": "本课题目数量还不足以开始练习。"
   },
   "ar": {
     "Leçon introuvable": "الدرس غير موجود",
@@ -2478,7 +2478,7 @@
     "Prononcer": "تدرّب على النطق",
     "Sauvegardé": "تم الحفظ",
     "Consulter": "اطّلع على",
-    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "تمارين هذا الدرس غير متاحة: يلزم نشر 5 أسئلة على الأقل."
+    "Cette leçon n’a pas encore assez de questions pour un exercice.": "لا يحتوي هذا الدرس على أسئلة كافية لبدء تمرين بعد."
   },
   "es": {
     "Leçon introuvable": "Lección no encontrada",
@@ -3305,7 +3305,7 @@
     "Prononcer": "Pronunciar",
     "Sauvegardé": "Guardado",
     "Consulter": "Consultar",
-    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Los ejercicios de esta lección no están disponibles: se necesitan al menos 5 preguntas publicadas."
+    "Cette leçon n’a pas encore assez de questions pour un exercice.": "Esta lección aún no tiene suficientes preguntas para un ejercicio."
   },
   "ru": {
     "Leçon introuvable": "Урок не найден",
@@ -4132,7 +4132,7 @@
     "Prononcer": "Произнести",
     "Sauvegardé": "Сохранено",
     "Consulter": "Посмотреть",
-    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Упражнения к этому уроку недоступны: необходимо не менее 5 опубликованных вопросов."
+    "Cette leçon n’a pas encore assez de questions pour un exercice.": "В этом уроке пока недостаточно вопросов для упражнения."
   },
   "pt": {
     "Original français": "Original em francês",
@@ -4959,7 +4959,7 @@
     "Prononcer": "Pronunciar",
     "Sauvegardé": "Guardado",
     "Consulter": "Consultar",
-    "Les exercices de cette leçon sont indisponibles : au moins 5 questions publiées sont nécessaires.": "Os exercícios desta lição estão indisponíveis: são necessárias pelo menos 5 perguntas publicadas."
+    "Cette leçon n’a pas encore assez de questions pour un exercice.": "Esta lição ainda não tem perguntas suficientes para um exercício."
   },
   "fr": {
     "Votre tableau de bord": "Votre tableau de bord",
