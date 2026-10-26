@@ -61,3 +61,8 @@
 - [x] Migration 0035 : bucket admin-media privé + politiques, actions groupées/export/suppression média, héros de cours
 - [x] Actions groupées Questions, éditeur de cours en formulaire, import enrichi, téléversement médias, correctifs UI admin
 - [x] 258 tests, typecheck OK ; refus serveur non-admin vérifié ; catalogue apprenant inchangé (11/12/8/10/0)
+
+## Suivi A2 — alignements et vérification publiée
+- [ ] Corriger colonnes de sélection/options, choix de rôle vide et retirer les langues admin uniquement.
+- [ ] Vérifier tiroirs, question test seule, cours, média, export/import et accès Comptes avec Test fidélité 2 uniquement ; nettoyer sans publication.
+- [ ] Tests, captures 1440/390, publication et rapport avec limites exactes.
