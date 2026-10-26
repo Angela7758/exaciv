@@ -14,7 +14,7 @@ function signatures(sql:string){
  const drops=[...sql.matchAll(/DROP\s+FUNCTION\s+(?:IF\s+EXISTS\s+)?(?:public\.)?([a-z0-9_]+)\s*\(([^)]*)\)/gi)];
  // Normalise each argument to its type: "p_kind text DEFAULT NULL" -> "text", "text" -> "text".
  const norm=(args:string)=>args.replace(/--[^\n]*/g,'').split(',').map(a=>{const t=a.trim().split(/\s+/).filter(Boolean);return (t.length>1?t[1]:t[0]??'').toLowerCase();}).filter(Boolean).join(',');
- return {creates:creates.map(m=>({name:m[1].toLowerCase(),args:norm(m[2])})),drops:drops.map(m=>({name:m[1].toLowerCase(),args:norm(m[2])}))};
+ return {creates:creates.map(m=>({name:(m[1]??'').toLowerCase(),args:norm(m[2]??'')})),drops:drops.map(m=>({name:(m[1]??'').toLowerCase(),args:norm(m[2]??'')}))};
 }
 
 describe('Migration function overloads',()=>{
