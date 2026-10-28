@@ -1071,15 +1071,12 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 
 /* October 23 reference composition; isolated from other public and Dashboard views. */
 .home-stone{position:absolute;right:0;bottom:0;width:48%;height:105px;object-fit:fill;}
-.approved-home .home-exam-strip{margin-top:-24px;}
-.approved-home .home-pathway-cards{margin-top:24px;}
 .approved-home .home-pathway-card{min-height:210px;padding:24px 20px;}
 .home-pathway-title{display:flex;align-items:flex-start;gap:14px;font-size:22px;}
 .home-pathway-title>svg{width:30px;height:30px;flex-shrink:0;}
 .home-pathway-card p{margin-left:44px;font-size:14px;line-height:1.4;}
 .home-pathway-card .home-more-link{width:44px;padding:0;font-size:0;justify-content:center;margin-top:auto;}
 .home-pathway-card .home-more-link svg{width:20px;height:20px;}
-.approved-home .home-method{padding-block:36px;margin-top:32px;}
 .approved-home .home-method .max-w-2xl,.approved-home .home-pathway-cards ~ .max-w-2xl,.approved-home .home-faq>.max-w-2xl{max-width:100%;}
 .approved-home .home-method-card{padding:18px 14px;border-radius:14px;}
 .home-method-num{border-radius:50%;width:34px;height:34px;display:grid;place-items:center;padding:0;}
@@ -1091,7 +1088,6 @@ html[lang=ar] body{font-family:'Noto Sans Arabic','Inter',sans-serif;}
 .home-method-lesson{gap:10px;}
 .home-method-lesson img{aspect-ratio:4/3;}
 .home-score-ring>div>span{font-size:22px;font-weight:800;color:var(--primary-interactive);}
-.approved-home .home-faq{padding-bottom:24px;}
 .home-faq [data-slot=accordion-trigger]{font-size:17px;min-height:68px;}
 .home-faq [data-slot=accordion-content]{background:var(--learning-surface);font-size:16px;line-height:1.5;margin-bottom:12px;}
 .approved-home .home-final-cta{border-radius:36px 36px 0 0;overflow:visible;}
@@ -1351,12 +1347,8 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .public-body{padding-bottom:72px;}
 .method-cards,.help-columns,.pricing-reference-grid{margin-top:32px;}
 .approved-home>div>section,.approved-home>section{scroll-margin-top:96px;}
-.approved-home .home-method,.approved-home .home-daily{margin-block:40px;}
-.approved-home section.container-page.pt-16{padding-top:56px;}
-.approved-home section.py-14,.approved-home section.py-12{padding-block:48px;}
-.approved-home .home-method{padding-top:40px;}
 .site-footer>.container-page:first-child{padding-block:56px;}
-@media(max-width:767px){.public-body>*+*,.exam-information,.public-notice{margin-top:28px;}.approved-home section.py-14,.approved-home section.py-12{padding-block:36px;}.approved-home section.container-page.pt-16{padding-top:40px;}.approved-home .home-method,.approved-home .home-daily{margin-block:28px;}}
+@media(max-width:767px){.public-body>*+*,.exam-information,.public-notice{margin-top:28px;}}
 @media(min-width:1024px){.nine-public.exam-public .public-body>.public-facts{margin-top:-100px!important;margin-bottom:40px!important;position:relative;z-index:4;}}
 @media(min-width:768px) and (max-width:1023px){.nine-public.exam-public .public-body>.public-facts{margin-top:-70px!important;margin-bottom:32px!important;position:relative;z-index:4;}}
 .nine-public .public-body>.exam-information,.nine-public .public-body>.public-notice{margin-top:40px!important;}
@@ -1986,28 +1978,51 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .admin-issues{margin:8px 0 0;padding-inline-start:18px;display:grid;gap:4px;font-size:13px;}.admin-issues button{text-align:start;text-decoration:underline;text-underline-offset:2px;}.admin-editor [aria-invalid=true]{border-color:var(--destructive)!important;}
 @media(max-width:1023px){.fidelity-admin-shell .admin-topbar>.mobile-menu-trigger{display:inline-flex;}}
 
-/* Accueil : rythme vertical harmonisé entre sections. */
-.approved-home section.container-page.pt-16{padding-top:56px;}
-.approved-home .home-method,.approved-home .home-daily{margin-block:56px;padding-block:44px;}
-.approved-home section.py-14,.approved-home section.py-12{padding-block:0;}
-.approved-home section.py-12{padding-bottom:56px;}
-.approved-home .home-faq{padding-bottom:56px;}
-@media(max-width:767px){.approved-home section.container-page.pt-16{padding-top:36px;}.approved-home .home-method,.approved-home .home-daily{margin-block:36px;padding-block:28px;}.approved-home section.py-12{padding-bottom:36px;}.approved-home .home-faq{padding-bottom:36px;}}
-.approved-home section.home-method.py-14{padding-block:44px;}
-.approved-home section.py-12{padding-bottom:40px;}
-@media(max-width:767px){.approved-home section.home-method.py-14{padding-block:28px;}.approved-home section.py-12{padding-bottom:28px;}}
-.approved-home section.home-method.py-14{padding-top:22px;}
-.approved-home .home-method{margin-bottom:28px;}
-@media(max-width:767px){.approved-home section.home-method.py-14{padding-top:14px;}.approved-home .home-method{margin-bottom:18px;}}
-/* Titres encore remontés : espace au-dessus des trois titres réduit de moitié. */
-.approved-home section.container-page.pt-16{padding-top:36px;}
-.approved-home section.container-page.pt-16>.public-section-heading,
-.approved-home .home-method .public-section-heading,
-.approved-home section.container-page.py-14>.public-section-heading{padding-top:0;}
-.approved-home section.home-method.py-14{padding-top:19px;}
-.approved-home .home-method{margin-bottom:22px;}
-@media(max-width:767px){
-.approved-home section.container-page.pt-16{padding-top:29px;}
-.approved-home section.home-method.py-14{padding-top:18px;}
-.approved-home .home-method{margin-bottom:20px;}
+/* Homepage rhythm: change only --home-section-space to adjust all sections.
+   Ratios preserve the approved compact titles; mobile scales from the same value.
+   Hero coordinates / shared Paris crop are deliberately not section spacing. */
+.approved-home {
+  --home-section-space: 56px;
+  --home-rhythm: var(--home-section-space);
+}
+.approved-home .home-exam-strip { margin-block: calc(var(--home-section-space) * -3 / 7) 0; }
+.approved-home .home-pathways { padding-block: calc(var(--home-rhythm) * 9 / 14) 0; }
+.approved-home .home-benefits-section { padding-block: 0; }
+.approved-home .home-method {
+  margin-block: var(--home-rhythm) calc(var(--home-rhythm) * 11 / 28);
+  padding-block: calc(var(--home-rhythm) * 19 / 56) calc(var(--home-rhythm) * 11 / 14);
+}
+.approved-home .home-daily {
+  margin-block: var(--home-rhythm);
+  padding-block: calc(var(--home-rhythm) * 11 / 14);
+}
+.approved-home .home-pricing { padding-block: 0 calc(var(--home-rhythm) * 5 / 7); }
+.approved-home .home-faq { padding-block: 0 var(--home-rhythm); }
+.approved-home .public-section-heading { padding-top: 0; margin-bottom: calc(var(--home-rhythm) * 4 / 7); }
+.approved-home .public-section-heading p { margin-top: calc(var(--home-rhythm) * 3 / 14); }
+.approved-home .home-pathway-cards,
+.approved-home .home-section-content { margin-top: calc(var(--home-rhythm) * 3 / 7); }
+.approved-home .home-method-examples { margin-top: calc(var(--home-rhythm) / 4); }
+.approved-home .home-method-grid { margin-top: calc(var(--home-rhythm) * 11 / 28); }
+.approved-home .home-daily h2 + p { margin-top: calc(var(--home-rhythm) / 7); }
+.approved-home .home-daily ol { margin-top: calc(var(--home-rhythm) * 3 / 7); }
+.approved-home .home-final-layout { padding-block: calc(var(--home-rhythm) * 11 / 14); }
+.approved-home .home-final-copy p { margin-top: calc(var(--home-rhythm) * 5 / 28); }
+.public-site-shell:has(.approved-home) > .site-footer {
+  --home-rhythm: var(--home-section-space);
+}
+.public-site-shell:has(.approved-home) > .site-footer > .container-page:first-child { padding-block: var(--home-rhythm); }
+/* Inherit the same adjustment into the footer, without changing other public pages. */
+.public-site-shell:has(.approved-home) > .site-footer { --home-section-space: 56px; }
+@media (min-width: 1101px) {
+  .approved-home .home-pathways { padding-top: calc(var(--home-rhythm) * 3 / 4); }
+}
+@media (max-width: 767px) {
+  .approved-home,
+  .public-site-shell:has(.approved-home) > .site-footer { --home-rhythm: calc(var(--home-section-space) * 9 / 14); }
+  .approved-home .home-pathways { padding-top: calc(var(--home-rhythm) * 29 / 36); }
+  .approved-home .home-method { padding-block: calc(var(--home-rhythm) / 2) calc(var(--home-rhythm) * 7 / 9); margin-bottom: calc(var(--home-rhythm) * 5 / 9); }
+  .approved-home .home-daily { padding-block: calc(var(--home-rhythm) * 7 / 9); }
+  .approved-home .home-pricing { padding-bottom: calc(var(--home-rhythm) * 7 / 9); }
+  .approved-home .home-final-layout { padding-block: calc(var(--home-rhythm) * 8 / 9) calc(var(--home-rhythm) * 95 / 18); }
 }
