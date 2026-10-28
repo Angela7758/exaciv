@@ -35,7 +35,7 @@ function Index() {
       <HomeHero />
 
       {/* Stats bar */}
-      <section className="container-page home-exam-strip relative z-10 mt-6">
+      <section className="container-page home-exam-strip relative z-10">
         <div className="grid items-center gap-4 rounded-2xl border bg-card p-5 shadow-card md:grid-cols-[1fr_1fr_1.2fr_auto]">
           <Stat icon={FileText} cls="bg-secondary-soft text-secondary" title={t('home.stats.q')} sub={t('home.stats.qsub')} />
           <Stat icon={Clock} cls="bg-accent text-primary-interactive" title={t('home.stats.d')} sub={t('home.stats.dsub')} />
@@ -47,9 +47,9 @@ function Index() {
       </section>
 
       {/* Parcours */}
-      <Reveal><section className="container-page pt-16">
+      <Reveal><section data-home-block="pathways" className="container-page home-pathways">
         <SectionHeading title={t('home.parcours.title')} subtitle={t('home.parcours.subtitle')} />
-        <div className="home-pathway-cards mt-8 grid items-stretch gap-4 md:grid-cols-3">
+        <div className="home-pathway-cards grid items-stretch gap-4 md:grid-cols-3">
           {parcoursCards.map((p, i) => (
             <article key={p.id} style={{ transitionDelay: `${i * 70}ms` }} className={`reveal-child home-pathway-card relative flex h-full min-h-48 overflow-hidden rounded-2xl p-6 card-hover ${p.card}`}>
               <img src={p.art} alt="" aria-hidden loading="lazy" className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto rtl-mirror-off" />
@@ -64,7 +64,7 @@ function Index() {
       </section></Reveal>
 
       {/* Méthode */}
-      <Reveal><section data-home-block="method" className="home-method mt-12 rounded-t-[2.5rem] bg-accent/40 py-14">
+      <Reveal><section data-home-block="method" className="home-method rounded-t-[2.5rem] bg-accent/40">
         <div className="container-page">
           <SectionHeading title={t('home.methode.title')} subtitle={t('home.methode.subtitle')} />
           <p className="home-method-examples">{t('home.methode.examples')}</p>
@@ -94,9 +94,9 @@ function Index() {
       </section></Reveal>
 
       {/* Pensé pour votre parcours */}
-      <Reveal><section className="container-page py-14">
+      <Reveal><section data-home-block="benefits" className="container-page home-benefits-section">
         <SectionHeading title={t('home.parcours.title')} subtitle={t('home.parcours.subtitle')} />
-        <div className="mt-8 grid items-stretch gap-4 lg:grid-cols-3">
+        <div className="home-section-content grid items-stretch gap-4 lg:grid-cols-3">
           <div className="flex h-full flex-col rounded-2xl bg-secondary-soft p-5 card-hover">
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Users className="size-6 fill-secondary text-secondary" /></span>
@@ -146,7 +146,7 @@ function Index() {
       </section></Reveal>
 
       {/* Un petit pas chaque jour */}
-      <Reveal><section data-home-block="steps" className="home-daily mx-3 rounded-[2rem] bg-accent/60 py-10">
+      <Reveal><section data-home-block="steps" className="home-daily mx-3 rounded-[2rem] bg-accent/60">
         <div className="container-page grid items-center gap-8 md:grid-cols-[260px_1fr]">
           <CiviTip />
           <div>
@@ -174,15 +174,15 @@ function Index() {
       </section></Reveal>
 
       {/* Pricing */}
-      <Reveal><section className="container-page py-12">
+      <Reveal><section data-home-block="pricing" className="container-page home-pricing">
         <SectionHeading title={t('home.pricing.title')} subtitle={t('home.pricing.subtitle')} />
-        <div className="mt-6"><PricingCards /></div>
+        <div className="home-section-content"><PricingCards /></div>
       </section></Reveal>
 
       {/* FAQ */}
-      <Reveal><section data-home-block="faq" className="home-faq container-page pb-12">
+      <Reveal><section data-home-block="faq" className="home-faq container-page">
         <SectionHeading title={t('home.faq.title')} subtitle={t('home.faq.subtitle')} />
-        <div className="mt-6"><HomeFaq /></div>
+        <div className="home-section-content"><HomeFaq /></div>
       </section></Reveal>
 
       <Reveal><FinalCta /></Reveal>
