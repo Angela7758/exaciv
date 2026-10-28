@@ -1996,3 +1996,6 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 .approved-home section.home-method.py-14{padding-block:44px;}
 .approved-home section.py-12{padding-bottom:40px;}
 @media(max-width:767px){.approved-home section.home-method.py-14{padding-block:28px;}.approved-home section.py-12{padding-bottom:28px;}}
+.approved-home section.home-method.py-14{padding-top:22px;}
+.approved-home .home-method{margin-bottom:28px;}
+@media(max-width:767px){.approved-home section.home-method.py-14{padding-top:14px;}.approved-home .home-method{margin-bottom:18px;}}
