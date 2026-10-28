@@ -1981,8 +1981,10 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
 /* Homepage rhythm: change only --home-section-space to adjust all sections.
    Ratios preserve the approved compact titles; mobile scales from the same value.
    Hero coordinates / shared Paris crop are deliberately not section spacing. */
-.approved-home {
+.public-site-shell:has(.approved-home) {
   --home-section-space: 56px;
+}
+.approved-home {
   --home-rhythm: var(--home-section-space);
 }
 .approved-home .home-exam-strip { margin-block: calc(var(--home-section-space) * -3 / 7) 0; }
@@ -2012,8 +2014,6 @@ a,button{transition-property:color,background-color,border-color,transform,box-s
   --home-rhythm: var(--home-section-space);
 }
 .public-site-shell:has(.approved-home) > .site-footer > .container-page:first-child { padding-block: var(--home-rhythm); }
-/* Inherit the same adjustment into the footer, without changing other public pages. */
-.public-site-shell:has(.approved-home) > .site-footer { --home-section-space: 56px; }
 @media (min-width: 1101px) {
   .approved-home .home-pathways { padding-top: calc(var(--home-rhythm) * 3 / 4); }
 }
