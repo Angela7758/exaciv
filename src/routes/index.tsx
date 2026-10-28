@@ -48,7 +48,7 @@ function Index() {
 
       {/* Parcours */}
       <Reveal><section data-home-block="pathways" className="container-page home-pathways">
-        <SectionHeading title={t('home.parcours.title')} subtitle={t('home.parcours.subtitle')} />
+        <SectionHeading wide title={t('home.parcours.title')} subtitle={t('home.parcours.subtitle')} />
         <div className="home-pathway-cards grid items-stretch gap-4 md:grid-cols-3">
           {parcoursCards.map((p, i) => (
             <article key={p.id} style={{ transitionDelay: `${i * 70}ms` }} className={`reveal-child home-pathway-card relative flex h-full min-h-48 overflow-hidden rounded-2xl p-6 card-hover ${p.card}`}>
@@ -95,7 +95,7 @@ function Index() {
 
       {/* Pensé pour votre parcours */}
       <Reveal><section data-home-block="benefits" className="container-page home-benefits-section">
-        <SectionHeading title={t('home.parcours.title')} subtitle={t('home.parcours.subtitle')} />
+        <SectionHeading wide title={t('home.parcours.title')} subtitle={t('home.parcours.subtitle')} />
         <div className="home-section-content grid items-stretch gap-4 lg:grid-cols-3">
           <div className="flex h-full flex-col rounded-2xl bg-secondary-soft p-5 card-hover">
             <div className="flex gap-3">
