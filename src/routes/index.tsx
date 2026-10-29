@@ -101,7 +101,7 @@ function Index() {
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Users className="size-6 fill-secondary text-secondary" /></span>
               <div>
-                <h3 className="text-lg font-bold">{t('home.parcours.nat.title')}</h3>
+                <h3 className="home-card-title">{t('home.parcours.nat.title')}</h3>
                 <p className="text-sm text-muted-foreground">{t('home.parcours.nat.text')}</p>
               </div>
             </div>
@@ -121,7 +121,7 @@ function Index() {
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><BookOpen className="size-6 fill-primary-interactive text-primary-interactive" /></span>
               <div>
-                <h3 className="text-lg font-bold">{t('home.value.lessons.title')}</h3>
+                <h3 className="home-card-title">{t('home.value.lessons.title')}</h3>
                 <p className="text-sm text-muted-foreground">{t('home.value.lessons.text')}</p>
               </div>
             </div>
@@ -136,7 +136,7 @@ function Index() {
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Laptop className="size-6 text-success" /></span>
               <div>
-                <h3 className="text-lg font-bold">{t('home.value.progress.title')}</h3>
+                <h3 className="home-card-title">{t('home.value.progress.title')}</h3>
                 <p className="text-sm text-muted-foreground">{t('home.value.progress.text')}</p>
               </div>
             </div>
