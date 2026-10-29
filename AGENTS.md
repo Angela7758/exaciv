@@ -6,7 +6,7 @@
 - Cloud session snapshots preserve questions, answers, pathway and deadline; authenticated RPCs serialize submission/finalization without duplicate scoring.
 - Lesson lists and practice entry pages are index children of Outlet layouts so detail and feedback URLs render independently.
 - Revision AI uses authenticated streaming and request-scoped server-only Gateway helpers; plans are owner-readable, terminal billing/access blocks persist, and repeated billed calls are blocked.
-- Homepage spacing derives from --home-section-space in scoped CSS; semantic section classes prevent cascade conflicts. Hero geometry stays fixed.
+- Homepage spacing and heading sizes/weights derive from --home-section-space and --home-title-* in scoped CSS; hero and FAQ rows excluded.
 - Six public routes share a persistent Paris background; scene dimensions never depend on leaf text or route.
 - Homepage scene uses absolute desktop composition and a mobile-only grid; do not let mobile positioning rules override the desktop reference.
 - Official themes (official-programme.ts) are the only writable question/lesson themes; exam_theme is authoritative and equals theme (DB CHECK). LEGACY_TOPIC_MAP/civic_topic only read old snapshots.
