@@ -54,7 +54,7 @@ function Index() {
             <article key={p.id} style={{ transitionDelay: `${i * 70}ms` }} className={`reveal-child home-pathway-card relative flex h-full min-h-48 overflow-hidden rounded-2xl p-6 card-hover ${p.card}`}>
               <img src={p.art} alt="" aria-hidden loading="lazy" className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto rtl-mirror-off" />
               <div className="relative flex flex-1 flex-col items-start">
-                <h3 className={`home-pathway-title font-bold ${p.title_cls}`}>{p.title}</h3>
+                <h3 className={`home-pathway-title ${p.title_cls}`}>{p.title}</h3>
                 <p className="mt-2 max-w-[62%] text-muted-foreground">{p.text}</p>
                 <Link to="/parcours" hash={p.id} className="home-more-link mt-auto">{t('home.parcours.more')}<ArrowRight className="size-4 rtl-flip" /></Link>
               </div>
@@ -101,7 +101,7 @@ function Index() {
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Users className="size-6 fill-secondary text-secondary" /></span>
               <div>
-                <h3 className="text-lg font-bold">{t('home.parcours.nat.title')}</h3>
+                <h3 className="home-card-title">{t('home.parcours.nat.title')}</h3>
                 <p className="text-sm text-muted-foreground">{t('home.parcours.nat.text')}</p>
               </div>
             </div>
@@ -121,7 +121,7 @@ function Index() {
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><BookOpen className="size-6 fill-primary-interactive text-primary-interactive" /></span>
               <div>
-                <h3 className="text-lg font-bold">{t('home.value.lessons.title')}</h3>
+                <h3 className="home-card-title">{t('home.value.lessons.title')}</h3>
                 <p className="text-sm text-muted-foreground">{t('home.value.lessons.text')}</p>
               </div>
             </div>
@@ -136,7 +136,7 @@ function Index() {
             <div className="flex gap-3">
               <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card"><Laptop className="size-6 text-success" /></span>
               <div>
-                <h3 className="text-lg font-bold">{t('home.value.progress.title')}</h3>
+                <h3 className="home-card-title">{t('home.value.progress.title')}</h3>
                 <p className="text-sm text-muted-foreground">{t('home.value.progress.text')}</p>
               </div>
             </div>
@@ -150,7 +150,7 @@ function Index() {
         <div className="container-page grid items-center gap-8 md:grid-cols-[260px_1fr]">
           <CiviTip />
           <div>
-            <h2 className="text-center text-3xl font-bold md:text-4xl">{t('home.steps.title')}</h2>
+            <h2 className="text-center">{t('home.steps.title')}</h2>
             <p className="mt-2 text-center text-lg text-muted-foreground">{t('home.steps.subtitle')}</p>
             <ol className="mt-6 grid grid-cols-2 gap-6 lg:grid-cols-4">
               {[

@@ -12,7 +12,7 @@ import ctaBg from "@/assets/hero-paris.jpg";
 export function SectionHeading({ title, subtitle, wide }: { title: string; subtitle?: string; wide?: boolean }) {
   return (
     <div className={`public-section-heading ${wide ? "max-w-4xl" : "max-w-3xl"} text-start`}>
-      <h2 className="text-3xl font-bold md:text-4xl">{title}</h2>
+      <h2 className="home-section-title">{title}</h2>
       {subtitle && <p className="mt-3 text-lg text-muted-foreground">{subtitle}</p>}
     </div>
   );
@@ -45,7 +45,7 @@ export function PricingCards() {
               <div className="flex items-start gap-4">
                 <span className={`grid size-14 shrink-0 place-items-center rounded-full ${l.iconCls}`}><l.icon className={`size-7 ${p.id === "essentiel" ? "" : "fill-current"}`} strokeWidth={p.id === "essentiel" ? 3 : 2} /></span>
                 <div>
-                  <h3 className="text-xl font-bold">{p.name}</h3>
+                  <h3 className="home-plan-title text-xl font-bold">{p.name}</h3>
                   <p className="mt-1">
                     <span className="text-3xl font-extrabold">{p.price}</span>
                     {p.period && <span className="ml-1 text-lg">{p.period}</span>}
@@ -122,7 +122,7 @@ export function FinalCta() {
       <div className="absolute inset-0 bg-cta-band opacity-80" />
       <div className="home-final-layout container-page relative flex flex-col items-center gap-6 py-12 text-center text-primary-foreground md:flex-row md:items-center md:gap-10 md:text-start">
         <div className="home-final-copy order-1 min-w-0">
-          <h2 className="text-4xl font-bold md:text-5xl">{t('home.cta.title')}</h2>
+          <h2 className="home-final-title">{t('home.cta.title')}</h2>
           <p className="mt-2 text-lg opacity-95">{t('home.cta.text')}</p>
         </div>
         <Button data-slot="button" asChild variant="cta" size="xl" className="order-2 shrink-0">
